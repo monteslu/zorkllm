@@ -95,7 +95,11 @@ export function parseGuideNote(text) {
     prose.push(line.replace(/^>\s*/, ''));
   }
   const note = stripTrailingCommand(prose.join(' ').trim());
-  return note && !/^PASS\b[.!]?$/i.test(note) ? note : null;
+  if (!note || /^PASS\b[.!]?$/i.test(note)) return null;
+  // A "note" that is nothing but a command (READ LEAFLET, LOOK) is the
+  // model echoing what it wants to do, not guidance - drop it.
+  if (/^[A-Z][A-Z0-9-]*(\s+[A-Z0-9-]+){0,5}$/.test(note)) return null;
+  return note;
 }
 
 /**

@@ -521,3 +521,32 @@ console.log('retry verb list:');
      (retryPrompt || '').slice(0, 80));
   ok('corrected command executed', r.turns.some((t) => t.command === 'BREAK WINDOW'), JSON.stringify(r).slice(0, 100));
 }
+
+// --- live e2b fixtures: bare-command guide notes + mid-question answers ---
+console.log('question answers and command-only notes:');
+assert.equal(parseGuideNote('READ LEAFLET'), null);
+assert.equal(parseGuideNote('LOOK'), null);
+assert.equal(parseGuideNote('COMMANDS\nLOOK'), null);
+assert.ok(parseGuideNote('That mailbox might have something inside.'));
+passed += 4; console.log('  ok - command-only notes dropped, real notes kept');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let llmCalls = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'question-answer',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) return 'PASS';
+      llmCalls++;
+      return 'COMMANDS\nBREAK WINDOW';
+    },
+  }, 'Zork I');
+  await a.raw('NORTH');
+  await a.raw('EAST');
+  await a.raw('BREAK WINDOW');      // game asks: with what?
+  const r = await a.turn('my hands');
+  ok('short in-dictionary answer goes straight to the parser',
+     llmCalls === 0 && r.turns?.[0]?.command === 'hands', JSON.stringify(r).slice(0, 90));
+  const r2 = await a.turn('my face');   // "face" unknown -> still goes to the LLM
+  ok('unknown-word answer still routes to the LLM', llmCalls === 1, JSON.stringify(r2).slice(0, 60));
+}

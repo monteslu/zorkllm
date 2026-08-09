@@ -165,11 +165,25 @@ export class ZorkAgent {
       const { command, output } = await this.raw(tokens[0]);
       return { type: 'turns', turns: [{ command, output }], note: null };
     }
+    const gameAskedQuestion = /affirmative\)?:?\s*$|\?\s*$/i.test(this.lastGameOutput || '');
     if (!word.includes(' ')) {
-      const gameAskedQuestion = /affirmative\)?:?\s*$|\?\s*$/i.test(this.lastGameOutput || '');
       if ((META_WORDS.has(word) && this.#inDictionary(word))
         || (YESNO_WORDS.has(word) && gameAskedQuestion)) {
         const { command, output } = await this.raw(word);
+        return { type: 'turns', turns: [{ command, output }], note: null };
+      }
+    }
+    // The parser is mid-question ("What do you want to break the window
+    // with?") and the player gave a short answer ("the sword", "my
+    // hands"): hand it straight to the parser, which resolves such
+    // answers natively. Leading possessives the 1980 dictionary lacks
+    // ("my") are dropped; beyond that every word must be dictionary-known
+    // or the LLM translates as usual. A wrong guess costs nothing -
+    // rejections consume no game move and fall into the retry.
+    if (gameAskedQuestion && tokens.length <= 3) {
+      const answer = tokens.filter((t, i) => !(i === 0 && ['my', 'their', 'this', 'that'].includes(t))).join(' ');
+      if (answer && this.#inDictionary(answer)) {
+        const { command, output } = await this.raw(answer);
         return { type: 'turns', turns: [{ command, output }], note: null };
       }
     }
