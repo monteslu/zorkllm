@@ -138,6 +138,8 @@ export class ZorkAgent {
     this.vocabSet = new Set(session.vocabulary);
     this.dictWordLength = session.dictWordLength ?? 6;
     /** The game's own word classifications (dictionary part-of-speech bytes). */
+    /** @type {Set<string>[]} normalized word sets of recent guide notes */
+    this.recentNotes = [];
     this.verbSet = new Set(session.verbs ?? []);
     this.nounSet = new Set(session.nouns ?? []);
     this.historyTurns = opts.historyTurns ?? 20;
@@ -396,9 +398,13 @@ export class ZorkAgent {
 
   /**
    * Post-turn guide reflection: one extra call on the same (cached) prefix
-   * asking whether a newcomer needs anything pointed out. Recorded in history
-   * either way so the window stays append-only and the guide remembers what
-   * it already taught. Guidance is best-effort - never fails the turn.
+   * asking whether a newcomer needs anything pointed out. Real notes stay
+   * in history so the guide remembers what it already taught; PASS
+   * exchanges are removed, because a window full of [guide check] -> PASS
+   * pairs teaches the model to imitate its own silence - after a few, it
+   * answers PASS to everything (observed live: same model, same stuck
+   * player, coached with a clean window and went mute with a PASS-filled
+   * one). Guidance is best-effort - never fails the turn.
    * @returns {Promise<string|null>}
    */
   async #reflect(message = GUIDE_CHECK) {
@@ -406,12 +412,38 @@ export class ZorkAgent {
     this.history.push({ role: 'user', content: message });
     try {
       const reply = await this.llm.complete({ system: this.system, messages: this.#window() });
-      this.history.push({ role: 'assistant', content: reply });
-      return parseGuideNote(reply);
+      let note = parseGuideNote(reply);
+      // Models echo their own recent notes almost verbatim ("the path runs
+      // east and north" seventeen turns straight, live). A repeat teaches
+      // nothing, so it is treated exactly like PASS - suppressed and
+      // removed from history, where it would only breed more repeats.
+      if (note && this.#isRepeatNote(note)) note = null;
+      if (note) {
+        this.history.push({ role: 'assistant', content: reply });
+        this.recentNotes.push(this.#normalizeNote(note));
+        if (this.recentNotes.length > 5) this.recentNotes.shift();
+      } else {
+        this.history.pop();
+      }
+      return note;
     } catch {
       this.history.pop();
       return null;
     }
+  }
+
+  /** Word-set overlap against the last few notes given. */
+  #isRepeatNote(note) {
+    const words = this.#normalizeNote(note);
+    return this.recentNotes.some((prev) => {
+      const shared = [...words].filter((w) => prev.has(w)).length;
+      return shared / Math.max(words.size, prev.size) >= 0.75;
+    });
+  }
+
+  /** @param {string} note @returns {Set<string>} */
+  #normalizeNote(note) {
+    return new Set(note.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(Boolean));
   }
 
   /**

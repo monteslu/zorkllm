@@ -678,3 +678,47 @@ console.log('continuation voice:');
      checks.length === 1 && /CONTINUATION/.test(checks[0]),
      checks[0]?.slice(0, 60) ?? 'no check ran');
 }
+
+// --- PASS reflections leave no trace; real notes stay in history ---
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let notes = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'no-self-imitation',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) {
+        return ++notes === 1 ? 'That mailbox may hold something worth a look.' : 'PASS';
+      }
+      return 'COMMANDS\nLOOK';
+    },
+  }, 'Zork I');
+  await a.turn('peek around');   // note kept
+  await a.turn('peek around');   // PASS - popped
+  await a.turn('peek around');   // PASS - popped
+  const checks = a.history.filter((m) => m.content.includes('[guide check]')).length;
+  ok('only the answered guide check stays in history', checks === 1, String(checks));
+  ok('the real note stays in history',
+     a.history.some((m) => /worth a look/.test(m.content)), 'note missing');
+}
+
+// --- near-identical repeat notes are suppressed like PASS ---
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  const a = new ZorkAgent(s, {
+    describe: () => 'dedup',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) {
+        return 'The path seems to run east toward a road and north into some woods from this spot.';
+      }
+      return 'COMMANDS\nLOOK';
+    },
+  }, 'Zork I');
+  const r1 = await a.turn('peek around');
+  const r2 = await a.turn('peek around some more');
+  ok('first note surfaces', /east toward a road/.test(r1.note ?? ''), JSON.stringify(r1.note));
+  ok('verbatim repeat is suppressed', r2.note === null, JSON.stringify(r2.note));
+  const checks = a.history.filter((m) => m.content.includes('[guide check]')).length;
+  ok('suppressed repeat leaves no history trace', checks === 1, String(checks));
+}

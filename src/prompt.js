@@ -79,7 +79,7 @@ export const GUIDE_CHECK =
  * same thing - the note must pick up where the message left off instead.
  */
 export const GUIDE_CONTINUE =
-  '[guide check] The game\'s response above was just printed for the player, and your reply will appear directly beneath it as the very next line - so it must read as a CONTINUATION of that message, in the same voice. Never restate or paraphrase what it said; add only the part it left out: which ways actually lead somewhere, which of the things it asked about you might mean, what a workable next try looks like. One short sentence. Phrase suggestions as natural invitations ("the path here runs north and south"), NEVER as command words to type. Do not write COMMANDS, SAY, or any game commands here. If there is truly nothing to add, reply with exactly the single word: PASS';
+  '[guide check] The game\'s response above was just printed for the player, and your reply will appear directly beneath it as the very next line - so it must read as a CONTINUATION of that message, in the same voice. Never restate or paraphrase what it said; add only the part it left out: which ways actually lead somewhere, which of the things it asked about you might mean, what a workable next try looks like. One short sentence. Phrase suggestions as natural invitations ("the path here runs north and south"), NEVER as command words to type. Do not write COMMANDS, SAY, or any game commands here. Never repeat a note you already gave - if earlier advice still stands, it does not need saying again. If there is truly nothing to add, reply with exactly the single word: PASS';
 
 /**
  * Parse the reply to a guide check.

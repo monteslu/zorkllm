@@ -144,9 +144,16 @@ agent's dictionary gate.
    explanation, if any, surfaces as the turn note.
 6. **Guide reflection** (`#reflect`). One extra call on the same cached
    prefix asking for `PASS` or a short newcomer note (`GUIDE_CHECK` in
-   prompt.js). Notes teach mechanics and point at just-revealed
-   possibilities; they never volunteer puzzle solutions. `--no-guide`
-   disables this.
+   prompt.js, or the `GUIDE_CONTINUE` variant when the response just
+   printed matches `CONFUSING_RESPONSE`). Notes teach mechanics and point
+   at just-revealed possibilities; they never volunteer puzzle solutions.
+   `--no-guide` disables this. Two self-imitation guards, both learned
+   from live runs: PASS exchanges are removed from history (a window full
+   of `[guide check] -> PASS` pairs teaches the model to answer PASS to
+   everything), and a note whose word set overlaps a recent note >= 75%
+   is treated as PASS (kept repeats bred verbatim-identical notes
+   seventeen turns straight). Real, novel notes stay in history so the
+   guide remembers what it already taught.
 
 ## Context strategy (`#window`, `#buildWindow`, `#stateHeader`)
 
