@@ -171,7 +171,7 @@ export class ZorkAgent {
     if (tokens.length >= 2 && tokens.length <= 3 && DIRECTION_WORDS.has(tokens[0])
       && this.#inDictionary(tokens[0])) {
       const { command, output } = await this.raw(tokens[0]);
-      return { type: 'turns', turns: [{ command, output }], note: null };
+      return { type: 'turns', turns: [{ command, output }], note: await this.#reflectIfConfusing(output) };
     }
     // Movement sentences carrying exactly one direction ("go north on the
     // path", "head up those stairs") mean that direction; sentences with
@@ -180,7 +180,7 @@ export class ZorkAgent {
       const dirs = tokens.filter((t) => DIRECTION_WORDS.has(t));
       if (dirs.length === 1 && this.#inDictionary(dirs[0])) {
         const { command, output } = await this.raw(dirs[0]);
-        return { type: 'turns', turns: [{ command, output }], note: null };
+        return { type: 'turns', turns: [{ command, output }], note: await this.#reflectIfConfusing(output) };
       }
     }
     const gameAskedQuestion = /affirmative\)?:?\s*$|\?\s*$/i.test(this.lastGameOutput || '');
@@ -188,7 +188,7 @@ export class ZorkAgent {
       if ((META_WORDS.has(word) && this.#inDictionary(word))
         || (YESNO_WORDS.has(word) && gameAskedQuestion)) {
         const { command, output } = await this.raw(word);
-        return { type: 'turns', turns: [{ command, output }], note: null };
+        return { type: 'turns', turns: [{ command, output }], note: await this.#reflectIfConfusing(output) };
       }
     }
     // The parser is mid-question ("What do you want to break the window
@@ -202,7 +202,7 @@ export class ZorkAgent {
       const answer = tokens.filter((t, i) => !(i === 0 && ['my', 'their', 'this', 'that'].includes(t))).join(' ');
       if (answer && this.#inDictionary(answer)) {
         const { command, output } = await this.raw(answer);
-        return { type: 'turns', turns: [{ command, output }], note: null };
+        return { type: 'turns', turns: [{ command, output }], note: await this.#reflectIfConfusing(output) };
       }
     }
     // Input that already IS parser-speak skips translation: the game's
@@ -390,6 +390,21 @@ export class ZorkAgent {
       this.history.pop();
       return null;
     }
+  }
+
+  /**
+   * Bypassed turns skip the guide to stay instant - unless the engine's
+   * response is the kind that leaves a newcomer stuck (a rejection, a
+   * dead end, a question). Then one reflection call buys a plain-words
+   * explanation, which is exactly when guidance earns its latency.
+   * @param {string} output
+   * @returns {Promise<string|null>}
+   */
+  async #reflectIfConfusing(output) {
+    if (!this.guide || !output) return null;
+    const confusing = PARSER_REJECT.test(output)
+      || /can't go that way|You must specify|Which .* do you mean|What do you want|I can't see how|isn't notably helpful|There is a wall/i.test(output);
+    return confusing ? this.#reflect() : null;
   }
 
   /** Record the game's response as ground truth in the transcript. */

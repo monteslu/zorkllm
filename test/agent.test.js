@@ -614,3 +614,26 @@ console.log('pre-parse router:');
   ok('"wait what" never reached the engine (no moves burned)', s.status?.turns === before,
      `${before} -> ${s.status?.turns}`);
 }
+
+// --- bypassed turns get guidance only when the engine's reply confuses ---
+console.log('confusion-gated reflection:');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let guideCalls = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'confusion',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) {
+        guideCalls++;
+        return 'The paths from here lead in other directions - the house is worth circling.';
+      }
+      return 'SAY\nunused';
+    },
+  }, 'Zork I');
+  const r1 = await a.turn('go north');           // succeeds: North of House
+  ok('successful bypassed move stays note-free', guideCalls === 0 && r1.note === null, String(guideCalls));
+  const r2 = await a.turn('go up');              // "You can't go that way."
+  ok('dead-end bypassed move gets a guide note', guideCalls === 1 && /worth circling/.test(r2.note ?? ''),
+     JSON.stringify(r2).slice(0, 90));
+}

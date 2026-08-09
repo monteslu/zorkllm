@@ -105,7 +105,12 @@ agent's dictionary gate.
      guide, not the game).
    Bypasses cost 0 LLM calls and 0 seconds; they exist because live testing
    showed models lecture, hallucinate success, or mis-coach on exactly these
-   inputs.
+   inputs. One exception to "0 calls": when a bypassed turn produces a
+   confusing engine response (a parser rejection, "You can't go that way",
+   "You must specify...", or a disambiguation question), the guide
+   reflection still runs so the player gets a plain-words note instead of
+   only the engine's terse error. Successful bypassed turns stay
+   zero-cost.
 2. **Pre-parse router** (`#asParserCommand`). Input that already IS
    parser-speak skips translation: the game's own dictionary must know
    every word, classify the first as a verb, and classify at least one
