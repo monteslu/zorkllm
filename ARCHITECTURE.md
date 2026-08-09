@@ -106,24 +106,33 @@ agent's dictionary gate.
    Bypasses cost 0 LLM calls and 0 seconds; they exist because live testing
    showed models lecture, hallucinate success, or mis-coach on exactly these
    inputs.
-2. **Translation call.** The window (see below) is sent with the system
+2. **Pre-parse router** (`#asParserCommand`). Input that already IS
+   parser-speak skips translation: the game's own dictionary must know
+   every word, classify the first as a verb, and classify at least one
+   as a noun (all read from the story file's part-of-speech bytes - the
+   engine still does ALL parsing; this only routes). The noun
+   requirement keeps chat that happens to start with a verb ("wait
+   what") away from the engine, where it would execute WAIT and burn
+   game moves. Misrouted commands bounce for free and fall into the
+   normal retry ladder.
+3. **Translation call.** The window (see below) is sent with the system
    prompt; the reply is parsed by `parseReply` into `commands`, `say`, or
    `empty`.
    - `empty` (blank reply, bare `PASS`, lone header): one corrective retry
      with an explicit reminder of the two reply shapes, then a friendly
      "tell me something specific" fallback. Never surface internal jargon.
    - `say`: shown to the player as the guide's voice; no game turn happens.
-3. **Execution.** Each command is sent to the engine; every game response is
+4. **Execution.** Each command is sent to the engine; every game response is
    pushed into history as `[game responded to "CMD"]\n<output>` - ground
    truth the model sees next turn, which is how pronouns and disambiguation
    questions resolve.
-4. **Parser-reject retry** (`#retryCommand`). Rejections cost no game move
+5. **Parser-reject retry** (`#retryCommand`). Rejections cost no game move
    (the ZIL clock only ticks on successful parses), so one corrective LLM
    call is free. The correction is validated with `#inDictionary` before
    sending; a still-invalid correction is never sent (it would just bounce
    again) - the player gets an honest in-voice note instead. The retry's SAY
    explanation, if any, surfaces as the turn note.
-5. **Guide reflection** (`#reflect`). One extra call on the same cached
+6. **Guide reflection** (`#reflect`). One extra call on the same cached
    prefix asking for `PASS` or a short newcomer note (`GUIDE_CHECK` in
    prompt.js). Notes teach mechanics and point at just-revealed
    possibilities; they never volunteer puzzle solutions. `--no-guide`

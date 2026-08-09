@@ -145,7 +145,7 @@ const tinyLLM = {
 };
 const tiny = new ZorkAgent(session2, tinyLLM, 'Zork I', { historyTurns: 1, includeVocab: false, guide: false });
 // ('go south' etc. now bypass the LLM as pure movement - use chattier phrasings)
-for (const say2 of ['lets wander south', 'try east maybe', 'open the window', 'climb in', 'lets wander west', 'where am I']) {
+for (const say2 of ['lets wander south', 'try east maybe', 'crack open the window somehow', 'climb in', 'lets wander west', 'where am I']) {
   await tiny.turn(say2);
 }
 const last = seen.at(-1);
@@ -579,4 +579,38 @@ console.log('movement sentences:');
   const r4 = await a.turn('please just walk along the path');   // no direction word -> LLM emits NORTH ON PATH
   ok('mangled NORTH ON PATH self-corrects to NORTH without a retry call',
      llmCalls === 2 && r4.turns?.some((t) => t.command === 'NORTH'), JSON.stringify(r4).slice(0, 120));
+}
+
+// --- pre-parse router: parser-speak skips the LLM, chat never does ---
+console.log('pre-parse router:');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let llmCalls = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'router',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) return 'PASS';
+      llmCalls++;
+      if (messages.at(-1).content.includes('wait what')) return 'SAY\nJust talking? Tell me what to do.';
+      return 'COMMANDS\nLOOK';
+    },
+  }, 'Zork I');
+  const r1 = await a.turn('open mailbox');
+  ok('"open mailbox" routes straight to the engine',
+     llmCalls === 0 && r1.turns?.[0]?.command === 'open mailbox'
+     && /reveals a leaflet/.test(r1.turns[0].output), JSON.stringify(r1).slice(0, 100));
+  const r2 = await a.turn('take leaflet');
+  ok('"take leaflet" routes straight to the engine',
+     llmCalls === 0 && /Taken/.test(r2.turns?.[0]?.output ?? ''), JSON.stringify(r2).slice(0, 80));
+  await a.turn('wait what');
+  ok('"wait what" (verb lead, no noun) goes to the LLM', llmCalls === 1, String(llmCalls));
+  await a.turn('grab the thingy');
+  ok('unknown word goes to the LLM', llmCalls === 2, String(llmCalls));
+  await a.turn('mailbox lamp');
+  ok('noun-first non-command goes to the LLM', llmCalls === 3, String(llmCalls));
+  const before = s.status?.turns;
+  await a.turn('wait what');
+  ok('"wait what" never reached the engine (no moves burned)', s.status?.turns === before,
+     `${before} -> ${s.status?.turns}`);
 }

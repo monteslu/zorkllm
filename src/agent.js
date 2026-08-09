@@ -117,6 +117,9 @@ export class ZorkAgent {
     /** Dictionary lookup for validating commands (entries pre-truncated by the z-machine format: 6 chars in v3, 9 in v4+). */
     this.vocabSet = new Set(session.vocabulary);
     this.dictWordLength = session.dictWordLength ?? 6;
+    /** The game's own word classifications (dictionary part-of-speech bytes). */
+    this.verbSet = new Set(session.verbs ?? []);
+    this.nounSet = new Set(session.nouns ?? []);
     this.historyTurns = opts.historyTurns ?? 20;
     this.guide = opts.guide !== false;
     /** Hard cap on estimated request tokens (server's loaded context minus generation+safety margin). */
@@ -202,8 +205,19 @@ export class ZorkAgent {
         return { type: 'turns', turns: [{ command, output }], note: null };
       }
     }
-    this.history.push({ role: 'user', content: playerText });
+    // Input that already IS parser-speak skips translation: the game's
+    // own dictionary must know every word, classify the first as a verb,
+    // and classify one as a noun. The noun requirement keeps chat that
+    // happens to start with a verb ("wait what") away from the engine.
+    // The engine still does ALL parsing - this only routes.
+    const preparsed = this.#asParserCommand(tokens);
     let reply;
+    if (preparsed) {
+      this.history.push({ role: 'user', content: playerText });
+      reply = `COMMANDS\n${preparsed}`;
+      this.history.push({ role: 'assistant', content: reply });
+    } else {
+    this.history.push({ role: 'user', content: playerText });
     try {
       reply = await this.llm.complete({ system: this.system, messages: this.#window() });
     } catch (err) {
@@ -223,6 +237,7 @@ export class ZorkAgent {
       }
     }
     this.history.push({ role: 'assistant', content: reply });
+    }
     let decision = parseReply(reply);
     if (decision.type === 'empty') {
       // Empty or header-only reply (bare PASS, lone COMMANDS). Nudge once
@@ -324,6 +339,27 @@ export class ZorkAgent {
       this.history.pop();
       return null;
     }
+  }
+
+  /**
+   * If the input is already a valid-looking parser command, return the
+   * cleaned text to send; otherwise null. Purely a router: membership and
+   * part-of-speech come from the story file's own dictionary, and the
+   * engine performs all actual parsing. Misfires are cheap - rejections
+   * cost no game move and flow into the normal retry ladder.
+   * @param {string[]} tokens lowercased words of the player's input
+   * @returns {string|null}
+   */
+  #asParserCommand(tokens) {
+    if (tokens.length < 2 || tokens.length > 5) return null;
+    if (!this.verbSet.size || !this.nounSet.size) return null;
+    const clean = tokens.map((t) => t.replace(/[^a-z0-9-]/g, '')).filter(Boolean);
+    if (clean.length < 2 || clean.length !== tokens.length) return null;
+    const cut = (t) => t.slice(0, this.dictWordLength);
+    if (!this.verbSet.has(cut(clean[0]))) return null;
+    if (!clean.every((t) => this.vocabSet.has(cut(t)))) return null;
+    if (!clean.some((t) => this.nounSet.has(cut(t)))) return null;
+    return clean.join(' ');
   }
 
   /** Would the parser recognize every word of this command? */

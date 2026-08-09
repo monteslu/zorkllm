@@ -82,7 +82,21 @@ export function dictWordLength(story) {
  * @param {Buffer} story
  * @returns {string[]}
  */
+export function extractNouns(story) {
+  return extractByPosBit(story, 0x80);
+}
+
 export function extractVerbs(story) {
+  return extractByPosBit(story, 0x40);
+}
+
+/**
+ * Words carrying a given part-of-speech bit in the classic vocab format
+ * (0x80 = noun/object, 0x40 = verb, 0x20 = adjective).
+ * @param {Buffer} story @param {number} bit
+ * @returns {string[]}
+ */
+function extractByPosBit(story, bit) {
   const version = story.readUInt8(0);
   const textWords = version <= 3 ? 2 : 3;
   const textBytes = textWords * 2;
@@ -99,7 +113,7 @@ export function extractVerbs(story) {
     const off = p + i * entryLen;
     if (entryLen <= textBytes) continue;      // no data bytes: can't classify
     const pos = story.readUInt8(off + textBytes);
-    if ((pos & 0x40) === 0) continue;
+    if ((pos & bit) === 0) continue;
     const word = decodeEntryText(story, off, textWords);
     if (word && /^[a-z]/.test(word)) verbs.push(word);
   }
