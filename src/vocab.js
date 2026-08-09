@@ -72,3 +72,36 @@ export function extractVocabulary(story) {
 export function dictWordLength(story) {
   return story.readUInt8(0) <= 3 ? 6 : 9;
 }
+
+/**
+ * Just the verbs, straight from the dictionary's part-of-speech bytes
+ * (bit 0x40 in the classic vocab format). Used at point-of-use in the
+ * parser-reject retry: small models ignore a vocabulary list that lives
+ * 2k tokens away in the system prompt, but follow one placed in the
+ * message asking for the correction.
+ * @param {Buffer} story
+ * @returns {string[]}
+ */
+export function extractVerbs(story) {
+  const version = story.readUInt8(0);
+  const textWords = version <= 3 ? 2 : 3;
+  const textBytes = textWords * 2;
+  const dictAddr = story.readUInt16BE(0x08);
+  let p = dictAddr;
+  const numSeps = story.readUInt8(p);
+  p += 1 + numSeps;
+  const entryLen = story.readUInt8(p);
+  p += 1;
+  const count = story.readUInt16BE(p);
+  p += 2;
+  const verbs = [];
+  for (let i = 0; i < count; i++) {
+    const off = p + i * entryLen;
+    if (entryLen <= textBytes) continue;      // no data bytes: can't classify
+    const pos = story.readUInt8(off + textBytes);
+    if ((pos & 0x40) === 0) continue;
+    const word = decodeEntryText(story, off, textWords);
+    if (word && /^[a-z]/.test(word)) verbs.push(word);
+  }
+  return verbs;
+}

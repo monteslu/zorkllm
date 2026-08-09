@@ -249,9 +249,16 @@ export class ZorkAgent {
    * @returns {Promise<{type: 'command', command: string} | {type: 'say', message: string} | null>}
    */
   async #retryCommand(command, output) {
+    // Point-of-use verb list: small models ignore the vocabulary in the
+    // distant system prompt but follow one embedded in the correction ask.
+    // Ordering matters to them too: the list goes first and the ask goes
+    // LAST, or the model takes whatever escape hatch it read most recently.
+    const verbs = this.session.verbs?.length
+      ? `My parser's complete verb list: ${this.session.verbs.join(' ')}.\n`
+      : '';
     this.history.push({
       role: 'user',
-      content: `[retry] The command "${command}" bounced off my 1980 parser: "${output.split('\n')[0]}" No game time passed. Reply COMMANDS with ONE corrected command that expresses the same intent using only VOCABULARY words (e.g. "fire" isn't a word but BURN is; "fists" isn't but HANDS is). If no vocabulary word can express this action, it does not exist in this game - then reply SAY with one short sentence, in your own voice, telling the player so.`,
+      content: `[retry] The command "${command}" bounced off my 1980 parser: "${output.split('\n')[0]}" No game time passed.\n${verbs}The player's intent almost always maps to one of those verbs ("crash" -> BREAK, "fire" -> BURN, "grab" -> TAKE). Reply COMMANDS with ONE corrected command using the closest verb from the list. Only if you are certain no listed verb fits, reply SAY with one short sentence in your own voice saying this world has no way to do that.`,
     });
     try {
       const reply = await this.llm.complete({ system: this.system, messages: this.#window() });

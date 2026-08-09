@@ -499,3 +499,25 @@ passed += 5; console.log('  ok - empty/header-only replies parse as empty');
   const r = await a.turn('do the thing');
   ok('double-empty gives a friendly say', r.type === 'say' && /didn't quite catch/.test(r.message), JSON.stringify(r).slice(0, 100));
 }
+
+// --- parser-reject retry carries the point-of-use verb list ---
+console.log('retry verb list:');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  ok('verbs extracted from dictionary pos bytes', s.verbs.length > 100 && s.verbs.includes('break'), String(s.verbs.length));
+  let retryPrompt = null;
+  const a = new ZorkAgent(s, {
+    describe: () => 'reject-then-correct',
+    async complete({ messages }) {
+      const last = messages.at(-1).content;
+      if (last.includes('[guide check]')) return 'PASS';
+      if (last.includes('[retry]')) { retryPrompt = last; return 'COMMANDS\nBREAK WINDOW'; }
+      return 'COMMANDS\nCRASH WINDOW';
+    },
+  }, 'Zork I');
+  const r = await a.turn('crash the window');
+  ok('retry prompt embeds the verb list', retryPrompt?.includes("parser's complete verb list") && retryPrompt.includes('break'),
+     (retryPrompt || '').slice(0, 80));
+  ok('corrected command executed', r.turns.some((t) => t.command === 'BREAK WINDOW'), JSON.stringify(r).slice(0, 100));
+}

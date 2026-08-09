@@ -5,7 +5,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { ZMachine } from '../vendor/zmachine.mjs';
-import { extractVocabulary, dictWordLength } from './vocab.js';
+import { extractVocabulary, dictWordLength, extractVerbs } from './vocab.js';
 
 const PROMPT_TRIM = /\n?>\s*$/;
 
@@ -36,6 +36,7 @@ export class GameSession {
     this.version = story.readUInt8(0);
     this.vocabulary = extractVocabulary(story);
     this.dictWordLength = dictWordLength(story);
+    this.verbs = extractVerbs(story);
     const session = this;
     /** @type {import('zmachine').IOAdapter} */
     const io = {
