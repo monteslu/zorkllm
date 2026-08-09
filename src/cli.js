@@ -55,7 +55,8 @@ Options:
   --api-key   API key (or ANTHROPIC_API_KEY / OPENAI_API_KEY env)
   --history N how many recent exchanges the LLM sees (default 20; use 6-8 for 4k-context models)
   --no-vocab  omit the game dictionary from the prompt (saves ~1k tokens)
-  --no-guide  purist mode: no post-turn guidance, one LLM call per turn
+  --no-guide  pure translator: no post-turn guidance, one LLM call per turn
+              (recommended for small models, ~4B and under)
   --think     leave the model's reasoning/thinking on (default: off for speed)
 
 Environment: ZORKLLM_PROVIDER, ZORKLLM_MODEL, ZORKLLM_API_URL, ZORKLLM_API_KEY

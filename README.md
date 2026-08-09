@@ -48,7 +48,15 @@ Taken.
   newcomers — explaining cryptic parser responses, pointing at possibilities
   the game just revealed, teaching basics like EXAMINE/INVENTORY/light/saving.
   It teaches the *medium* freely but won't volunteer puzzle solutions or magic
-  words; hints escalate only as the player asks. `--no-guide` for purist mode.
+  words; hints escalate only as the player asks.
+- **`--no-guide` — recommended for small models (roughly 4B and under).**
+  Note quality tracks model quality, and a small model's confident-but-wrong
+  hint ("that boarded door might open" — it never does) costs a stuck player
+  more than no hint at all. Without the guide the LLM is purely a translator:
+  your phrasing in, parser commands out, and everything printed back is the
+  game engine's own text. It also drops the per-turn reflection call, so
+  turns are faster and cheaper. Larger models write genuinely useful notes;
+  keep the guide on there if you want the coaching.
 - `> command` bypasses the LLM and talks to the 1980 parser directly.
 - `/save [file]`, `/restore [file]`, `/quit`, `/help`.
 - Game text is always shown unmodified.
