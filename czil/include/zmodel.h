@@ -56,6 +56,7 @@ typedef struct { cz_val *name; cz_val **body; size_t count; } zm_propdef;
 
 typedef struct zm_game {
     int zversion;
+    int version_locked;                /* CLI -v overrides <VERSION> */
     const char *sname;                 /* SNAME, or NULL */
     char base_dir[1024];               /* for INSERT-FILE resolution */
     char include_dirs[4][1024];        /* extra INSERT-FILE search paths (-I) */
@@ -106,6 +107,8 @@ void zm_survey_heads(cz_ctx *c, zm_game *g);
 
 /* Encode text as a v3 dictionary entry: 6 z-chars in 4 bytes. */
 void zt_encode_word(const char *text, uint8_t out[4]);
+/* Version-aware dictionary word: 4 bytes (v3) or 6 bytes (v4+). */
+void zt_encode_word_v(const char *text, uint8_t *out, int zversion);
 /* Decode a 4-byte v3 dictionary entry; returns length. */
 size_t zt_decode_word(const uint8_t in[4], char *out, size_t cap);
 /* Encode arbitrary text as v3 z-text (no abbreviations); emits packed
@@ -118,6 +121,7 @@ size_t zt_encode_string(const char *text, size_t len,
 typedef struct {
     int release;            /* header release number (default 1) */
     const char *serial;     /* 6-char serial (default "000000") */
+    int no_abbrevs;         /* skip abbreviation compression */
 } zc_options;
 
 bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
@@ -127,4 +131,24 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
  * of writing a file; fetch them here (valid until the next compile). */
 const unsigned char *zc_output_bytes(size_t *len);
 
+/* ---- abbreviation compression (src/zabbrev.c + src/ztext.c) ----
+ * Standard v3+ abbreviations: up to 96 table strings referenced with a
+ * 2-z-char escape. Selection is a deterministic greedy pass over every
+ * string the compiler encodes. Dictionary words never use abbreviations
+ * (per spec), and abbreviation strings themselves encode without them. */
+
+void zt_abbrev_reset(void);
+/* collection mode: zt_encode_string records each text into the corpus */
+void zt_abbrev_collect(bool on);
+/* choose up to 96 abbreviations from the collected corpus and activate
+ * them for subsequent encoding; returns how many were chosen */
+size_t zt_abbrev_select(void);
+size_t zt_abbrev_count(void);
+const char *zt_abbrev_text(size_t i, size_t *len);
+/* z-chars needed to encode text (no abbreviations) */
+size_t zt_zchar_cost(const char *text, size_t len);
+/* encode without abbreviation references (for the table strings) */
+void zt_abbrev_suppress(bool on);
+
 #endif
+

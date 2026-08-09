@@ -16,8 +16,14 @@
 #include "zmodel.h"
 #include "czil_internal.h"
 
-#define MAXPROP 31
-#define MAXFLAG 31   /* flag numbers 0..31; 32 flags */
+/* v3: 31 props, 32 flags, byte tree links, /2 packing.
+ * v5/v8: 63 props, 48 flags, word tree links, /4 (/8) packing. */
+static int ZV = 3;
+#define MAXPROP (ZV >= 4 ? 63 : 31)
+#define MAXFLAG (ZV >= 4 ? 47 : 31)
+#define PACK (ZV >= 8 ? 8 : ZV >= 4 ? 4 : 2)
+#define OBJENT (ZV >= 4 ? 14 : 9)
+#define DICTTEXT (ZV >= 4 ? 6 : 4)
 
 /* ---------- error plumbing ---------- */
 
@@ -67,7 +73,7 @@ typedef struct {
     bool first_set;
     bool via_synonym_prep;   /* preposition-ness came from SYNONYM */
     int verb_val, adj_val, prep_val, buzz_val, dir_idx;
-    uint8_t enc[4];
+    uint8_t enc[6];
     int dict_index;          /* after sorting */
 } vword;
 
@@ -179,8 +185,9 @@ static int find_object(zc *z, cz_val *atom) {
     return -1;
 }
 static int find_routine(zc *z, cz_val *atom) {
-    for (size_t i = 0; i < z->g->routine_count; i++)
-        if (z->g->routines[i].name == atom) return (int)i;
+    /* redefinition wins: the overlay pattern replaces engine routines */
+    for (size_t i = z->g->routine_count; i > 0; i--)
+        if (z->g->routines[i - 1].name == atom) return (int)(i - 1);
     return -1;
 }
 static int find_propnum(zc *z, cz_val *atom) {
@@ -214,8 +221,9 @@ static int find_action(zc *z, cz_val *name) {
     return -1;
 }
 static cz_val *game_constant(zc *z, cz_val *atom) {
-    for (size_t i = 0; i < z->g->constant_count; i++)
-        if (z->g->constants[i].name == atom) return z->g->constants[i].value;
+    /* redefinition wins */
+    for (size_t i = z->g->constant_count; i > 0; i--)
+        if (z->g->constants[i - 1].name == atom) return z->g->constants[i - 1].value;
     return NULL;
 }
 static cz_val *game_global_value(zc *z, cz_val *atom) {
@@ -480,7 +488,7 @@ static void number_vocab(zc *z) {
         w->pos = g->words[i].pos;
         w->verb_val = w->adj_val = w->prep_val = w->buzz_val = -1;
         w->dir_idx = -1;
-        zt_encode_word(w->text, w->enc);
+        zt_encode_word_v(w->text, w->enc, ZV);
     }
     /* implicitly-defined directions may introduce new words (or add the
      * direction sense to an existing word) */
@@ -493,7 +501,7 @@ static void number_vocab(zc *z) {
             w->text = text;
             w->verb_val = w->adj_val = w->prep_val = w->buzz_val = -1;
             w->dir_idx = -1;
-            zt_encode_word(text, w->enc);
+            zt_encode_word_v(text, w->enc, ZV);
         }
         w->pos |= ZM_POS_DIR;
     }
@@ -637,7 +645,7 @@ static void number_actions(zc *z) {
 
 /* dictionary sorted by encoded text */
 static int dict_cmp(const void *a, const void *b) {
-    return memcmp(((const vword *)a)->enc, ((const vword *)b)->enc, 4);
+    return memcmp(((const vword *)a)->enc, ((const vword *)b)->enc, (size_t)DICTTEXT);
 }
 
 static void emit_dictionary(zc *z) {
@@ -647,7 +655,7 @@ static void emit_dictionary(zc *z) {
      * merge; parts of speech OR together, first-come values win) */
     size_t out = 0;
     for (size_t i = 0; i < z->nwords; i++) {
-        if (out > 0 && memcmp(z->words[out - 1].enc, z->words[i].enc, 4) == 0) {
+        if (out > 0 && memcmp(z->words[out - 1].enc, z->words[i].enc, (size_t)DICTTEXT) == 0) {
             vword *a = &z->words[out - 1], *w = &z->words[i];
             a->pos |= w->pos;
             if (a->verb_val < 0) a->verb_val = w->verb_val;
@@ -670,11 +678,11 @@ static void emit_dictionary(zc *z) {
     const char *seps = ",.\"";
     put8(b, (uint8_t)strlen(seps));
     for (const char *p = seps; *p; p++) put8(b, (uint8_t)*p);
-    put8(b, 7);                       /* entry length: 4 text + 3 data */
+    put8(b, (uint8_t)(DICTTEXT + 3));  /* text + 3 data bytes */
     put16(b, (uint16_t)z->nwords);
     for (size_t i = 0; i < z->nwords; i++) {
         vword *w = &z->words[i];
-        for (int k = 0; k < 4; k++) put8(b, w->enc[k]);
+        for (int k = 0; k < DICTTEXT; k++) put8(b, w->enc[k]);
 
         uint8_t pos = 0;
         if (w->pos & ZM_POS_BUZZ) pos |= 4;
@@ -691,7 +699,7 @@ static void emit_dictionary(zc *z) {
         int nv = 0;
         int parts[6]; int np = 0;
         enum { PV_ADJ, PV_DIR, PV_VERB, PV_OBJ, PV_BUZZ, PV_PREP };
-        if (w->pos & ZM_POS_ADJ) {
+        if ((w->pos & ZM_POS_ADJ) && ZV == 3) {
             if ((pos & 3) == 2) { memmove(parts + 1, parts, np * sizeof(int)); parts[0] = PV_ADJ; np++; }
             else parts[np++] = PV_ADJ;
         }
@@ -974,8 +982,8 @@ static void emit_objects(zc *z) {
     zm_game *g = z->g;
     buf *b = &z->sec[SEC_OBJTAB];
 
-    /* defaults: 31 words */
-    uint16_t defaults[MAXPROP + 1] = { 0 };
+    /* property defaults: 31 (v3) or 63 (v4+) words */
+    uint16_t defaults[64] = { 0 };
     for (size_t i = 0; i < g->propdef_count; i++) {
         int pn = find_propnum(z, g->propdefs[i].name);
         if (pn < 1) continue;
@@ -989,27 +997,32 @@ static void emit_objects(zc *z) {
     if (!tree) abort();
     build_tree(z, tree);
 
-    /* entries: 9 bytes each; prop table pointers patched afterwards */
+    /* entries: 9 (v3) or 14 (v4+) bytes; prop pointers patched below */
     size_t entries_off = b->n;
     for (size_t i = 0; i < g->object_count; i++) {
-        uint32_t attrs = 0;
+        uint64_t attrs = 0;
         zm_object *o = &g->objects[i];
+        int nattr = ZV >= 4 ? 48 : 32;
         for (size_t p = 0; p < o->prop_count; p++) {
             if (!atom_is(o->props[p].head, "FLAGS")) continue;
             for (size_t j = 0; j < o->props[p].count; j++) {
                 if (o->props[p].body[j]->type != CZ_ATOM) continue;
                 int fn = find_flagnum(z, o->props[p].body[j]);
                 if (fn < 0) { FAIL("unknown flag"); free(tree); return; }
-                attrs |= 1u << (31 - fn);
+                attrs |= 1ull << (nattr - 1 - fn);
             }
         }
-        put8(b, (uint8_t)(attrs >> 24));
-        put8(b, (uint8_t)(attrs >> 16));
-        put8(b, (uint8_t)(attrs >> 8));
-        put8(b, (uint8_t)attrs);
-        put8(b, (uint8_t)tree[i].parent);
-        put8(b, (uint8_t)tree[i].sibling);
-        put8(b, (uint8_t)tree[i].child);
+        for (int k = nattr / 8 - 1; k >= 0; k--)
+            put8(b, (uint8_t)(attrs >> (8 * k)));
+        if (ZV >= 4) {
+            put16(b, (uint16_t)tree[i].parent);
+            put16(b, (uint16_t)tree[i].sibling);
+            put16(b, (uint16_t)tree[i].child);
+        } else {
+            put8(b, (uint8_t)tree[i].parent);
+            put8(b, (uint8_t)tree[i].sibling);
+            put8(b, (uint8_t)tree[i].child);
+        }
         put16(b, 0);   /* prop table addr, patched below */
     }
     free(tree);
@@ -1136,8 +1149,15 @@ static void emit_objects(zc *z) {
                 for (size_t j = 0; j < pr->count; j++) {
                     if (pr->body[j]->type != CZ_ATOM) continue;
                     vword *w = find_word(z, pr->body[j]->atom.name);
-                    if (!w || w->adj_val < 0) { FAIL("ADJECTIVE word missing"); return; }
-                    put8(pb, (uint8_t)w->adj_val);
+                    if (!w) { FAIL("ADJECTIVE word missing"); return; }
+                    if (ZV >= 4) {
+                        /* v4+: adjectives are dictionary words, not numbers */
+                        PFX(pb, FX_WORD, (int)(w - z->words));
+                        put16(pb, 0);
+                    } else {
+                        if (w->adj_val < 0) { FAIL("ADJECTIVE word missing"); return; }
+                        put8(pb, (uint8_t)w->adj_val);
+                    }
                 }
             } else if (atom_is(pr->head, "PSEUDO")) {
                 for (size_t j = 0; j < pr->count; j++) {
@@ -1174,9 +1194,10 @@ static void emit_objects(zc *z) {
                     put16(pb, (uint16_t)r.val);
                 }
             }
-            if (pb->n < 1 || pb->n > 8) {
-                FAIL("property %s on %s is %zu bytes (v3 allows 1-8)",
-                     pr->head->atom.name, o->name->atom.name, pb->n);
+            if (pb->n < 1 || pb->n > (ZV >= 4 ? 63u : 8u)) {
+                FAIL("property %s on %s is %zu bytes (limit %d)",
+                     pr->head->atom.name, o->name->atom.name, pb->n,
+                     ZV >= 4 ? 63 : 8);
                 return;
             }
             np++;
@@ -1193,6 +1214,15 @@ static void emit_objects(zc *z) {
                 }
 
         for (size_t a = 0; a < np; a++) {
+            if (ZV >= 4) {
+                size_t plen = props[a].data.n;
+                if (plen <= 2) {
+                    put8(b, (uint8_t)(((plen - 1) << 6) | props[a].num));
+                } else {
+                    put8(b, (uint8_t)(0x80 | props[a].num));
+                    put8(b, (uint8_t)(0x80 | (plen & 0x3f)));
+                }
+            } else
             put8(b, (uint8_t)(((props[a].data.n - 1) << 5) | props[a].num));
             size_t base = b->n;
             for (size_t k = 0; k < props[a].data.n; k++) put8(b, props[a].data.b[k]);
@@ -1204,8 +1234,9 @@ static void emit_objects(zc *z) {
         put8(b, 0);
 
         /* the entry's prop table pointer: offset now, section base later */
-        patch16(b, entries_off + i * 9 + 7, (uint16_t)ptoff);
-        add_fixup(z, SEC_OBJTAB, entries_off + i * 9 + 7, FX_SECBASE, SEC_OBJTAB);
+        patch16(b, entries_off + i * (size_t)OBJENT + OBJENT - 2, (uint16_t)ptoff);
+        add_fixup(z, SEC_OBJTAB, entries_off + i * (size_t)OBJENT + OBJENT - 2,
+                  FX_SECBASE, SEC_OBJTAB);
     }
 }
 
@@ -1732,6 +1763,15 @@ static void compile_pred(rt *r, cz_val *v, int target, bool bwt) {
                 return;
             case 2:
                 if (n != 0) { FAIL("%s: %s takes no args", r->rname, nm); return; }
+                if (ZV >= 5 && (p->op == 0x05 || p->op == 0x06)) {
+                    /* v5 save/restore are EXT store ops; test the value */
+                    put8(r->b, 0xBE);
+                    put8(r->b, p->op == 0x05 ? 0x00 : 0x01);
+                    put8(r->b, 0xFF);            /* no operands */
+                    put8(r->b, SP);
+                    emit_1op(r, 0x00, op_var(SP), NO_STORE, target, !sense);  /* jz */
+                    return;
+                }
                 emit_0op(r, p->op, target, sense);
                 return;
             case 1: {
@@ -2150,6 +2190,11 @@ static void compile_stmt(rt *r, cz_val *v) {
         opnd ops[4];
         if ((int)n != vd->nargs) { FAIL("%s: %s takes %d args", r->rname, nm, vd->nargs); return; }
         if (!compile_operands(r, args, n, ops)) return;
+        if (strcmp(nm, "READ") == 0 && ZV >= 5) {
+            /* v5 aread stores its terminator */
+            emit_varop(r, 0x04, false, ops, n, r->z->g_dummy, BR_NONE, false);
+            return;
+        }
         if (vd->cls == 4) emit_varop(r, vd->op, false, ops, n, NO_STORE, BR_NONE, false);
         else if (vd->cls == 1) emit_1op(r, vd->op, ops[0], NO_STORE, BR_NONE, false);
         else emit_2op(r, vd->op, ops[0], ops[1], NO_STORE, BR_NONE, false);
@@ -2303,8 +2348,8 @@ static void compile_routine(zc *z, size_t idx, bool is_entry) {
     r.b = &z->sec[SEC_CODE];
     r.rname = rn->name->atom.name;
 
-    /* even alignment for packed addresses */
-    if (r.b->n % 2) put8(r.b, 0);
+    /* alignment for packed addresses */
+    while (r.b->n % (size_t)PACK) put8(r.b, 0);
     z->rtn_off[idx] = r.b->n;
 
     /* parse argspec */
@@ -2368,7 +2413,24 @@ static void compile_routine(zc *z, size_t idx, bool is_entry) {
             return;
         }
     }
-    for (int i = 0; i < r.nlocals; i++) put16(r.b, i < nspec ? initvals[i] : 0);
+    if (ZV < 5) {
+        for (int i = 0; i < r.nlocals; i++) put16(r.b, i < nspec ? initvals[i] : 0);
+    } else {
+        /* v5+ headers carry no initial values: locals start at 0 and
+         * defaults become explicit stores, with OPT defaults guarded by
+         * check_arg_count so passed arguments are not clobbered */
+        for (int i = 0; i < nspec; i++) {
+            if (initvals[i] == 0) continue;
+            int skip = -1;
+            if (spec[i].mode != 2) {
+                skip = new_label(&r);
+                opnd argn[1] = { op_imm(i + 1) };
+                emit_varop(&r, 0x1F, false, argn, 1, NO_STORE, skip, true);
+            }
+            emit_2op(&r, 0x0D, op_imm(i + 1), op_imm(initvals[i]), NO_STORE, BR_NONE, false);
+            if (skip >= 0) place_label(&r, skip);
+        }
+    }
 
     /* deferred non-constant AUX defaults */
     for (int i = 0; i < nspec; i++) {
@@ -2418,8 +2480,8 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     zc_errbuf = err;
     zc_errsz = errsz;
     zc_failed = false;
-    if (g->zversion != 3) {
-        snprintf(err, errsz, "only v3 output is supported");
+    if (g->zversion != 3 && g->zversion != 5 && g->zversion != 8) {
+        snprintf(err, errsz, "supported output versions: 3, 5, 8");
         return false;
     }
 
@@ -2428,6 +2490,7 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     zc *z = &z0;
     z->c = c;
     z->g = g;
+    ZV = g->zversion;
 
     find_implicit_directions(z);
     number_model(z);
@@ -2470,14 +2533,31 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     /* strings */
     buf *sb = &z->sec[SEC_STRINGS];
     for (size_t i = 0; i < z->nstrs; i++) {
-        if (sb->n % 2) put8(sb, 0);
+        while (sb->n % (size_t)PACK) put8(sb, 0);
         z->str_off[i] = sb->n;
         strsink sink = { z, sb };
         zt_encode_string(z->strs[i], strlen(z->strs[i]), sink_word, &sink);
     }
 
+    /* abbreviation table + its strings live right after the header */
+    buf ab = { 0 };
+    {
+        size_t nab = zt_abbrev_count();
+        for (int i = 0; i < 96; i++) put16(&ab, 0);
+        zt_abbrev_suppress(true);
+        for (size_t i = 0; i < nab; i++) {
+            size_t alen;
+            const char *atext = zt_abbrev_text(i, &alen);
+            size_t off = ab.n;
+            strsink sink = { z, &ab };
+            zt_encode_string(atext, alen, sink_word, &sink);
+            patch16(&ab, i * 2, (uint16_t)((0x40 + off) / 2));
+        }
+        zt_abbrev_suppress(false);
+    }
+
     /* layout */
-    size_t abbrev_size = 96 * 2;
+    size_t abbrev_size = ab.n;
     z->sec_base[SEC_OBJTAB] = 64 + abbrev_size;
     z->sec_base[SEC_GLOBALS] = z->sec_base[SEC_OBJTAB] + z->sec[SEC_OBJTAB].n;
     z->sec_base[SEC_IMPTAB] = z->sec_base[SEC_GLOBALS] + z->sec[SEC_GLOBALS].n;
@@ -2485,14 +2565,25 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     z->sec_base[SEC_PURETAB] = static_base;
     z->sec_base[SEC_DICT] = z->sec_base[SEC_PURETAB] + z->sec[SEC_PURETAB].n;
     size_t high_base = z->sec_base[SEC_DICT] + z->sec[SEC_DICT].n;
-    if (high_base % 2) high_base++;
+    while (high_base % (size_t)PACK) high_base++;
     z->sec_base[SEC_CODE] = high_base;
     z->sec_base[SEC_STRINGS] = high_base + z->sec[SEC_CODE].n;
-    if (z->sec_base[SEC_STRINGS] % 2) z->sec_base[SEC_STRINGS]++;
+    while (z->sec_base[SEC_STRINGS] % (size_t)PACK) z->sec_base[SEC_STRINGS]++;
     size_t file_end = z->sec_base[SEC_STRINGS] + z->sec[SEC_STRINGS].n;
 
+    if (getenv("CZIL_MAP")) {
+        fprintf(stderr, "[map] objtab=%zx globals=%zx imptab=%zx puretab=%zx dict=%zx code=%zx strings=%zx end=%zx\n",
+                z->sec_base[SEC_OBJTAB], z->sec_base[SEC_GLOBALS], z->sec_base[SEC_IMPTAB],
+                z->sec_base[SEC_PURETAB], z->sec_base[SEC_DICT], z->sec_base[SEC_CODE],
+                z->sec_base[SEC_STRINGS], file_end);
+        fprintf(stderr, "[map] nstrs=%zu strings_bytes=%zx last_off=%zx\n",
+                z->nstrs, z->sec[SEC_STRINGS].n,
+                z->nstrs ? z->str_off[z->nstrs - 1] : 0);
+    }
+
+    size_t file_limit = (size_t)PACK * 65536;
     if (static_base > 0xFFFF) { FAIL("static memory exceeds 64K (%zu)", static_base); return false; }
-    if (file_end > 128 * 1024) { FAIL("story exceeds 128K (%zu)", file_end); return false; }
+    if (file_end > file_limit) { FAIL("story exceeds %zuK (%zu)", file_limit / 1024, file_end); return false; }
 
     /* apply fixups */
     for (size_t i = 0; i < z->nfx && !zc_failed; i++) {
@@ -2502,18 +2593,19 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
         uint32_t v = 0;
         switch (f->kind) {
         case FX_ROUTINE:
-            v = (uint32_t)((z->sec_base[SEC_CODE] + z->rtn_off[f->idx]) / 2);
+            v = (uint32_t)((z->sec_base[SEC_CODE] + z->rtn_off[f->idx]) / (size_t)PACK);
             break;
         case FX_STRING:
-            v = (uint32_t)((z->sec_base[SEC_STRINGS] + z->str_off[f->idx]) / 2);
+            v = (uint32_t)((z->sec_base[SEC_STRINGS] + z->str_off[f->idx]) / (size_t)PACK);
             break;
         case FX_TABLE:
             v = (uint32_t)(z->sec_base[z->tab_sec[f->idx]] + z->tab_off[f->idx]);
             break;
         case FX_WORD: {
-            /* dict entry address: dict base + header + index*7 */
+            /* dict entry address: dict base + header + index*entry */
             size_t hdr = 1 + 3 + 1 + 2;   /* nseps + seps + entlen + count */
-            v = (uint32_t)(z->sec_base[SEC_DICT] + hdr + (size_t)f->idx * 7);
+            size_t ent = (size_t)DICTTEXT + 3;
+            v = (uint32_t)(z->sec_base[SEC_DICT] + hdr + (size_t)f->idx * ent);
             break;
         }
         case FX_SECBASE:
@@ -2534,7 +2626,7 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     /* assemble the file */
     buf out = { 0 };
     /* header */
-    put8(&out, 3);                                  /* version */
+    put8(&out, (uint8_t)ZV);                        /* version */
     put8(&out, 0);                                  /* flags1: score/turns status */
     put16(&out, (uint16_t)(opt && opt->release ? opt->release : 1));
     put16(&out, (uint16_t)high_base);               /* high memory base */
@@ -2554,7 +2646,8 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     put16(&out, 0);                                 /* checksum (below) */
     while (out.n < 64) put8(&out, 0);
 
-    for (size_t i = 0; i < abbrev_size; i++) put8(&out, 0);
+    for (size_t i = 0; i < abbrev_size; i++) put8(&out, ab.b[i]);
+    free(ab.b);
     for (int s = 0; s < NSEC; s++) {
         int order[] = { SEC_OBJTAB, SEC_GLOBALS, SEC_IMPTAB, SEC_PURETAB,
                         SEC_DICT, SEC_CODE, SEC_STRINGS };
@@ -2564,7 +2657,8 @@ bool zc_compile(cz_ctx *c, zm_game *g, const zc_options *opt,
     }
     while (out.n % 2) put8(&out, 0);
 
-    patch16(&out, 0x1A, (uint16_t)(out.n / 2));
+    while (out.n % (size_t)PACK) put8(&out, 0);
+    patch16(&out, 0x1A, (uint16_t)(out.n / (size_t)(ZV >= 6 ? 8 : ZV >= 4 ? 4 : 2)));
     uint32_t sum = 0;
     for (size_t i = 0x40; i < out.n; i++) sum += out.b[i];
     patch16(&out, 0x1C, (uint16_t)sum);

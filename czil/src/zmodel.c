@@ -180,6 +180,7 @@ static void add_word(zm_game *g, const char *text, unsigned pos) {
 static cz_result zm_f_version(cz_ctx *c, cz_val **a, size_t n) {
     zm_game *g = GAME(c);
     if (n < 1) return zerr(c, "VERSION: missing argument");
+    if (g->version_locked) return ok(cz_new_fix(c, g->zversion));
     if (a[0]->type == CZ_FIX) g->zversion = a[0]->fix.value;
     else if (atom_is(a[0], "ZIP")) g->zversion = 3;
     else if (atom_is(a[0], "EZIP")) g->zversion = 4;
@@ -364,6 +365,32 @@ static cz_result zm_s_sname(cz_ctx *c, cz_val **a, size_t n) {
     if (n != 1 || a[0]->type != CZ_STRING) return zerr(c, "SNAME: expected string");
     g->sname = a[0]->str.text;
     return ok(a[0]);
+}
+
+/* <VERSION? (ZIP ...) (XZIP ...) (T ...)>: evaluate the clause matching
+ * the target version (upstream Subrs.ZModel VERSION?) */
+static cz_result zm_f_versionp(cz_ctx *c, cz_val **a, size_t n) {
+    zm_game *g = GAME(c);
+    for (size_t i = 0; i < n; i++) {
+        if (a[i]->type != CZ_LIST || a[i]->seq.count < 1)
+            return zerr(c, "VERSION?: clauses must be lists");
+        cz_val *head = a[i]->seq.items[0];
+        int want = -1;
+        if (atom_is(head, "ZIP")) want = 3;
+        else if (atom_is(head, "EZIP")) want = 4;
+        else if (atom_is(head, "XZIP")) want = 5;
+        else if (atom_is(head, "YZIP")) want = 6;
+        else if (head->type == CZ_FIX) want = head->fix.value;
+        else if (atom_is(head, "T") || atom_is(head, "ELSE")) want = g->zversion;
+        if (want != g->zversion) continue;
+        cz_result r = ok(cz_intern(c, "T", 1));
+        for (size_t j = 1; j < a[i]->seq.count; j++) {
+            r = cz_eval(c, a[i]->seq.items[j]);
+            if (r.flow != CZ_F_NORMAL) return r;
+        }
+        return r;
+    }
+    return ok(cz_false(c));
 }
 
 static cz_result zm_f_frequent_words(cz_ctx *c, cz_val **a, size_t n) {
@@ -562,6 +589,7 @@ void zm_install(cz_ctx *c, zm_game *g) {
     cz_setg(c, cz_intern(c, "SIBREAKS", 8), cz_new_string(c, ",.\"", 3));
 
     cz_def_subr(c, "VERSION", zm_f_version, true);
+    cz_def_subr(c, "VERSION?", zm_f_versionp, true);
     cz_def_subr(c, "CONSTANT", zm_f_constant, true);
     cz_def_subr(c, "GLOBAL", zm_f_global, true);
     cz_def_subr(c, "OBJECT", zm_f_object, true);

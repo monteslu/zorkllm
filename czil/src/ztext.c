@@ -35,34 +35,134 @@ static size_t char_to_zchars(char ch, uint8_t zc[4]) {
     return 4;
 }
 
-void zt_encode_word(const char *text, uint8_t out[4]) {
-    uint8_t zc[6];
+void zt_encode_word_v(const char *text, uint8_t *out, int zversion) {
+    size_t nz = zversion >= 4 ? 9 : 6;
+    uint8_t zc[9];
     size_t n = 0;
-    for (const char *p = text; *p && n < 6; p++) {
+    for (const char *p = text; *p && n < nz; p++) {
         uint8_t tmp[4];
         size_t k = char_to_zchars(*p, tmp);
-        for (size_t i = 0; i < k && n < 6; i++) zc[n++] = tmp[i];
+        for (size_t i = 0; i < k && n < nz; i++) zc[n++] = tmp[i];
     }
-    while (n < 6) zc[n++] = 5;   /* pad */
-    uint16_t w1 = (uint16_t)((zc[0] << 10) | (zc[1] << 5) | zc[2]);
-    uint16_t w2 = (uint16_t)((zc[3] << 10) | (zc[4] << 5) | zc[5]);
-    w2 |= 0x8000;                /* end-of-string marker */
-    out[0] = (uint8_t)(w1 >> 8);
-    out[1] = (uint8_t)(w1 & 0xff);
-    out[2] = (uint8_t)(w2 >> 8);
-    out[3] = (uint8_t)(w2 & 0xff);
+    while (n < nz) zc[n++] = 5;   /* pad */
+    size_t words = nz / 3;
+    for (size_t i = 0; i < words; i++) {
+        uint16_t w = (uint16_t)((zc[i * 3] << 10) | (zc[i * 3 + 1] << 5) | zc[i * 3 + 2]);
+        if (i == words - 1) w |= 0x8000;
+        out[i * 2] = (uint8_t)(w >> 8);
+        out[i * 2 + 1] = (uint8_t)w;
+    }
 }
 
-/* Encode an arbitrary-length string as v3 z-text (no abbreviations):
- * collect all z-chars, pad to a multiple of 3 with 5s, pack 3 per word,
- * set the end bit on the last word. Words go to the callback in order. */
+void zt_encode_word(const char *text, uint8_t out[4]) {
+    zt_encode_word_v(text, out, 3);
+}
+
+/* ---- abbreviation state ---- */
+
+typedef struct { const char *text; size_t len; } zt_abbr;
+static zt_abbr zt_abbrevs[96];
+static size_t zt_nabbrevs;
+static bool zt_collecting;
+static char **zt_corpus;
+static size_t zt_ncorpus, zt_corpus_cap;
+
+void zt_abbrev_reset(void) {
+    for (size_t i = 0; i < zt_ncorpus; i++) free(zt_corpus[i]);
+    free(zt_corpus);
+    zt_corpus = NULL;
+    zt_ncorpus = zt_corpus_cap = 0;
+    zt_nabbrevs = 0;
+    zt_collecting = false;
+}
+
+void zt_abbrev_collect(bool on) { zt_collecting = on; }
+
+static bool zt_suppress;
+void zt_abbrev_suppress(bool on);
+void zt_abbrev_suppress(bool on) { zt_suppress = on; }
+size_t zt_abbrev_count(void) { return zt_nabbrevs; }
+
+const char *zt_abbrev_text(size_t i, size_t *len) {
+    *len = zt_abbrevs[i].len;
+    return zt_abbrevs[i].text;
+}
+
+/* internal: selection (zabbrev.c) installs its winners here */
+void zt_abbrev_install(const char *text, size_t len);
+void zt_abbrev_install(const char *text, size_t len) {
+    if (zt_nabbrevs < 96) {
+        zt_abbrevs[zt_nabbrevs].text = text;
+        zt_abbrevs[zt_nabbrevs].len = len;
+        zt_nabbrevs++;
+    }
+}
+
+/* internal: corpus access for the selector */
+size_t zt_corpus_count(void);
+const char *zt_corpus_get(size_t i);
+size_t zt_corpus_count(void) { return zt_ncorpus; }
+const char *zt_corpus_get(size_t i) { return zt_corpus[i]; }
+
+/* z-chars for one character, sans abbreviations */
+static size_t char_cost(char ch) {
+    if (ch == ' ') return 1;
+    if (ch == '\n') return 2;
+    if ((ch >= 'a' && ch <= 'z')) return 1;
+    if ((ch >= 'A' && ch <= 'Z')) return 2;
+    for (size_t j = 2; j < sizeof(A2) - 1; j++)
+        if (A2[j] == ch) return 2;
+    return 4;
+}
+
+size_t zt_zchar_cost(const char *text, size_t len) {
+    size_t n = 0;
+    for (size_t i = 0; i < len; i++) n += char_cost(text[i]);
+    return n;
+}
+
+/* Encode an arbitrary-length string as z-text: collect all z-chars, pad
+ * to a multiple of 3 with 5s, pack 3 per word, set the end bit on the
+ * last word. When an abbreviation table is active, greedy longest-match
+ * replaces text runs with 2-z-char references (z-chars 1-3 + index). */
 size_t zt_encode_string(const char *text, size_t len,
                         void (*emit_word)(void *ud, uint16_t w), void *ud) {
+    if (zt_collecting) {
+        if (zt_ncorpus >= zt_corpus_cap) {
+            zt_corpus_cap = zt_corpus_cap ? zt_corpus_cap * 2 : 256;
+            zt_corpus = realloc(zt_corpus, zt_corpus_cap * sizeof(char *));
+            if (!zt_corpus) abort();
+        }
+        char *copy = malloc(len + 1);
+        if (!copy) abort();
+        memcpy(copy, text, len);
+        copy[len] = '\0';
+        zt_corpus[zt_ncorpus++] = copy;
+    }
+
     uint8_t *zc = malloc(len * 4 + 3);
     if (!zc) abort();
     size_t n = 0;
-    for (size_t i = 0; i < len; i++) {
-        char ch = text[i];
+    for (size_t i = 0; i < len; ) {
+        /* longest matching abbreviation at this position */
+        if (zt_nabbrevs && !zt_suppress) {
+            size_t best = SIZE_MAX, bestlen = 0;
+            for (size_t a = 0; a < zt_nabbrevs; a++) {
+                size_t al = zt_abbrevs[a].len;
+                if (al > bestlen && al <= len - i
+                    && memcmp(text + i, zt_abbrevs[a].text, al) == 0) {
+                    best = a;
+                    bestlen = al;
+                }
+            }
+            if (best != SIZE_MAX) {
+                zc[n++] = (uint8_t)(1 + best / 32);
+                zc[n++] = (uint8_t)(best % 32);
+                i += bestlen;
+                continue;
+            }
+        }
+        char ch = text[i++];
         if (ch == ' ') zc[n++] = 0;
         else if (ch == '\n') { zc[n++] = 5; zc[n++] = 7; }
         else if (ch >= 'a' && ch <= 'z') zc[n++] = (uint8_t)(ch - 'a' + 6);

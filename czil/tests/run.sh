@@ -217,6 +217,23 @@ else
   bad "tinyquest failed to compile"
 fi
 
+
+echo "v8 backend (same game, 4x address space, transcript-identical):"
+if ./czil-compile ../examples/tinyquest/tinyquest.zil -I ../zil/zork1 -I ../zil/engine-v8 \
+     -o "$SCRATCH/tinyquest8.z8" -v 8 > /dev/null 2>&1; then
+  ok "tinyquest compiles as v8"
+  timeout 60 node tests/play.mjs "$SCRATCH/tinyquest8.z8" ../examples/tinyquest/walkthrough.txt > "$SCRATCH/tq8.txt" 2>&1
+  grep -v '^\[status' ../examples/tinyquest/expected-transcript.txt > "$SCRATCH/tq3-clean.txt"
+  grep -v '^\[status' "$SCRATCH/tq8.txt" > "$SCRATCH/tq8-clean.txt"
+  if diff -q "$SCRATCH/tq3-clean.txt" "$SCRATCH/tq8-clean.txt" > /dev/null; then
+    ok "v8 gameplay transcript identical to v3 (status lines aside)"
+  else
+    bad "v8 transcript differs from v3:"; diff "$SCRATCH/tq3-clean.txt" "$SCRATCH/tq8-clean.txt" | head -8
+  fi
+else
+  bad "tinyquest v8 compile failed"
+fi
+
 echo
 echo "czil tests: $PASS passed, $FAIL failed"
 [ $FAIL -eq 0 ]

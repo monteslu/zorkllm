@@ -1,7 +1,7 @@
 CC ?= cc
 CFLAGS ?= -std=c11 -Wall -Wextra -O2 -Iinclude
 
-SRC = src/arena.c src/value.c src/reader.c src/eval.c src/zmodel.c src/ztext.c src/zcode.c
+SRC = src/arena.c src/value.c src/reader.c src/eval.c src/zmodel.c src/ztext.c src/zabbrev.c src/zcode.c
 HDR = include/czil.h include/zmodel.h src/czil_internal.h
 
 czil-read: $(SRC) tools/czil-read.c $(HDR)

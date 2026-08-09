@@ -36,4 +36,7 @@ objects below 19 makes any size of game safe."
 <INSERT-FILE "GMAIN" T>
 <INSERT-FILE "GPARSER" T>
 <INSERT-FILE "GVERBS" T>
+;"When targeting v5/v8 (czil-compile -v 8), overlay the format-dependent
+parser internals. Compiling for v3 skips this."
+<VERSION? (ZIP) (T <INSERT-FILE "V8PATCH" T>)>
 <INSERT-FILE "TACTIONS" T>

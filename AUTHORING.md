@@ -37,7 +37,35 @@ node czil/tests/play.mjs tinyquest.z3 examples/tinyquest/walkthrough.txt
 ```
 
 Both compilers produce byte-identical output. A full Zork-sized game
-compiles in about a tenth of a second.
+compiles in well under a second.
+
+**Abbreviation compression is on by default** (the standard Z-machine
+text compression; shrinks a Zork-sized game about 11% with zero behavior
+change). `--no-abbrevs` skips the selection pass for the fastest
+edit-test loop.
+
+**Bigger games: target v8.** A v3 story file tops out at 128KB, 32
+flags, and 31 properties; the engine already uses most of the flags. For
+more of everything (512KB, 48 flags, 63 properties), compile the same
+source as a version 8 story file:
+
+```sh
+node czil/dist/czil-compile.mjs game.zil -I zil/zork1 -I zil/engine-v8 -v 8 -o game.z8
+```
+
+Two things change: add `-I zil/engine-v8` (a small overlay that adapts
+the engine's parser internals to the v8 dictionary format - the zork1
+files themselves are never modified), and add one line to your main file
+after the GVERBS insert so the overlay loads only for v8 builds:
+
+```zil
+<VERSION? (ZIP) (T <INSERT-FILE "V8PATCH" T>)>
+```
+
+Tiny Quest carries that line already, and the test suite proves its v8
+build plays the identical transcript to its v3 build. One difference:
+v5+ interpreters do not draw the v3 status line, so v8 games have no
+status bar (the zorkllm CLI prompt does not show one for v8 games).
 
 ## The shape of a game
 

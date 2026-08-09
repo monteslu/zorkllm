@@ -39,13 +39,14 @@ static char *wasm_reader(const char *path, size_t *len) {
 
 __attribute__((export_name("czil_compile")))
 int czil_compile(const char *root, int release, const char *serial,
-                 const char *include_dir) {
+                 const char *include_dir, int zversion) {
     zm_set_file_reader(wasm_reader);
     wasm_err[0] = '\0';
 
     cz_ctx *ctx = cz_ctx_new();
     zm_game *g = zm_new();
     zm_install(ctx, g);
+    if (zversion) { g->zversion = zversion; g->version_locked = 1; }
 
     const char *slash = strrchr(root, '/');
     if (slash) {
@@ -57,15 +58,29 @@ int czil_compile(const char *root, int release, const char *serial,
         strcpy(g->base_dir, ".");
     }
     if (include_dir && include_dir[0]) {
-        snprintf(g->include_dirs[0], sizeof g->include_dirs[0], "%s", include_dir);
-        g->include_count = 1;
+        const char *p = include_dir;
+        while (*p && g->include_count < 4) {
+            const char *colon = strchr(p, ':');
+            size_t n = colon ? (size_t)(colon - p) : strlen(p);
+            if (n >= sizeof g->include_dirs[0]) n = sizeof g->include_dirs[0] - 1;
+            memcpy(g->include_dirs[g->include_count], p, n);
+            g->include_dirs[g->include_count][n] = '\0';
+            g->include_count++;
+            p = colon ? colon + 1 : p + n;
+        }
     }
 
     if (!zm_load_file(ctx, g, root) || !zm_finalize(ctx, g)) {
         snprintf(wasm_err, sizeof wasm_err, "%s", g->err);
         return 1;
     }
-    zc_options opt = { release, serial && serial[0] ? serial : "000000" };
+    zc_options opt = { release, serial && serial[0] ? serial : "000000", 0 };
+    zt_abbrev_reset();
+    zt_abbrev_collect(true);
+    if (!zc_compile(ctx, g, &opt, NULL, wasm_err, sizeof wasm_err))
+        return 2;
+    zt_abbrev_collect(false);
+    zt_abbrev_select();
     if (!zc_compile(ctx, g, &opt, NULL, wasm_err, sizeof wasm_err))
         return 2;
     return 0;

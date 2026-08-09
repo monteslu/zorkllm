@@ -25,16 +25,18 @@ int main(int argc, char **argv) {
     const char *root = NULL, *out = NULL, *serial = NULL;
     const char *includes[4];
     size_t ninc = 0;
-    int release = 1;
+    int release = 1, no_abbrevs = 0, zversion = 0;
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) out = argv[++i];
         else if (strcmp(argv[i], "-r") == 0 && i + 1 < argc) release = atoi(argv[++i]);
         else if (strcmp(argv[i], "-s") == 0 && i + 1 < argc) serial = argv[++i];
         else if (strcmp(argv[i], "-I") == 0 && i + 1 < argc && ninc < 4) includes[ninc++] = argv[++i];
+        else if (strcmp(argv[i], "--no-abbrevs") == 0) no_abbrevs = 1;
+        else if (strcmp(argv[i], "-v") == 0 && i + 1 < argc) zversion = atoi(argv[++i]);
         else root = argv[i];
     }
     if (!root || !out) {
-        fprintf(stderr, "usage: czil-compile root.zil -o out.z3 [-r release] [-s serial] [-I dir]...\n");
+        fprintf(stderr, "usage: czil-compile root.zil -o out.z3 [-r release] [-s serial] [-I dir] [-v 3|5|8] [--no-abbrevs]\n");
         return 2;
     }
 
@@ -47,6 +49,7 @@ int main(int argc, char **argv) {
         g->include_count++;
     }
 
+    if (zversion) { g->zversion = zversion; g->version_locked = 1; }
     if (!zm_load_file(ctx, g, root)) {
         fprintf(stderr, "load failed: %s\n", g->err);
         return 1;
@@ -56,8 +59,20 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    zc_options opt = { release, serial };
+    zc_options opt = { release, serial, no_abbrevs };
     char err[512];
+    if (!no_abbrevs) {
+        /* pass 1: dry run collecting every encoded string, then choose
+         * abbreviations; pass 2 re-encodes everything with them */
+        zt_abbrev_reset();
+        zt_abbrev_collect(true);
+        if (!zc_compile(ctx, g, &opt, NULL, err, sizeof err)) {
+            fprintf(stderr, "compile failed: %s\n", err);
+            return 1;
+        }
+        zt_abbrev_collect(false);
+        zt_abbrev_select();
+    }
     if (!zc_compile(ctx, g, &opt, out, err, sizeof err)) {
         fprintf(stderr, "compile failed: %s\n", err);
         return 1;

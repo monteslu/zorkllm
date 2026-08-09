@@ -9,12 +9,14 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const argv = process.argv.slice(2);
-let root = null, out = null, serial = '', include = '', release = 1;
+let root = null, out = null, serial = '', release = 1, zversion = 0;
+const includes = [];
 for (let i = 0; i < argv.length; i++) {
   if (argv[i] === '-o') out = argv[++i];
   else if (argv[i] === '-r') release = parseInt(argv[++i], 10) || 1;
   else if (argv[i] === '-s') serial = argv[++i];
-  else if (argv[i] === '-I') include = argv[++i];
+  else if (argv[i] === '-I') includes.push(argv[++i]);
+  else if (argv[i] === '-v') zversion = parseInt(argv[++i], 10) || 0;
   else root = argv[i];
 }
 if (!root || !out) {
@@ -59,6 +61,13 @@ const { instance } = await WebAssembly.instantiate(readFileSync(wasmPath), {
     fd_read: () => 0,
     fd_close: () => 0,
     fd_seek: () => 0,
+    environ_sizes_get(countPtr, sizePtr) {
+      const view = new DataView(memory.buffer);
+      view.setUint32(countPtr, 0, true);
+      view.setUint32(sizePtr, 0, true);
+      return 0;
+    },
+    environ_get: () => 0,
   },
 });
 memory = instance.exports.memory;
@@ -71,7 +80,7 @@ const stage = (s) => {
   return ptr;
 };
 
-const rc = instance.exports.czil_compile(stage(root), release, stage(serial), stage(include));
+const rc = instance.exports.czil_compile(stage(root), release, stage(serial), stage(includes.join(':')), zversion);
 if (rc !== 0) {
   const errPtr = instance.exports.czil_error();
   const errBytes = new Uint8Array(memory.buffer, errPtr, 1024);

@@ -209,6 +209,22 @@ evaluator now implements).
     make          # builds czil-read, czil-eval, czil-build, czil-compile, z3dict
     make test     # everything above, ending in the shipped-transcript differs
 
+### Abbreviations and version 8
+
+Abbreviation compression (standard Z-machine text compression) is on by
+default: a deterministic greedy selector selects up to 96 substrings
+from every string the compiler encodes; Zork I shrinks from 111KB to
+98KB with a transcript-identical result. `--no-abbrevs` disables it.
+
+`-v 8` (or `-v 5`) targets the larger story-file formats: /8 packed
+addresses (512KB ceiling), 63 properties, 48 flags, 14-byte object
+entries, 9-z-char dictionary words, v5 opcode forms (aread, EXT
+save/restore, no header initial values). The v3 Zork engine files adapt
+through the `zil/engine-v8` overlay (two constants and two routines
+redefined; czil applies the last definition, so the originals are never
+touched). The suite gates this with: Tiny Quest compiled as v8 must play
+the byte-identical gameplay transcript to its v3 build.
+
 `make wasm` builds `dist/czil.wasm` (~140 KB): a bare WebAssembly module
 with no emscripten runtime. Its whole ABI is one host import
 (`host.read_file`) plus stdio writes; `dist/czil-compile.mjs` is a
