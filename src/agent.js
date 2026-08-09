@@ -39,6 +39,11 @@ const DIRECTION_WORDS = new Set([
   'southwest', 'up', 'down',
 ]);
 
+/** Verbs that open a movement sentence ("go north on the path"). */
+const MOVEMENT_LEADS = new Set([
+  'go', 'walk', 'head', 'move', 'run', 'travel', 'proceed', 'continue',
+]);
+
 /**
  * Yes/no answers pass straight through - but only when the game itself just
  * asked a question (e.g. QUIT's "Do you wish to leave the game? (Y is
@@ -165,6 +170,16 @@ export class ZorkAgent {
       const { command, output } = await this.raw(tokens[0]);
       return { type: 'turns', turns: [{ command, output }], note: null };
     }
+    // Movement sentences carrying exactly one direction ("go north on the
+    // path", "head up those stairs") mean that direction; sentences with
+    // several directions are plans and go to the LLM.
+    if (MOVEMENT_LEADS.has(tokens[0])) {
+      const dirs = tokens.filter((t) => DIRECTION_WORDS.has(t));
+      if (dirs.length === 1 && this.#inDictionary(dirs[0])) {
+        const { command, output } = await this.raw(dirs[0]);
+        return { type: 'turns', turns: [{ command, output }], note: null };
+      }
+    }
     const gameAskedQuestion = /affirmative\)?:?\s*$|\?\s*$/i.test(this.lastGameOutput || '');
     if (!word.includes(' ')) {
       if ((META_WORDS.has(word) && this.#inDictionary(word))
@@ -263,6 +278,18 @@ export class ZorkAgent {
    * @returns {Promise<{type: 'command', command: string} | {type: 'say', message: string} | null>}
    */
   async #retryCommand(command, output) {
+    // A rejected command that leads with a direction or movement verb and
+    // contains exactly one direction ("NORTH ON PATH", "GO NORTH QUICKLY")
+    // corrects deterministically to that direction - no model needed.
+    {
+      const ct = command.toLowerCase().split(/\s+/);
+      if (ct.length > 1 && (DIRECTION_WORDS.has(ct[0]) || MOVEMENT_LEADS.has(ct[0]))) {
+        const dirs = ct.filter((t) => DIRECTION_WORDS.has(t));
+        if (dirs.length === 1 && this.#inDictionary(dirs[0])) {
+          return { type: 'command', command: dirs[0].toUpperCase() };
+        }
+      }
+    }
     // Point-of-use verb list: small models ignore the vocabulary in the
     // distant system prompt but follow one embedded in the correction ask.
     // Ordering matters to them too: the list goes first and the ask goes

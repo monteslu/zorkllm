@@ -144,7 +144,8 @@ const tinyLLM = {
   },
 };
 const tiny = new ZorkAgent(session2, tinyLLM, 'Zork I', { historyTurns: 1, includeVocab: false, guide: false });
-for (const say2 of ['go south', 'go east', 'open the window', 'climb in', 'go west', 'where am I']) {
+// ('go south' etc. now bypass the LLM as pure movement - use chattier phrasings)
+for (const say2 of ['lets wander south', 'try east maybe', 'open the window', 'climb in', 'lets wander west', 'where am I']) {
   await tiny.turn(say2);
 }
 const last = seen.at(-1);
@@ -549,4 +550,33 @@ passed += 4; console.log('  ok - command-only notes dropped, real notes kept');
      llmCalls === 0 && r.turns?.[0]?.command === 'hands', JSON.stringify(r).slice(0, 90));
   const r2 = await a.turn('my face');   // "face" unknown -> still goes to the LLM
   ok('unknown-word answer still routes to the LLM', llmCalls === 1, JSON.stringify(r2).slice(0, 60));
+}
+
+// --- movement sentences with one direction (live e2b fixture: NORTH ON PATH) ---
+console.log('movement sentences:');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let llmCalls = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'movement',
+    async complete({ messages }) {
+      const last = messages.at(-1).content;
+      if (last.includes('[guide check]')) return 'PASS';
+      llmCalls++;
+      if (last.includes('[retry]')) return 'SAY\nshould not be asked';
+      if (last.includes('north then east')) return 'COMMANDS\nNORTH\nEAST';
+      return 'COMMANDS\nNORTH ON PATH';   // a mangled movement command
+    },
+  }, 'Zork I');
+  const r1 = await a.turn('go north on the path');
+  ok('"go north on the path" bypasses the LLM as NORTH',
+     llmCalls === 0 && r1.turns?.[0]?.command === 'north', JSON.stringify(r1).slice(0, 80));
+  const r2 = await a.turn('head up those stairs');
+  ok('"head up those stairs" is UP', r2.turns?.[0]?.command === 'up', JSON.stringify(r2).slice(0, 60));
+  const r3 = await a.turn('go north then east please');
+  ok('multi-direction plans still go to the LLM', llmCalls === 1, String(llmCalls));
+  const r4 = await a.turn('please just walk along the path');   // no direction word -> LLM emits NORTH ON PATH
+  ok('mangled NORTH ON PATH self-corrects to NORTH without a retry call',
+     llmCalls === 2 && r4.turns?.some((t) => t.command === 'NORTH'), JSON.stringify(r4).slice(0, 120));
 }
