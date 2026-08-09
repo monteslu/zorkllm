@@ -637,3 +637,25 @@ console.log('confusion-gated reflection:');
   ok('dead-end bypassed move gets a guide note', guideCalls === 1 && /worth circling/.test(r2.note ?? ''),
      JSON.stringify(r2).slice(0, 90));
 }
+
+// --- confusing responses get the continuation-voiced reflection ---
+console.log('continuation voice:');
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  const checks = [];
+  const a = new ZorkAgent(s, {
+    describe: () => 'voice',
+    async complete({ messages }) {
+      const last = messages.at(-1).content;
+      if (last.includes('[guide check]')) { checks.push(last); return 'PASS'; }
+      return 'COMMANDS\nOPEN MAILBOX';
+    },
+  }, 'Zork I');
+  await a.turn('go up');                        // bypassed dead end
+  ok('dead-end reflection asks for a continuation',
+     checks.length === 1 && /CONTINUATION/.test(checks[0]), String(checks.length));
+  await a.turn('crack open that mailbox thing'); // LLM path, success
+  ok('successful turn keeps the normal guide check',
+     checks.length === 2 && !/CONTINUATION/.test(checks[1]), String(checks.length));
+}

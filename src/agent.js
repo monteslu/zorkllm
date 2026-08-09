@@ -3,7 +3,7 @@
  * game output. Game text is always relayed verbatim; the LLM never writes
  * game prose. Everything here is provider-agnostic.
  */
-import { buildSystemPrompt, parseReply, GUIDE_CHECK, parseGuideNote } from './prompt.js';
+import { buildSystemPrompt, parseReply, GUIDE_CHECK, GUIDE_CONTINUE, parseGuideNote } from './prompt.js';
 
 /**
  * Single words that ARE parser commands already - translating them through an
@@ -281,7 +281,9 @@ export class ZorkAgent {
         }
       }
     }
-    const note = retryNote ?? (turns.length ? await this.#reflect() : null);
+    const note = retryNote ?? (turns.length
+      ? await this.#reflect(this.#isConfusing(turns.at(-1).output) ? GUIDE_CONTINUE : GUIDE_CHECK)
+      : null);
     return { type: 'turns', turns, note };
   }
 
@@ -379,9 +381,9 @@ export class ZorkAgent {
    * it already taught. Guidance is best-effort - never fails the turn.
    * @returns {Promise<string|null>}
    */
-  async #reflect() {
+  async #reflect(message = GUIDE_CHECK) {
     if (!this.guide || this.session.ended) return null;
-    this.history.push({ role: 'user', content: GUIDE_CHECK });
+    this.history.push({ role: 'user', content: message });
     try {
       const reply = await this.llm.complete({ system: this.system, messages: this.#window() });
       this.history.push({ role: 'assistant', content: reply });
@@ -401,10 +403,14 @@ export class ZorkAgent {
    * @returns {Promise<string|null>}
    */
   async #reflectIfConfusing(output) {
-    if (!this.guide || !output) return null;
-    const confusing = PARSER_REJECT.test(output)
+    if (!this.guide || !output || !this.#isConfusing(output)) return null;
+    return this.#reflect(GUIDE_CONTINUE);
+  }
+
+  /** Is this the kind of engine response that leaves a newcomer stuck? */
+  #isConfusing(output) {
+    return PARSER_REJECT.test(output)
       || /can't go that way|You must specify|Which .* do you mean|What do you want|I can't see how|isn't notably helpful|There is a wall/i.test(output);
-    return confusing ? this.#reflect() : null;
   }
 
   /** Record the game's response as ground truth in the transcript. */

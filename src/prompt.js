@@ -73,6 +73,15 @@ export const GUIDE_CHECK =
   '[guide check] Your commands were executed; the results are printed above. If (and only if) a newcomer would benefit right now, reply with one or two plain sentences IN THE GAME\'S OWN VOICE - you are the game speaking, so never say "the game" or retell what was just printed. Explain a confusing response in your own words, point at a possibility just revealed, or offer a timely bit of world wisdom. Phrase suggestions as natural invitations ("that window might open if you give it a try"), NEVER as command words to type. Do not repeat earlier guidance, and do NOT write COMMANDS, SAY, or any game commands here. If there is nothing worth saying, reply with exactly the single word: PASS';
 
 /**
+ * Reflection variant used when the response just printed was an error or a
+ * question the player is staring at RIGHT NOW. The note renders directly
+ * beneath that message, so a restatement reads as two voices saying the
+ * same thing - the note must pick up where the message left off instead.
+ */
+export const GUIDE_CONTINUE =
+  '[guide check] The game\'s response above was just printed for the player, and your reply will appear directly beneath it as the very next line - so it must read as a CONTINUATION of that message, in the same voice. Never restate or paraphrase what it said; add only the part it left out: which ways actually lead somewhere, which of the things it asked about you might mean, what a workable next try looks like. One short sentence. Phrase suggestions as natural invitations ("the path here runs north and south"), NEVER as command words to type. Do not write COMMANDS, SAY, or any game commands here. If there is truly nothing to add, reply with exactly the single word: PASS';
+
+/**
  * Parse the reply to a guide check.
  * @param {string} text
  * @returns {string|null} the note, or null for PASS/empty
