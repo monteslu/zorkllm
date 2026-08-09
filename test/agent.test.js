@@ -659,3 +659,22 @@ console.log('continuation voice:');
   ok('successful turn keeps the normal guide check',
      checks.length === 2 && !/CONTINUATION/.test(checks[1]), String(checks.length));
 }
+
+// --- stock ZIL refusals count as confusing too ---
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  const checks = [];
+  const a = new ZorkAgent(s, {
+    describe: () => 'refusal',
+    async complete({ messages }) {
+      const last = messages.at(-1).content;
+      if (last.includes('[guide check]')) { checks.push(last); return 'PASS'; }
+      return 'COMMANDS\nKICK MAILBOX';
+    },
+  }, 'Zork I');
+  await a.turn('boot that stupid mailbox');   // "has no effect" refusal
+  ok('stock refusal upgrades to the continuation prompt',
+     checks.length === 1 && /CONTINUATION/.test(checks[0]),
+     checks[0]?.slice(0, 60) ?? 'no check ran');
+}

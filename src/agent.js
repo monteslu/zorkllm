@@ -76,6 +76,26 @@ const PARSER_REJECT = new RegExp([
 // Games with fully custom messages simply skip the retry optimization -
 // rejection detection is an enhancement, never a correctness requirement.
 
+// Engine responses that leave a newcomer staring at a dead end: questions
+// the parser asks back, blocked movement, and the stock refusals from the
+// ZIL and Inform standard libraries. These are library strings shared
+// across each family's games, never title-specific text. Matching one
+// upgrades the post-turn reflection to the continuation prompt (and
+// enables it at all on bypassed turns); over-matching only costs a guide
+// call that may PASS, so the list leans inclusive.
+const CONFUSING_RESPONSE = new RegExp([
+  // questions asked back / missing information
+  'You must specify', 'Which .* do you mean', 'What do you want',
+  'Please give a direction', 'You must tell me how',
+  // blocked movement
+  "can't go that way", 'There is a wall', "I can't see how",
+  // stock refusals
+  "You can't do that", "can't see any", "You don't have",
+  'has no effect', "doesn't seem to work", 'futile',
+  "isn't notably helpful", 'A valiant attempt', "can't be opened",
+  'Nothing happens', "You can't be serious",
+].join('|'), 'i');
+
 /** Recognized profanity; the first four are in Zork's own dictionary. */
 const SWEAR_WORDS = new Set([
   'shit', 'fuck', 'damn', 'curse', 'bitch', 'ass', 'asshole', 'crap', 'hell',
@@ -409,8 +429,7 @@ export class ZorkAgent {
 
   /** Is this the kind of engine response that leaves a newcomer stuck? */
   #isConfusing(output) {
-    return PARSER_REJECT.test(output)
-      || /can't go that way|You must specify|Which .* do you mean|What do you want|I can't see how|isn't notably helpful|There is a wall/i.test(output);
+    return PARSER_REJECT.test(output) || CONFUSING_RESPONSE.test(output);
   }
 
   /** Record the game's response as ground truth in the transcript. */

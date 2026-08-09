@@ -106,11 +106,16 @@ agent's dictionary gate.
    Bypasses cost 0 LLM calls and 0 seconds; they exist because live testing
    showed models lecture, hallucinate success, or mis-coach on exactly these
    inputs. One exception to "0 calls": when a bypassed turn produces a
-   confusing engine response (a parser rejection, "You can't go that way",
-   "You must specify...", or a disambiguation question), the guide
-   reflection still runs so the player gets a plain-words note instead of
-   only the engine's terse error. Successful bypassed turns stay
-   zero-cost.
+   confusing engine response (a parser rejection, blocked movement, a
+   disambiguation question, or a stock ZIL/Inform refusal like "You can't
+   do that" - see CONFUSING_RESPONSE in src/agent.js), the guide
+   reflection still runs so the player gets a note instead of only the
+   engine's terse error. Because that error was just printed, the
+   reflection uses a continuation variant of the guide-check prompt: the
+   note must pick up where the engine's message left off in the same
+   voice, adding only what it failed to say, never restating it. The same
+   variant is chosen on normal turns whose final response matches.
+   Successful bypassed turns stay zero-cost.
 2. **Pre-parse router** (`#asParserCommand`). Input that already IS
    parser-speak skips translation: the game's own dictionary must know
    every word, classify the first as a verb, and classify at least one
