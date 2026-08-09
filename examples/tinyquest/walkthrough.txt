@@ -1,0 +1,17 @@
+# Tiny Quest full playthrough: find the key, open the shed, unlock the
+# toolbox, place the gear, score 10/10.
+look
+move flowerpot
+take key
+open door
+north
+look
+open toolbox
+unlock toolbox with key
+open toolbox
+take gear
+down
+put gear in socket
+score
+quit
+y

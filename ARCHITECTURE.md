@@ -11,6 +11,26 @@ The Z-machine is the game; the LLM is only a translator and narrator-guide;
 every fact the player sees comes from the engine, and anything the model
 cannot be trusted to do reliably is done deterministically instead.
 
+## What actually runs the game
+
+Nothing executes ZIL at play time. The chain is:
+
+1. `zil/zork{1,2,3}/*.zil` - ZIL **source code** (like `.c` files),
+   the MIT-licensed originals.
+2. `czil/` - a **compiler** (C11, and a bare-wasm build for Node) that
+   turns ZIL source into a `.z3` file. Used at build time only.
+3. `games/*.z3` - **bytecode** for the Z-machine, a 1979 virtual
+   machine. The bundled files are the actual shipped Infocom binaries;
+   czil's test gate is that its rebuilt ones play identically.
+4. `vendor/zmachine.mjs` - a Z-machine **interpreter in JavaScript**
+   (a CPU emulator for that bytecode, running in Node). This is what
+   "runs the game", exactly as the original Apple II interpreter did.
+5. `src/` - the LLM agent, which only types parser commands into the
+   running interpreter and reads its text back.
+
+So: JavaScript runs the game; C (or its wasm build) compiles the game;
+the LLM plays the game.
+
 ## Layers
 
 ```

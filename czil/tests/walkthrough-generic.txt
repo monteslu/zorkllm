@@ -1,0 +1,24 @@
+# Generic opening probe: parser, objects, movement, daemons, meta verbs.
+look
+inventory
+take all
+inventory
+examine lamp
+turn on lamp
+north
+south
+east
+west
+down
+up
+wait
+wait
+diagnose
+score
+verbose
+look
+brief
+drop all
+look
+quit
+y

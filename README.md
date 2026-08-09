@@ -58,6 +58,24 @@ Taken.
   LM Studio, no server configuration needed. `--think` leaves reasoning on.
   Inline `<think>` blocks are stripped defensively either way.
 
+## Make your own adventures
+
+The repo is the whole toolchain, not just the player. `zil/` holds the
+MIT-licensed source code of all three Zork games; `czil/` is a C port of
+the ZILF compiler (also compiled to bare WebAssembly, so plain Node can
+build games with no C toolchain); `examples/tinyquest/` is a small
+complete game built on the Zork engine files.
+
+```sh
+node czil/dist/czil-compile.mjs examples/tinyquest/tinyquest.zil -I zil/zork1 -o tinyquest.z3
+node src/cli.js tinyquest.z3
+```
+
+See [AUTHORING.md](AUTHORING.md) for the full guide to writing games,
+and `czil/README.md` for the compiler itself (its test gate: the trilogy
+compiled from this repo's sources plays transcript-identical to the
+shipped 1980s binaries).
+
 ## How it works
 
 For the full internals — turn lifecycle, the COMMANDS/SAY protocol, context

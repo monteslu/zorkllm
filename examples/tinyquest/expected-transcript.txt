@@ -1,0 +1,61 @@
+TINY QUEST
+An example adventure for the zorkllm toolchain.
+
+Overgrown Garden
+You are standing in a small garden gone wild. Bees drone somewhere in the tangle of roses. A sagging shed stands to the north.
+There is a cracked flowerpot here.
+> look
+Overgrown Garden
+You are standing in a small garden gone wild. Bees drone somewhere in the tangle of roses. A sagging shed stands to the north.
+There is a cracked flowerpot here.
+[status: Overgrown Garden | score 0 | moves 1]
+> move flowerpot
+Lifting the flowerpot reveals a small brass key that was hidden beneath it!
+[status: Overgrown Garden | score 0 | moves 2]
+> take key
+Taken.
+[status: Overgrown Garden | score 0 | moves 3]
+> open door
+The door opens with a groan of neglected hinges.
+[status: Overgrown Garden | score 0 | moves 4]
+> north
+Inside the Shed
+Dusty light falls through one grimy window. A workbench runs along the far wall, and a trapdoor in the floor leads down into darkness.
+Sitting on the workbench is: 
+  A steel toolbox
+[status: Inside the Shed | score 0 | moves 5]
+> look
+Inside the Shed
+Dusty light falls through one grimy window. A workbench runs along the far wall, and a trapdoor in the floor leads down into darkness.
+Sitting on the workbench is: 
+  A steel toolbox
+[status: Inside the Shed | score 0 | moves 6]
+> open toolbox
+The toolbox is locked.
+[status: Inside the Shed | score 0 | moves 7]
+> unlock toolbox with key
+The key turns, and the lock springs open.
+[status: Inside the Shed | score 0 | moves 8]
+> open toolbox
+Opening the steel toolbox reveals a polished brass gear.
+[status: Inside the Shed | score 0 | moves 9]
+> take gear
+Taken.
+[status: Inside the Shed | score 0 | moves 10]
+> down
+Machine Cellar
+A single shaft of light picks out an ancient brass machine, silent and still. On its side is an empty socket exactly the size of a gear.
+[status: Machine Cellar | score 0 | moves 11]
+> put gear in socket
+The gear slides home. Deep inside the machine something catches, turns, and the whole cellar fills with a warm ticking - the heartbeat of a clock that has waited years to run again. Well done!
+[status: Machine Cellar | score 10 | moves 12]
+> score
+Your score is 10 (total of 10 points), in 12 moves.
+[status: Machine Cellar | score 10 | moves 12]
+> quit
+Your score is 10 (total of 10 points), in 12 moves.
+Do you wish to leave the game? (Y is affirmative):
+[status: Machine Cellar | score 10 | moves 12]
+> y
+
+[status: Machine Cellar | score 10 | moves 12]

@@ -1,0 +1,37 @@
+# Opening-game walkthrough exercising the parser, containers, combat-free
+# object handling, light, movement, scoring, and meta verbs.
+look
+open mailbox
+read leaflet
+take leaflet
+inventory
+drop leaflet
+north
+east
+open window
+enter window
+take bottle and sack
+west
+take lamp
+turn on lamp
+move rug
+open trap door
+open case
+read a book
+take sword
+down
+score
+north
+kill troll with sword
+diagnose
+south
+up
+put sword in case
+turn off lamp
+east
+east
+verbose
+look
+score
+quit
+y

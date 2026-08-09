@@ -1,2 +1,7 @@
 node_modules/
 *.sav
+czil/czil-read
+czil/czil-eval
+czil/czil-build
+czil/czil-compile
+czil/z3dict
