@@ -1,0 +1,152 @@
+# WONDERLAND - complete walkthrough. 134 commands, 100/100 points,
+# ending on the riverbank waking. Verified deterministic (no RANDOM on
+# the critical path; the engine's FUMBLE roll is disabled in GO).
+#
+# Divergences from DESIGN.md section 9, and why:
+#   * "GIVE TREACLE TO HATTER" -> "GIVE JAR TO HATTER". The treacle lives
+#     inside the marmalade jar, and the parser cannot reach a noun that is
+#     inside a container the player holds. The jar routes to FIX-THE-WATCH.
+#   * "SAY I AM NOT A MILE HIGH" -> "SAY MILE". The engine's vocabulary has
+#     no word "I", and SAY <sentence> is not a supported syntax. A W-MILE
+#     word object carries the beat.
+#   * "PUT BILL IN BOX" -> "RIGHT BILL". PUT routes through PRE-GIVE, which
+#     demands the object be held; Bill is an ACTORBIT on the floor. A new
+#     RIGHT verb avoids the implicit-take path entirely.
+#   * "TALK TO MOUSE" happens on the Queer Shore (the design's move 30),
+#     which is where the dry lecture belongs; the pool conversation plays
+#     automatically during the swim.
+wait
+follow rabbit
+down
+take jar
+wait
+wait
+north
+north
+take key
+open curtain
+unlock door with key
+open door
+west
+drink bottle
+east
+take sixpence
+west
+look under table
+eat cake
+take key
+unlock door with key
+open door
+west
+cry
+hello rabbit
+take fan
+take gloves
+fan me
+fan me
+west
+talk to mouse
+race
+give comfits to dodo
+give thimble to dodo
+east
+east
+in
+take gloves
+drink bottle
+reach out window
+wait
+kick
+shout
+wait
+take cake
+eat cake
+take stick
+throw stick
+west
+talk to caterpillar
+ask caterpillar about size
+recite poem
+wait
+take mushroom
+eat left piece
+east
+up
+down
+eat right piece
+south
+ask cat about hatter
+west
+knock on door
+eat right piece
+open door
+in
+take pepperbox
+ask duchess about queen
+wait
+take invitation
+out
+wait
+wait
+east
+say pig
+eat left piece
+east
+sit
+answer riddle
+examine watch
+wake dormouse
+stand
+eat right piece
+down
+fill jar with treacle
+up
+eat left piece
+sit
+give jar to hatter
+wear hat
+stand
+west
+south
+enter tree
+take key
+unlock door with key
+open door
+eat right piece
+west
+eat left piece
+talk to gardeners
+take brush
+paint roses
+wait
+say alice
+show invitation to queen
+yes
+stroke flamingo
+wait
+hit hedgehog
+wait
+tell king about duchess
+give gloves to rabbit
+wait
+east
+east
+talk to turtle
+ask turtle about school
+dance
+sing
+take pencil
+wait
+wait
+throw pepper
+wait
+wait
+say nothing
+wait
+right bill
+wait
+say mile
+wait
+give sixpence to king
+wait
+say nonsense

@@ -55,6 +55,8 @@ Built on the MIT-licensed Zork engine files (zil/zork1). Compile with:
 
 <SYNTAX FAN OBJECT = V-FAN>
 
+<SYNTAX RIGHT OBJECT = V-RIGHT>
+
 <SYNTAX REFUSE = V-REFUSE>
 <SYNONYM REFUSE PROTEST>
 

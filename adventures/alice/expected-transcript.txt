@@ -1,0 +1,545 @@
+You are beginning to get very tired of sitting by your sister on the bank, and of having nothing to do. Once or twice you have peeped into the book she is reading, but it has no pictures or conversations in it -- and what is the use of a book without pictures or conversations? The day is hot, and you feel very sleepy and stupid, and you are considering whether the pleasure of making a daisy-chain is worth the trouble of getting up, when a White Rabbit with pink eyes runs close by you.
+
+There is nothing so very remarkable in that. Nor is it so very much out of the way to hear the Rabbit say to itself, "Oh dear! Oh dear! I shall be late!" But when the Rabbit actually takes a watch out of its waistcoat-pocket, and looks at it, and hurries on -- you start to your feet. You have never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it.
+
+Burning with curiosity, you are Alice; the afternoon is golden; and somewhere under the hedge ahead of you, a large rabbit-hole is waiting, going down and down and down.
+
+WONDERLAND -- an interactive nonsense, after Lewis Carroll.
+
+Riverbank
+You are sitting on the riverbank beside your sister, who is reading a book with no pictures or conversations in it. The afternoon is hot and impossibly drowsy, and the daisies are almost worth picking.
+> wait
+Time passes...
+
+The White Rabbit runs close by your feet, crying "Oh dear! Oh dear! I shall be late!" -- takes the watch out of its waistcoat-pocket, looks at it, and hurries on toward the hedge to the north.
+> follow rabbit
+Under the Hedge
+You are at a great hedge at the edge of the field. Under it gapes a large rabbit-hole, and from somewhere down it comes a fading voice: "Oh my ears and whiskers, how late it's getting!"
+> down
+In another moment down you go after it, never once considering how in the world you are to get out again. The hole dips suddenly down, and you are falling -- slowly, comfortably, absurdly -- past shelves and cupboards set into the walls of the well. A jar drifts by at arm's length, labelled ORANGE MARMALADE.
+
+Falling
+You are falling, slowly and comfortably, past shelves and cupboards set into the walls of the well. Down, down, down.
+
+Down, down, down. You wonder how many miles you have fallen, and whether cats eat bats, and whether bats eat cats, and find you cannot answer either question, which makes them equally good questions.
+> take jar
+You take the jar as it drifts past. It is empty, but a jar is a jar, and you are falling past a great many cupboards with nothing else to show for it.
+
+Shelves, and cupboards, and here and there a map or a picture hung upon a peg, and still no bottom to speak of. After a fall like this, you think, you shall think nothing of tumbling down stairs.
+> wait
+Time passes...
+
+Thump! Thump! You land on a heap of sticks and dry leaves, not a bit hurt.
+
+Down a long passage to the north, still in sight, hurries the White Rabbit.
+Bottom of the Well
+A heap of sticks and dry leaves at the bottom of the well, which is all dark overhead. A long passage runs north.
+> wait
+Time passes...
+> north
+Long Low Passage
+A long, low passage, still echoing faintly with somebody's lateness. It runs north and south.
+> north
+Hall of Doors
+You are in a long, low hall, lit by a row of lamps hanging from the roof. Doors stand all round it, every one of them locked. In the middle is a little three-legged table made of solid glass. Along one wall hangs a low curtain. On the table lies a tiny golden key.
+Sitting on the glass table is: 
+  A little golden key
+> take key
+Taken.
+> open curtain
+You draw the low curtain aside, and behind it is a little door about fifteen inches high -- a door you are quite sure was not on the architect's plans.
+> unlock door with key
+You try the little golden key in the lock and, to your great delight, it fits!
+> open door
+The little door swings open on a passage not much larger than a rat-hole, and beyond it -- the loveliest garden you ever saw.
+> west
+Beyond the little door, down a passage not much larger than a rat-hole, lies the loveliest garden you ever saw: beds of bright flowers and cool fountains. You kneel and try -- and cannot even get your head through the doorway; and even if your head would go through, it would be of very little use without your shoulders. Oh, how you wish you could shut up like a telescope!
+
+You go back to the table, half hoping to find another key on it, or at any rate a book of rules for shutting people up like telescopes. Instead there is a little bottle ("which certainly was not here before," you think), with a paper label round its neck: DRINK ME, beautifully printed in large letters.
+> drink bottle
+It has a sort of mixed flavour of cherry-tart, custard, pine-apple, roast turkey, toffee, and hot buttered toast, and you finish it off.
+
+What a curious feeling! You are shutting up like a telescope: down, down -- ten inches high, and the hall is a cathedral.
+The golden key grows in your hand from a key to an oar, slips from your grip, and rings down onto the glass table-top.
+Across the hall, the little door slams in the draught from the garden, and its lock clicks shut. Doors here are quick to take advantage.
+> east
+Mouse-Hole
+A snug hole behind the skirting-board, floored with a scrap of carpet and furnished above your ambitions. Somebody keeps house here, and keeps it better than you keep yours. The hall is back to the west.
+On a doll's dresser, polished to a shine, lies a silver sixpence.
+There is a carefully saved comfit here.
+> take sixpence
+You pocket the sixpence. Somebody polished it; you feel the debt, and resolve to spend it well, which you will.
+> west
+Hall of Doors
+Sitting on the glass table is: 
+  A little golden key
+> look under table
+Down here you can see under the table, and there, quite overlooked from above, lies a little glass box. Through its sides you can make out a very small cake.
+> eat cake
+(Taken)
+You eat a little bit, and say anxiously to yourself "Which way? Which way?" -- and then finish the cake entirely.
+
+Curiouser and curiouser! You are opening out like the largest telescope that ever was -- nine feet if you are an inch, and your head presses the roof of the hall. Good-bye, feet!
+> take key
+You pick the key up like a crumb.
+> unlock door with key
+You try the little golden key in the lock and, to your great delight, it fits!
+> open door
+The little door swings open on a passage not much larger than a rat-hole, and beyond it -- the loveliest garden you ever saw.
+> west
+You lie down on one side and look into the garden with one eye, which is as much of you as will ever fit. The flowers are very bright, and very far beyond the fifteen inches of doorway.
+
+There is nothing else for it. You sit down and cry -- being nine feet tall, you do it wholesale. You shed gallons of tears, until there is a large pool all round you, four inches deep and reaching half down the hall.
+> cry
+You feel about for a sorrow and find only curiosity, which does not water well.
+
+A pattering of feet: the White Rabbit returns, splendidly dressed, a pair of white kid gloves in one hand and a large fan in the other, muttering "Oh! the Duchess, the Duchess! Oh! won't she be savage if I've kept her waiting!" He has not noticed you, which at your present size takes doing.
+> hello rabbit
+The Rabbit starts violently, drops the white kid gloves and the fan, and skurries away into the darkness as hard as he can go. Which is one way of answering a civil greeting, and the usual way here.
+> take fan
+Taken.
+> take gloves
+You are now wearing the pair of white kid gloves.
+> fan me
+You fan yourself as you talk, and find with a start that you have shrunk back to your usual height. The fan is rapid work.
+The golden key grows in your hand from a key to an oar, slips from your grip, and rings down onto the glass table-top.
+Across the hall, the little door slams in the draught from the garden, and its lock clicks shut. Doors here are quick to take advantage.
+> fan me
+You fan yourself, and shrink with alarming enthusiasm: down past shelves, past hopes, to ten inches or so.
+Your foot slides -- splash! You are up to your chin in salt water, and the pool has opinions about where you are going.
+
+Pool of Tears
+You are up to your chin in salt water, in a pool that was not here this morning, on account of your having wept it yourself. Shores of the hall rise dimly to the west.
+> west
+You strike out westward, and something furry strikes out beside you: it is only a mouse, that has slipped in like yourself. "O Mouse," you say, "do you know the way out of this pool?" The Mouse says nothing, but swims with you, looking dignified about it.
+
+Queer Shore
+A gravel shore, crowded with the queerest company: a Mouse, a Dodo, a Lory, an Eaglet, a Duck, and an old Crab with her daughter -- all dripping wet, cross, and uncomfortable, yourself included. A sandy path leads east.
+> talk to mouse
+"Ahem!" says the Mouse, with an important air. "Are you all ready? This is the driest thing I know. William the Conqueror, whose cause was favoured by the pope, was soon submitted to by the English..."
+
+It goes on for some time. Nobody gets any drier. "How are you getting on now, my dear?" it asks at last, and you have to admit: not one bit.
+> race
+"I move," says the Dodo solemnly, "that the meeting adjourn, for the immediate adoption of more energetic remedies." -- "Speak English!" says the Eaglet. "I don't know the meaning of half those long words, and, what's more, I don't believe you do either." So the Dodo marks out a race-course, in a sort of circle, and there is no "One, two, three, and away!": everybody begins running when they like and leaves off when they like.
+
+After half an hour, and quite dry, the Dodo calls out "The race is over!" -- and everybody crowds round it, panting, asking "But who has won?" The Dodo thinks a long while with one finger pressed upon its forehead, and at last says, "EVERYBODY has won, and all must have prizes." -- "But who is to give the prizes?" -- "Why, SHE, of course," says the Dodo, pointing at you with one finger; and the whole party at once crowds round you, calling out, "Prizes! Prizes!"
+> give comfits to dodo
+You hand round the comfits, and there is exactly one a-piece, all round, which is a considerable relief to everybody, yourself included. "But she must have a prize herself, you know," says the Mouse. -- "Of course," the Dodo replies very gravely. "What else have you got in your pocket?"
+> give thimble to dodo
+The Dodo takes the thimble, and then, holding it out solemnly with both hands, presents it back to you, saying, "We beg your acceptance of this elegant thimble"; and when it has finished this short speech, they all cheer. You think the whole thing very absurd, but they all look so grave that you do not dare to laugh; and, as you cannot think of anything to say, you simply bow, and take the thimble, looking as solemn as you can.
+> east
+The White Rabbit trots up the path, sees you, and stops dead. "Why, Mary Ann, what ARE you doing out here? Run home this moment, and fetch me a pair of gloves and a fan! Quick, now!" -- and he hurries off east before you can explain that you are nothing of the sort.
+Sandy Path
+A neat sandy path between hedges, the sort a very house-proud rabbit would rake twice daily. It runs west to the shore and east toward a little house.
+> east
+Outside Rabbit's House
+A neat little house with a bright brass plate on the door, engraved W. RABBIT. The garden beds are all radishes. A sandy path runs west, and a wood thickens to the south.
+> in
+Tidy Little Room
+A tidy little room with a table in the window. On the table lie a fan and two or three pairs of tiny white kid gloves, and by the looking-glass stands a little bottle with no label at all.
+> take gloves
+You take another pair; another pair can only improve matters. Gloves are like that.
+> drink bottle
+"I know something interesting is sure to happen," you say, "whenever I eat or drink anything here; so I'll just see what this bottle does." You drink about half of it, and before you have drunk half of that your head is pressing against the ceiling.
+
+You put one arm out of the window and one foot up the chimney, and say to yourself: now I can do no more, whatever happens. Fortunately the bottle has now had its full effect, and you grow no larger; but you are extremely uncomfortable, and there seems no sort of chance of your ever getting out of the room again.
+
+Feet on the gravel outside, and the door tried, and the door failing. "Mary Ann! Mary Ann! Fetch me my gloves this moment!" A hand scrabbles at the door; your elbow declines. "Then I'll go round and get in at the window."
+> reach out window
+You spread your hand out and make a snatch in the air. Nothing comes of it -- but you hear a little shriek, and a fall, and a crash of broken glass, from which you conclude that it is just possible he has fallen into a cucumber-frame, or something of the sort. What a number of cucumber-frames there must be!
+
+Voices below, in a good deal of alarm. "Where did it come down?" -- "Catch him, you by the hedge!" -- then, quite clearly: "Sure, it's an arm, yer honour!" -- "An arm, you goose! Who ever saw one that size? Why, it fills the whole window!" -- "Sure, it does, yer honour: but it's an arm for all that."
+> wait
+Time passes...
+
+A scraping of claws in the chimney above you, and a shower of soot. "This is Bill," you think, and you draw your foot as far down as it will go, and wait.
+> kick
+"That's Bill," you think, and you give one sharp kick up the chimney and wait to see what happens next.
+
+There is a general chorus of "There goes Bill!" -- then the Rabbit's voice alone: "Catch him, you by the hedge!" -- then silence, and then a confusion of voices: "Hold up his head" -- "Brandy now" -- "Don't choke him" -- "What happened to you?" -- and a little feeble squeaking voice, which you take to be Bill's: "Well, I hardly know -- something comes at me like a Jack-in-the-box, and up I goes like a sky-rocket!"
+
+A dreadful silence outside, and then: "We must burn the house down!" says the Rabbit's voice. Somebody agrees with him, which is the worst part.
+> shout
+"If you do," you call out at the top of your voice, "I'll set Dinah at you!" There is a dead silence instantly, and you think to yourself: I wonder what they WILL do next! If they had any sense, they'd take the roof off.
+
+"A barrowful of WHAT?" you think -- and the next moment a shower of little pebbles comes rattling in at the window, and some of them hit you in the face. Then, as you watch, the pebbles on the floor all turn into little cakes, and a bright idea arrives with them.
+> wait
+Time passes...
+
+Outside, the siege confers with itself in whispers, and gets no further.
+> take cake
+You pocket one little pebble-cake against future emergencies, of which Wonderland has a good supply.
+
+Outside, the siege confers with itself in whispers, and gets no further.
+> eat cake
+You swallow one of the cakes, and are delighted to find that you begin shrinking directly. As soon as you are small enough to get through the door, you run out of the house, and find quite a crowd of little animals and birds waiting outside.
+
+They all make a rush at you the moment you appear; but you run off as hard as you can, and soon find yourself safe in a thick wood.
+
+Thick Wood
+The wood from down here is a country of huge stems and towering thistles. To the west, a tunnel runs under the bramble bank -- comfortably your size, which is to say tiny. Above you stands AN ENORMOUS PUPPY, with round eyes the size of cart-wheels, feebly stretching out one paw to touch you.
+> take stick
+Taken.
+> throw stick
+You hold out the little bit of stick. The puppy jumps into the air off all its feet at once, with a yelp of delight, and rushes at the stick, and makes believe to worry it. Then it runs a good way off and back again, and back and off, making a noise like a cart-horse in a hurry.
+
+At last it sits down a good way off, panting, with its tongue hanging out of its mouth and its great eyes half shut. The way west is clear, and the stick belongs to somebody now, which is the whole purpose of sticks.
+> west
+Mushroom Clearing
+A clearing ruled by one large mushroom exactly your own height. On top of it, arms folded, sits a large blue caterpillar, quietly smoking a long hookah and taking not the smallest notice of you or of anything else.
+> talk to caterpillar
+"Who are YOU?" says the Caterpillar, at last, in a languid sleepy voice. It is not an encouraging opening. "I -- I hardly know, sir, just at present," you reply, rather shyly; "at least I know who I WAS when I got up this morning, but I think I must have been changed several times since then."
+
+"What do you mean by that?" says the Caterpillar, sternly. "Explain yourself!"
+> ask caterpillar about size
+"I should like to be a LITTLE larger, sir, if you wouldn't mind," you say; "three inches is such a wretched height to be." -- "It is a very good height indeed!" says the Caterpillar angrily, rearing itself upright as it speaks; it is exactly three inches high.
+
+Then, more calmly: "So you think you're changed, do you? Can't remember WHAT things?" -- and, before you can answer: "Repeat, 'YOU ARE OLD, FATHER WILLIAM.'"
+> recite poem
+You cross your hands on your lap and begin: "'You are old, Father William,' the young man said, 'and your hair has become very white; and yet you incessantly stand on your head -- do you think, at your age, it is right?' -- 'In my youth,' Father William replied to his son, 'I feared it might injure the brain; but, now that I'm perfectly sure I have none, why, I do it again and again.'"
+
+"'You are old,' said the youth, 'and your jaws are too weak for anything tougher than suet; yet you finished the goose, with the bones and the beak -- pray, how did you manage to do it?' -- 'In my youth,' said his father, 'I took to the law, and argued each case with my wife; and the muscular strength which it gave to my jaw has lasted the rest of my life.' -- 'You are old,' said the youth, 'one would hardly suppose that your eye was as steady as ever; yet you balanced an eel on the end of your nose -- what made you so awfully clever?' -- 'I have answered three questions, and that is enough,' said his father. 'Don't give yourself airs! Do you think I can listen all day to such stuff? Be off, or I'll kick you down stairs!'"
+
+"That is not said right," says the Caterpillar. -- "Not QUITE right, I'm afraid," you say timidly; "some of the words have got altered." -- "It is wrong from beginning to end," says the Caterpillar decidedly, and there is silence for some minutes.
+
+The Caterpillar yawns once or twice, shakes itself, gets down off the mushroom and crawls away into the grass, merely remarking as it goes: "One side will make you grow taller, and the other side will make you grow shorter."
+
+"One side of WHAT? The other side of WHAT?" you think. -- "Of the mushroom," says the Caterpillar, just as if you had asked it aloud; and in another moment it is out of sight.
+> wait
+Time passes...
+> take mushroom
+You stretch your arms round the mushroom as far as they will go, and break off a bit of the edge with each hand. Now you have a left-hand piece and a right-hand piece, and the only remaining difficulty is which is which -- a difficulty that experiment will settle, as experiment settles everything here.
+> eat left piece
+You nibble the left-hand piece, and your chin strikes nothing at all, because your chin is already a great way off. Your shoulders are nowhere to be found; all you can see, when you look down, is an immense length of neck, rising like a stalk out of a sea of green leaves far below.
+
+An indignant pigeon somewhere calls you a serpent. You have overshot, handsomely, and are now as tall as this game gets.
+> east
+You are far too tall for the bramble tunnel, so you simply stand up through the branches and step over the whole bank, which is the one advantage of being nine feet of girl.
+
+Thick Wood
+There is a little bit of dead stick here.
+> up
+"Serpent!" screams the Pigeon, flying into your face and beating you with its wings. "I have tried the roots of trees, and I have tried banks, and I have tried hedges, but those serpents! There's no pleasing them!"
+Above the Wood
+Your head and shoulders stand above the canopy, in bright air. The wood is a sea of green leaves below. Southeast, a chimney shaped like an ear smokes over a fur-thatched roof; southwest, peppery smoke rises from a little house; and far south, past everything, walls of white and red close round a garden so bright it hurts.
+> down
+Thick Wood
+There is a little bit of dead stick here.
+> eat right piece
+You nibble, and settle at exactly your own right size, which after today feels like a considerable achievement.
+> south
+Wood Crossroads
+Paths cross here under a broad-boughed tree. Something about the tree suggests it is often sat in. Paths run north into the thick wood, west toward a peppery smell, east toward a clatter of crockery, and south where the trees grow doors.
+> ask cat about hatter
+"In THAT direction," says the Cat, waving its right paw round, "lives a Hatter: and in THAT direction lives a March Hare. Visit either you like: they're both mad. Butter was the wrong ointment, by the way. Ask the Dormouse what wells are for."
+> west
+As you arrive, a Fish-Footman comes running out of the wood with a great letter under his arm, and delivers it to the Frog-Footman with the words: "For the Duchess. An invitation from the Queen to play croquet." The Frog-Footman repeats it back in the same solemn tone, only changing the order of the words a little, and they both bow so low that their curls get entangled together.
+Duchess's Doorstep
+A little house about four feet high, which is a comfortable height for a house if you are nine inches tall. On the doorstep sits a footman with the face of a frog, staring stupidly up into the sky. From inside comes a most extraordinary noise: howling, sneezing, and every now and then a great crash, as if a dish had been broken to pieces.
+> knock on door
+"There's no sort of use in knocking," says the Footman, "and that for two reasons. First, because I'm on the same side of the door as you are; secondly, because they're making such a noise inside, no one could possibly hear you." And indeed there is a most extraordinary noise going on within: a constant howling and sneezing, and every now and then a great crash, as if a dish had been broken to pieces.
+> eat right piece
+You nibble, and shrink smoothly down to about ten inches. Nothing slams; mushroom magic is gradual, and doors never notice.
+> open door
+You open the door. "Anything you like," says the Footman, and begins whistling. The door was never locked; nobody had thought to try it, which is the commonest sort of lock there is.
+> in
+Duchess's Kitchen
+A large kitchen full of smoke from one end to the other. The Duchess sits on a three-legged stool nursing a howling baby; the cook stirs a cauldron of soup and, at intervals, throws everything within reach. On the hearth a large cat grins from ear to ear. There is far, far too much pepper.
+There is a pepper-box here.
+
+You sneeze. So does the baby. The Duchess sneezes occasionally. The cook and the cat do not.
+> take pepperbox
+You take the second pepper-box off the dresser. The cook has the other one and would not notice the loss of a stove.
+
+You sneeze. So does the baby. The Duchess sneezes occasionally. The cook and the cat do not.
+> ask duchess about queen
+"Talking of axes," says the Duchess, who was not, "chop off her head!" You look up in some alarm, but she is looking at the soup.
+
+The Duchess sings a sort of lullaby to the baby, giving it a violent shake at the end of every line: "Speak roughly to your little boy, and beat him when he sneezes: he only does it to annoy, because he knows it teases. Wow! wow! wow!"
+
+"Here! you may nurse it a bit, if you like!" she says suddenly, and flings the baby at you as she speaks. "I must go and get ready to play croquet with the Queen," and she hurries out of the room. As she goes, a stiff card flutters out of her sleeve and settles on the floor.
+> wait
+Time passes...
+
+You sneeze. So does the baby. The Duchess sneezes occasionally. The cook and the cat do not.
+> take invitation
+You pick up the stiff card. The Duchess has gone off to play croquet without her invitation, which is going to be somebody's problem, and for once it is not yours.
+
+You sneeze. So does the baby. The Duchess sneezes occasionally. The cook and the cat do not.
+> out
+Duchess's Doorstep
+The baby wriggles in your arms and says nothing, which from this baby is a mercy.
+> wait
+Time passes...
+The baby grunts. You look anxiously into its face: it has a very turn-up nose, much more like a snout than a real nose.
+> wait
+Time passes...
+This time there can be NO mistake about it: it is neither more nor less than a pig. It wriggles free of your arms and trots quietly into the wood. If it had grown up, it would have made a dreadfully ugly child; but it makes rather a handsome pig, you think.
+> east
+The Cheshire Cat reappears on a bough of the tree. "By-the-bye, what became of the baby?" it says. "I'd nearly forgotten to ask."
+Wood Crossroads
+> say pig
+"Pig," you say. "I thought it would," says the Cat, and vanishes quite slowly, beginning with the end of the tail and ending with the grin, which remains some time after the rest of it has gone.
+> eat left piece
+You nibble, and settle at exactly your own right size, which after today feels like a considerable achievement.
+> east
+Mad Tea Table
+A long table set out under a tree in front of a house with a fur-thatched roof and chimneys shaped like ears. The table is laid for a great many more than three, but the March Hare, the Hatter, and a sleeping Dormouse are all crowded together at one corner of it, crying "No room! No room!" -- which is nonsense, and you say so. Behind the house stands an old stone well.
+> sit
+"No room! No room!" they cry when they see you coming. -- "There's PLENTY of room!" you say indignantly, and sit down in a large arm-chair at one end of the table.
+
+"Have some wine," the March Hare says in an encouraging tone. You look all round the table, but there is nothing on it but tea. "I don't see any wine," you remark. -- "There isn't any," says the March Hare. -- "Then it wasn't very civil of you to offer it," you say angrily. -- "It wasn't very civil of you to sit down without being invited," says the March Hare. Your hair, the Hatter observes, wants cutting.
+
+"Why is a raven like a writing-desk?" says the Hatter suddenly, as though it had only just occurred to him, which it has, several hundred times.
+> answer riddle
+"Do you mean that you think you can find out the answer to it?" says the March Hare. -- "Exactly so," you say. -- "Then you should say what you mean," the March Hare goes on. -- "I do," you reply hastily; "at least -- at least I mean what I say -- that's the same thing, you know." -- "Not the same thing a bit!" says the Hatter.
+
+You wait some time. "Have you guessed the riddle yet?" the Hatter says, turning to you again. -- "No, I give it up. What's the answer?" -- "I haven't the slightest idea," says the Hatter. -- "Nor I," says the March Hare. The subject is considered closed and entirely satisfactory.
+
+"Take some more tea," the March Hare says earnestly. -- "I've had nothing yet, so I can't take more." -- "You mean you can't take LESS," says the Hatter: "it's very easy to take MORE than nothing."
+> examine watch
+It tells the day of the month, and is exactly two days wrong. There are crumbs in the works, from when the March Hare buttered it with the bread-knife. "It was the BEST butter," the March Hare says, meekly.
+
+"It's always six o'clock now," the Hatter says mournfully. "It's always tea-time, and we've no time to wash the things between whiles."
+> wake dormouse
+The Dormouse wakes up with a little shriek and goes on, without any introduction whatever: "Once upon a time there were three little sisters, and their names were Elsie, Lacie, and Tillie; and they lived at the bottom of a well."
+
+"What did they live on?" you ask. -- "They lived on treacle," says the Dormouse, after thinking a minute or two. -- "They couldn't have done that, you know; they'd have been ill." -- "So they were," says the Dormouse; "VERY ill." -- "But why did they live at the bottom of a well?" -- "It was a treacle-well," says the Dormouse, and falls asleep, having said the only useful thing anybody says all afternoon.
+
+Everybody moves one place on. The Hatter gets a clean cup; you get the March Hare's, which had milk in it.
+> stand
+You are already standing, I think.
+
+"Why is a raven like a writing-desk?" says the Hatter suddenly, as though it had only just occurred to him, which it has, several hundred times.
+> eat right piece
+You nibble, and shrink smoothly down to about ten inches. Nothing slams; mushroom magic is gradual, and doors never notice.
+
+"Take some more tea," the March Hare says earnestly. -- "I've had nothing yet, so I can't take more." -- "You mean you can't take LESS," says the Hatter: "it's very easy to take MORE than nothing."
+> down
+Treacle Well
+The bottom of the well, and it is a treacle-well: the walls glisten brown and the air is thick and sweet enough to slice. Three small sisters sit learning to draw, and what they draw is treacle, and also everything that begins with an M.
+> fill jar with treacle
+The marmalade jar has waited all day for a purpose. This is it: you fill it to the brim with treacle, and the label becomes a small untruth.
+> up
+Mad Tea Table
+> eat left piece
+You nibble, and settle at exactly your own right size, which after today feels like a considerable achievement.
+> sit
+"No room! No room!" they cry when they see you coming. -- "There's PLENTY of room!" you say indignantly, and sit down in a large arm-chair at one end of the table.
+
+"Have some wine," the March Hare says in an encouraging tone. You look all round the table, but there is nothing on it but tea. "I don't see any wine," you remark. -- "There isn't any," says the March Hare. -- "Then it wasn't very civil of you to offer it," you say angrily. -- "It wasn't very civil of you to sit down without being invited," says the March Hare. Your hair, the Hatter observes, wants cutting.
+
+"It's always six o'clock now," the Hatter says mournfully. "It's always tea-time, and we've no time to wash the things between whiles."
+> give jar to hatter
+The Hatter dips the watch solemnly into the treacle, holds it to his ear, and goes quite white, then quite pink. "It ticks the RIGHT day," he whispers. "Time and I are reconciled. It is a quarter past washing-up time!"
+
+The table erupts. The March Hare begins carrying cups to the well; the Dormouse is moved to the middle of the table and left there as an ornament; and the Hatter takes off his enormous hat and presses it upon you. "I keep them to sell. I've none of my own. But this one is yours: you mended six o'clock."
+> wear hat
+You are already wearing it.
+> stand
+You are already standing, I think.
+> west
+Wood Crossroads
+> south
+Wood of Doors
+In this part of the wood the trees have taken up carpentry. One of them has a door leading right into it: a proper door, with hinges and a handle, in the bark. The crossroads are back to the north.
+> enter tree
+"That's very curious!" you think. "But everything's curious today. I think I may as well go in at once." And in you go.
+
+The hall has tidied itself for company: the little golden key is back on the glass table, and the little door is shut, and locked, and looks as though it had never been anything else.
+
+Hall of Doors
+Sitting on the glass table is: 
+  A little golden key
+> take key
+Taken.
+> unlock door with key
+You try the little golden key in the lock and, to your great delight, it fits!
+> open door
+The little door swings open on a passage not much larger than a rat-hole, and beyond it -- the loveliest garden you ever saw.
+> eat right piece
+You nibble, and shrink smoothly down to about ten inches. Nothing slams; mushroom magic is gradual, and doors never notice.
+The golden key grows in your hand from a key to an oar, slips from your grip, and rings down onto the glass table-top.
+> west
+You walk down the little passage, no larger than a rat-hole -- and THEN -- you find yourself at last in the beautiful garden, among the bright flower-beds and the cool fountains.
+
+Beautiful Garden
+The beautiful garden at last -- and you a very small guest in it. The flower-beds are bright counties, the fountains are thunderstorms of cool silver, and the gravel path is a boulder-field. Near the entrance stands a large rose-tree. Its roses are white, but three gardeners -- flat, oblong fellows patterned like playing cards -- are busily painting them red. A cool walk leads east.
+
+Somewhere beyond the flower-beds a great many feet are marching in time. At your present height you are entirely beneath the notice of processions, and the garden politely waits.
+> eat left piece
+You nibble, and settle at exactly your own right size, which after today feels like a considerable achievement.
+
+Trumpets, somewhere near, and the tramp of a great many flat feet.
+> talk to gardeners
+"Would you tell me, please," you say, "why you are painting those roses?" Five and Seven look at Two, and Two says, in a low voice, "Why, the fact is, you see, Miss, this here ought to have been a RED rose-tree, and we put a white one in by mistake; and if the Queen was to find it out, we should all have our heads cut off, you know. So you see, Miss, we're doing our best, afore she comes, to --"
+
+At this moment Five, who has been looking anxiously across the garden, calls out "The Queen! The Queen!" -- prematurely, as it turns out, but it is the sort of thing that is always nearly true here.
+
+Trumpets, somewhere near, and the tramp of a great many flat feet.
+> take brush
+You take up a brush. It is heavy with red, and the gardeners make room for you with the relief of men who have found a professional.
+
+Trumpets, somewhere near, and the tramp of a great many flat feet.
+> paint roses
+You lay on the red in workmanlike coats while Two whispers which petals the Queen checks first. The tree passes for crimson by the time the trumpets sound, and three flat gentlemen look at you as though you had personally repealed an execution.
+
+Trumpets, somewhere near, and the tramp of a great many flat feet.
+> wait
+Time passes...
+
+First come ten soldiers carrying clubs, then ten courtiers ornamented with diamonds, then the royal children, then the guests, mostly Kings and Queens, and among them the White Rabbit; then the Knave of Hearts, carrying the King's crown on a crimson velvet cushion; and last of all, THE KING AND QUEEN OF HEARTS.
+
+The procession comes opposite to you and stops. "Who is THIS?" says the Queen of Hearts severely, to the Knave, who only bows and smiles in reply. "Idiot!" says the Queen, tossing her head impatiently; and, turning to you: "What's your name, child?"
+> say alice
+"My name is Alice, so please your Majesty," you say very politely; but you add, to yourself, "Why, they're only a pack of cards, after all. I needn't be afraid of them!"
+
+"And who are THESE?" says the Queen, pointing to the three gardeners lying round the rose-tree. You look at them, and say, "How should I know? It is no business of MINE." The Queen turns crimson with fury, and begins screaming: "Off with her head! Off --"
+> show invitation to queen
+You hold out the stiff card. The Queen squints at it. "You are not the Duchess," she says. -- "No," you say; "she is detained." This is perfectly true, and the Queen, who likes detentions, is charmed by it. You are admitted as a substitute.
+
+"Can you play croquet?" she says.
+> yes
+"Yes!" you shout. -- "Come on, then!" roars the Queen, and you join the procession, wondering very much what will happen next. Somebody hands you a live flamingo, and somebody else sets a hedgehog down in front of you, and the whole company moves north.
+
+Croquet Ground
+The Queen's croquet-ground, which is all ridges and furrows. The balls are live hedgehogs, the mallets live flamingoes, and the soldiers double themselves up on hands and feet to make the arches -- when they are not strolling off to be elsewhere. Everyone plays at once, without waiting for turns, and the Queen's voice carries over all of it: "Off with his head! Off with her head!" The garden lies south.
+> stroke flamingo
+You smooth the flamingo's feathers the right way for some time. It settles its neck under your arm with a pleased grunt, and consents to be a mallet.
+
+A doubled-up soldier nearby yawns, gives up on being elsewhere, and settles into place as a perfectly serviceable arch.
+> wait
+Time passes...
+> hit hedgehog
+You strike the hedgehog with the flamingo's head. Clean through the arch! The arch says "oof" and stays put out of professional pride, the hedgehog rolls to a stop looking rather pleased with itself, and the Queen almost smiles, which frightens everybody.
+
+A grin appears in the air above the ground, and after a minute a head grows under it: the Cheshire Cat, head only, watching the game with interest. The King notices it at once. "I don't like the look of it at all," he says. "However, it may kiss my hand if it likes." -- "I'd rather not," the Cat remarks.
+> wait
+Time passes...
+
+"Who are you talking to?" says the King, coming up and looking at the Cat's head with great curiosity. -- "It's a friend of mine, a Cheshire Cat," you say. -- "I don't like the look of it at all: however, it may kiss my hand if it likes." -- "I'd rather not," says the Cat. -- "Don't be impertinent," says the King, "and don't look at me like that!" and he gets behind you as he speaks. "Off with his head!" he calls to the Queen, without looking round.
+> tell king about duchess
+"It belongs to the Duchess," you say: "you'd better ask HER about it." -- "She's in prison," the Queen says to the executioner: "fetch her here." And the executioner goes off like an arrow.
+
+By the time he returns with the Duchess, the Cat's head has faded quite away, and the King and the executioner are running wildly up and down looking for it, which they continue to do for some time, being comfortable in the search.
+> give gloves to rabbit
+You hand over the white kid gloves, and the fan with them. The Rabbit's ears turn quite pink with relief. "Oh, my fur and whiskers -- my GLOVES!" he says, and puts them on at once, and is instantly a different and much better rabbit, though no less late.
+> wait
+Time passes...
+
+"Have you seen the Mock Turtle yet?" the Queen asks you abruptly. -- "No," you say. "I don't even know what a Mock Turtle is." -- "It's the thing Mock Turtle Soup is made from," says the Queen. "Come on, then, and he shall tell you his history." She points east, where a path goes down to a grey and sighing sea, and then goes off to sentence somebody else.
+> east
+"Up, lazy thing!" says the Queen's voice behind you, and the Gryphon sits up and rubs its eyes and watches her out of sight. Then it chuckles. "What fun!" -- "What IS the fun?" you say. -- "Why, SHE. It's all her fancy, that: they never executes nobody, you know. Come on!"
+Seaside Ledge
+A ledge above a grey, sighing sea, which is odd, because you are fairly sure you are underground. On the warm rock lies a Gryphon, fast asleep in the sun. The croquet-ground is back to the west; the rocks continue east.
+> east
+Mock Turtle's Rock
+A little ledge of rock by the sea, where the Mock Turtle sits, sad and lonely, sighing as if his heart would break. It is all his fancy, that; he hasn't got no sorrow, you know.
+> talk to turtle
+The Mock Turtle draws a long breath and says, "Once, I was a real Turtle." These words are followed by a very long silence, broken only by an occasional exclamation of "Hjckrrh!" from the Gryphon, and the constant heavy sobbing of the Mock Turtle.
+
+"When we were little," he goes on at last, "we went to school in the sea. The master was an old Turtle -- we used to call him Tortoise --" -- "Why did you call him Tortoise, if he wasn't one?" you ask. -- "We called him Tortoise because he taught us," says the Mock Turtle angrily. "Really you are very dull!"
+> ask turtle about school
+"We had the best of educations," the Mock Turtle says: "Reeling and Writhing, of course, to begin with, and then the different branches of Arithmetic -- Ambition, Distraction, Uglification, and Derision." -- "And how many hours a day did you do lessons?" -- "Ten hours the first day," says the Mock Turtle, "nine the next, and so on." -- "What a curious plan!" -- "That's the reason they're called lessons," the Gryphon remarks: "because they lessen from day to day."
+> dance
+"Come, let's try the first figure!" says the Mock Turtle to the Gryphon. "We can do it without lobsters, you know." So they begin solemnly dancing round and round you, every now and then treading on your toes when they pass too close, and waving their forepaws to mark the time, while the Mock Turtle sings, very slowly and sadly:
+
+"Will you walk a little faster? said a whiting to a snail, there's a porpoise close behind us, and he's treading on my tail. See how eagerly the lobsters and the turtles all advance! They are waiting on the shingle -- will you come and join the dance? Will you, won't you, will you, won't you, will you join the dance?"
+> sing
+The Mock Turtle sighs deeply, and begins, in a voice choked with sobs: "Beautiful Soup, so rich and green, waiting in a hot tureen! Who for such dainties would not stoop? Soup of the evening, beautiful Soup! Beau -- ootiful Soo -- oop! Beau -- ootiful Soo -- oop! Soo -- oop of the e -- e -- evening, beautiful, beautiful Soup!"
+
+He is just beginning to repeat it when a cry of "The trial's beginning!" is heard in the distance.
+
+"Come on!" cries the Gryphon, and, taking you by the hand, it hurries off without waiting for the end of the song. "What trial is it?" you pant as you run; but the Gryphon only answers "Come on!" and runs the faster, while more and more faintly, carried on the breeze that follows you, come the melancholy words: "Soo -- oop of the e -- e -- evening, beautiful, beautiful Soup!"
+
+The White Rabbit blows three blasts on the trumpet, unrolls the parchment scroll, and reads: "The Queen of Hearts, she made some tarts, all on a summer day: the Knave of Hearts, he stole those tarts, and took them quite away!"
+
+"Consider your verdict," the King says to the jury. -- "Not yet, not yet!" the Rabbit interrupts hastily. "There's a great deal to come before that!"
+Court of Hearts
+The court of the King and Queen of Hearts. The Knave stands in chains between two soldiers; the White Rabbit, near the throne, holds a trumpet in one hand and a scroll of parchment in the other. Twelve jurors write busily on slates. In the very middle stands a table with a large dish of tarts upon it. They look uncommonly good.
+> take pencil
+One of the jurors has a pencil that squeaks, which of course you cannot stand, so you go round the court and get behind him, and very soon find an opportunity of taking it away. You do it so quickly that the poor little juror (it is Bill, the Lizard) cannot make out at all what has become of it; so, after hunting all about for it, he is obliged to write with one finger for the rest of the day.
+
+"Call the first witness," says the King; and the White Rabbit blows three blasts on the trumpet and calls out, "First witness!" The first witness is the Hatter, who comes in with a teacup in one hand and a piece of bread-and-butter in the other. "I'm a poor man, your Majesty," he begins.
+> wait
+Time passes...
+
+"You ought to have finished," says the King. "When did you begin?" -- "I came PUNCTUALLY," says the Hatter, bewildered by the novelty of the word in his own mouth. The court, which has never heard the Hatter claim punctuality, writes it all down. He then bites a large piece out of his teacup, is dismissed, and leaves without waiting to put his shoes on.
+> wait
+Time passes...
+
+"Call the next witness!" The next witness is the Duchess's cook, who carries the pepper-box, so that the people near the door begin sneezing all at once. "What are tarts made of?" says the King. -- "Pepper, mostly," says the cook. -- "Treacle," says a sleepy voice behind her. -- "Collar that Dormouse!" the Queen shrieks. "Behead that Dormouse! Turn that Dormouse out of court! Suppress him! Pinch him! Off with his whiskers!"
+> throw pepper
+You open the pepper-box and give it a good shake. The pepper goes through the court in waves: the jurors sneeze onto their slates, the soldiers sneeze in ranks, the King sneezes with great dignity, and in the middle of it the Duchess's cook, who wanted nothing else in the world, walks quietly out of the door and is not seen again.
+
+In the confusion the cook disappears, and nobody misses her. You have begun, meanwhile, to grow, quite gently, in the way of somebody standing up in a story.
+
+"I wish you wouldn't squeeze so," says the Dormouse, who is sitting next to you. "I can hardly breathe." -- "I can't help it," you say meekly: "I'm growing." -- "You've no right to grow HERE," says the Dormouse. -- "Don't talk nonsense," you say more boldly: "you know you're growing too." -- "Yes, but I grow at a REASONABLE pace," says the Dormouse, "not in that ridiculous fashion." And he gets up very sulkily and crosses over to the other side of the court.
+
+"Alice!" calls the White Rabbit, reading from his list. "What do you know about this business?" says the King.
+> wait
+Time passes...
+
+"What do you know about this business?" the King repeats. The jurors wait, pencils poised, hoping for something long.
+> wait
+Time passes...
+
+"What do you know about this business?" the King repeats. The jurors wait, pencils poised, hoping for something long.
+> say nothing
+"Nothing," you say. -- "Nothing WHATEVER?" persists the King. -- "Nothing whatever." -- "That's very important," the King says, turning to the jury. They are just beginning to write this down on their slates when the White Rabbit interrupts: "UNimportant, your Majesty means, of course," he says, in a very respectful tone, but frowning and making faces at him as he speaks. -- "UNimportant, of course, I meant," the King says hastily, and goes on to himself in an undertone, "important -- unimportant -- unimportant -- important --" as if he were trying which word sounded best.
+
+You have grown so large by now that you get up in such a hurry that you tip over the jury-box with the edge of your skirt, upsetting all the jurymen on to the heads of the crowd below, where they lie sprawling about, reminding you very much of a globe of goldfish you upset last week.
+
+"Oh, I BEG your pardon!" you exclaim in a tone of great dismay, and begin picking them up again as quickly as you can. Bill the Lizard is on the floor by your foot, head downwards, waving his tail about in a melancholy way, quite unable to move.
+> wait
+Time passes...
+
+The jurors are collected up and put back, some of them the right way round.
+> right bill
+You pick up Bill the Lizard and set him in the jury-box, head upwards this time. Not that it signifies much, you think: he would be quite as much use in the trial one way up as the other. But it signifies to Bill.
+
+The jurors are collected up and put back, some of them the right way round.
+> wait
+Time passes...
+
+The jurors are righted, more or less, and set to writing again. Then the King calls out, "Silence!" and reads out from his note-book, "Rule Forty-two. ALL PERSONS MORE THAN A MILE HIGH TO LEAVE THE COURT." Everybody looks at you.
+> say mile
+"I'M not a mile high," you say. -- "You are," says the King. -- "Nearly two miles high," adds the Queen. -- "Well, I shan't go, at any rate," you say; "besides, that's not a regular rule: you invented it just now." -- "It's the oldest rule in the book," says the King. -- "Then it ought to be Number One," you say.
+
+The King turns pale, and shuts his note-book hastily. "Consider your verdict," he says to the jury, in a low, trembling voice.
+
+"There's more evidence to come yet, please your Majesty," says the White Rabbit, jumping up in a great hurry: "this paper has just been picked up."
+
+"Begin at the beginning," the King says gravely, "and go on till you come to the end: then stop." The Rabbit begins to read.
+> wait
+Time passes...
+
+"Begin at the beginning," the King says gravely, "and go on till you come to the end: then stop." The Rabbit begins to read.
+> give sixpence to king
+"If any one of them can explain it," you say, "I'll give him sixpence." You are holding an actual sixpence, which alarms the court considerably: nobody attempts the explanation, and the sixpence enters the record as the day's only honest evidence.
+
+"I don't believe there's an atom of meaning in it," you add. -- "If there's no meaning in it," says the King, "that saves a world of trouble."
+
+The Rabbit reads: "They told me you had been to her, and mentioned me to him: she gave me a good character, but said I could not swim. He sent them word I had not gone (we know it to be true): if she should push the matter on, what would become of you?"
+
+"That's the most important piece of evidence we've heard yet," says the King, rubbing his hands. The Knave shakes his head sadly: "Do I look like it?" -- and he certainly does not, being made entirely of cardboard. "If there's no meaning in it," says the King, "that saves a world of trouble, you know, as we needn't try to find any." -- "Let the jury consider their verdict." -- "No, no!" says the Queen. "Sentence first -- verdict afterwards."
+> wait
+Time passes...
+
+"Let the jury consider their verdict," the King says, for about the twentieth time that day. -- "No, no!" says the Queen. "Sentence first -- verdict afterwards."
+> say nonsense
+"Stuff and nonsense!" you say loudly. "The idea of having the sentence first!"
+
+"Hold your tongue!" says the Queen, turning purple. -- "I won't!" you say. -- "Off with her head!" the Queen shouts at the top of her voice. Nobody moves. -- "Who cares for YOU?" you say -- you have grown to your full size by now -- "You're nothing but a pack of cards!"
+
+At this the whole pack rises up into the air and comes flying down upon you. You give a little scream, half of fright and half of anger, and try to beat them off -- and find them only dead leaves, fluttering down from the trees onto your face.
+
+"Wake up, Alice dear!" says your sister. "Why, what a long sleep you've had!"
+
+"Oh, I've had such a curious dream!" you say. And you tell her, as well as you can remember them, all these strange adventures -- the Rabbit, the pool, the Caterpillar exactly three inches high, the tea that was always six o'clock, the Queen who never once got anybody's head. Your sister kisses you and says it certainly was a curious dream, but now run in to your tea: it's getting late.
+
+And you run in, thinking while you run -- as well you might -- what a wonderful dream it has been. Behind you on the bank, the long grass rustles, just once, the way it would if a white rabbit had hurried by.
+
+Your score is 100 of 100, which earns the rank of Quite Mad, Thank You. Everybody has won, and all must have prizes.
+
+    ****  You have woken up  ****

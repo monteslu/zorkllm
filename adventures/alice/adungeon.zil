@@ -33,7 +33,6 @@ impossibly drowsy, and the daisies are almost worth picking.")
 <OBJECT DAISIES
 	(IN RIVERBANK)
 	(SYNONYM DAISIES DAISY CHAIN)
-	(ADJECTIVE DAISY)
 	(DESC "daisies")
 	(FLAGS NDESCBIT TRYTAKEBIT)
 	(ACTION DAISIES-FCN)>
@@ -55,14 +54,13 @@ large rabbit-hole, and from somewhere down it comes a fading voice: \"Oh
 my ears and whiskers, how late it's getting!\"")
       (SOUTH TO RIVERBANK)
       (DOWN PER HEDGE-DOWN)
-      (IN PER HEDGE-DOWN)
       (ACTION HEDGE-FIELD-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <OBJECT RABBIT-HOLE
 	(IN HEDGE-FIELD)
 	(SYNONYM HOLE RABBIT-HOLE HEDGE)
-	(ADJECTIVE LARGE RABBIT)
+	(ADJECTIVE LARGE)
 	(DESC "rabbit-hole")
 	(FLAGS NDESCBIT)
 	(ACTION RABBIT-HOLE-FCN)>
@@ -82,7 +80,7 @@ you, and more arriving.")
 <OBJECT MARMALADE-JAR
 	(IN FALLING)
 	(SYNONYM JAR MARMALADE)
-	(ADJECTIVE ORANGE MARMALADE EMPTY)
+	(ADJECTIVE ORANGE EMPTY)
 	(DESC "marmalade jar")
 	(FLAGS TAKEBIT CONTBIT OPENBIT NDESCBIT)
 	(CAPACITY 5)
@@ -139,9 +137,9 @@ It runs north and south.")
 <OBJECT GLASS-TABLE
 	(IN HALL)
 	(SYNONYM TABLE)
-	(ADJECTIVE GLASS LITTLE THREE-LEGGED)
+	(ADJECTIVE LITTLE THREE-LEGGED)
 	(DESC "glass table")
-	(FLAGS SURFACEBIT CONTBIT OPENBIT NDESCBIT)
+	(FLAGS SURFACEBIT CONTBIT OPENBIT NDESCBIT TOUCHBIT)
 	(CAPACITY 30)
 	(ACTION GLASS-TABLE-FCN)>
 
@@ -187,16 +185,16 @@ It runs north and south.")
 
 <OBJECT DRINK-BOTTLE
 	(SYNONYM BOTTLE LABEL)
-	(ADJECTIVE LITTLE DRINK PAPER)
+	(ADJECTIVE LITTLE DRINK)
 	(DESC "little bottle marked DRINK ME")
 	(FLAGS TAKEBIT READBIT NDESCBIT)
 	(ACTION DRINK-BOTTLE-FCN)>
 
 <OBJECT GLASS-BOX
 	(SYNONYM BOX)
-	(ADJECTIVE GLASS LITTLE)
+	(ADJECTIVE LITTLE)
 	(DESC "little glass box")
-	(FLAGS CONTBIT TRANSBIT NDESCBIT)
+	(FLAGS CONTBIT TRANSBIT OPENBIT NDESCBIT)
 	(CAPACITY 5)
 	(ACTION GLASS-BOX-FCN)>
 
@@ -210,7 +208,7 @@ It runs north and south.")
 
 <OBJECT MOUSE-HOLE-DOOR
 	(SYNONYM MOUSE-HOLE HOLE SKIRTING)
-	(ADJECTIVE TIDY MOUSE)
+	(ADJECTIVE TIDY)
 	(DESC "tidy little mouse-hole")
 	(FLAGS NDESCBIT)
 	(ACTION MOUSE-HOLE-DOOR-FCN)>
@@ -330,7 +328,6 @@ W. RABBIT. The garden beds are all radishes. A sandy path runs west, and
 a wood thickens to the south.")
       (WEST TO SANDY-PATH)
       (SOUTH TO THICK-WOOD)
-      (IN PER RABBIT-HOUSE-IN)
       (UP PER RABBIT-HOUSE-IN)
       (EAST PER RABBIT-HOUSE-IN)
       (ACTION RABBIT-LAWN-FCN)
@@ -355,7 +352,6 @@ a wood thickens to the south.")
 <OBJECT RADISHES
 	(IN RABBIT-LAWN)
 	(SYNONYM RADISHES RADISH BEDS)
-	(ADJECTIVE GARDEN)
 	(DESC "radishes")
 	(FLAGS NDESCBIT TRYTAKEBIT)
 	(ACTION RADISHES-FCN)>
@@ -423,7 +419,7 @@ a wood thickens to the south.")
 
 <OBJECT SPARE-CAKE
 	(SYNONYM CAKE PEBBLE)
-	(ADJECTIVE PEBBLE LITTLE SPARE)
+	(ADJECTIVE LITTLE SPARE)
 	(DESC "little pebble-cake")
 	(FLAGS TAKEBIT FOODBIT)
 	(ACTION SPARE-CAKE-FCN)>
@@ -584,7 +580,6 @@ the face of a frog, staring stupidly up into the sky. From inside comes
 a most extraordinary noise: howling, sneezing, and every now and then a
 great crash, as if a dish had been broken to pieces.")
       (EAST TO CROSSROADS)
-      (IN PER DUCHESS-DOOR-IN)
       (WEST PER DUCHESS-DOOR-IN)
       (ACTION DUCHESS-LAWN-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
@@ -592,7 +587,6 @@ great crash, as if a dish had been broken to pieces.")
 <OBJECT FROG-FOOTMAN
 	(IN DUCHESS-LAWN)
 	(SYNONYM FOOTMAN FROG)
-	(ADJECTIVE FROG)
 	(DESC "Frog-Footman")
 	(FLAGS ACTORBIT NDESCBIT)
 	(ACTION FROG-FOOTMAN-FCN)>
@@ -660,7 +654,7 @@ pepper.")
 
 <OBJECT PEPPERBOX
 	(IN KITCHEN)
-	(SYNONYM PEPPERBOX PEPPER DRESSER)
+	(SYNONYM PEPPERBOX PEPPER)
 	(ADJECTIVE SECOND)
 	(DESC "pepper-box")
 	(FLAGS TAKEBIT)
@@ -776,7 +770,7 @@ everything that begins with an M.")
 <OBJECT TREACLE-GOO
 	(IN TREACLE-WELL)
 	(SYNONYM TREACLE)
-	(ADJECTIVE BROWN SWEET)
+	(ADJECTIVE BROWN)
 	(DESC "treacle")
 	(FLAGS NDESCBIT TRYTAKEBIT)
 	(ACTION TREACLE-GOO-FCN)>
@@ -797,7 +791,6 @@ everything that begins with an M.")
 has a door leading right into it: a proper door, with hinges and a
 handle, in the bark. The crossroads are back to the north.")
       (NORTH TO CROSSROADS)
-      (IN PER TREE-DOOR-IN)
       (ACTION DOOR-TREE-WOOD-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
@@ -925,7 +918,7 @@ garden proper lies west.")
 
 <OBJECT CAT-HEAD
 	(SYNONYM HEAD)
-	(ADJECTIVE CAT CHESHIRE)
+	(ADJECTIVE CHESHIRE)
 	(DESC "Cheshire Cat's head")
 	(FLAGS NDESCBIT)
 	(ACTION CAT-HEAD-FCN)>
@@ -1004,7 +997,7 @@ tarts upon it. They look uncommonly good.")
 	(SYNONYM BILL LIZARD)
 	(ADJECTIVE LITTLE)
 	(DESC "Bill the Lizard")
-	(FLAGS ACTORBIT NDESCBIT)
+	(FLAGS ACTORBIT NDESCBIT TRYTAKEBIT)
 	(ACTION BILL-LIZARD-FCN)>
 
 <OBJECT SQUEAKY-PENCIL
@@ -1026,7 +1019,6 @@ tarts upon it. They look uncommonly good.")
 <OBJECT JURY-BOX
 	(IN COURTROOM)
 	(SYNONYM BOX JURY-BOX)
-	(ADJECTIVE JURY)
 	(DESC "jury-box")
 	(FLAGS NDESCBIT CONTBIT OPENBIT)
 	(CAPACITY 50)
@@ -1052,8 +1044,7 @@ tarts upon it. They look uncommonly good.")
 "=================== CARRIED AT START ==================="
 
 <OBJECT COMFIT-BOX
-	(SYNONYM COMFITS BOX SWEETS)
-	(ADJECTIVE COMFIT)
+	(SYNONYM COMFITS SWEETS)
 	(DESC "box of comfits")
 	(FLAGS TAKEBIT)
 	(ACTION COMFIT-BOX-FCN)>
@@ -1086,6 +1077,11 @@ tarts upon it. They look uncommonly good.")
 	(SYNONYM NOTHING)
 	(DESC "nothing at all")>
 
+<OBJECT W-MILE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM MILE)
+	(DESC "matter of a mile")>
+
 <OBJECT W-POEM
 	(IN GLOBAL-OBJECTS)
 	(SYNONYM POEM POETRY STANZA)
@@ -1109,7 +1105,7 @@ tarts upon it. They look uncommonly good.")
 
 <OBJECT T-DINAH
 	(IN GLOBAL-OBJECTS)
-	(SYNONYM DINAH CAT CATS DOG DOGS)
+	(SYNONYM DINAH CATS DOG DOGS)
 	(DESC "Dinah")>
 
 <OBJECT T-QUEEN
@@ -1180,6 +1176,12 @@ tarts upon it. They look uncommonly good.")
 	<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>
 	       <INTRO-TEXT>)>
 	<SETG LIT T>
+	<SETG LOAD-MAX 300>
+	<SETG LOAD-ALLOWED 300>
+	;"Alice's pinafore has no pockets worth speaking of, but Wonderland
+	  does not fumble: RANDOM must never touch the critical path."
+	<SETG FUMBLE-NUMBER 100>
+	<SETG FUMBLE-PROB 0>
 	<SETG WINNER ,ADVENTURER>
 	<SETG PLAYER ,WINNER>
 	<MOVE ,WINNER ,HERE>
