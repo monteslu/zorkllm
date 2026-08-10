@@ -95,7 +95,7 @@
 
 <OBJECT JOURNEY-W
 	(IN GLOBAL-OBJECTS)
-	(SYNONYM JOURNEY STORY TALE ADVENTURE)
+	(SYNONYM JOURNEY STORY TALE TRIP)
 	(DESC "story of your journey")
 	(FLAGS NDESCBIT)>
 
@@ -103,6 +103,19 @@
 	(IN GLOBAL-OBJECTS)
 	(SYNONYM MESSAGE)
 	(DESC "message")
+	(FLAGS NDESCBIT)>
+
+<OBJECT FRIEND-W
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM FRIEND SCARECROW)
+	(DESC "the Scarecrow")
+	(FLAGS NDESCBIT)
+	(ACTION FRIEND-W-FCN)>
+
+<OBJECT WOOD-W
+	(IN LOCAL-GLOBALS)
+	(SYNONYM WOOD LOGS STICKS)
+	(DESC "firewood")
 	(FLAGS NDESCBIT)>
 
 <OBJECT HELP-W
@@ -276,7 +289,7 @@ bright flowers. Good straight trees stand near the bank.")
 back east now.")
       (WEST PER RIVER-WEST)
       (ACTION RIVERBANK-FCN)
-      (GLOBAL RIVER-LG TREES-LG YELLOW-ROAD-LG)
+      (GLOBAL RIVER-LG TREES-LG YELLOW-ROAD-LG RAFT)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM MIDRIVER
@@ -286,7 +299,7 @@ back east now.")
 "Water everywhere, moving faster than it looked from shore. The raft has
 ideas of its own about where you are going.")
       (ACTION MIDRIVER-FCN)
-      (GLOBAL RIVER-LG)
+      (GLOBAL RIVER-LG RAFT)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM FAR-BANK
@@ -412,6 +425,7 @@ room is north; the street is south.")
       (NORTH PER COURT-NORTH)
       (SOUTH TO EMERALD-STREET)
       (ACTION PALACE-COURT-FCN)
+      (GLOBAL OZ-WIZARD)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GREEN-CHAMBER
@@ -435,6 +449,7 @@ bright as the sun. The doors are to the south.")
       (SOUTH TO PALACE-COURT)
       (EAST PER THRONE-EAST)
       (ACTION THRONE-FCN)
+      (GLOBAL OZ-WIZARD SCREEN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 "=== ACT III ROOMS ==="
@@ -449,7 +464,7 @@ keeps one window toward you like an eye. The city gate is back east.")
       (EAST TO CITY-GATE)
       (WEST PER WFIELDS-WEST)
       (ACTION WFIELDS-FCN)
-      (GLOBAL CASTLE-LG)
+      (GLOBAL CASTLE-LG HIS-STRAW)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM WEST-HILLS
@@ -462,7 +477,7 @@ The fields are back east.")
       (EAST TO WEST-FIELDS)
       (WEST PER WHILLS-WEST)
       (ACTION WHILLS-FCN)
-      (GLOBAL CASTLE-LG)
+      (GLOBAL CASTLE-LG HIS-STRAW)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CASTLE-KITCHEN
@@ -474,7 +489,7 @@ pots and kettles, a broom, and a wooden bucket of well water standing by
 the door. The hall is north.")
       (NORTH TO CASTLE-HALL)
       (ACTION KITCHEN-FCN)
-      (GLOBAL CASTLE-LG)
+      (GLOBAL CASTLE-LG WATER WOOD-W)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CASTLE-HALL
@@ -564,6 +579,7 @@ a gauzy dress and mask on a hook, a bundle of sewn skins, and a ball of
 cotton on a wire. The throne room is west.")
       (WEST TO THRONE-ROOM)
       (ACTION WORKSHOP-FCN)
+      (GLOBAL OZ-WIZARD)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM BALLOON-PLAZA
@@ -575,6 +591,7 @@ south leaves the city toward the country of the Quadlings.")
       (WEST TO EMERALD-STREET)
       (SOUTH PER PLAZA-SOUTH)
       (ACTION PLAZA-FCN)
+      (GLOBAL OZ-WIZARD BALLOON CROWD KITTEN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM FIGHTING-TREES
@@ -600,6 +617,7 @@ sight, barring the way south. The wood is back north.")
       (SOUTH PER CWALL-SOUTH)
       (UP PER CWALL-UP)
       (ACTION CWALL-FCN)
+      (GLOBAL LADDER WALL)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CHINA-COUNTRY
@@ -804,7 +822,7 @@ little farmhouse.")
 <OBJECT OIL-CAN
 	(IN WOODMAN-COTTAGE)
 	(SYNONYM OILCAN CAN)
-	(ADJECTIVE OIL BATTERED TIN JEWELED)
+	(ADJECTIVE BATTERED TIN JEWELED)
 	(DESC "battered oil-can")
 	(FDESC "On a shelf sits a battered oil-can.")
 	(FLAGS TAKEBIT)
@@ -893,10 +911,11 @@ little farmhouse.")
 	(ACTION BRIDGE-TREE-FCN)>
 
 <OBJECT RAFT
+	(IN LOCAL-GLOBALS)
 	(SYNONYM RAFT LOGS)
 	(ADJECTIVE LOG WOODEN)
 	(DESC "log raft")
-	(FLAGS VEHBIT NDESCBIT)
+	(FLAGS NDESCBIT)
 	(ACTION RAFT-FCN)>
 
 <OBJECT STORK
@@ -977,7 +996,7 @@ little farmhouse.")
 	(ACTION GREEN-BOX-FCN)>
 
 <OBJECT SPECTACLES
-	(IN GREEN-BOX)
+	(IN GATE-ROOM)
 	(SYNONYM SPECTACLES GLASSES)
 	(ADJECTIVE GREEN)
 	(DESC "green spectacles")
@@ -1026,13 +1045,15 @@ little farmhouse.")
 	(ACTION THRONE-OBJ-FCN)>
 
 <OBJECT OZ-WIZARD
-	(SYNONYM OZ WIZARD HEAD LADY VOICE HUMBUG)
+	(IN LOCAL-GLOBALS)
+	(SYNONYM OZ WIZARD LADY VOICE HUMBUG)
 	(ADJECTIVE GREAT TERRIBLE LITTLE OLD BALD)
 	(DESC "Wizard of Oz")
 	(FLAGS ACTORBIT NDESCBIT)
 	(ACTION OZ-FCN)>
 
 <OBJECT SCREEN
+	(IN LOCAL-GLOBALS)
 	(SYNONYM SCREEN CORNER)
 	(ADJECTIVE GREEN TALL)
 	(DESC "tall screen")
@@ -1063,6 +1084,7 @@ little farmhouse.")
 	(ACTION BEES-FCN)>
 
 <OBJECT HIS-STRAW
+	(IN LOCAL-GLOBALS)
 	(SYNONYM STRAW)
 	(DESC "straw")
 	(FLAGS NDESCBIT TRYTAKEBIT)
@@ -1115,7 +1137,7 @@ little farmhouse.")
 
 <OBJECT FIREWOOD
 	(IN CASTLE-KITCHEN)
-	(SYNONYM WOOD FIREWOOD LOG)
+	(SYNONYM FIREWOOD)
 	(DESC "firewood")
 	(FLAGS TAKEBIT NDESCBIT)
 	(SIZE 4)
@@ -1229,7 +1251,7 @@ little farmhouse.")
 
 <OBJECT BUTTERCUPS
 	(IN LOST-FIELDS)
-	(SYNONYM BUTTERCUPS DAISIES FLOWERS BUTTERCUP)
+	(SYNONYM BUTTERCUP DAISIES FLOWERS DAISY)
 	(ADJECTIVE YELLOW)
 	(DESC "buttercups and daisies")
 	(FLAGS NDESCBIT)
@@ -1278,19 +1300,22 @@ little farmhouse.")
 	(ACTION PROP-COTTON-FCN)>
 
 <OBJECT BALLOON
+	(IN LOCAL-GLOBALS)
 	(SYNONYM BALLOON BAG SILK ROPE ROPES)
 	(ADJECTIVE GREEN GREAT)
 	(DESC "great green balloon")
-	(FLAGS NDESCBIT VEHBIT)
+	(FLAGS NDESCBIT)
 	(ACTION BALLOON-FCN)>
 
 <OBJECT CROWD
+	(IN LOCAL-GLOBALS)
 	(SYNONYM CROWD PEOPLE)
 	(DESC "crowd")
 	(FLAGS NDESCBIT)
 	(ACTION CROWD-FCN)>
 
 <OBJECT KITTEN
+	(IN LOCAL-GLOBALS)
 	(SYNONYM KITTEN)
 	(DESC "kitten")
 	(FLAGS NDESCBIT)
@@ -1305,6 +1330,7 @@ little farmhouse.")
 	(ACTION FIGHT-TREE-FCN)>
 
 <OBJECT LADDER
+	(IN LOCAL-GLOBALS)
 	(SYNONYM LADDER)
 	(ADJECTIVE WOODEN)
 	(DESC "wooden ladder")
@@ -1446,6 +1472,7 @@ little farmhouse.")
 "Stub objects the generic engine verbs reference."
 
 <OBJECT WATER
+	(IN LOCAL-GLOBALS)
 	(SYNONYM WATER)
 	(ADJECTIVE WELL)
 	(DESC "well water")
