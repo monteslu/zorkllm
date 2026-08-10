@@ -28,6 +28,14 @@
  * for direction words. (Every game in adventures/ uses the pattern:
  * Treasure Island 5 handlers, Alice 9, Monte Cristo 9, Oz 13, Dracula 27.)
  *
+ * Calibration: on the five games in adventures/ this reports 25 findings,
+ * of which hand-triage judged most to be deliberate design - scripted
+ * scenes, rooms you cannot leave yet, and impasses whose refusal text
+ * names the answer. Treat a finding as a question ("can a lost player
+ * learn a way out of here?"), never as a defect list. An earlier and
+ * much tighter exit pattern reported 47, and 16 of those were sentences
+ * like "The hall is north." that it simply failed to parse.
+ *
  * Known limits, so nobody mistakes a clean run for a correct game:
  *
  * - The dead-end check reads only the room's own description. A game may
@@ -71,12 +79,25 @@ const GAMES = [
  * Naming the noun alone is exactly the Deck of the Pharaon bug: the quay
  * is mentioned, but nothing says the quay is WEST.
  */
-const COMPASS = String.raw`(?:north|south|east|west|northeast|northwest|southeast|southwest|up|down|inward|outward|above|below)`;
-const EXIT_WORDS = new RegExp([
-  String.raw`\b(?:to the |lies? |lie |leads? |runs? |goes? |continues? |opens? |back |head |climb |descend )` + COMPASS + String.raw`\b`,
-  String.raw`\b` + COMPASS + String.raw`(?:ward|wards)?\b[^.]{0,40}\b(?:lies?|leads?|runs?|is|are|stands?|opens?)\b`,
-  String.raw`\b(?:exits?|way out|stairs?|staircase|ladder|doorway|gate|passage|corridor|tunnel)\b[^.]{0,30}\b` + COMPASS + String.raw`\b`,
-].join('|'), 'i');
+const COMPASS = String.raw`(?:north|south|east|west|northeast|northwest|southeast|southwest|up|down|upward|downward|inward|outward)`;
+/**
+ * A room names a way out when a direction word appears as *navigation*
+ * rather than as decoration. In practice that means the direction sits in
+ * the same clause as a movement or position word - "the hall is north",
+ * "the road runs east", "a path leads down", "west across your way".
+ *
+ * Matching a bare direction anywhere is too loose (a sunset is west of
+ * nothing useful); requiring a fixed verb-then-direction order is too
+ * tight, and was the bug here - it missed "The hall is north." and every
+ * other sentence these games actually use, reporting 16 false positives
+ * across two games. So: look for a direction and a navigation word within
+ * the same sentence, in either order.
+ */
+const NAVWORD = String.raw`(?:lies?|lie|leads?|runs?|goes?|go|continues?|opens?|sets? off|climbs?|descends?|is|are|stands?|back|through|toward|towards|across|way|path|road|door|doorway|gate|stair|stairs|staircase|ladder|passage|corridor|tunnel|bridge|steps)`;
+const EXIT_WORDS = new RegExp(
+  String.raw`(?:` + COMPASS + String.raw`\b[^.!?]{0,60}?\b` + NAVWORD
+  + String.raw`|\b` + NAVWORD + String.raw`\b[^.!?]{0,60}?\b` + COMPASS + String.raw`)`,
+  'i');
 
 /** Function words that are never worth checking against the dictionary. */
 const STOP = new Set(`a an the and or but of in on at to from with without into over under above below
