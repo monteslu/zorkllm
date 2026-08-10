@@ -157,6 +157,66 @@ export class GameSession {
     }
   }
 
+  /**
+   * Objects the player is carrying and objects present in the room, read
+   * from the object tree. These are facts the engine is certain of, and a
+   * weak model that has them stops inventing them - the failure mode of a
+   * small model is fabrication, not silence, so crowding the context with
+   * true specifics is worth more than any instruction not to guess.
+   *
+   * Deliberately shallow: direct children only, no container contents, so
+   * a closed sack does not leak what is inside it. Objects the engine
+   * hides (INVISIBLE, e.g. Zork's trap door under the rug) never appear in
+   * the tree walk as visible siblings anyway - they are listed, so callers
+   * must not treat this as "what the player can see". It is scope, not
+   * sight; use it for grounding, never to reveal.
+   * @returns {{carrying: string[], present: string[]}}
+   */
+  scope() {
+    const empty = { carrying: [], present: [] };
+    try {
+      const ot = this.zm.objectTable;
+      const player = this.#findPlayer(ot);
+      if (!player) return empty;
+      const room = ot.getParent(player);
+      if (!room) return empty;
+      const name = (n) => {
+        const info = ot.getShortNameAddress(n);
+        return info.lengthBytes > 0 ? this.zm.textDecoder.decode(info.address).text : null;
+      };
+      const children = (parent, skip) => {
+        const out = [];
+        let c = ot.getChild(parent);
+        while (c) {
+          const n = name(c);
+          if (n && c !== skip) out.push(n);
+          c = ot.getSibling(c);
+        }
+        return out;
+      };
+      return { carrying: children(player), present: children(room, player) };
+    } catch {
+      return empty;
+    }
+  }
+
+  /** @param {any} ot */
+  #findPlayer(ot) {
+    if (this.#playerObj !== undefined && this.#playerObj !== null) return this.#playerObj;
+    for (let i = 1; i <= 500; i++) {
+      const info = ot.getShortNameAddress(i);
+      if (info.lengthBytes > 0
+        && /^(cretin|adventurer|yourself)$/i.test(this.zm.textDecoder.decode(info.address).text)) {
+        const parent = ot.getParent(i);
+        if (parent && ot.getShortNameAddress(parent).lengthBytes > 0) {
+          this.#playerObj = i;
+          return i;
+        }
+      }
+    }
+    return null;
+  }
+
   /** Hand accumulated output to whoever is waiting for this turn to finish. */
   #flush() {
     if (!this.#waiter) return;

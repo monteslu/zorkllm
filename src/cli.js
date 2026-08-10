@@ -199,7 +199,13 @@ function printTurn(command, output) {
 
 function statusPrompt(session) {
   const s = session.status;
-  return s ? dim(`[${s.location.trim()} | ${s.score}pts | ${s.turns} moves] `) + '» ' : '» ';
+  if (!s) return '» ';
+  // v4+ story files keep no status globals, so the driver reports a room
+  // name but null score/turns. Show what is actually known rather than
+  // the word "null"; SCORE still works in-game.
+  const tally = s.score === null || s.turns === null
+    ? '' : ` | ${s.score}pts | ${s.turns} moves`;
+  return dim(`[${s.location.trim()}${tally}] `) + '» ';
 }
 
 main().catch((err) => {

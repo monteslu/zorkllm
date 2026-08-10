@@ -487,7 +487,17 @@ export class ZorkAgent {
     // only what the engine actually knows rather than the word "null".
     const tally = s.score === null || s.turns === null
       ? '' : `, score ${s.score}, ${s.turns} moves`;
-    return `[state: in "${s.location}"${tally}.${rooms}]`;
+    // Mechanical scope: what the engine knows is carried and present. A
+    // weak model with these facts stops inventing objects ("there is no
+    // lamp here" for a lamp in hand), and the specifics give a stuck
+    // player something real to act on without revealing any puzzle - the
+    // engine would have listed all of it for a LOOK or INVENTORY anyway.
+    const scope = this.session.scope?.() ?? { carrying: [], present: [] };
+    const carrying = scope.carrying.length
+      ? ` Carrying: ${scope.carrying.join(', ')}.` : ' Carrying nothing.';
+    const present = scope.present.length
+      ? ` Here: ${scope.present.join(', ')}.` : '';
+    return `[state: in "${s.location}"${tally}.${carrying}${present}${rooms}]`;
   }
 
   /** History entries before this index are evicted from the LLM window. */
