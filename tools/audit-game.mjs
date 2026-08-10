@@ -176,7 +176,10 @@ async function auditOne(name, storyRel, walkRel) {
       }
     }
   }
-  return { name, rooms: seen.size, deadEnds, unspeakable };
+  // The driver's own visited list is authoritative for coverage; `seen`
+  // only holds rooms that printed something this audit could grade.
+  return { name, rooms: session.visitedRooms.length, graded: seen.size,
+    deadEnds, unspeakable };
 }
 
 const targets = args.includes('--all') || !args.some((a) => a.endsWith('.z8') || a.endsWith('.z3'))
@@ -189,7 +192,7 @@ for (const [name, story, walk] of targets) {
   if (r.skipped) { console.log(`${name}: skipped (${r.skipped})`); continue; }
   const bad = r.deadEnds.length + r.unspeakable.size;
   failures += bad;
-  console.log(`\n=== ${name} (${r.rooms} rooms visited) ===`);
+  console.log(`\n=== ${name} (${r.rooms} rooms visited, ${r.graded} with gradeable text) ===`);
 
   if (r.deadEnds.length) {
     console.log(`  DEAD END - room text names no way out (${r.deadEnds.length}):`);
