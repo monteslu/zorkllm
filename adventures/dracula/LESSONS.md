@@ -500,3 +500,126 @@ depends on it.
 a reserved-atom grep *before* naming a single object, and write the
 `AWARD` tally check into `verify.mjs` from the start so the score budget
 can never drift out of agreement with `SCORE-MAX`.
+
+---
+
+## 6. What the walkthrough could not tell me
+
+Added after a static audit (`tools/audit-game.mjs`) and a wanderer test,
+run once the game was already shipping green at 204/210. Both found real
+defects. The walkthrough had found none of them, and could not have.
+
+### 6.1 An `M-LOOK` override silently regresses its LDESC
+
+The single most productive finding. Five of the six real exit defects
+were the same mistake: I wrote a richer, state-aware description inside
+an `M-LOOK` handler, and in rewriting the prose I dropped the exit
+sentence the original `LDESC` had.
+
+```zil
+;"dworld.zil -- correct"
+(LDESC "...the bed, the fireplace, and the window on the shrubbery.
+The stair goes down.")
+
+;"dact2.zil -- the override that shipped, exits quietly gone"
+<ROUTINE LUCYS-ROOM-FCN (RARG)
+	 <COND (<EQUAL? .RARG ,M-LOOK>
+		<TELL "...the bed, the fireplace, and the window on the
+shrubbery. On the air, sometimes, a beating of wings.">
+```
+
+Nothing catches this. The room still works, the walkthrough still passes,
+and the LDESC that documents the exits is still sitting right there in
+the world file looking correct. **Whenever an `M-LOOK` handler replaces
+an LDESC, diff the two for direction words before moving on.** If your
+game branches descriptions by act or by state — mine does it in 26
+routines — this is a systematic risk, not a one-off.
+
+### 6.2 A refusal that does not explain itself is a wall
+
+The guard against climbing down the castle wall too early read:
+
+> A thousand feet of moonlight below. At its foot a man may sleep — as a
+> man. Not yet. Not while Mina waits.
+
+Good prose, and useless. It never says *what* the player is waiting for,
+so a player who found the ledge early — which a wanderer does, because the
+ledge is reachable long before the escape opens — gets a beautiful
+sentence and no information, three times in a row, and concludes the
+ledge is scenery. It now names the actual blocking condition (the Szgany
+still in the courtyard, or that it is dark).
+
+**Every guard message should name its own precondition.** "Not yet" is
+mood; "not while the carts are still in the courtyard" is a puzzle. The
+cost is one `COND` and the difference is whether a stuck player has
+anything to act on.
+
+### 6.3 The audit reads the transcript, so judge every finding yourself
+
+`audit-game.mjs` records the first text it sees per room and matches
+exits with a regex. That means:
+
+- **False positives are common and cheap to dismiss.** Eleven of my 18
+  flagged rooms name their exits in prose the regex does not match —
+  "Doors face each other like patient sentries, north and south", "The
+  only door is north", "The road back is northwest". Verify by playing a
+  `LOOK` in each room rather than reading the LDESC, because the LDESC
+  may not be what prints (see 6.1).
+- **A room that says there is nowhere to go is not a defect.** Varna
+  prints "There is nowhere to go. There is only news to wait for." That
+  is an answer. The property that matters is *the player is never left
+  without information*, not *every room lists compass directions*.
+- **"Unspeakable" flags idioms too.** Mine flagged "foot", from "there is
+  no going back on foot".
+
+The two that mattered were both real: a room in the time-pressured chase
+act that named no exit at all, and a dark dead-end vault at the bottom of
+a one-way descent. **Sort the findings by how expensive being stuck there
+would be** — act, time pressure, whether the room is reachable by
+accident — and do those first.
+
+### 6.4 The wanderer test finds a different class of bug
+
+Junk input found three things a walkthrough structurally cannot:
+
+- **`X` was not a synonym for `EXAMINE`.** The Zork engine defines
+  `DESCRIBE WHAT WHATS` and no `X`. Every modern IF player types `x
+  thing`. My walkthrough never typed it because I knew the game said
+  `EXAMINE`. **Add `<SYNONYM EXAMINE X>` in your verb file on day one.**
+- **A grammar bug in my own verb** — `"You take off pair of boots."` —
+  in a code path the walkthrough used with different phrasing.
+- **The guard problem in 6.2**, which only shows up if you reach a place
+  before you are supposed to.
+
+The pacing note from Oz's file replicates here and is worth restating,
+because it changes what a timer means: **the Z-machine clock advances
+only on a successful parse.** `CLOCKER` runs from `MAIN-LOOP` under
+`,P-WON`, so a rejected command ticks nothing and neither `M-BEG` nor
+`M-END` fires. A flailing player experiences every timed beat at a
+fraction of the rate a clean transcript shows. Act I survives this
+because its clock is driven by `SLEEP`, not by turn count — which is a
+second, independent argument for §2.1's rule that beats should key to
+player state rather than to elapsed turns.
+
+**Set the bar honestly.** For this game a wanderer *cannot* be expected
+to escape Castle Dracula — the escape is a genuine multi-step puzzle and
+being trapped is the act's whole subject. So the wanderer assertions are
+not "reaches Act II"; they are: survives, never crashes, every room
+reached names a way out, and any refusal explains itself. A player who
+fails Harker's escape should fail it *knowing why*, and the game already
+says so ("The wall, then. Today, in the light, or never.") before the
+night that kills them.
+
+### 6.5 Re-freezing the transcript
+
+Prose fixes change the frozen transcript, which is correct and expected.
+Before re-freezing, confirm the change is *only* prose:
+
+```bash
+node play.mjs dracula.z8 walkthrough.txt > /tmp/new.txt 2>&1
+diff expected-transcript.txt /tmp/new.txt | grep -c '^[<>]'   # 14 lines
+node play.mjs dracula.z8 walkthrough.txt | grep 'Your score is'  # 204, unchanged
+```
+
+If the score or the move count moved, something behavioural changed and
+the re-freeze is hiding it.
