@@ -69,7 +69,7 @@ export function pickChatModel(models) {
  * @param {string} base  e.g. http://localhost:1234/v1
  * @returns {Promise<{model?: string, contextLength?: number}>}
  */
-async function detectServer(base) {
+async function detectServer(base, wanted) {
   const origin = base.replace(/\/v1\/?$/, '');
   const get = async (url) => {
     const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
@@ -77,7 +77,12 @@ async function detectServer(base) {
   };
   try { // LM Studio
     const d = await get(`${origin}/api/v0/models`);
-    const loaded = d?.data?.find((m) => m.state === 'loaded' && m.type !== 'embeddings');
+    const usable = d?.data?.filter((m) => m.state === 'loaded' && m.type !== 'embeddings');
+    // With several models loaded at once, the context length must come from
+    // the one actually being used - reading the first entry's window silently
+    // sizes the session to another model's context (observed live: a 21k
+    // model budgeted against a 17k neighbour, evicting for no reason).
+    const loaded = (wanted && usable?.find((m) => m.id === wanted)) || usable?.[0];
     if (loaded) {
       return { model: loaded.id, contextLength: loaded.loaded_context_length || loaded.max_context_length };
     }
@@ -108,7 +113,7 @@ export async function createClient(config) {
   if (config.provider === 'anthropic') {
     return { ...(await createAnthropicClient(config)), contextLength: null };
   }
-  const detected = await detectServer(config.apiUrl);
+  const detected = await detectServer(config.apiUrl, config.model);
   config.model = config.model || detected.model;
   if (!config.model) {
     throw new Error(

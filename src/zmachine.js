@@ -14,6 +14,9 @@ export class GameSession {
   vocabulary = [];
   /** @type {{location: string, score: number, turns: number}|null} */
   status = null;
+
+  /** Object number of the player ("cretin"), located lazily on v4+. */
+  #playerObj = undefined;
   /** @type {string[]} unique room names in the order first visited (authoritative, from the engine) */
   visitedRooms = [];
   /** True once the game has quit */
@@ -91,7 +94,7 @@ export class GameSession {
    * standard v3 globals (16=location obj, 17=score, 18=moves) ourselves.
    */
   #updateStatus() {
-    if (this.version !== 3) return; // status globals 16/17/18 are a v3 convention
+    if (this.version !== 3) { this.#updateStatusV4(); return; }
     try {
       const locationObj = this.zm.variables.load(16);
       let location = '';
@@ -107,6 +110,50 @@ export class GameSession {
       if (location && !this.visitedRooms.includes(location)) this.visitedRooms.push(location);
     } catch {
       // status is cosmetic; never let it break a turn
+    }
+  }
+
+  /**
+   * v4+ story files do not maintain the v3 status globals (16/17/18), so the
+   * room name has to come from the object tree: the player object's parent IS
+   * the current room. The player object is located once by short name - the
+   * ZIL engine calls it "cretin" - and cached. Score and turns stay null
+   * rather than guessed, since v4+ games are free to keep them anywhere.
+   * Without this, `visitedRooms` is empty for every v8 game and the LLM loses
+   * its spatial anchor (observed live: a 50-turn session with no room history
+   * at all).
+   */
+  #updateStatusV4() {
+    try {
+      const ot = this.zm.objectTable;
+      if (this.#playerObj === undefined) {
+        this.#playerObj = null;
+        for (let i = 1; i <= 500; i++) {
+          const info = ot.getShortNameAddress(i);
+          if (info.lengthBytes > 0
+            && /^(cretin|adventurer|yourself)$/i.test(this.zm.textDecoder.decode(info.address).text)) {
+            // Engines also define pseudo-objects the parser uses for "me"/"you"
+            // that live outside the room tree; the real player object is the
+            // one whose parent is a named room.
+            const par = ot.getParent(i);
+            if (par && ot.getShortNameAddress(par).lengthBytes > 0) {
+              this.#playerObj = i;
+              break;
+            }
+          }
+        }
+      }
+      if (!this.#playerObj) return;
+      const room = ot.getParent(this.#playerObj);
+      if (!room) return;
+      const nameInfo = ot.getShortNameAddress(room);
+      if (nameInfo.lengthBytes <= 0) return;
+      const location = this.zm.textDecoder.decode(nameInfo.address).text;
+      if (!location) return;
+      this.status = { location, score: null, turns: null };
+      if (!this.visitedRooms.includes(location)) this.visitedRooms.push(location);
+    } catch {
+      // spatial tracking is an enhancement; never let it break a turn
     }
   }
 

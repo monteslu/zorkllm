@@ -483,11 +483,29 @@ export class ZorkAgent {
     if (!s) return '';
     const visited = this.session.visitedRooms;
     const rooms = visited.length > 1 ? ` Rooms visited: ${visited.join(', ')}.` : '';
-    return `[state: in "${s.location}", score ${s.score}, ${s.turns} moves.${rooms}]`;
+    // v4+ games keep no status globals, so score/turns are null there; print
+    // only what the engine actually knows rather than the word "null".
+    const tally = s.score === null || s.turns === null
+      ? '' : `, score ${s.score}, ${s.turns} moves`;
+    return `[state: in "${s.location}"${tally}.${rooms}]`;
   }
 
   /** History entries before this index are evicted from the LLM window. */
   #anchor = 0;
+
+  /**
+   * Read-only diagnostic: where the context window starts, how much history
+   * exists, and the current estimated request size. Used to measure eviction
+   * pressure - a session that evicts every other turn cannot hold a puzzle in
+   * mind, which is invisible from the transcript alone.
+   */
+  anchorProbe() {
+    return {
+      anchor: this.#anchor,
+      history: this.history.length,
+      tokens: this.#estimateTokens(this.#buildWindow()),
+    };
+  }
 
   /**
    * Recent history window, merged so roles alternate legally.

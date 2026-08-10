@@ -6,6 +6,7 @@ import { strict as assert } from 'node:assert';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { unlink } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { loadGame } from '../src/zmachine.js';
 
 const GAMES = join(dirname(fileURLToPath(import.meta.url)), '..', 'games');
@@ -74,3 +75,18 @@ for (const [file, marker] of [
 }
 
 console.log(`\nzmachine tests: ${passed} passed`);
+
+// --- v4+ games track rooms from the object tree (no v3 status globals) ---
+{
+  const v8 = join(GAMES, '..', 'adventures/wizard-of-oz/oz.z8');
+  if (existsSync(v8)) {
+    const s = await loadGame(v8);
+    await s.start();
+    await s.send('look');
+    ok('v8 game reports a room name', s.status?.location === 'Farmhouse, Kansas',
+       JSON.stringify(s.status));
+    ok('v8 game tracks visited rooms', s.visitedRooms.length === 1, String(s.visitedRooms.length));
+    ok('v8 score/turns are null, not guessed',
+       s.status.score === null && s.status.turns === null, JSON.stringify(s.status));
+  }
+}
