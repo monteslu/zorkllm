@@ -73,6 +73,52 @@ partial coverage and let the missing rooms fall back to text.
 Dark rooms are a deliberate hole. The engine will not describe them and
 neither should anything downstream.
 
+## Consistency: style and mood
+
+Accuracy comes from the engine. **Consistency has to be authored**, and
+nothing in a story file supplies it - two rooms in the same game will
+look like two different artists made them unless something says
+otherwise. A `--style` sidecar (see
+`adventures/wizard-of-oz/scenes.style.json`) carries that authored part:
+
+- **`style`** - one clause describing medium and treatment, applied
+  byte-identically to every scene in the game. This is what makes a set
+  read as a set. Vary the scene, never the style block.
+- **`negative`** - the standing exclusions: no text, no figures the scene
+  does not name, no objects the room does not contain, plus whatever this
+  particular story is prone to attracting.
+- **`acts`** - the mood arc. A single unvarying style flattens a story
+  that is meant to change: Baum's Kansas is deliberately gray, Munchkin
+  country is saturated, the Winkie country is menacing. Each act carries
+  a `mood` clause layered on top of the shared style.
+
+Acts are assigned by the turn a room was first entered, because visit
+order is the only act signal a story file actually carries. That is a
+guess, and a good one for a linear story - hand-correct the `act` field
+for rooms a walkthrough happens to reach early or late.
+
+One thing this does **not** solve: a recurring subject looking like
+itself across rooms. The same white house seen from two sides, or a
+companion who appears in twenty rooms, will drift. Treat that as a known
+limitation to be caught in review rather than something the pipeline
+guarantees.
+
+## Do not feed the source files in
+
+A room's `LDESC` in the ZIL source is the same text the engine prints -
+there is no extra detail hiding in the source, so parsing it gains
+nothing. What the source *does* carry is everything a depiction must not
+include: exits, flags, action-routine names, and full definitions of
+objects that are flagged invisible. Feeding source in adds no signal and
+smuggles in the spoilers the manifest exists to filter out.
+
+The same caution applies to the game's own prose more generally. Only the
+room's opening block describes the place. Lines announcing what is
+present ("Toto is here, being a dog about it") and idle events ("Toto
+chases a butterfly and loses") arrive in the same output and are pure
+noise for a standing depiction - the manifest separates them into
+`occupants`, and they should stay out of the scene.
+
 ## Using a manifest to describe a scene
 
 The manifest gives ground truth. Anything that turns it into a depiction

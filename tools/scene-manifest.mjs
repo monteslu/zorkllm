@@ -29,14 +29,52 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { loadGame } from '../src/zmachine.js';
 
 const args = process.argv.slice(2);
-const outIdx = args.indexOf('-o');
-const outPath = outIdx >= 0 ? args[outIdx + 1] : null;
-const positional = args.filter((a, i) => a !== '-o' && i !== outIdx + 1);
+const flag = (name) => {
+  const i = args.indexOf(name);
+  return i >= 0 ? args[i + 1] : null;
+};
+const outPath = flag('-o');
+const stylePath = flag('--style');
+const consumed = new Set();
+for (const f of ['-o', '--style']) {
+  const i = args.indexOf(f);
+  if (i >= 0) { consumed.add(i); consumed.add(i + 1); }
+}
+const positional = args.filter((_, i) => !consumed.has(i));
 const [storyPath, walkPath] = positional;
 
 if (!storyPath) {
-  console.error('usage: scene-manifest.mjs <story file> [walkthrough.txt] [-o out.json]');
+  console.error('usage: scene-manifest.mjs <story file> [walkthrough.txt] [-o out.json] [--style style.json]');
   process.exit(2);
+}
+
+/**
+ * Optional per-game presentation config. Accuracy comes from the engine;
+ * consistency has to be authored. A style file supplies the look that
+ * every scene in this game shares, and the mood arc across the story:
+ *
+ *   {
+ *     "style": "<one clause describing the medium and treatment>",
+ *     "negative": ["no text", "no figures", ...],
+ *     "acts": [
+ *       {"name": "Kansas",  "untilTurn": 6,  "mood": "gray, flat, drained of colour"},
+ *       {"name": "Munchkin","untilTurn": 40, "mood": "saturated, storybook, bright"}
+ *     ]
+ *   }
+ *
+ * Acts are matched by the turn a room was first seen, because visit order
+ * is the one act signal a story file actually carries. Hand-editing a
+ * room's act afterwards is expected and fine.
+ */
+const styleConfig = stylePath ? JSON.parse(readFileSync(stylePath, 'utf8')) : null;
+
+/** @param {number} firstSeen */
+function actFor(firstSeen) {
+  if (!styleConfig?.acts?.length) return null;
+  for (const act of styleConfig.acts) {
+    if (firstSeen <= (act.untilTurn ?? Infinity)) return act;
+  }
+  return styleConfig.acts[styleConfig.acts.length - 1];
 }
 
 /** Strip the room name header and any trailing prompt noise. */
@@ -66,7 +104,7 @@ function record(text) {
   if (lines[0] !== room) return;
   const body = bodyOf(text, room);
   if (!body) return;
-  const entry = rooms.get(room) ?? { room, scenery: null, variants: [], occupants: [] };
+  const entry = rooms.get(room) ?? { room, firstSeen: turn, scenery: null, variants: [], occupants: [] };
   // Split the permanent room from whatever happens to be standing in it.
   // The first paragraph is the room's own description - the part that is
   // true whenever the player is here. Later paragraphs are contents and
@@ -74,9 +112,26 @@ function record(text) {
   // constantly and would otherwise produce a near-duplicate variant on
   // every visit. A scene description wants the former; the latter is a
   // separate, optional layer.
+  // The room's own LDESC is printed as one block, before any contents or
+  // NPC lines. Everything after the first blank line - and every line
+  // after a sentence about a person, animal or item - is transient: a
+  // wandering companion, an idle bark ("Toto chases a butterfly and
+  // loses"), a dropped object. Only the first block describes the place.
   const paragraphs = body.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
-  const scenery = paragraphs[0] ?? body;
-  const extras = paragraphs.slice(1);
+  const first = paragraphs[0] ?? body;
+  const firstLines = first.split('\n');
+  // Within the opening block, stop at the first line that announces
+  // something present rather than describing the room itself.
+  const PRESENCE = /^(there is|there are|on the |sitting|lying|.* is here\b|.* are here\b)/i;
+  const sceneryLines = [];
+  const spilled = [];
+  for (const line of firstLines) {
+    if (sceneryLines.length && PRESENCE.test(line.trim())) spilled.push(line.trim());
+    else if (spilled.length) spilled.push(line.trim());
+    else sceneryLines.push(line);
+  }
+  const scenery = sceneryLines.join('\n').trim() || first;
+  const extras = [...spilled, ...paragraphs.slice(1)];
   entry.scenery ??= scenery;
   if (scenery !== entry.scenery && !entry.variants.some((v) => v.text === scenery)) {
     // A genuinely different description of the same place: a state change
@@ -111,6 +166,9 @@ if (walkPath) {
 const manifest = {
   story: storyPath.split('/').pop(),
   version: session.version,
+  /** Shared by every scene in this game; the thing that makes a set a set. */
+  style: styleConfig?.style ?? null,
+  negative: styleConfig?.negative ?? null,
   rooms: [...rooms.values()].map((entry, index) => ({
     id: index + 1,
     room: entry.room,
@@ -121,6 +179,11 @@ const manifest = {
     variants: entry.variants,
     /** Things seen standing here at some point - people, animals, items. */
     occupants: entry.occupants,
+    /** Turn this room was first entered; the basis for the act guess. */
+    firstSeen: entry.firstSeen,
+    /** Where this room falls in the story's mood arc. */
+    act: actFor(entry.firstSeen)?.name ?? null,
+    mood: actFor(entry.firstSeen)?.mood ?? null,
   })),
 };
 
