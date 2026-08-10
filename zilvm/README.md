@@ -68,3 +68,41 @@ The last two lines are the point. `WEST` is gated on a named global, and
 `DOWN` is the hidden trap door - computed by a routine, so its destination
 genuinely cannot be read statically. From bytes those are indistinguishable
 from each other and from a refusal string; here they say what they are.
+
+## Stage 3: executing ZIL
+
+`src/runtime.c` adds the play-time layer czil's evaluator lacks: mutable
+object locations and flags, and the ZIL builtins the engine files call
+(MOVE, REMOVE, LOC, IN?, FSET, FCLEAR, FSET?, GETP, GET, TELL, PRINTI,
+PRINTN, PRINTC, CRLF, BAND, BOR).
+
+Routines are applied as MDL functions, so parameters and `"AUX"` locals
+bind properly. Property and flag constants (`P?LDESC`, `F?TAKEBIT`) are
+bound to the atoms themselves rather than to numbers - the whole point of
+running from source.
+
+```
+$ zilvm-test
+LAMP idx 61 parent 137 (LIVING-ROOM)
+LAMP has TAKEBIT: yes
+V-VERSION output:
+ZORK I: The Great Underground Empire
+Infocom interactive fiction - a fantasy story
+Copyright (c) 1981, 1982, ... Infocom, Inc. All rights reserved.
+```
+
+That banner is Zork's own `V-VERSION` routine running from ZIL source.
+
+### Four small additions to czil's public API
+
+Supplying a back end is the front end's intended use, so these moved from
+`czil_internal.h` to `include/czil.h` rather than being duplicated:
+`cz_def_subr` (register builtins), `cz_setg` (seed constants), `cz_princ`
+(write to the shared output buffer). All 62 czil tests still pass.
+
+### Where it stops
+
+`SCORE-OBJ` reaches `G?`, a compile-time construct the evaluator resolves
+differently at runtime - the next thing to work through. Stages 4 (main
+loop and PERFORM) and 5 (parser and verbs) follow from here; the differ
+already exists to grade them.

@@ -127,12 +127,25 @@ typedef struct {
 typedef cz_result (*cz_subr_fn)(cz_ctx *c, cz_val **args, size_t n);
 
 void cz_eval_init(cz_ctx *c);            /* register builtins; call once */
+
+/* Register a SUBR (arguments evaluated) or FSUBR (arguments raw). This is
+ * how a consumer supplies its own builtins: the Z-model registers the
+ * game directives this way, and an interpreter registers the play-time
+ * primitives (MOVE, FSET, TELL) the same way. Public because supplying a
+ * back end is the intended use of the front end. */
+void cz_def_subr(cz_ctx *c, const char *name, cz_subr_fn fn, bool fsubr);
+/* Set a global (GVAL) binding. A consumer seeding the constants a game
+ * expects - P?LDESC, F?TAKEBIT - writes them through here. */
+void cz_setg(cz_ctx *c, cz_val *atom, cz_val *value);
 cz_result cz_eval(cz_ctx *c, cz_val *v);
 cz_result cz_apply(cz_ctx *c, cz_val *target, cz_val **args, size_t n, bool eval_args);
 const char *cz_error(cz_ctx *c);
 cz_val *cz_false(cz_ctx *c);
 bool cz_is_true(const cz_val *v);
 const char *cz_output(cz_ctx *c);        /* accumulated PRINC/CRLF output */
+/* Append to that output. A consumer supplying its own print builtins
+ * (TELL, PRINTI) writes through here so all output lands in one place. */
+void cz_princ(cz_ctx *c, const char *text);
 void cz_clear_output(cz_ctx *c);
 
 /* ---- printer (round-trip debugging) ---- */

@@ -41,8 +41,8 @@ struct cz_ctx {
 uint32_t cz_hash_ptr(const void *p);
 
 /* eval.c internals shared with zmodel.c */
-void cz_setg(cz_ctx *c, cz_val *atom, cz_val *value);
+/* cz_setg is public; see include/czil.h */
 cz_val *cz_getg(cz_ctx *c, cz_val *atom);
-void cz_def_subr(cz_ctx *c, const char *name, cz_subr_fn fn, bool fsubr);
+/* cz_def_subr is public; see include/czil.h */
 
 #endif

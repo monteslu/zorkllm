@@ -37,6 +37,9 @@ bool cz_is_true(const cz_val *v) { return v->type != CZ_FALSE; }
 
 /* ---- output buffer (PRINC and friends) ---- */
 
+static void out_emit(cz_ctx *c, const char *s, size_t n);
+void cz_princ(cz_ctx *c, const char *text) { out_emit(c, text, strlen(text)); }
+
 static void out_emit(cz_ctx *c, const char *s, size_t n) {
     if (c->out_len + n + 1 > c->out_cap) {
         c->out_cap = c->out_cap ? c->out_cap * 2 : 256;
