@@ -125,18 +125,31 @@ compiled v5 games as well as the Infocom trilogy.
 
 Independent requirements that fail in different ways.
 
-**Context: 16k is the floor for any model.** It is arithmetic, not
+**Context: 16k floor, 32k comfortable.** This is arithmetic, not
 capability. The system prompt runs ~3.5k tokens (the game's dictionary
-dominates), and a literary adaptation prints roughly 3x Zork's room text —
-so at 8k the window evicts every second turn and the model cannot hold a
+dominates) and a literary adaptation prints roughly 3x Zork's room text, so
+at 8k the window evicts every second turn and the model cannot hold a
 puzzle in mind. Measured over an identical 50-turn session: 22 evictions at
-8k, zero at 16k, with no latency cost (0.55s vs 0.57s per turn). It buys
-memory, not compute. Most local runtimes default to 8k regardless of what
-the model supports, so this is usually one slider away.
+8k, zero at 16k, with no latency cost (0.55s vs 0.57s per turn) — it buys
+memory, not compute, and most local runtimes default to 8k regardless of
+what the model supports, so it is usually one slider away.
+
+A *complete* playthrough of the five `adventures/` games accumulates
+17k-25k tokens along the walkthrough path alone (Dracula is the largest at
+~25k; Monte Cristo the cheapest at ~17k despite being the longest game —
+per-turn prose style matters more than game size). A real player wanders,
+so budget 2-3x that: **16k is the floor, 24k finishes a walkthrough
+uncompacted, 32k absorbs a genuine exploratory playthrough.** Past that
+you are paying memory to retain transcript the Z-machine already tracks
+authoritatively, and chunked eviction keeps the prompt prefix byte-stable
+anyway.
 
 **Capability: ~4B is the floor for guide mode only.** Translation works
 fine below it; advice does not, and more context does not fix it, because
-context was never the constraint. Run smaller models with `--no-guide`.
+context was never the constraint. A 2B model at 16k with room to spare
+still denied that the Emerald City exists. Run smaller models with
+`--no-guide`: same speed, fewer calls, and nothing printed but the game's
+own text.
 
 The classic Infocom games are lighter than the `adventures/` adaptations
 and remain comfortable at 8k.

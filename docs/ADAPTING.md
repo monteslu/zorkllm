@@ -170,7 +170,9 @@ lands in the LLM's context window every turn. Measured across the five
 games here: ~3.5k tokens of system prompt (the dictionary dominates) and
 roughly 3x Zork's room text, which puts the practical floor at **16k
 context** for any model. Below that the window evicts every second turn and
-the model stops being able to hold a puzzle in mind.
+the model stops being able to hold a puzzle in mind. A full walkthrough of
+these five costs 17k-25k tokens; a real player wanders, so **32k is the
+comfortable target** for an uncompacted exploratory game.
 
 This is a consequence of the design choice, not the engine, so it belongs
 in the design: state the game's context requirement in DESIGN.md alongside
@@ -185,6 +187,17 @@ Two more findings from playtesting adaptations through an LLM front end:
   happen in order. A player typing natural chaos may never produce the one
   command the script waits for. Give every scripted sequence an escalating
   nudge and then an automatic resolution, or the story simply never starts.
+  Then write the wanderer as a permanent test: a walkthrough of nothing but
+  junk that must still reach the next act.
+- **Timed beats starve behind an LLM front end.** The parser clock only
+  ticks on a *successful parse*, and natural-language play produces far
+  fewer than typed play: measured over 50 chatty inputs, a third never
+  became a command at all (the translator answered them conversationally)
+  and many of the rest bounced off the parser, yielding roughly **one clock
+  tick per three player inputs**. Any timer tuned against typed commands
+  will fire three times later than intended, or never. Tune against a real
+  LLM transcript, and prefer beats keyed to player readiness over turn
+  counts.
 - **Advice needs a bigger model than translation does.** Below roughly 4B a
   model translates well but invents world facts when asked to coach. That
   is a player-facing quality decision, not an engine one.

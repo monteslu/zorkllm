@@ -143,6 +143,22 @@ Per-game detail lives in each `adventures/<game>/LESSONS.md` and
 - Use `M-ENTER` for place-based triggers and `QUEUE` only for "in N turns,
   wherever you are." Mixing them up loses scenes.
 
+## Playing through an LLM front end
+
+These games are usually played with a model translating natural language
+into parser commands, which changes two engine-level assumptions:
+
+- **The clock only ticks on a successful parse**, and natural-language play
+  produces far fewer successful parses than typed play. Measured over 50
+  chatty inputs: a third never became a command at all (answered
+  conversationally instead), and many of the rest were rejected — about
+  **one clock tick per three player inputs**. Every timed beat, nudge, and
+  daemon threshold must be tuned against a real LLM transcript, not against
+  a hand-typed walkthrough, or it fires three times later than intended.
+- **v4+ games have no status line**, so `session.status` carries a room
+  name (read from the player object's parent in the object tree) but null
+  score and turns. Test harnesses must assert on the SCORE command's text.
+
 ## Testing
 
 - **Assert "no parser-failure strings anywhere in the transcript" in the
