@@ -30,3 +30,22 @@ them from Project Gutenberg.
 All in-game text follows the TTS rule: turn responses of at most two short
 paragraphs (usually less), longer prose only in intros and outros, nothing
 written for the eye that can't be read aloud.
+
+## Build status
+
+Construction is partway through: every game has its world (rooms, objects,
+exits) written, and the risky parser syntax has been proven in spike
+builds for Alice, Oz, and Dracula. What remains for each is the actions
+file - the puzzle logic, which DESIGN.md already specifies solution by
+solution - plus the walkthrough, frozen transcript, and verify script.
+
+| Game | World | Syntax spike | Actions | Verified |
+| --- | --- | --- | --- | --- |
+| dracula | done | done (compiles) | stubs | no |
+| alice | done | done (compiles) | not started | no |
+| wizard-of-oz | done | done (compiles) | not started | no |
+| monte-cristo | done | not started | not started | no |
+| treasure-island | done | not started | not started | no |
+
+Compiled story files and spike builds are not committed; rebuild them
+with the czil command in each design's build notes.

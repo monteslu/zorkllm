@@ -1,0 +1,1233 @@
+"ADUNGEON - the world of WONDERLAND: rooms, objects, and the GO routine."
+
+<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND>
+
+"=================== ABOVE GROUND ==================="
+
+<ROOM RIVERBANK
+      (IN ROOMS)
+      (DESC "Riverbank")
+      (LDESC
+"You are sitting on the riverbank beside your sister, who is reading a
+book with no pictures or conversations in it. The afternoon is hot and
+impossibly drowsy, and the daisies are almost worth picking.")
+      (NORTH PER RIVERBANK-NORTH)
+      (ACTION RIVERBANK-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT SISTER
+	(IN RIVERBANK)
+	(SYNONYM SISTER)
+	(DESC "your sister")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION SISTER-FCN)>
+
+<OBJECT STORY-BOOK
+	(IN RIVERBANK)
+	(SYNONYM BOOK)
+	(ADJECTIVE DULL)
+	(DESC "book without pictures")
+	(FLAGS READBIT NDESCBIT)
+	(ACTION STORY-BOOK-FCN)>
+
+<OBJECT DAISIES
+	(IN RIVERBANK)
+	(SYNONYM DAISIES DAISY CHAIN)
+	(ADJECTIVE DAISY)
+	(DESC "daisies")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION DAISIES-FCN)>
+
+<OBJECT WHITE-RABBIT
+	(IN LOCAL-GLOBALS)
+	(SYNONYM RABBIT)
+	(ADJECTIVE WHITE)
+	(DESC "White Rabbit")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION WHITE-RABBIT-FCN)>
+
+<ROOM HEDGE-FIELD
+      (IN ROOMS)
+      (DESC "Under the Hedge")
+      (LDESC
+"You are at a great hedge at the edge of the field. Under it gapes a
+large rabbit-hole, and from somewhere down it comes a fading voice: \"Oh
+my ears and whiskers, how late it's getting!\"")
+      (SOUTH TO RIVERBANK)
+      (DOWN PER HEDGE-DOWN)
+      (IN PER HEDGE-DOWN)
+      (ACTION HEDGE-FIELD-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT RABBIT-HOLE
+	(IN HEDGE-FIELD)
+	(SYNONYM HOLE RABBIT-HOLE HEDGE)
+	(ADJECTIVE LARGE RABBIT)
+	(DESC "rabbit-hole")
+	(FLAGS NDESCBIT)
+	(ACTION RABBIT-HOLE-FCN)>
+
+"=================== THE FALL ==================="
+
+<ROOM FALLING
+      (IN ROOMS)
+      (DESC "Falling")
+      (LDESC
+"You are falling, slowly and comfortably, past shelves and cupboards set
+into the walls of the well. There is a great deal of down left below
+you, and more arriving.")
+      (ACTION FALLING-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT MARMALADE-JAR
+	(IN FALLING)
+	(SYNONYM JAR MARMALADE)
+	(ADJECTIVE ORANGE MARMALADE EMPTY)
+	(DESC "marmalade jar")
+	(FLAGS TAKEBIT CONTBIT OPENBIT NDESCBIT)
+	(CAPACITY 5)
+	(VALUE 2)
+	(ACTION MARMALADE-JAR-FCN)>
+
+<OBJECT WELL-SHELVES
+	(IN FALLING)
+	(SYNONYM SHELVES CUPBOARDS SHELF CUPBOARD MAPS PICTURES)
+	(DESC "shelves and cupboards")
+	(FLAGS NDESCBIT)
+	(ACTION WELL-SHELVES-FCN)>
+
+"=================== UNDERGROUND: ACT ONE ==================="
+
+<ROOM LEAF-HEAP
+      (IN ROOMS)
+      (DESC "Bottom of the Well")
+      (LDESC
+"A heap of sticks and dry leaves at the bottom of the well, which is all
+dark overhead. A long passage runs north.")
+      (NORTH TO LOW-PASSAGE)
+      (UP "It is all dark overhead, and rabbit-holes do not run backwards.")
+      (ACTION LEAF-HEAP-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT DRY-LEAVES
+	(IN LEAF-HEAP)
+	(SYNONYM LEAVES STICKS HEAP)
+	(ADJECTIVE DRY)
+	(DESC "heap of sticks and dry leaves")
+	(FLAGS NDESCBIT)
+	(ACTION DRY-LEAVES-FCN)>
+
+<ROOM LOW-PASSAGE
+      (IN ROOMS)
+      (DESC "Long Low Passage")
+      (LDESC
+"A long, low passage, still echoing faintly with somebody's lateness.
+It runs north and south.")
+      (NORTH TO HALL)
+      (SOUTH TO LEAF-HEAP)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<ROOM HALL
+      (IN ROOMS)
+      (DESC "Hall of Doors")
+      (SOUTH TO LOW-PASSAGE)
+      (WEST PER LITTLE-DOOR-EXIT)
+      (EAST PER MOUSE-HOLE-EXIT)
+      (ACTION HALL-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT GLASS-TABLE
+	(IN HALL)
+	(SYNONYM TABLE)
+	(ADJECTIVE GLASS LITTLE THREE-LEGGED)
+	(DESC "glass table")
+	(FLAGS SURFACEBIT CONTBIT OPENBIT NDESCBIT)
+	(CAPACITY 30)
+	(ACTION GLASS-TABLE-FCN)>
+
+<OBJECT GOLDEN-KEY
+	(IN GLASS-TABLE)
+	(SYNONYM KEY)
+	(ADJECTIVE GOLDEN TINY LITTLE)
+	(DESC "little golden key")
+	(FLAGS TAKEBIT TOOLBIT)
+	(SIZE 1)
+	(ACTION GOLDEN-KEY-FCN)>
+
+<OBJECT HALL-CURTAIN
+	(IN HALL)
+	(SYNONYM CURTAIN)
+	(ADJECTIVE LOW)
+	(DESC "low curtain")
+	(FLAGS NDESCBIT)
+	(ACTION HALL-CURTAIN-FCN)>
+
+<OBJECT BIG-DOORS
+	(IN HALL)
+	(SYNONYM DOORS)
+	(ADJECTIVE BIG LARGE LOCKED)
+	(DESC "big doors")
+	(FLAGS NDESCBIT)
+	(ACTION BIG-DOORS-FCN)>
+
+<OBJECT LITTLE-DOOR
+	(IN HALL)
+	(SYNONYM DOOR)
+	(ADJECTIVE LITTLE SMALL TINY)
+	(DESC "little door")
+	(FLAGS DOORBIT NDESCBIT INVISIBLE LOCKEDBIT)
+	(ACTION LITTLE-DOOR-FCN)>
+
+<OBJECT HALL-LAMPS
+	(IN HALL)
+	(SYNONYM LAMPS LAMP ROOF)
+	(DESC "row of lamps")
+	(FLAGS NDESCBIT)
+	(ACTION HALL-LAMPS-FCN)>
+
+<OBJECT DRINK-BOTTLE
+	(SYNONYM BOTTLE LABEL)
+	(ADJECTIVE LITTLE DRINK PAPER)
+	(DESC "little bottle marked DRINK ME")
+	(FLAGS TAKEBIT READBIT NDESCBIT)
+	(ACTION DRINK-BOTTLE-FCN)>
+
+<OBJECT GLASS-BOX
+	(SYNONYM BOX)
+	(ADJECTIVE GLASS LITTLE)
+	(DESC "little glass box")
+	(FLAGS CONTBIT TRANSBIT NDESCBIT)
+	(CAPACITY 5)
+	(ACTION GLASS-BOX-FCN)>
+
+<OBJECT EATME-CAKE
+	(IN GLASS-BOX)
+	(SYNONYM CAKE CURRANTS)
+	(ADJECTIVE CURRANT SMALL EAT)
+	(DESC "small cake marked EAT ME")
+	(FLAGS TAKEBIT FOODBIT READBIT)
+	(ACTION EATME-CAKE-FCN)>
+
+<OBJECT MOUSE-HOLE-DOOR
+	(SYNONYM MOUSE-HOLE HOLE SKIRTING)
+	(ADJECTIVE TIDY MOUSE)
+	(DESC "tidy little mouse-hole")
+	(FLAGS NDESCBIT)
+	(ACTION MOUSE-HOLE-DOOR-FCN)>
+
+<OBJECT THE-FAN
+	(SYNONYM FAN)
+	(ADJECTIVE LARGE KID)
+	(DESC "large fan")
+	(FLAGS TAKEBIT)
+	(ACTION THE-FAN-FCN)>
+
+<OBJECT KID-GLOVES
+	(SYNONYM GLOVES PAIR)
+	(ADJECTIVE WHITE KID TINY)
+	(DESC "pair of white kid gloves")
+	(FLAGS TAKEBIT WEARBIT)
+	(ACTION KID-GLOVES-FCN)>
+
+<ROOM MOUSE-HOLE
+      (IN ROOMS)
+      (DESC "Mouse-Hole")
+      (LDESC
+"A snug hole behind the skirting-board, floored with a scrap of carpet
+and furnished above your ambitions. Somebody keeps house here, and keeps
+it better than you keep yours. The hall is back to the west.")
+      (WEST TO HALL)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT SIXPENCE
+	(IN MOUSE-HOLE)
+	(SYNONYM SIXPENCE COIN)
+	(ADJECTIVE SILVER)
+	(DESC "silver sixpence")
+	(FDESC
+"On a doll's dresser, polished to a shine, lies a silver sixpence.")
+	(FLAGS TAKEBIT)
+	(VALUE 1)
+	(ACTION SIXPENCE-FCN)>
+
+<OBJECT SAVED-COMFIT
+	(IN MOUSE-HOLE)
+	(SYNONYM COMFIT SWEET)
+	(ADJECTIVE SAVED SINGLE)
+	(DESC "carefully saved comfit")
+	(FLAGS TAKEBIT FOODBIT)
+	(ACTION SAVED-COMFIT-FCN)>
+
+<ROOM POOL
+      (IN ROOMS)
+      (DESC "Pool of Tears")
+      (LDESC
+"You are up to your chin in salt water, in a pool that was not here this
+morning, on account of your having wept it yourself. Shores of the hall
+rise dimly to the west.")
+      (WEST PER POOL-WEST)
+      (NORTH "Everything in every direction is regrettably tears.")
+      (SOUTH "Everything in every direction is regrettably tears.")
+      (EAST "Everything in every direction is regrettably tears.")
+      (UP "Everything in every direction is regrettably tears.")
+      (DOWN PER POOL-DOWN)
+      (ACTION POOL-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-MOUSE
+	(IN POOL)
+	(SYNONYM MOUSE)
+	(ADJECTIVE SWIMMING)
+	(DESC "Mouse")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-MOUSE-FCN)>
+
+"=================== ACT TWO ==================="
+
+<ROOM SHORE
+      (IN ROOMS)
+      (DESC "Queer Shore")
+      (EAST TO SANDY-PATH)
+      (WEST
+"The pool has quite soaked into the gravel, as pools of tears do once
+they have been properly raced beside.")
+      (ACTION SHORE-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-DODO
+	(IN SHORE)
+	(SYNONYM DODO)
+	(ADJECTIVE SOLEMN)
+	(DESC "Dodo")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-DODO-FCN)>
+
+<OBJECT SHORE-BIRDS
+	(IN SHORE)
+	(SYNONYM BIRDS LORY EAGLET DUCK CRAB COMPANY CREATURES ANIMALS)
+	(DESC "queer company")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION SHORE-BIRDS-FCN)>
+
+<ROOM SANDY-PATH
+      (IN ROOMS)
+      (DESC "Sandy Path")
+      (LDESC
+"A neat sandy path between hedges, the sort a very house-proud rabbit
+would rake twice daily. It runs west to the shore and east toward a
+little house.")
+      (WEST TO SHORE)
+      (EAST TO RABBIT-LAWN)
+      (ACTION SANDY-PATH-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<ROOM RABBIT-LAWN
+      (IN ROOMS)
+      (DESC "Outside Rabbit's House")
+      (LDESC
+"A neat little house with a bright brass plate on the door, engraved
+W. RABBIT. The garden beds are all radishes. A sandy path runs west, and
+a wood thickens to the south.")
+      (WEST TO SANDY-PATH)
+      (SOUTH TO THICK-WOOD)
+      (IN PER RABBIT-HOUSE-IN)
+      (UP PER RABBIT-HOUSE-IN)
+      (EAST PER RABBIT-HOUSE-IN)
+      (ACTION RABBIT-LAWN-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT BRASS-PLATE
+	(IN RABBIT-LAWN)
+	(SYNONYM PLATE)
+	(ADJECTIVE BRASS BRIGHT)
+	(DESC "brass plate")
+	(FLAGS READBIT NDESCBIT)
+	(TEXT "W. RABBIT.")>
+
+<OBJECT RABBIT-HOUSE
+	(IN RABBIT-LAWN)
+	(SYNONYM HOUSE)
+	(ADJECTIVE NEAT LITTLE)
+	(DESC "neat little house")
+	(FLAGS NDESCBIT)
+	(ACTION RABBIT-HOUSE-FCN)>
+
+<OBJECT RADISHES
+	(IN RABBIT-LAWN)
+	(SYNONYM RADISHES RADISH BEDS)
+	(ADJECTIVE GARDEN)
+	(DESC "radishes")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION RADISHES-FCN)>
+
+<ROOM RABBIT-ROOM
+      (IN ROOMS)
+      (DESC "Tidy Little Room")
+      (OUT PER RABBIT-ROOM-OUT)
+      (DOWN PER RABBIT-ROOM-OUT)
+      (ACTION RABBIT-ROOM-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT SPARE-FAN
+	(IN RABBIT-ROOM)
+	(SYNONYM FAN)
+	(ADJECTIVE SPARE SECOND)
+	(DESC "spare fan")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION SPARE-FAN-FCN)>
+
+<OBJECT SPARE-GLOVES
+	(IN RABBIT-ROOM)
+	(SYNONYM GLOVES)
+	(ADJECTIVE SPARE SECOND)
+	(DESC "spare pair of gloves")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION SPARE-GLOVES-FCN)>
+
+<OBJECT PLAIN-BOTTLE
+	(IN RABBIT-ROOM)
+	(SYNONYM BOTTLE)
+	(ADJECTIVE PLAIN UNLABELED LITTLE)
+	(DESC "little bottle with no label")
+	(FLAGS TAKEBIT NDESCBIT)
+	(ACTION PLAIN-BOTTLE-FCN)>
+
+<OBJECT LOOKING-GLASS
+	(IN RABBIT-ROOM)
+	(SYNONYM GLASS MIRROR LOOKING-GLASS)
+	(ADJECTIVE LOOKING)
+	(DESC "looking-glass")
+	(FLAGS NDESCBIT)
+	(ACTION LOOKING-GLASS-FCN)>
+
+<OBJECT ROOM-WINDOW
+	(IN RABBIT-ROOM)
+	(SYNONYM WINDOW)
+	(DESC "window")
+	(FLAGS NDESCBIT)
+	(ACTION ROOM-WINDOW-FCN)>
+
+<OBJECT ROOM-CHIMNEY
+	(IN RABBIT-ROOM)
+	(SYNONYM CHIMNEY)
+	(DESC "chimney")
+	(FLAGS NDESCBIT)
+	(ACTION ROOM-CHIMNEY-FCN)>
+
+<OBJECT ROOM-TABLE
+	(IN RABBIT-ROOM)
+	(SYNONYM TABLE)
+	(DESC "table in the window")
+	(FLAGS SURFACEBIT CONTBIT OPENBIT NDESCBIT)
+	(CAPACITY 30)>
+
+<OBJECT SPARE-CAKE
+	(SYNONYM CAKE PEBBLE)
+	(ADJECTIVE PEBBLE LITTLE SPARE)
+	(DESC "little pebble-cake")
+	(FLAGS TAKEBIT FOODBIT)
+	(ACTION SPARE-CAKE-FCN)>
+
+<OBJECT FLOOR-CAKES
+	(SYNONYM CAKES PEBBLES)
+	(ADJECTIVE LITTLE SCATTERED)
+	(DESC "scattering of little cakes")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION FLOOR-CAKES-FCN)>
+
+<ROOM THICK-WOOD
+      (IN ROOMS)
+      (DESC "Thick Wood")
+      (NORTH TO RABBIT-LAWN)
+      (SOUTH TO CROSSROADS)
+      (WEST PER BRAMBLE-TUNNEL-EXIT)
+      (UP PER TREETOPS-EXIT)
+      (ACTION THICK-WOOD-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-PUPPY
+	(IN THICK-WOOD)
+	(SYNONYM PUPPY DOG)
+	(ADJECTIVE ENORMOUS DEAR)
+	(DESC "puppy")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-PUPPY-FCN)>
+
+<OBJECT DEAD-STICK
+	(IN THICK-WOOD)
+	(SYNONYM STICK)
+	(ADJECTIVE DEAD LITTLE)
+	(DESC "little bit of dead stick")
+	(FLAGS TAKEBIT NDESCBIT)
+	(ACTION DEAD-STICK-FCN)>
+
+<OBJECT THISTLE
+	(IN THICK-WOOD)
+	(SYNONYM THISTLE THISTLES)
+	(ADJECTIVE GREAT)
+	(DESC "great thistle")
+	(FLAGS NDESCBIT)
+	(ACTION THISTLE-FCN)>
+
+<OBJECT BRAMBLES
+	(IN THICK-WOOD)
+	(SYNONYM BRAMBLES BANK TUNNEL)
+	(ADJECTIVE BRAMBLE)
+	(DESC "bramble bank")
+	(FLAGS NDESCBIT)
+	(ACTION BRAMBLES-FCN)>
+
+<ROOM TREETOPS
+      (IN ROOMS)
+      (DESC "Above the Wood")
+      (LDESC
+"Your head and shoulders stand above the canopy, in bright air. The wood
+is a sea of green leaves below. Southeast, a chimney shaped like an ear
+smokes over a fur-thatched roof; southwest, peppery smoke rises from a
+little house; and far south, past everything, walls of white and red
+close round a garden so bright it hurts.")
+      (DOWN TO THICK-WOOD)
+      (ACTION TREETOPS-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-PIGEON
+	(IN TREETOPS)
+	(SYNONYM PIGEON)
+	(ADJECTIVE DISAPPROVING)
+	(DESC "Pigeon")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-PIGEON-FCN)>
+
+<ROOM MUSHROOM-CLEARING
+      (IN ROOMS)
+      (DESC "Mushroom Clearing")
+      (EAST PER CLEARING-EAST)
+      (ACTION MUSHROOM-CLEARING-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT CATERPILLAR
+	(IN MUSHROOM-CLEARING)
+	(SYNONYM CATERPILLAR)
+	(ADJECTIVE BLUE LARGE)
+	(DESC "Caterpillar")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION CATERPILLAR-FCN)>
+
+<OBJECT THE-MUSHROOM
+	(IN MUSHROOM-CLEARING)
+	(SYNONYM MUSHROOM)
+	(ADJECTIVE LARGE ROUND)
+	(DESC "large mushroom")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION THE-MUSHROOM-FCN)>
+
+<OBJECT HOOKAH
+	(IN MUSHROOM-CLEARING)
+	(SYNONYM HOOKAH PIPE)
+	(ADJECTIVE LONG)
+	(DESC "long hookah")
+	(FLAGS NDESCBIT)
+	(ACTION HOOKAH-FCN)>
+
+<OBJECT LEFT-PIECE
+	(SYNONYM PIECE)
+	(ADJECTIVE LEFT)
+	(DESC "left-hand piece of mushroom")
+	(FLAGS TAKEBIT FOODBIT)
+	(ACTION LEFT-PIECE-FCN)>
+
+<OBJECT RIGHT-PIECE
+	(SYNONYM PIECE)
+	(ADJECTIVE RIGHT)
+	(DESC "right-hand piece of mushroom")
+	(FLAGS TAKEBIT FOODBIT)
+	(ACTION RIGHT-PIECE-FCN)>
+
+<ROOM CROSSROADS
+      (IN ROOMS)
+      (DESC "Wood Crossroads")
+      (LDESC
+"Paths cross here under a broad-boughed tree. Something about the tree
+suggests it is often sat in. Paths run north into the thick wood, west
+toward a peppery smell, east toward a clatter of crockery, and south
+where the trees grow doors.")
+      (NORTH TO THICK-WOOD)
+      (WEST TO DUCHESS-LAWN)
+      (EAST TO TEA-GARDEN)
+      (SOUTH TO DOOR-TREE-WOOD)
+      (ACTION CROSSROADS-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT CHESHIRE-CAT
+	(IN CROSSROADS)
+	(SYNONYM CAT GRIN)
+	(ADJECTIVE CHESHIRE GRINNING)
+	(DESC "Cheshire Cat")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION CHESHIRE-CAT-FCN)>
+
+<OBJECT CAT-TREE
+	(IN CROSSROADS)
+	(SYNONYM TREE BOUGH)
+	(ADJECTIVE BROAD-BOUGHED BROAD)
+	(DESC "broad-boughed tree")
+	(FLAGS NDESCBIT CLIMBBIT)
+	(ACTION CAT-TREE-FCN)>
+
+<ROOM DUCHESS-LAWN
+      (IN ROOMS)
+      (DESC "Duchess's Doorstep")
+      (LDESC
+"A little house about four feet high, which is a comfortable height for
+a house if you are nine inches tall. On the doorstep sits a footman with
+the face of a frog, staring stupidly up into the sky. From inside comes
+a most extraordinary noise: howling, sneezing, and every now and then a
+great crash, as if a dish had been broken to pieces.")
+      (EAST TO CROSSROADS)
+      (IN PER DUCHESS-DOOR-IN)
+      (WEST PER DUCHESS-DOOR-IN)
+      (ACTION DUCHESS-LAWN-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT FROG-FOOTMAN
+	(IN DUCHESS-LAWN)
+	(SYNONYM FOOTMAN FROG)
+	(ADJECTIVE FROG)
+	(DESC "Frog-Footman")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION FROG-FOOTMAN-FCN)>
+
+<OBJECT DUCHESS-DOOR
+	(IN DUCHESS-LAWN)
+	(SYNONYM DOOR)
+	(ADJECTIVE FRONT)
+	(DESC "front door")
+	(FLAGS DOORBIT NDESCBIT)
+	(ACTION DUCHESS-DOOR-FCN)>
+
+<ROOM KITCHEN
+      (IN ROOMS)
+      (DESC "Duchess's Kitchen")
+      (LDESC
+"A large kitchen full of smoke from one end to the other. The Duchess
+sits on a three-legged stool nursing a howling baby; the cook stirs a
+cauldron of soup and, at intervals, throws everything within reach. On
+the hearth a large cat grins from ear to ear. There is far, far too much
+pepper.")
+      (OUT TO DUCHESS-LAWN)
+      (EAST TO DUCHESS-LAWN)
+      (ACTION KITCHEN-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-DUCHESS
+	(IN KITCHEN)
+	(SYNONYM DUCHESS)
+	(ADJECTIVE UGLY)
+	(DESC "Duchess")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-DUCHESS-FCN)>
+
+<OBJECT THE-COOK
+	(IN KITCHEN)
+	(SYNONYM COOK)
+	(DESC "cook")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-COOK-FCN)>
+
+<OBJECT THE-BABY
+	(IN KITCHEN)
+	(SYNONYM BABY CHILD PIG)
+	(ADJECTIVE HOWLING QUEER-SHAPED)
+	(DESC "howling baby")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-BABY-FCN)>
+
+<OBJECT HEARTH-CAT
+	(IN KITCHEN)
+	(SYNONYM CAT GRIN)
+	(ADJECTIVE GRINNING LARGE CHESHIRE)
+	(DESC "grinning cat")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION HEARTH-CAT-FCN)>
+
+<OBJECT CAULDRON
+	(IN KITCHEN)
+	(SYNONYM CAULDRON SOUP STOOL FIRE-IRONS PLATES DISHES SAUCEPANS)
+	(ADJECTIVE LARGE)
+	(DESC "cauldron of soup")
+	(FLAGS NDESCBIT)
+	(ACTION CAULDRON-FCN)>
+
+<OBJECT PEPPERBOX
+	(IN KITCHEN)
+	(SYNONYM PEPPERBOX PEPPER DRESSER)
+	(ADJECTIVE SECOND)
+	(DESC "pepper-box")
+	(FLAGS TAKEBIT)
+	(VALUE 1)
+	(ACTION PEPPERBOX-FCN)>
+
+<OBJECT INVITATION
+	(SYNONYM INVITATION CARD INVITE)
+	(ADJECTIVE STIFF ROYAL)
+	(DESC "stiff royal invitation")
+	(FLAGS TAKEBIT READBIT)
+	(VALUE 2)
+	(ACTION INVITATION-FCN)>
+
+<ROOM TEA-GARDEN
+      (IN ROOMS)
+      (DESC "Mad Tea Table")
+      (WEST TO CROSSROADS)
+      (DOWN PER TEA-WELL-EXIT)
+      (ACTION TEA-GARDEN-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-HATTER
+	(IN TEA-GARDEN)
+	(SYNONYM HATTER)
+	(ADJECTIVE MAD)
+	(DESC "Hatter")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-HATTER-FCN)>
+
+<OBJECT MARCH-HARE
+	(IN TEA-GARDEN)
+	(SYNONYM HARE)
+	(ADJECTIVE MARCH)
+	(DESC "March Hare")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION MARCH-HARE-FCN)>
+
+<OBJECT DORMOUSE
+	(IN TEA-GARDEN)
+	(SYNONYM DORMOUSE)
+	(ADJECTIVE SLEEPING SLEEPY)
+	(DESC "Dormouse")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION DORMOUSE-FCN)>
+
+<OBJECT TEA-THINGS
+	(IN TEA-GARDEN)
+	(SYNONYM TEAPOT TEACUP TEACUPS TEA MILK MILK-JUG WINE)
+	(ADJECTIVE CLEAN DIRTY)
+	(DESC "tea things")
+	(FLAGS NDESCBIT)
+	(ACTION TEA-THINGS-FCN)>
+
+<OBJECT BREAD-AND-BUTTER
+	(IN TEA-GARDEN)
+	(SYNONYM BREAD BUTTER BREAD-AND-BUTTER)
+	(ADJECTIVE BEST BUTTERED)
+	(DESC "bread-and-butter")
+	(FLAGS NDESCBIT TRYTAKEBIT FOODBIT)
+	(ACTION BREAD-AND-BUTTER-FCN)>
+
+<OBJECT HATTER-WATCH
+	(IN TEA-GARDEN)
+	(SYNONYM WATCH WORKS)
+	(ADJECTIVE FUNNY)
+	(DESC "Hatter's watch")
+	(FLAGS NDESCBIT READBIT)
+	(ACTION HATTER-WATCH-FCN)>
+
+<OBJECT STONE-WELL
+	(IN TEA-GARDEN)
+	(SYNONYM WELL ROPE BUCKET)
+	(ADJECTIVE OLD STONE)
+	(DESC "old stone well")
+	(FLAGS NDESCBIT)
+	(ACTION STONE-WELL-FCN)>
+
+<OBJECT ARM-CHAIR
+	(IN TEA-GARDEN)
+	(SYNONYM ARM-CHAIR CHAIR SEAT)
+	(ADJECTIVE LARGE)
+	(DESC "large arm-chair")
+	(FLAGS NDESCBIT)
+	(ACTION ARM-CHAIR-FCN)>
+
+<OBJECT THE-RIDDLE
+	(IN TEA-GARDEN)
+	(SYNONYM RIDDLE RAVEN WRITING-DESK)
+	(DESC "riddle")
+	(FLAGS NDESCBIT)
+	(ACTION THE-RIDDLE-FCN)>
+
+<OBJECT TALL-HAT
+	(SYNONYM HAT)
+	(ADJECTIVE TALL)
+	(DESC "tall hat")
+	(FLAGS TAKEBIT WEARBIT)
+	(ACTION TALL-HAT-FCN)>
+
+<ROOM TREACLE-WELL
+      (IN ROOMS)
+      (DESC "Treacle Well")
+      (LDESC
+"The bottom of the well, and it is a treacle-well: the walls glisten
+brown and the air is thick and sweet enough to slice. Three small
+sisters sit learning to draw, and what they draw is treacle, and also
+everything that begins with an M.")
+      (UP TO TEA-GARDEN)
+      (ACTION TREACLE-WELL-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT TREACLE-GOO
+	(IN TREACLE-WELL)
+	(SYNONYM TREACLE)
+	(ADJECTIVE BROWN SWEET)
+	(DESC "treacle")
+	(FLAGS NDESCBIT TRYTAKEBIT)
+	(ACTION TREACLE-GOO-FCN)>
+
+<OBJECT THREE-SISTERS
+	(IN TREACLE-WELL)
+	(SYNONYM SISTERS ELSIE LACIE TILLIE)
+	(ADJECTIVE THREE SMALL)
+	(DESC "three small sisters")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THREE-SISTERS-FCN)>
+
+<ROOM DOOR-TREE-WOOD
+      (IN ROOMS)
+      (DESC "Wood of Doors")
+      (LDESC
+"In this part of the wood the trees have taken up carpentry. One of them
+has a door leading right into it: a proper door, with hinges and a
+handle, in the bark. The crossroads are back to the north.")
+      (NORTH TO CROSSROADS)
+      (IN PER TREE-DOOR-IN)
+      (ACTION DOOR-TREE-WOOD-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT TREE-DOOR
+	(IN DOOR-TREE-WOOD)
+	(SYNONYM DOOR TREE HANDLE HINGES)
+	(ADJECTIVE PROPER BARK)
+	(DESC "door in the tree")
+	(FLAGS DOORBIT NDESCBIT)
+	(ACTION TREE-DOOR-FCN)>
+
+"=================== ACT THREE ==================="
+
+<ROOM GARDEN
+      (IN ROOMS)
+      (DESC "Beautiful Garden")
+      (NORTH PER GARDEN-NORTH)
+      (EAST TO FOUNTAIN-WALK)
+      (WEST PER GARDEN-WEST)
+      (ACTION GARDEN-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT ROSE-TREE
+	(IN GARDEN)
+	(SYNONYM ROSE-TREE ROSES ROSE)
+	(ADJECTIVE WHITE LARGE RED)
+	(DESC "rose-tree")
+	(FLAGS NDESCBIT)
+	(ACTION ROSE-TREE-FCN)>
+
+<OBJECT PAINT-POT
+	(IN GARDEN)
+	(SYNONYM POT PAINT)
+	(ADJECTIVE RED)
+	(DESC "pot of red paint")
+	(FLAGS NDESCBIT TAKEBIT)
+	(ACTION PAINT-POT-FCN)>
+
+<OBJECT PAINT-BRUSH
+	(IN GARDEN)
+	(SYNONYM BRUSH)
+	(ADJECTIVE WET)
+	(DESC "paint brush")
+	(FLAGS TAKEBIT NDESCBIT)
+	(ACTION PAINT-BRUSH-FCN)>
+
+<OBJECT GARDENERS
+	(IN GARDEN)
+	(SYNONYM GARDENERS PAINTERS CARDS)
+	(ADJECTIVE FLAT OBLONG)
+	(DESC "three gardeners")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION GARDENERS-FCN)>
+
+<OBJECT FLOWER-POT
+	(IN GARDEN)
+	(SYNONYM FLOWER-POT FLOWERPOT)
+	(ADJECTIVE LARGE EMPTY)
+	(DESC "large flower-pot")
+	(FLAGS CONTBIT OPENBIT NDESCBIT)
+	(CAPACITY 30)
+	(ACTION FLOWER-POT-FCN)>
+
+<OBJECT GARDEN-FOUNTAINS
+	(IN LOCAL-GLOBALS)
+	(SYNONYM FOUNTAINS FOUNTAIN FLOWER-BEDS FLOWERS)
+	(ADJECTIVE COOL BRIGHT)
+	(DESC "cool fountains")
+	(FLAGS NDESCBIT)
+	(ACTION GARDEN-FOUNTAINS-FCN)>
+
+<ROOM FOUNTAIN-WALK
+      (IN ROOMS)
+      (DESC "Fountain Walk")
+      (LDESC
+"A cool walk between fountains, out of earshot of the croquet. A good
+place to be told morals, if anybody offering morals were about. The
+garden proper lies west.")
+      (WEST TO GARDEN)
+      (GLOBAL GARDEN-FOUNTAINS)
+      (ACTION FOUNTAIN-WALK-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<ROOM CROQUET-GROUND
+      (IN ROOMS)
+      (DESC "Croquet Ground")
+      (SOUTH TO GARDEN)
+      (EAST PER CROQUET-EAST)
+      (ACTION CROQUET-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT FLAMINGO
+	(SYNONYM FLAMINGO MALLET)
+	(ADJECTIVE LIVE)
+	(DESC "live flamingo")
+	(FLAGS ACTORBIT TAKEBIT NDESCBIT)
+	(ACTION FLAMINGO-FCN)>
+
+<OBJECT HEDGEHOG
+	(SYNONYM HEDGEHOG BALL)
+	(ADJECTIVE LIVE)
+	(DESC "live hedgehog")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION HEDGEHOG-FCN)>
+
+<OBJECT SOLDIERS
+	(SYNONYM SOLDIERS SOLDIER ARCH ARCHES)
+	(ADJECTIVE DOUBLED)
+	(DESC "doubled-up soldiers")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION SOLDIERS-FCN)>
+
+<OBJECT THE-QUEEN
+	(SYNONYM QUEEN MAJESTY)
+	(ADJECTIVE RED)
+	(DESC "Queen of Hearts")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-QUEEN-FCN)>
+
+<OBJECT THE-KING
+	(SYNONYM KING)
+	(DESC "King of Hearts")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-KING-FCN)>
+
+<OBJECT CAT-HEAD
+	(SYNONYM HEAD)
+	(ADJECTIVE CAT CHESHIRE)
+	(DESC "Cheshire Cat's head")
+	(FLAGS NDESCBIT)
+	(ACTION CAT-HEAD-FCN)>
+
+<ROOM SEASIDE
+      (IN ROOMS)
+      (DESC "Seaside Ledge")
+      (LDESC
+"A ledge above a grey, sighing sea, which is odd, because you are fairly
+sure you are underground. On the warm rock lies a Gryphon, fast asleep
+in the sun. The croquet-ground is back to the west; the rocks continue
+east.")
+      (WEST TO CROQUET-GROUND)
+      (EAST TO TURTLE-ROCK)
+      (ACTION SEASIDE-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT GRYPHON
+	(IN SEASIDE)
+	(SYNONYM GRYPHON GRIFFIN)
+	(DESC "Gryphon")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION GRYPHON-FCN)>
+
+<ROOM TURTLE-ROCK
+      (IN ROOMS)
+      (DESC "Mock Turtle's Rock")
+      (LDESC
+"A little ledge of rock by the sea, where the Mock Turtle sits, sad and
+lonely, sighing as if his heart would break. It is all his fancy, that;
+he hasn't got no sorrow, you know.")
+      (WEST TO SEASIDE)
+      (ACTION TURTLE-ROCK-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT MOCK-TURTLE
+	(IN TURTLE-ROCK)
+	(SYNONYM TURTLE MOCK-TURTLE)
+	(ADJECTIVE MOCK SAD)
+	(DESC "Mock Turtle")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION MOCK-TURTLE-FCN)>
+
+"=================== THE TRIAL ==================="
+
+<ROOM COURTROOM
+      (IN ROOMS)
+      (DESC "Court of Hearts")
+      (LDESC
+"The court of the King and Queen of Hearts. The Knave stands in chains
+between two soldiers; the White Rabbit, near the throne, holds a trumpet
+in one hand and a scroll of parchment in the other. Twelve jurors write
+busily on slates. In the very middle stands a table with a large dish of
+tarts upon it. They look uncommonly good.")
+      (ACTION COURTROOM-FCN)
+      (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+<OBJECT THE-KNAVE
+	(IN COURTROOM)
+	(SYNONYM KNAVE PRISONER)
+	(ADJECTIVE CARDBOARD)
+	(DESC "Knave of Hearts")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION THE-KNAVE-FCN)>
+
+<OBJECT JURORS
+	(IN COURTROOM)
+	(SYNONYM JURORS JURY JURYMEN SLATES)
+	(ADJECTIVE TWELVE)
+	(DESC "twelve jurors")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION JURORS-FCN)>
+
+<OBJECT BILL-LIZARD
+	(IN COURTROOM)
+	(SYNONYM BILL LIZARD)
+	(ADJECTIVE LITTLE)
+	(DESC "Bill the Lizard")
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION BILL-LIZARD-FCN)>
+
+<OBJECT SQUEAKY-PENCIL
+	(IN COURTROOM)
+	(SYNONYM PENCIL)
+	(ADJECTIVE SQUEAKY SLATE)
+	(DESC "squeaky slate-pencil")
+	(FLAGS TAKEBIT NDESCBIT)
+	(ACTION SQUEAKY-PENCIL-FCN)>
+
+<OBJECT THE-TARTS
+	(IN COURTROOM)
+	(SYNONYM TARTS TART DISH)
+	(ADJECTIVE STOLEN)
+	(DESC "dish of tarts")
+	(FLAGS NDESCBIT TRYTAKEBIT FOODBIT)
+	(ACTION THE-TARTS-FCN)>
+
+<OBJECT JURY-BOX
+	(IN COURTROOM)
+	(SYNONYM BOX JURY-BOX)
+	(ADJECTIVE JURY)
+	(DESC "jury-box")
+	(FLAGS NDESCBIT CONTBIT OPENBIT)
+	(CAPACITY 50)
+	(ACTION JURY-BOX-FCN)>
+
+<OBJECT COURT-PROPS
+	(IN COURTROOM)
+	(SYNONYM TRUMPET SCROLL PARCHMENT NOTE-BOOK NOTEBOOK THRONE
+		 GUINEA-PIGS)
+	(ADJECTIVE CANVAS)
+	(DESC "appointments of the court")
+	(FLAGS NDESCBIT)
+	(ACTION COURT-PROPS-FCN)>
+
+<OBJECT TRIAL-VERSES
+	(IN COURTROOM)
+	(SYNONYM VERSES LETTER EVIDENCE PAPER)
+	(ADJECTIVE UNSIGNED WHITE)
+	(DESC "set of unsigned verses")
+	(FLAGS NDESCBIT READBIT)
+	(ACTION TRIAL-VERSES-FCN)>
+
+"=================== CARRIED AT START ==================="
+
+<OBJECT COMFIT-BOX
+	(SYNONYM COMFITS BOX SWEETS)
+	(ADJECTIVE COMFIT)
+	(DESC "box of comfits")
+	(FLAGS TAKEBIT)
+	(ACTION COMFIT-BOX-FCN)>
+
+<OBJECT THIMBLE
+	(SYNONYM THIMBLE)
+	(DESC "thimble")
+	(FLAGS TAKEBIT)
+	(ACTION THIMBLE-FCN)>
+
+"=================== SAY-WORDS AND TOPICS ==================="
+
+<OBJECT W-NONSENSE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM NONSENSE)
+	(DESC "word \"nonsense\"")>
+
+<OBJECT W-ALICE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM ALICE)
+	(DESC "your own name")>
+
+<OBJECT W-PIG
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM PIG FIG)
+	(DESC "word \"pig\"")>
+
+<OBJECT W-NOTHING
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM NOTHING)
+	(DESC "nothing at all")>
+
+<OBJECT W-POEM
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM POEM POETRY STANZA)
+	(ADJECTIVE FATHER WILLIAM)
+	(DESC "poem")>
+
+<OBJECT W-CROQUET
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM CROQUET GAME)
+	(DESC "game of croquet")>
+
+<OBJECT T-SIZE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM SIZE GROWING HEIGHT SIDES)
+	(DESC "matter of size")>
+
+<OBJECT T-TALE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM TALE TAIL HISTORY STORY)
+	(DESC "long and sad tale")>
+
+<OBJECT T-DINAH
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM DINAH CAT CATS DOG DOGS)
+	(DESC "Dinah")>
+
+<OBJECT T-QUEEN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM QUEEN EXECUTION)
+	(DESC "Queen")>
+
+<OBJECT T-KING
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM KING)
+	(DESC "King")>
+
+<OBJECT T-DUCHESS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM DUCHESS)
+	(DESC "Duchess")>
+
+<OBJECT T-HATTER
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM HATTER HARE TEA)
+	(DESC "Hatter")>
+
+<OBJECT T-SCHOOL
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM SCHOOL LESSONS SEA SOUP)
+	(DESC "school in the sea")>
+
+<OBJECT T-MUSHROOM
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM MUSHROOM)
+	(DESC "mushroom")>
+
+<OBJECT T-GARDEN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM GARDEN)
+	(DESC "beautiful garden")>
+
+<OBJECT T-TIME
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM TIME WATCH)
+	(DESC "Time himself")>
+
+<OBJECT T-TRIAL
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM TRIAL COURT SENTENCE VERDICT)
+	(DESC "trial")>
+
+<OBJECT T-RABBIT
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM RABBIT)
+	(ADJECTIVE WHITE)
+	(DESC "White Rabbit")>
+
+<OBJECT T-EGGS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM EGGS EGG SERPENT)
+	(DESC "eggs")>
+
+<OBJECT T-WONDERLAND
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM WONDERLAND MADNESS WAY)
+	(DESC "Wonderland")>
+
+"=================== GO ==================="
+
+<ROUTINE GO ()
+	<SETG HERE ,RIVERBANK>
+	<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>
+	       <INTRO-TEXT>)>
+	<SETG LIT T>
+	<SETG WINNER ,ADVENTURER>
+	<SETG PLAYER ,WINNER>
+	<MOVE ,WINNER ,HERE>
+	<MOVE ,COMFIT-BOX ,WINNER>
+	<MOVE ,THIMBLE ,WINNER>
+	<V-LOOK>
+	<MAIN-LOOP>
+	<AGAIN>>
+
+"Stub objects the generic engine verbs reference (never placed in the
+world; PRE-BOARD and V-DRINK check them, FIRSTER checks the case)."
+
+<OBJECT WATER
+	(SYNONYM WATER)
+	(DESC "quantity of water")
+	(FLAGS TRYTAKEBIT TAKEBIT DRINKBIT)>
+
+<OBJECT GLOBAL-WATER
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM WATER TEARS)
+	(ADJECTIVE SALT)
+	(DESC "salt water")
+	(FLAGS DRINKBIT)
+	(ACTION GLOBAL-WATER-FCN)>
+
+<OBJECT WALL
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM WALL WALLS)
+	(DESC "wall")>
+
+<PROPDEF TEXT 0>
+
+"Unreachable stub rooms: the generic (ZORK-NUMBER fallback) branches of a
+few engine verbs compare HERE against them."
+
+<ROOM ON-LAKE
+      (IN ROOMS)
+      (DESC "On the Lake")
+      (FLAGS RLANDBIT)>
+
+<ROOM IN-LAKE
+      (IN ROOMS)
+      (DESC "In the Lake")
+      (FLAGS RLANDBIT)>
+
+"Unplaced stub carrying engine-referenced flags no real object uses."
+
+<OBJECT FLAG-CARRIER
+	(DESC "flag carrier")
+	(FLAGS NONLANDBIT VEHBIT WEAPONBIT BURNBIT FLAMEBIT TURNBIT
+	       LIGHTBIT)>

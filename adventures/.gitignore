@@ -1,2 +1,5 @@
 book.txt
 looking-glass.txt
+*.z8
+*.z3
+spike*
