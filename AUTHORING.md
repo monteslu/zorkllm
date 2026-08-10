@@ -19,6 +19,12 @@ key, a locked container, a scored win condition. It compiles against the
 Zork I engine files and its walkthrough replays byte-for-byte in CI. When
 in doubt, copy it and diff against it.
 
+This document covers the mechanics: ZIL, the engine files, the compiler.
+If you are adapting an existing story (a public-domain novel) rather than
+inventing one, read [ADAPTING.md](ADAPTING.md) first - it covers the
+study-then-design process that has to happen before any of this, and the
+`adventures/` directory holds worked examples of its output.
+
 ## Build and run
 
 ```sh

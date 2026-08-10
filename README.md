@@ -80,9 +80,16 @@ node src/cli.js tinyquest.z3
 ```
 
 See [AUTHORING.md](AUTHORING.md) for the full guide to writing games,
-and `czil/README.md` for the compiler itself (its test gate: the trilogy
-compiled from this repo's sources plays transcript-identical to the
-shipped 1980s binaries).
+[ADAPTING.md](ADAPTING.md) for how to turn a public-domain novel into a
+buildable game design (the process behind `adventures/`, written for
+LLM agents as much as people), and `czil/README.md` for the compiler
+itself (its test gate: the trilogy compiled from this repo's sources
+plays transcript-identical to the shipped 1980s binaries).
+
+`adventures/` holds full adaptations in progress - five classic novels
+(Treasure Island, Dracula, The Count of Monte Cristo, Alice in
+Wonderland, The Wonderful Wizard of Oz), each with deep study notes and
+a complete room-by-room, puzzle-by-puzzle design.
 
 ## How it works
 
