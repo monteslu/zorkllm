@@ -127,7 +127,10 @@ Two quality gates before calling a design done:
 
 ## Phase 3: Build
 
-Covered mechanically by AUTHORING.md; the process rules that matter:
+Covered mechanically by AUTHORING.md. **Read [ENGINE-NOTES.md](ENGINE-NOTES.md)
+before writing any game logic** - it is the distilled trap list, ZIL idiom
+set, and process order from five shipped adaptations, and several of its
+entries cost a full day each to learn. The process rules that matter:
 
 - **Skeleton first.** All rooms, descriptions, exits - compiling and
   bootable - before a single puzzle. Then implement act by act,

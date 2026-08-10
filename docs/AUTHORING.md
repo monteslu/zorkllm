@@ -23,7 +23,10 @@ This document covers the mechanics: ZIL, the engine files, the compiler.
 If you are adapting an existing story (a public-domain novel) rather than
 inventing one, read [ADAPTING.md](ADAPTING.md) first - it covers the
 study-then-design process that has to happen before any of this, and the
-`adventures/` directory holds worked examples of its output.
+`adventures/` directory holds worked examples of its output. Either way,
+[ENGINE-NOTES.md](ENGINE-NOTES.md) collects the traps and idioms learned
+building five full-length games on this engine - worth reading before you
+write game logic, not after.
 
 ## Build and run
 
