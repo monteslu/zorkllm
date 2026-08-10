@@ -157,6 +157,19 @@ async function createOpenAIClient(config) {
   // support it (LM Studio does); if a stricter server rejects the field we
   // retry without it once and stop sending it.
   let sendReasoningOff = config.think !== true;
+  /**
+   * Servers spell "don't think" differently: llama.cpp/LM Studio take
+   * "none", OpenAI's GPT-5 family rejects that and wants "minimal". Walk
+   * the list on rejection rather than giving up on the parameter - leaving
+   * reasoning on costs 15x latency for a translation task (measured on
+   * gpt-5-nano: 19.2s with hidden reasoning, 1.27s with "minimal").
+   */
+  const REASONING_OFF_VALUES = ['none', 'minimal', 'low'];
+  let reasoningOffIdx = 0;
+  /** Renamed by newer OpenAI models; discovered from the first 4xx. */
+  let maxTokensField = 'max_tokens';
+  /** Reasoning models reject an explicit temperature. */
+  let sendTemperature = true;
 
   async function post(body) {
     return fetch(`${base}/chat/completions`, {
@@ -176,18 +189,61 @@ async function createOpenAIClient(config) {
     async complete({ system, messages }) {
       const body = {
         model: config.model,
-        temperature: 0,
+        ...(sendTemperature ? { temperature: 0 } : {}),
         // Replies are a handful of command lines or a couple of sentences.
         // Uncapped generation can run away until it exhausts the server's
         // loaded context ("Context size has been exceeded" mid-stream).
         max_tokens: 512,
         messages: [{ role: 'system', content: system }, ...messages],
       };
-      if (sendReasoningOff) body.reasoning_effort = 'none';
+      if (sendReasoningOff) body.reasoning_effort = REASONING_OFF_VALUES[reasoningOffIdx];
+      if (maxTokensField !== 'max_tokens') {
+        delete body.max_tokens;
+        // Reasoning models bill hidden thinking against this same cap, so a
+        // budget sized for visible output alone returns finish_reason
+        // "length" with empty content - every turn, silently (observed:
+        // gpt-5-nano spending 512 of 512 tokens reasoning about "look
+        // around"). Give them room for both.
+        body[maxTokensField] = 4096;
+      }
       let res = await post(body);
-      if (!res.ok && sendReasoningOff && res.status >= 400 && res.status < 500) {
-        sendReasoningOff = false;
-        delete body.reasoning_effort;
+      // Servers disagree about request fields, and the disagreements are
+      // per-model, not per-endpoint: OpenAI's GPT-5 family rejects
+      // `max_tokens` in favour of `max_completion_tokens`, and reasoning
+      // models reject `temperature` outright. A 4xx naming the offending
+      // parameter is recoverable - adapt once and remember for the session
+      // rather than failing every turn.
+      for (let attempt = 0; attempt < 3 && !res.ok && res.status >= 400 && res.status < 500; attempt++) {
+        const detail = await res.clone().text().catch(() => '');
+        if (sendReasoningOff && /reasoning_effort/.test(detail)
+          && reasoningOffIdx < REASONING_OFF_VALUES.length - 1) {
+          reasoningOffIdx += 1;
+          body.reasoning_effort = REASONING_OFF_VALUES[reasoningOffIdx];
+        } else if (sendReasoningOff && /reasoning_effort/.test(detail)) {
+          sendReasoningOff = false;
+          delete body.reasoning_effort;
+        } else if (/max_completion_tokens/.test(detail) && 'max_tokens' in body) {
+          maxTokensField = 'max_completion_tokens';
+          delete body.max_tokens;
+          body.max_completion_tokens = 512;
+        } else if (/temperature/.test(detail) && 'temperature' in body) {
+          sendTemperature = false;
+          delete body.temperature;
+        } else if (sendReasoningOff) {
+          sendReasoningOff = false;
+          delete body.reasoning_effort;
+        } else {
+          break;
+        }
+        res = await post(body);
+      }
+      // Hosted APIs rate-limit; a game turn is worth waiting a few seconds
+      // for rather than losing. Honour Retry-After when the server sends it.
+      for (let attempt = 0; attempt < 4 && (res.status === 429 || res.status >= 500); attempt++) {
+        const hinted = Number(res.headers.get('retry-after')) * 1000;
+        const waitMs = Number.isFinite(hinted) && hinted > 0
+          ? Math.min(hinted, 20000) : Math.min(1000 * 2 ** attempt, 8000);
+        await new Promise((r) => setTimeout(r, waitMs));
         res = await post(body);
       }
       if (!res.ok) {
@@ -197,6 +253,18 @@ async function createOpenAIClient(config) {
       const data = await res.json();
       const msg = data.choices?.[0]?.message;
       if (!msg) throw new Error('LLM response had no choices');
+      // A reasoning model that hit the cap before emitting anything visible:
+      // retry once with a much larger budget rather than reporting a blank.
+      if (!msg.content && data.choices[0].finish_reason === 'length'
+        && maxTokensField !== 'max_tokens' && body[maxTokensField] < 16384) {
+        body[maxTokensField] = 16384;
+        const retry = await post(body);
+        if (retry.ok) {
+          const rd = await retry.json();
+          const rm = rd.choices?.[0]?.message;
+          if (rm?.content) return rm.content;
+        }
+      }
       debugLog({
         lastUser: messages[messages.length - 1]?.content,
         content: msg.content,
