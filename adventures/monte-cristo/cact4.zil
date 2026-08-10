@@ -415,8 +415,7 @@ somewhere inside him, screaming." CR>
 	 <COND (,JACKET-REVEAL <RFALSE>)>
 	 <SETG JACKET-REVEAL T>
 	 <SETG SALON-SCENE <>>
-	 <SETG IDENTITY 4>
-	 <MOVE ,SAILOR-JACKET ,WINNER>
+	 <SET-IDENTITY 4>
 	 <REMOVE ,MORCERF>
 	 <COND (<NOT <EQUAL? ,HERE ,SALON>> <GOTO ,SALON <>>)>
 	 <ADD-SCORE 5>
@@ -735,9 +734,7 @@ God was with you." CR CR
 goes out like a lamp, and he begins, on his hands and knees, to look
 for his papers." CR CR>
 	 <REMOVE ,VILLEFORT4>
-	 <MOVE ,WIG ,WINNER>
-	 <MOVE ,CASSOCK ,WINNER>
-	 <SETG IDENTITY 1>
+	 <SET-IDENTITY 1>
 	 <DANGLARS-FLEES>
 	 <RTRUE>>
 
@@ -902,9 +899,7 @@ La Reserve. I am Edmond Dantes.\"" CR CR
 "\"Oh, my God, my God,\" says Caderousse, \"forgive me for having
 denied you,\" and dies believing, which is more than he managed in
 fifty years of living." CR>
-	 <MOVE ,WIG ,WINNER>
-	 <MOVE ,CASSOCK ,WINNER>
-	 <SETG IDENTITY 1>
+	 <SET-IDENTITY 1>
 	 <RTRUE>>
 
 "=== ACT FIVE ==="

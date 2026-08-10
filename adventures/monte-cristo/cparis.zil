@@ -4,7 +4,7 @@ Paris 1838, and the expiation. Rooms, objects, topics."
 "=== ACT IV - PARIS, 1838 ==="
 
 <ROOM SALON
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Salon of the Count of Monte Cristo")
       (LDESC
 "No. 30, Champs-Elysees. Silk, bronze, and rumor. Paris has decided
@@ -20,7 +20,7 @@ city waits south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CSTUDY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Count's Study")
       (LDESC
 "Maps, dossiers, and a wardrobe deeper than it looks: a priest's
@@ -31,7 +31,7 @@ paid for with fourteen years, a sailor's jacket and hat.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM HAYDEE-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Haydee's Apartments")
       (LDESC
 "Incense, cushions, and a silence from farther east than Greece.
@@ -42,7 +42,7 @@ The salon lies south, back through the curtain.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM STREET
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Champs-Elysees")
       (LDESC
 "Carriages, gossip, and gaslight. From here the city is yours. The
@@ -63,7 +63,7 @@ you in to Auteuil.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM BANKHALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Danglars's Bank - Antechamber")
       (LDESC
 "Marble bought with margins. Clerks scratch in ledgers; above the
@@ -74,7 +74,7 @@ Baron's office lies west and the street east.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM BANKOFF
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Danglars's Office")
       (LDESC
 "Baron Danglars fills his chair like a sack of coin. On the wall, a
@@ -84,7 +84,7 @@ keeps: the daily quotations. The way out leads east.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TELEGARDEN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Garden Below the Telegraph")
       (LDESC
 "A kitchen garden at the foot of an old tower crowned with black
@@ -96,7 +96,7 @@ of a thousand francs a year.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TELETOWER
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Telegraph Platform")
       (LDESC
 "Up here the signal arms creak overhead like a gallows-tree of news.
@@ -107,7 +107,7 @@ down.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM PRESS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Offices of l'Impartial")
       (LDESC
 "Ink-fog, proof sheets, and the guillotine-thump of the press below.
@@ -117,7 +117,7 @@ street lies west.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM PEERS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Gallery of the Chamber of Peers")
       (LDESC
 "Velvet benches above a floor of old men and older honors, and a
@@ -128,7 +128,7 @@ answers a question of history: what happened at Janina?")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM ASSIZES
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Court of Assizes")
       (LDESC
 "The great criminal court, packed to the cornices, with the doors to
@@ -140,7 +140,7 @@ smile, as if he alone knows the last line.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM AUTSALON
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The House at Auteuil - Salon")
       (LDESC
 "A pleasure-house with its shutters' eyes put out; you have had it lit
@@ -155,7 +155,7 @@ will not look at the garden door.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM AUTGARDEN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Auteuil Garden")
       (LDESC
 "A walled garden gone half wild; the salon lies west, back through its
@@ -165,7 +165,7 @@ forgotten whom he mourns.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM VHALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Villefort's House - Hall")
       (LDESC
 "The procureur's house in the Faubourg Saint-Honore: cold marble,
@@ -180,7 +180,7 @@ Death has been a frequent caller this season.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM NOIRTIER-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Noirtier's Room")
       (LDESC
 "The old conventionist sits paralyzed in his great chair, alive only
@@ -191,7 +191,7 @@ bell-cord serve him for a voice. The hall lies south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM VALROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Valentine's Room")
       (LDESC
 "White curtains, a glass of lemonade on the night table, and a girl
@@ -203,7 +203,7 @@ lies west.")
 "=== ACT V - EXPIATION ==="
 
 <ROOM CATHALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Catacombs of Saint Sebastian")
       (LDESC
 "Under Rome, among the politely stacked dead, Luigi Vampa's men play
@@ -214,7 +214,7 @@ is not sure which frightens him more.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM LARDER
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Larder Cell")
       (LDESC
 "A barred recess in the tufa where a fat man in a torn coat sits among

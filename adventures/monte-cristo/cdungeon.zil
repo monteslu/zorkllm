@@ -16,7 +16,7 @@ something in v3 builds."
 "=== ACT I - MARSEILLES, 1815 ==="
 
 <ROOM DECK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Deck of the Pharaon")
       (LDESC
 "You stand at the helm of the three-master Pharaon, gliding into
@@ -34,7 +34,7 @@ Captain Leclere's cabin is below, down the companion ladder.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CABIN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Captain's Cabin")
       (LDESC
 "Captain Leclere's little cabin still smells of pipe smoke and sea-damp
@@ -45,7 +45,7 @@ goes back up to the deck.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM QUAY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Marseilles Quay")
       (LDESC
 "Fishwives, porters, and half the town crowd the sun-white stones of
@@ -62,7 +62,7 @@ for a feast. Yours.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM OFFICE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Morrel's Counting-House")
       (LDESC
 "Ledgers, sealing wax, and the smell of ink and tar. Portraits of
@@ -74,7 +74,7 @@ men keep faith. The door east opens on the quay.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM MEILHAN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "A Room in the Allees de Meilhan")
       (LDESC
 "Your father's narrow fifth-floor room: a bed, a crucifix, a few
@@ -86,7 +86,7 @@ stairs lead back down, and the quay lies south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CATALANS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Catalan Village")
       (LDESC
 "White cottages above a bright cove; nets drying in the wind. At her
@@ -97,7 +97,7 @@ Catalan's stillness. The road back to the quay runs north.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM RESERVE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Arbor at La Reserve")
       (LDESC
 "Under the leafless arbor of La Reserve the wedding table is laid:
@@ -109,7 +109,7 @@ touches the foamy waves into a network of ruby-tinted light.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM VSTUDY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Villefort's Study")
       (LDESC
 "A magistrate's room in the Palais de Justice: files, a fire in the
@@ -281,7 +281,7 @@ look, and smiles thinly.")>
 "=== ACT II - THE CHATEAU D'IF ==="
 
 <ROOM CELL34
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Cell Number 34")
       (NORTH PER CELL-DOOR-EXIT)
       (DOWN PER CELL34-DIG-EXIT)
@@ -290,7 +290,7 @@ look, and smiles thinly.")>
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TUNNEL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Tunnel")
       (EAST TO CELL34)
       (UP TO CELL34)
@@ -299,7 +299,7 @@ look, and smiles thinly.")>
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CELL27
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Cell Number 27 - the Abbe's Cell")
       (LDESC
 "Faria's cell is the same stone as yours, and entirely different: a
@@ -311,7 +311,7 @@ burrow leads back east, under the bed.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM UNDERSEA
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Beneath the Waves")
       (LDESC
 "Cold black water, roaring in your ears. Something enormous and heavy
@@ -322,7 +322,7 @@ if you can reach it.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM OPENSEA
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Open Sea")
       (LDESC
 "Black waves under a black sky; the mistral is rising. Behind you the
@@ -338,7 +338,7 @@ to Africa.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TIBOULEN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Island of Tiboulen")
       (ACTION TIBOULEN-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -754,7 +754,7 @@ in scope and ASK X ABOUT DANGLARS never asks which Danglars."
 "=== ACT III - MONTE CRISTO AND THE MAINLAND, 1829 ==="
 
 <ROOM TARTAN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Deck of the Jeune-Amelie")
       (LDESC
 "A smuggler tartan heeling under lateen sails, bound for the island of
@@ -768,7 +768,7 @@ men watch lucky ones.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CREEK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Hidden Creek")
       (LDESC
 "A small creek hidden like the bath of some ancient nymph, deep enough
@@ -779,7 +779,7 @@ notches cut in the rocks marches away to the east.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM ISLE-PATH
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Goat Path")
       (LDESC
 "A scramble of myrtle and hot granite. Lizards flash like emeralds;
@@ -792,7 +792,7 @@ a right line.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM HIGHROCK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The High Rock")
       (LDESC
 "The island's summit: a statue's view from a granite pedestal. Corsica
@@ -802,7 +802,7 @@ the Jeune-Amelie shrinking toward the horizon. You are alone.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CLEARING
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Circular Rock")
       (LDESC
 "The notches end at a huge circular boulder squatting on a bed of
@@ -816,7 +816,7 @@ path runs back west toward the creek.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM GROTTO1
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The First Grotto")
       (LDESC
 "A dim and bluish light seeps through crevices; the granite walls
@@ -830,7 +830,7 @@ second door is pretending to be a wall.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM GROTTO2
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Second Grotto")
       (LDESC
 "Lower, darker, closer. The air is old. In the farthest angle to the
@@ -840,7 +840,7 @@ man with a pickaxe.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM BEAUCAIRE-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Beaucaire Road")
       (LDESC
 "A white dusty road between Bellegarde and Beaucaire. A failing inn
@@ -856,7 +856,7 @@ door leads east; the road to Marseilles runs south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM INN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Pont du Gard Inn")
       (LDESC
 "A failing inn on the Beaucaire road; the way out leads west, to the
@@ -1166,6 +1166,16 @@ from." CR CR
 	(FLAGS DRINKBIT)
 	(ACTION GLOBAL-WATER-FCN)>
 
+;"Where a costume goes when it is taken off. The engine has no worn
+state, so DOFF-ALL has to physically move the other disguises out of the
+player's hands; they land here in Act III and in the study wardrobe from
+Act IV on, never out of the game."
+<OBJECT COSTUME-BAG
+	(SYNONYM BAGGAGE VALISE TRUNK)
+	(DESC "baggage")
+	(FLAGS NDESCBIT CONTBIT OPENBIT)
+	(CAPACITY 90)>
+
 <OBJECT WALL
 	(IN GLOBAL-OBJECTS)
 	(SYNONYM WALL WALLS)
@@ -1356,12 +1366,12 @@ real player got stranded on the Pharaon at turn three."
 "Unreachable stub rooms for generic engine verb branches."
 
 <ROOM ON-LAKE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "On the Lake")
       (FLAGS RLANDBIT)>
 
 <ROOM IN-LAKE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "In the Lake")
       (FLAGS RLANDBIT)>
 

@@ -129,6 +129,11 @@ async function auditOne(name, storyRel, walkRel) {
   const note = (text) => {
     const room = session.status?.location;
     if (!room) return;
+    // Register every room the player stands in, even when this turn
+    // printed no description (a brief-mode revisit, or an action taken on
+    // arrival). Recording only rooms that print their name undercounts
+    // badly - Monte Cristo showed 18 of the 40 rooms it actually visits.
+    if (!seen.has(room)) seen.set(room, { text: '', said: [] });
     const lines = text.split('\n').map((l) => l.trim());
     const entry = seen.get(room) ?? { text: '', said: [] };
     // Find the room name anywhere in the output, not only on line 0. An

@@ -61,31 +61,47 @@ Note this also silently affects the design's 6-character truncation audit
 worried about are gone, and this entirely different collision class
 replaces them.
 
-## 2. IN and OUT are unusable as directions in v8
+## 2. `(IN ROOMS)` silently kills every inward exit
 
-Same root cause. `IN` and `OUT` are declared in `<DIRECTIONS>` *and* are
-prepositions (`<SYNONYM IN INSIDE INTO>` in gsyntax), so their direction
-values cannot be read back and `(IN PER STREET-IN)` exits are dead:
+**Corrected after a later round; my first diagnosis of this was wrong and
+is preserved below because the wrong reasoning is instructive.**
 
+Symptom: `IN`, `ENTER`, `INSIDE` and `GO IN` all answer *"You can't go
+there without a vehicle."* in every room, including rooms that plainly
+declare `(IN TO DECK)`.
+
+Cause: the conventional ZIL form for parenting a room to the room list is
+`(IN ROOMS)` — but `IN` is a **registered direction** in this game's
+`<DIRECTIONS>` line, so the compiler reads that clause as an `IN` *exit*
+pointing at the `ROOMS` object. `GOTO` is then handed a non-room, finds no
+`RLANDBIT`, and prints the vehicle message. Every room in the game had it,
+and it masked the real `(IN TO DECK)` exit on the quay that had never once
+worked.
+
+**Fix:** `(LOC ROOMS)` instead, in every room.
+
+```sh
+sed -i 's/^      (IN ROOMS)$/      (LOC ROOMS)/' *.zil
 ```
-in   ps=0x18  v1=251  v2=53   <- direction + preposition
-land ps=0x13  v1=51   v2=0    <- direction only: works
-```
 
-**Fix:** two new direction words that are nothing else, declared in this
-game's `<DIRECTIONS>` and given as an alias on every IN/OUT exit:
+Forty-three rooms here. Costs nothing, changes no other behaviour, and
+`IN`/`OUT` become real directions immediately.
 
-```zil
-<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND
-	    ENTRANCE EXIT>
-<SYNONYM ENTRANCE INWARD>
-<SYNONYM EXIT OUTWARD>
-```
+**What I got wrong the first time.** I found the failure early, dumped the
+dictionary, saw that `in` carries both the direction and preposition bits
+(`ps=0x18`), and concluded it was the same v8 defect as §1 — a word with
+two parts of speech whose value cannot be read back. That was plausible
+and false. I worked around it by declaring two extra direction words,
+`ENTRANCE` and `EXIT`, that are nothing else, and aliasing every IN/OUT
+exit to one of them.
 
-> **Design adaptation.** The walkthrough uses `ENTRANCE` and `EXIT` where
-> the design says `IN` and `OUT` (the Auteuil coach, the Pont du Gard
-> inn). `IN`/`OUT` remain declared so nothing regresses in a v3 build and
-> so the LLM layer still has something to aim at.
+The workaround is harmless and stays (those words are pleasant to type,
+and `ENTRANCE`/`EXIT` are in the walkthrough), but the diagnosis was
+wrong: `in` still reads `ps=0x18` today and works perfectly. **The lesson
+is that a dictionary dump proved a hypothesis I had already formed rather
+than testing it** — the actual experiment, changing one room to `(LOC
+ROOMS)` and retrying `IN`, would have taken a minute and pointed at the
+real cause.
 
 ## 3. SWIM cannot take a direction
 
@@ -162,14 +178,126 @@ changes the message. The whole disguise system is therefore a game-side
 `IDENTITY` global set by the costume objects' own `WEAR` handlers, with
 `REMOVE` arriving as a `TAKE` of a held thing (see §4, `PRE-TAKE`).
 
-## 10. Room descriptions are suppressed on revisit
+## 10. An M-LOOK handler that returns true hides the LDESC's exits
+
+`DESCRIBE-ROOM` calls the room's `M-LOOK` handler first, and **if it
+returns true the LDESC never prints at all.** So a room can have a
+perfectly good LDESC naming its exits in source while the text a player
+actually reads names none — and the walkthrough passes, because the
+walkthrough knows the way.
+
+Two rooms here: `OFFICE` and `MEILHAN`, both in their Act III variants,
+both replacing an exit-naming LDESC with atmospheric prose that named
+nothing. Act III Meilhan is where `PUT PURSE ON MANTEL` ends the act, so
+a player arriving there saw a room with no stated way back.
+
+The distinction that matters:
+
+| handler ends | effect | can it hide an exit? |
+|---|---|---|
+| `<RTRUE>` | **suppresses** the LDESC; its text is all the player sees | yes |
+| `<RFALSE>` | prepends detail, LDESC still prints | no |
+
+`node tools/audit-mlook.mjs <game>` flags the suppressing kind — but it
+compares against the LDESC, so it **cannot** see a handler whose room has
+no LDESC at all. Reading all nine of mine by hand found three more the
+checker could not: `CELL34-TOUR`, and both branches of `TUNNEL-FCN`, all
+rooms described only by their handler. Read every one; do not just clear
+the checker.
+
+Two of mine legitimately name no exit and now say so in their own words:
+CELL27 while sewn inside the burial sack, and the grotto finale. A player
+in a room with no way out deserves to be told that is deliberate.
+
+## 11. Room descriptions are suppressed on revisit
 
 `DESCRIBE-ROOM` only calls `M-LOOK` when the room is untouched or VERBOSE
 is on, so the 1829 versions of the Marseilles rooms and the Act V versions
 of the cells never printed. Fixed by `<FCLEAR ,ROOM ,TOUCHBIT>` at each
 act transition for the rooms whose description has changed.
 
-## 11. Inventory limit
+## 12. Places the game names are not words the parser knows
+
+Not an engine defect but an engine *default* with the same effect: a room
+description or an NPC line naming a destination ("come to the
+counting-house", "the quay") is just text. Nothing puts those words in
+the dictionary, and `V-WALK-TO` answers "You should supply a direction!"
+even when the player has supplied the only name the game ever gave them.
+
+**Fix:** every destination this game names in prose is a global object
+with `PLACE-FCN`, and `V-WALK-TO` is redefined to route them (LESSONS.md
+§2.8). Twenty-two objects; `GO TO QUAY`, `GO TO COUNTING HOUSE`, `LEAVE
+SHIP` now work.
+
+Two sub-traps worth naming:
+
+- **Multi-word place names split as adjective + noun.** "counting house"
+  needs COUNTING as the ADJECTIVE and HOUSE as the SYNONYM — and per §1
+  the same word may not be both, so pick which one it is.
+- **Place nouns collide with topics and props.** SHIP was three objects
+  here (a place, Morrel's 1829 grief, a Genoese tartan). One object owns
+  the noun; the others give it up or merge.
+
+## 13. A hand-rolled take leaves NDESCBIT set, hiding the object from INVENTORY
+
+`NDESCBIT` keeps an object out of room listings **and out of INVENTORY**.
+The engine's own take path clears it; a hand-rolled `<MOVE obj ,WINNER>`
+does not. Since `V-TAKE` never scores under `ZORK-NUMBER 0` (§1.1 of
+LESSONS.md) this game hand-rolls thirty-two takes, and the loose corner
+stone shipped carried, usable, and invisible:
+
+```
+> take pebble
+You work the loose corner stone out of the floor.
+> inventory
+You are carrying:
+                       <- nothing. The stone is in the player's hands.
+```
+
+**Fix:** `<FCLEAR obj ,NDESCBIT>` beside every `<MOVE obj ,WINNER>` for an
+object declared `NDESCBIT`. Five in this game (LOOSE-STONE, PAN-HANDLE,
+SHARD, WIG, SAILOR-JACKET); the others were already cleared at their
+creation sites.
+
+Find them with:
+
+```sh
+grep -n "MOVE ,[A-Z0-9-]* ,WINNER" *.zil     # every hand-rolled take
+# then check which of those objects declare NDESCBIT
+```
+
+`verify.mjs` now asserts INVENTORY lists each of six such objects after
+the move that grants it, and the assertion was proved by reintroducing
+the bug and watching it fail.
+
+## 14. Nothing stops the player wearing three disguises at once
+
+The engine has no worn state at all (§9), so `WEARBIT` only changes a
+message and there is no mechanism preventing every costume being "worn"
+simultaneously. INVENTORY read:
+
+```
+  A priest's wig (being worn)
+  A priest's cassock (being worn)
+  A Englishman's drab coat (being worn)
+```
+
+for a game whose whole plot turns on being exactly one person at a time.
+
+**Fix:** one `DOFF-ALL` routine called at the top of `SET-IDENTITY`, which
+moves every costume the player is not putting on into a `COSTUME-BAG` the
+player carries. Two details that cost a compile each:
+
+- **Do not `<REMOVE>` the other costumes** — they have to stay reachable
+  or `WEAR COAT` cannot find one. They go into the bag, not out of play.
+- **The bag must travel with the player.** Parking the spares in the study
+  wardrobe broke the Act IV reveal at Villefort's house, three rooms away.
+
+Every path that changes identity must route through `SET-IDENTITY`;
+four scenes were setting `IDENTITY` and moving objects by hand and had to
+be converted.
+
+## 15. Inventory limit
 
 `LOAD-ALLOWED` cut the player off in Act IV ("You're holding too many
 things already!") because the Chateau d'If props were still being carried
@@ -215,3 +343,17 @@ Everything the finished game does differently from DESIGN.md:
     retired cast is removed from play at each act boundary.
 11. **`ASK CADEROUSSE ABOUT DIAMOND` before giving it** is a hint, not a
     gate. The gate is `CONFIRMED-GUILT`, per the design's flag list.
+12. **Room descriptions name their exits, and refusals name the action
+    that would lift them.** DESIGN.md's LDESCs are written for the ear and
+    several named a destination without naming a direction; the Deck of
+    the Pharaon named none at all and stranded a real player at turn three
+    (LESSONS.md §0). All twenty-one rooms `tools/audit-game.mjs` flagged
+    were reviewed; nineteen were reworded. The two that remain flagged —
+    Villefort's Study and the Island of Tiboulen — genuinely have no
+    exits, and now say so in their own text rather than leaving the player
+    to guess whether they are stuck.
+13. **The opening gate says what to do.** The design's refusal ("The ship
+    is not yet at her rest") was atmosphere with no instruction, against
+    the design's own §10 rule 6. It now names the remaining job in the
+    words the parser accepts for it, and it changes on each step:
+    furl the sails, then drop the anchor.

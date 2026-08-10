@@ -189,7 +189,7 @@ The abbe is quiet a long time. "I repent me of my work," he says at last. "I hav
 "Not hatred, father. Justice."
 > down
 The Tunnel
-A burrow a man may pass on his elbows, fifty feet of clawed-out dark between your cell and the abbe's. The air tastes of earth and patience.
+A burrow a man may pass on his elbows, fifty feet of clawed-out dark. Your cell lies east and the abbe's west. The air tastes of earth and patience.
 > west
 Cell Number 27 - the Abbe's Cell
 Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not. The burrow leads back east, under the bed.
@@ -467,7 +467,7 @@ The drab coat, the flat vowels, the small unfriendly smile of a Northern man wit
 A day and a night on the Beaucaire road behind post horses, and Marseilles at the end of it: the same quay, the same white stones, and not one of Morrel's ships in the harbor.
 
 Morrel's Counting-House
-The counting-house of Morrel and Son, 1829: one clerk, one empty cash-box, and a wall of portraits of ships that are all at the bottom of the sea. Cocles keeps the ledgers as though the numbers might yet repent.
+The counting-house of Morrel and Son, 1829: one clerk, one empty cash-box, and a wall of portraits of ships that are all at the bottom of the sea. Cocles keeps the ledgers as though the numbers might yet repent. The quay lies east, and the stairs to the old room in the Allees de Meilhan go up and north.
 > talk to morrel
 "Thomson and French have bought my paper? Then I will tell you plainly what you have bought."
 
@@ -482,7 +482,7 @@ You fold the receipted bill into the faded red silk, where a proud old man once 
 You drop the second great stone in after the bill, and on a slip of parchment you write two words: Julie's Dowry.
 > north
 A Room in the Allees de Meilhan
-The room in the Allees de Meilhan, let to strangers these many years: a bed not his, a window box gone to sticks, and the same bare mantel over the same cold grate. Some rooms outlive everyone in them.
+The room in the Allees de Meilhan, let to strangers these many years: a bed not his, a window box gone to sticks, and the same bare mantel over the same cold grate. The stairs lead back down and south. Some rooms outlive everyone in them.
 > put purse on mantel
 You set the red purse on the mantelpiece where M. Morrel set it fourteen years ago, and go out, and send a boy with a word to Julie Morrel about a house in the Allees de Meilhan.
 
@@ -557,8 +557,6 @@ The Count's Study
 Maps, dossiers, and a wardrobe deeper than it looks: a priest's cassock, an Englishman's drab coat, and, folded at the very bottom, paid for with fourteen years, a sailor's jacket and hat.
 There is a spade here.
 There is a gray pill here.
-There is a Englishman's drab coat here.
-There is a priest's cassock here.
 Downstairs a pane of glass comes out of the study window with a glazier's diamond, very quietly, and somebody who is not a servant walks about among your things.
 
 You could go down as the Count of Monte Cristo and have him taken by the gendarmes; or you could go down as somebody he is afraid of.
@@ -586,6 +584,7 @@ The gray wig comes off.
 "I am neither the Abbe Busoni nor Lord Wilmore. I am he you sold at La Reserve. I am Edmond Dantes."
 
 "Oh, my God, my God," says Caderousse, "forgive me for having denied you," and dies believing, which is more than he managed in fifty years of living.
+The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
 > west
 Salon of the Count of Monte Cristo
 > south
@@ -627,17 +626,20 @@ There is a wardrobe in your study, one room east, with something folded at the v
 The Count's Study
 There is a spade here.
 There is a gray pill here.
-There is a Englishman's drab coat here.
 > inventory
 You are carrying:
+  A priest's wig (being worn)
   A priest's cassock (being worn)
   A anonymous note
   A letter of credit
+    The baggage contains:
+      A Englishman's drab coat
 > take spade
 Taken.
 > take pill
 Taken.
 > wear jacket
+A sailor's jacket, a sailor's hat, and your hair fallen loose out of it. Twenty-three years old in the glass, for about a second.
 You go east to the study, and the scene waits for you the way a duelist waits, and you come back in a sailor's jacket and hat with your hair fallen loose out of it.
 
 "Look at me. A face you must often have seen in your dreams since your marriage with Mercedes, my betrothed."
@@ -739,6 +741,7 @@ Something goes out of you like a fever breaking: the certainty that God was with
 
 "Are you well avenged?" He asks it quite reasonably. Then his mind goes out like a lamp, and he begins, on his hands and knees, to look for his papers.
 
+The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
 That same week the Baron Danglars draws his last five millions on a Roman house and leaves Paris by the Italian road, and his wife is not told.
 
 Peppino reads over his shoulder at the banker's. Vampa reads Peppino. You read everyone.
@@ -773,11 +776,12 @@ The Chateau d'If is a monument now, and they charge to go in.
 
 Cell Number 34
 Cell number thirty-four, by the guide's reckoning: a bed, a chair, a table, and the same ration of sky. The guide is explaining that one of the famous prisoners went mad here. He is nearly right.
+Behind the bed, roped off and labelled, the burrow still goes down.
 > down
 The guide is telling a party of English about the mad abbe. You step over the rope and go down into your own tunnel.
 
 The Tunnel
-The burrow between the cells, propped and dusty, shown to tourists now. Fifty feet of two men's patience.
+The burrow between the cells, propped and dusty, shown to tourists now. Fifty feet of two men's patience, with cell thirty-four east and the abbe's cell west.
 Something pale is wedged in the roof timbers, where nobody thought to look.
 There is a linen manuscript here.
 > take manuscript

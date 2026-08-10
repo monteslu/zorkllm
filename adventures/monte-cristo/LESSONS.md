@@ -25,7 +25,14 @@ The short version, if you read nothing else:
    line does not escape the stock preaction that will veto it.
 5. **`VERB?` takes action names, not verb words.** `<VERB? PULL>` does not
    compile; PULL's action is MOVE.
-6. **Compile and replay after every scene.** The engine's error messages
+6. **Type INVENTORY after every take, and LOOK in every room state.**
+   Both are things a player does constantly and a walkthrough almost
+   never does. See §0.1 — three of this game's real defects lived in
+   exactly that gap.
+7. **Rooms are `(LOC ROOMS)`, never `(IN ROOMS)`.** `IN` is a direction,
+   so the conventional form compiles as a broken inward exit and silently
+   kills `IN`/`ENTER`/`INSIDE` everywhere.
+8. **Compile and replay after every scene.** The engine's error messages
    are your test suite, and a scripted replay of the whole walkthrough
    takes two seconds.
 
@@ -140,6 +147,60 @@ a `GO TO <place>` handler that either walks the player there or says which
 way it lies. `GO TO COUNTING HOUSE`, `GO TO QUAY`, `LEAVE SHIP` and
 `GO TO MEILHAN` all work now. That is the piece worth copying wholesale —
 see §2.8.
+
+### 0.1 The same blind spot, three more times
+
+After §0 was written, three further defects turned up in this game, all
+of the same shape: **a thing the player does constantly and the
+walkthrough never does.** Worth listing because the pattern is the
+lesson, not the individual bugs.
+
+**LOOK in a state the walkthrough passes through without looking.** A
+room's `M-LOOK` handler that ends `<RTRUE>` suppresses the LDESC
+entirely, so the exits named in the LDESC never print. Two rooms here
+had rich Act III descriptions replacing exit-naming LDESCs; the source
+looked right, the room worked, the walkthrough passed, and a player
+arriving saw no way out. `tools/audit-mlook.mjs` finds these — but only
+where an LDESC exists to compare against, so **read every handler
+yourself**. Three of mine described rooms that have no LDESC at all and
+were invisible to the checker.
+
+**INVENTORY after a take.** `NDESCBIT` hides an object from room
+listings *and from INVENTORY*, and a hand-rolled `<MOVE obj ,WINNER>`
+does not clear it the way the engine's take path does. Since `V-TAKE`
+never scores under `ZORK-NUMBER 0`, this game hand-rolls thirty-two
+takes — and the loose corner stone shipped carried, usable and
+completely invisible. The 400/400 walkthrough never typed INVENTORY
+after taking anything, so it could not have known.
+
+**INVENTORY after a costume change.** There is no worn state in this
+engine (§1.5), so nothing prevented the player wearing the cassock, the
+drab coat and the sailor's jacket simultaneously — in a game whose plot
+is being exactly one person at a time.
+
+All three now have assertions in `verify.mjs`, and **each assertion was
+proved by reintroducing the bug and watching it fail.** A guard that has
+never failed is a guess:
+
+```
+FAIL
+  - INVENTORY does not list the loose corner stone after "listen to wall".
+  - after "wear coat" the player is wearing 2 disguises at once.
+```
+
+There is also a fourth, purely mechanical: **`(IN ROOMS)` on a room
+declaration.** `IN` is a registered direction, so the conventional
+parent-clause compiles as an `IN` exit pointing at the `ROOMS` object and
+every `IN`/`ENTER`/`INSIDE` in the game answers "You can't go there
+without a vehicle." All forty-three rooms here had it, and it had been
+masking a real `(IN TO DECK)` exit on the quay since Act I. One `sed`
+fixes it; see BUILD-ISSUES §2, which also records that my *first*
+diagnosis of that symptom was wrong and why.
+
+**The generalisable move:** list the verbs a player types reflexively —
+LOOK, INVENTORY, EXAMINE, the compass — and ask what your walkthrough
+does with each. Anything on that list your walkthrough never types is
+untested surface, no matter how green the suite is.
 
 ---
 
@@ -833,6 +894,9 @@ along.
 **The thing I got most wrong** was not a bug, it was a belief: that a
 green test suite meant a working game. Mine was as green as it gets -
 400/400, four branch tests, a frozen transcript - while the opening
-screen was a wall. Tests written by the author test the author's
-understanding. Anything that only a stranger would discover needs a test
-that does not know the answer.
+screen was a wall, one carried object was invisible, two rooms named no
+exit, and the hero could wear three faces at once. Tests written by the
+author test the author's understanding. Anything that only a stranger
+would discover needs a test that does not know the answer - and any
+guard you add for it should be proved by reintroducing the bug and
+watching it fail, or it is only a guess that happens to be green.

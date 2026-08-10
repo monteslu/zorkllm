@@ -947,7 +947,8 @@ Monsieur Noirtier, Rue Coq-Heron, Paris." CR>
 "The counting-house of Morrel and Son, 1829: one clerk, one empty
 cash-box, and a wall of portraits of ships that are all at the bottom
 of the sea. Cocles keeps the ledgers as though the numbers might yet
-repent." CR>
+repent. The quay lies east, and the stairs to the old room in the
+Allees de Meilhan go up and north." CR>
 		<RTRUE>)
 	       (T <RFALSE>)>>
 
@@ -969,7 +970,8 @@ repent." CR>
 		<TELL
 "The room in the Allees de Meilhan, let to strangers these many years:
 a bed not his, a window box gone to sticks, and the same bare mantel
-over the same cold grate. Some rooms outlive everyone in them." CR>
+over the same cold grate. The stairs lead back down and south. Some
+rooms outlive everyone in them." CR>
 		<RTRUE>)
 	       (T <RFALSE>)>>
 

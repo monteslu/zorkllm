@@ -226,6 +226,72 @@ if (existsSync(WANDER)) {
   wanderNote = `, wanderer ashore at input ${ashoreAt}/${turns} (${rejected} rejected)`;
 }
 
+// ---------------------------------------------------------------------
+// 6. Two bug classes that pass every other check.
+//
+//   (a) An object taken by a hand-rolled <MOVE obj ,WINNER> keeps its
+//       NDESCBIT, so it is carried, usable and scored while being absent
+//       from INVENTORY. This game hand-rolls 32 takes because V-TAKE
+//       never scores under ZORK-NUMBER 0, and the loose stone shipped
+//       invisible until this check was written.
+//   (b) The engine has no worn state, so nothing stops the player from
+//       "wearing" the cassock, the drab coat and the sailor's jacket at
+//       once. Exactly one disguise may be worn at a time.
+// ---------------------------------------------------------------------
+{
+  seed = 0x2dba7 >>> 0;
+  // Each probe is a prefix of the walkthrough plus its own extra moves,
+  // so a probe never silently skips because the walkthrough happens not
+  // to type the command. `after` may be absent from walkthrough.txt.
+  const probes = [
+    ['listen to wall', ['take pebble'], /loose stone/i, 'the loose corner stone'],
+    ['wear cassock', [], /priest's cassock \(being worn\)/i, 'the cassock'],
+    ['wear coat', [], /drab coat \(being worn\)/i, 'the drab coat'],
+    ['wear jacket', [], /sailor's jacket and hat \(being worn\)/i, 'the jacket'],
+    ['take handle', [], /iron handle/i, 'the saucepan handle'],
+    ['take treasure', [], /great diamond/i, 'the great diamond'],
+  ];
+  for (const [after, extra, expect, label] of probes) {
+    const idx = commands.indexOf(after);
+    if (idx < 0) {
+      failures.push(`probe anchor "${after}" is no longer in walkthrough.txt`);
+      continue;
+    }
+    seed = 0x2dba7 >>> 0;
+    const p = await loadGame(STORY);
+    const pg = setTimeout(() => process.exit(3), 60000);
+    await p.start();
+    for (const c of [...commands.slice(0, idx + 1), ...extra]) {
+      if (p.ended) break;
+      await p.send(c);
+    }
+    const inv = p.ended ? '' : await p.send('inventory');
+    clearTimeout(pg);
+
+    if (!expect.test(inv)) {
+      failures.push(
+        `INVENTORY does not list ${label} after "${after}". A hand-rolled ` +
+          '<MOVE obj ,WINNER> leaves NDESCBIT set, so the object is ' +
+          'carried but invisible to the player.',
+      );
+    }
+    // Exactly one costume worn at a time.
+    const worn = (inv.match(/\(being worn\)/g) || []).length;
+    const costumesWorn = [
+      /priest's cassock \(being worn\)/i,
+      /drab coat \(being worn\)/i,
+      /sailor's jacket and hat \(being worn\)/i,
+    ].filter((re) => re.test(inv)).length;
+    if (costumesWorn > 1) {
+      failures.push(
+        `after "${after}" the player is wearing ${costumesWorn} disguises ` +
+          'at once; they are meant to be mutually exclusive.',
+      );
+    }
+    void worn;
+  }
+}
+
 if (failures.length) {
   console.error('FAIL');
   for (const f of failures) console.error(`  - ${f}`);

@@ -31,7 +31,9 @@ into the dark." CR>)
 	 <TELL
 "Cell number thirty-four, by the guide's reckoning: a bed, a chair, a
 table, and the same ration of sky. The guide is explaining that one of
-the famous prisoners went mad here. He is nearly right." CR>>
+the famous prisoners went mad here. He is nearly right." CR
+"Behind the bed, roped off and labelled, the burrow still goes down."
+CR>>
 
 <ROUTINE CELL-DOOR-EXIT ()
 	 <TELL
@@ -230,6 +232,7 @@ your hands, and it is heavy enough to be heard." CR>
 		       <TELL "You have it." CR>)
 		      (T
 		       <MOVE ,LOOSE-STONE ,WINNER>
+		       <FCLEAR ,LOOSE-STONE ,NDESCBIT>
 		       <TELL
 "You work the loose corner stone out of the floor. It is a poor tool
 and a good hammer." CR>)>
@@ -448,15 +451,16 @@ alone.\"" CR>
 		<COND (<G? ,ACT 4>
 		       <TELL
 "The burrow between the cells, propped and dusty, shown to tourists
-now. Fifty feet of two men's patience." CR>
+now. Fifty feet of two men's patience, with cell thirty-four east and
+the abbe's cell west." CR>
 		       <COND (<NOT ,MANUSCRIPT-TAKEN>
 			      <TELL
 "Something pale is wedged in the roof timbers, where nobody thought to
 look." CR>)>)
 		      (T
 		       <TELL
-"A burrow a man may pass on his elbows, fifty feet of clawed-out dark
-between your cell and the abbe's. The air tastes of earth and
+"A burrow a man may pass on his elbows, fifty feet of clawed-out dark.
+Your cell lies east and the abbe's west. The air tastes of earth and
 patience." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-END>

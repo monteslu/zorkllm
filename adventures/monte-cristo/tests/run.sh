@@ -7,9 +7,16 @@
 #   audit-game.mjs  static checks: rooms that name no exit, and places the
 #                   game directs the player to in words the parser rejects
 #
-# The audit reports two known-good findings: Villefort's Study and the
-# Island of Tiboulen genuinely have no exits. Both are scripted scenes
-# that end themselves, and both now say so in their own text.
+# Expected findings, all judged and deliberate:
+#   audit-game   Villefort's Study and the Island of Tiboulen genuinely
+#                have no exits; both are scripted scenes that end
+#                themselves and both say so in their own text.
+#   audit-mlook  CELL27 suppresses its LDESC only while the player is
+#                sewn inside the burial sack.
+#
+# verify.mjs additionally asserts, with controls proved by reintroducing
+# each bug: the wanderer reaches Marseilles, hand-rolled takes are
+# visible in INVENTORY, and exactly one disguise is worn at a time.
 set -e
 cd "$(dirname "$0")/.." || exit 1
 ROOT=../..
@@ -30,3 +37,9 @@ echo "== static audit (2 known-good findings expected)"
 (cd $ROOT && node tools/audit-game.mjs \
   adventures/monte-cristo/cristo.z8 \
   adventures/monte-cristo/walkthrough.txt) || true
+
+# CELL27 is the one expected finding: its M-LOOK suppresses the LDESC only
+# while the player is sewn inside the burial sack, which correctly names
+# no exit.
+echo "== M-LOOK audit (1 known-good finding expected)"
+(cd $ROOT && node tools/audit-mlook.mjs monte-cristo) || true

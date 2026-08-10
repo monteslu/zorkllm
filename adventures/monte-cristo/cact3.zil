@@ -3,11 +3,26 @@ Caderousse's confession, and the saving of M. Morrel."
 
 "=== Identity: the three coats ==="
 
+;"Costumes are mutually exclusive. The engine has no worn state - WEARBIT
+ only changes a message - so a costume the player is not currently in has
+ to leave their hands, or INVENTORY reports a man wearing a cassock, a
+ drab coat and a sailor's jacket at once. They go back to the baggage,
+ not out of the game: WEAR COAT still has to find one."
+<ROUTINE DOFF-ALL ()
+	 <COND (<IN? ,CASSOCK ,WINNER> <MOVE ,CASSOCK ,COSTUME-BAG>)>
+	 <COND (<IN? ,WIG ,WINNER> <MOVE ,WIG ,COSTUME-BAG>)>
+	 <COND (<IN? ,ENGLISH-COAT ,WINNER> <MOVE ,ENGLISH-COAT ,COSTUME-BAG>)>
+	 <COND (<IN? ,SAILOR-JACKET ,WINNER>
+		<MOVE ,SAILOR-JACKET ,COSTUME-BAG>)>
+	 <RTRUE>>
+
 <ROUTINE SET-IDENTITY (N)
 	 <SETG IDENTITY .N>
+	 <DOFF-ALL>
 	 <COND (<EQUAL? .N 1>
 		<MOVE ,CASSOCK ,WINNER>
 		<MOVE ,WIG ,WINNER>
+		<FCLEAR ,WIG ,NDESCBIT>
 		<TELL
 "The cassock, the gray tonsure, the stoop, and the Italian of a Roman
 seminary. You are the Abbe Busoni, and men tell priests what they tell
@@ -20,6 +35,7 @@ Northern man with a ledger. You are Lord Wilmore, agent of the house of
 Thomson and French." CR>)
 	       (<EQUAL? .N 4>
 		<MOVE ,SAILOR-JACKET ,WINNER>
+		<FCLEAR ,SAILOR-JACKET ,NDESCBIT>
 		<TELL
 "A sailor's jacket, a sailor's hat, and your hair fallen loose out of
 it. Twenty-three years old in the glass, for about a second." CR>)
@@ -69,19 +85,14 @@ say nobody at all." CR>)>
 		<TELL
 "You take off the gray wig and stand as yourself, and nobody in this
 room is the right person to see it. You put it back on." CR>
-		<MOVE ,WIG ,WINNER>
-		<MOVE ,CASSOCK ,WINNER>
-		<SETG IDENTITY 1>)>
+		<SET-IDENTITY 1>)>
 	 <RTRUE>>
 
 <ROUTINE ENGLISH-COAT-FCN ()
 	 <COND (<VERB? WEAR>
 		<COND (<EQUAL? ,IDENTITY 2>
 		       <TELL "You are wearing it." CR>)
-		      (T
-		       <REMOVE ,WIG>
-		       <REMOVE ,CASSOCK>
-		       <SET-IDENTITY 2>)>
+		      (T <SET-IDENTITY 2>)>
 		<RTRUE>)>>
 
 <ROUTINE SAILOR-JACKET-FCN ()
@@ -90,9 +101,6 @@ room is the right person to see it. You put it back on." CR>
 			    <EQUAL? ,HERE ,SALON ,CSTUDY>>
 		       <MORCERF-REVEAL>
 		       <RTRUE>)>
-		<REMOVE ,WIG>
-		<REMOVE ,CASSOCK>
-		<REMOVE ,ENGLISH-COAT>
 		<SET-IDENTITY 4>
 		<RTRUE>)>>
 
@@ -456,9 +464,10 @@ steady. \"Now for Marseilles.\"" CR CR>
 
 <ROUTINE LEGHORN-INTERSTITIAL ()
 	 <SETG ACT 3>
-	 <MOVE ,CASSOCK ,WINNER>
-	 <MOVE ,WIG ,WINNER>
-	 <MOVE ,ENGLISH-COAT ,WINNER>
+	 <MOVE ,COSTUME-BAG ,WINNER>
+	 <MOVE ,CASSOCK ,COSTUME-BAG>
+	 <MOVE ,WIG ,COSTUME-BAG>
+	 <MOVE ,ENGLISH-COAT ,COSTUME-BAG>
 	 <MOVE ,CADEROUSSE ,INN>
 	 <MOVE ,MORREL ,OFFICE>
 	 <MOVE ,RED-PURSE ,CUPBOARD>
@@ -797,9 +806,10 @@ Paris believes in you." CR CR>
 	 <REMOVE ,SUPPLIES>
 	 <REMOVE ,RED-PURSE>
 	 <REMOVE ,GEM>
-	 <MOVE ,CASSOCK ,CSTUDY>
-	 <MOVE ,WIG ,CSTUDY>
-	 <MOVE ,ENGLISH-COAT ,CSTUDY>
+	 <MOVE ,COSTUME-BAG ,WINNER>
+	 <MOVE ,CASSOCK ,COSTUME-BAG>
+	 <MOVE ,WIG ,COSTUME-BAG>
+	 <MOVE ,ENGLISH-COAT ,COSTUME-BAG>
 	 <MOVE ,CREDIT-LETTER ,WINNER>
 	 <MOVE ,BANKNOTES ,WINNER>
 	 <MOVE ,PILL ,CSTUDY>
