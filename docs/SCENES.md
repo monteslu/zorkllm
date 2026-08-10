@@ -97,6 +97,19 @@ order is the only act signal a story file actually carries. That is a
 guess, and a good one for a linear story - hand-correct the `act` field
 for rooms a walkthrough happens to reach early or late.
 
+**Everything in a style file is authored, not extracted, and the composed
+prompt hides that distinction.** The scenery sentence is ground truth
+from the engine; the mood clause beside it is somebody's reading. That
+matters because mood decides things the game never states - a room whose
+description mentions no sky can still come back as a bright sunny day,
+purely because an act said so. It is the same class of invention as an
+imaginary cave, just wearing better clothes.
+
+The fix is cheap: give every mood a `source` field quoting the passage it
+derives from, as `adventures/wizard-of-oz/scenes.style.json` does. A mood
+that cannot cite anything is a preference, which is allowed - but label
+it, so a reviewer can tell an interpretation from a fact.
+
 One thing this does **not** solve: a recurring subject looking like
 itself across rooms. The same white house seen from two sides will drift.
 For *characters* the answer is simply to leave them out (see below); for

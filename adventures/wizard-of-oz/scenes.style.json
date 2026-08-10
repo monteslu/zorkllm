@@ -13,27 +13,33 @@
     {
       "name": "Kansas",
       "untilTurn": 6,
-      "mood": "gray and drained of colour, flat prairie light, everything weathered to the same dust tone"
+      "mood": "gray and drained of colour, flat prairie light, everything weathered to the same dust tone",
+      "source": "Ch. I: 'the great gray prairie... the sun had baked the plowed land into a gray mass'; Aunt Em 'gray also'."
     },
     {
       "name": "Munchkin Country",
       "untilTurn": 30,
-      "mood": "saturated storybook blues and greens, bright clear daylight, tidy and welcoming"
+      "mood": "saturated storybook blues and greens, bright clear daylight, tidy and welcoming",
+      "source": "Ch. II: 'a country of marvelous beauty... banks of gorgeous flowers... birds with rare and brilliant plumage... a brook rushing and sparkling', explicitly contrasted with 'the dry, gray prairies'. Blue is the Munchkins' colour."
     },
     {
       "name": "The Road and the Emerald City",
       "untilTurn": 95,
-      "mood": "open country under wide sky, deepening toward green as the city nears, grand but airless inside the walls"
+      "mood": "open country under wide sky, deepening toward green as the city nears, grand but airless inside the walls",
+      "source": "Ch. XI: 'Everything is green here, while in the country of the Munchkins blue was the favorite color'; the green spectacles are locked on every visitor."
     },
     {
       "name": "The Winkie Campaign",
       "untilTurn": 150,
-      "mood": "hard yellow light over bare country, then the castle: cold stone, long shadows, menace held just off frame"
+      "mood": "hard yellow light over bare country, then the castle: cold stone, long shadows, menace held just off frame",
+      "source": "Ch. XII: the country grows 'rougher and hillier, for there were no farms nor houses in this country of the West'; the Witch's castle and her single telescope eye."
     },
     {
       "name": "The Road South",
       "untilTurn": 999,
-      "mood": "strange and various - fighting trees dark and knotted, the china country delicate and doll-lit, Glinda's country serene"
+      "mood": "strange and various - fighting trees dark and knotted, the china country delicate and doll-lit, Glinda's country serene",
+      "source": "Ch. XX-XXII: the fighting trees, the delicate china country, the Hammer-Heads, then Glinda's country 'covered with the beautiful flowers'."
     }
-  ]
+  ],
+  "_note": "Everything in this file is AUTHORED, not extracted. The manifest's scenery text is ground truth from the engine; these style and mood clauses are an interpretation layered on top. Each mood carries the book passage it derives from so the reading can be checked rather than trusted."
 }
