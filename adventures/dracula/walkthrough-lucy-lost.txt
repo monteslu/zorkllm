@@ -1,0 +1,163 @@
+# ---- ACT I: Castle Dracula (Jonathan Harker) ----
+wait
+knock on door
+north
+up
+up
+west
+ask dracula about castle
+ask dracula about england
+ask dracula about wolves
+south
+south
+sleep
+open bag
+take lamp
+north
+north
+west
+read atlas
+east
+east
+down
+down
+open door
+up
+up
+up
+look out window
+down
+west
+south
+south
+sleep
+north
+north
+east
+push door
+push door
+push door
+east
+west
+up
+look out window
+down
+east
+show crucifix to women
+west
+west
+south
+south
+sleep
+examine glass
+take shard
+write paper
+north
+north
+east
+up
+remove boots
+climb out window
+north
+in
+take gold
+open corner door
+down
+down
+south
+take shovel
+down
+open box
+attack count with shovel
+up
+north
+north
+up
+out
+south
+in
+down
+west
+south
+south
+sleep
+sleep
+throw shorthand letter through bars
+sleep
+sleep
+north
+north
+east
+up
+climb out window
+climb down
+climb down
+climb down
+
+# ---- ACT II scene 1: Whitby (Mina Murray) ----
+look out window
+down
+east
+east
+up
+talk to swales
+read tombstone
+down
+down
+west
+up
+sleep
+down
+east
+east
+north
+read log
+examine captain
+south
+down
+west
+up
+sleep
+sleep
+sleep
+take shawl
+take pin
+down
+east
+east
+up
+put shawl on lucy
+pin lucy
+
+# ---- ACT II scene 2: Purfleet (Lucy LOST branch) ----
+play phonograph
+east
+north
+catch fly
+give fly to renfield
+south
+south
+south
+west
+up
+wait
+wait
+wait
+wait
+wait
+wait
+wait
+wait
+down
+east
+south
+open door
+in
+open coffin
+out
+show crucifix to lucy
+in
+give stake to godalming
+read missal
+out
+score

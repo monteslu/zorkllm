@@ -1,0 +1,225 @@
+# ---- ACT I: Castle Dracula (Jonathan Harker) ----
+wait
+knock on door
+north
+up
+up
+west
+ask dracula about castle
+ask dracula about england
+ask dracula about wolves
+south
+south
+sleep
+open bag
+take lamp
+north
+north
+west
+read atlas
+east
+east
+down
+down
+open door
+up
+up
+up
+look out window
+down
+west
+south
+south
+sleep
+north
+north
+east
+push door
+push door
+push door
+east
+west
+up
+look out window
+down
+east
+show crucifix to women
+west
+west
+south
+south
+sleep
+examine glass
+take shard
+write paper
+north
+north
+east
+up
+remove boots
+climb out window
+north
+in
+take gold
+open corner door
+down
+down
+south
+take shovel
+down
+open box
+attack count with shovel
+up
+north
+north
+up
+out
+south
+in
+down
+west
+south
+south
+sleep
+sleep
+throw shorthand letter through bars
+sleep
+sleep
+north
+north
+east
+up
+climb out window
+climb down
+climb down
+climb down
+
+# ---- ACT II scene 1: Whitby (Mina Murray) ----
+look out window
+down
+east
+east
+up
+talk to swales
+read tombstone
+down
+down
+west
+up
+sleep
+down
+east
+east
+north
+read log
+examine captain
+south
+down
+west
+up
+sleep
+sleep
+sleep
+take shawl
+take pin
+down
+east
+east
+up
+put shawl on lucy
+pin lucy
+
+# ---- ACT II scene 2: Purfleet and London (Dr. Seward) ----
+play phonograph
+east
+north
+catch fly
+give fly to renfield
+south
+south
+south
+west
+up
+close window
+rub garlic on sash
+rub garlic on door
+rub garlic on fireplace
+examine band
+hang wreath on lucy
+down
+smell sherry
+tell mrs westenra about garlic
+talk to maids
+up
+wait
+wait
+down
+east
+north
+in
+north
+give sugar to renfield
+south
+out
+south
+west
+up
+watch lucy
+show crucifix to wolf
+wait
+down
+east
+north
+east
+unlock door with keys
+in
+take bunch
+read labels
+east
+blow whistle
+put wafer in boxes
+west
+out
+west
+in
+north
+give notebook to renfield
+south
+out
+south
+se
+give beer to bloxam
+nw
+east
+ask godalming about door
+in
+read deeds
+put wafer in boxes
+attack dracula with kukri
+show wafer to dracula
+wait
+wait
+
+# ---- ACT III: the chase ----
+wait
+read telegram
+wait
+wait
+read bill
+read map
+ask van helsing about river
+draw circle
+wait
+wait
+wait
+up
+break door with hammer
+north
+down
+put wafer in tomb
+kill sisters
+up
+seal door
+stop wagon
+open box
+cut throat with kukri

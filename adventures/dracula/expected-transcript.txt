@@ -1,0 +1,716 @@
+Third of May. Bistritz. -- The landlady's husband would not speak of the castle. The landlady wept, and hung her own rosary about your neck. For your mother's sake, she said, and would not take it back.
+
+Now it is midnight in the Borgo Pass, and the coach has gone on to Bukovina, glad to be rid of you. A caleche waits where no caleche should be, drawn by four coal-black horses, driven by a tall man whose hat brim hides everything but the red of his eyes. The dead travel fast, a passenger whispered, and crossed himself.
+
+You ride. Blue flames burn small and cold above the treasure-graves of this country, and once, a ring of wolves closes round the carriage until the driver sweeps his arm and they fall away like beaten dogs. You are Jonathan Harker, solicitor, of Exeter. You have papers for a nobleman to sign. That is all. That is surely all.
+
+The horses stop.
+
+DRACULA: The Un-Dead
+Based on the novel by Bram Stoker. Type HELP for guidance.
+
+From the journal of Jonathan Harker.
+
+Castle Courtyard
+A vast courtyard of black stone under broken battlements. Dark archways yawn on every side, all barred beyond. The great nail-studded door of the keep stands north.
+> wait
+Time passes...
+> knock on door
+From within comes a sound of heavy steps and the rattle of long-unused chains. The great door swings back, and in the doorway stands a tall old man, clean-shaven but for a long white moustache, clad in black from head to foot, holding an antique silver lamp.
+
+"Welcome to my house! Enter freely and of your own will!" He does not step out to meet you. "Come freely. Go safely; and leave something of the happiness you bring!"
+> north
+The moment you cross the threshold his grip closes on your bag -- cold fingers, strong past all argument. "You are my guest, and it is late; my people are not available." Behind you the great door closes with a clang, and the chains go home. He precedes you up the winding stair with the lamp, and the smell of supper follows from somewhere above.
+Entrance Hall
+A stone hall lit by a hanging silver lamp. The great outer door is bound with chains and massive bolts, and a stone stair winds upward into gloom.
+> up
+Winding Stair
+Steps of worn stone circle upward, ringing under your feet. The draught carries the far howling of wolves.
+> up
+Upper Passage
+A long stone corridor of doors, doors everywhere, and every one locked and bolted. At its end a heavy door sags against the floor, and a narrower stair climbs up to a landing full of sky. The winding stair goes down; a doorway opens west.
+> west
+Supper is laid for one: roast chicken, cheese, a salad, old Tokay. "I pray you, be seated and sup how you please. You will, I trust, excuse me that I do not join you; but I have dined already." He stands by the great hearth as you eat, and the talk is easy, and his teeth, when he smiles, lie a little over the red lips. Ask him what you will; he seems in the mood for questions.
+Dining Room
+A table of gold plate stands before a mighty hearth where a log fire roars. There is warmth here, and welcome of a kind, and no mirror anywhere. Doorways lead east, west, and south.
+A card in a strange, spidery hand is propped against the salt.
+There is a Count Dracula here.
+> ask dracula about castle
+"I am glad you found your way in here, for I am sure there is much that will interest you. You may go anywhere you wish in the castle, except where the doors are locked, where of course you will not wish to go." The firelight stands very still.
+> ask dracula about england
+"I long to go through the crowded streets of your mighty London, to be in the midst of the whirl and rush of humanity, to share its life, its change, its death. Here I am noble; I am boyar; the common people know me, and I am master. In your London, a stranger is nobody. Men know him not -- and to know not is to care not for." He smiles at the fire. "I have been so long master that I would be master still."
+> ask dracula about wolves
+Somewhere below, thin and far, a cock crows. The Count is on his feet in one motion. "Why, there is the morning again! How remiss I am to let you stay up so long." At the door he turns, and bows. "Sleep well, my friend. Your chamber is south, through the little octagonal room. I am away from home to-day until the evening."
+Far below, the wolves begin, valley answering valley. He goes to the window as to music. "Listen to them -- the children of the night. What music they make!" Something in your face amuses him. "Ah, sir, you dwellers in the city cannot enter into the feelings of the hunter."
+> south
+Octagonal Room
+A small eight-sided chamber without a single window, lit by one lamp. Doors face each other like patient sentries, north and south.
+> south
+Great Bedroom
+Your bedroom: a curtained bed, a fresh log fire, and a barred window on the courtyard. It is the one room in the castle where sleep feels safe. The only door is north.
+On the mantel stands a hand lamp, trimmed and burning.
+There is a travelling bag here.
+> sleep
+You bolt the door that has no bolt, and lie down in your clothes with the beads in your fist, and sleep as the hunted sleep.
+
+A cock crows, thin and far. Morning. You are safe -- as safe as this place allows.
+> open bag
+Opening the travelling bag reveals a letter paper, and a shaving glass.
+> take lamp
+Taken.
+> north
+Octagonal Room
+> north
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> west
+Library
+Shelves of English books climb the walls: law, history, an atlas, a railway guide. A sofa faces the cold hearth. Someone has studied your country the way a hunter studies a covert. The only door is east.
+> read atlas
+The great atlas falls open of itself at the map of England, as a book will when one page is much consulted. Three places are ringed in old ink: Whitby, on the eastern sea; Exeter, in the west; and Purfleet, on the Thames east of London -- where, your papers say, the Count has bought his house.
+> east
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> east
+Upper Passage
+> down
+Winding Stair
+> down
+Entrance Hall
+> open door
+The bolts draw back, one by one, and the chains come free in your hands -- and the door is locked, and the key is gone. The castle is a veritable prison, and you are the prisoner in it.
+> up
+Winding Stair
+> up
+Upper Passage
+> up
+South Landing
+A tall stone-mullioned window fills this landing with sky. Below the sill the wall drops a thousand feet, sheer as a cut, to a sea of green treetops. The narrow stair goes down.
+> look out window
+Sky, and below the sill the wall drops a thousand feet, sheer as a cut, to green treetops small as moss. South, very far, the land folds away toward the world you came from.
+> down
+Upper Passage
+> west
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> south
+Octagonal Room
+> south
+Great Bedroom
+There is a travelling bag here.
+The travelling bag contains:
+  A letter paper
+  A shaving glass
+> sleep
+You sleep the afternoon away in the one safe room, and wake with the light going red on the wall.
+
+The sun drops behind the western peaks. Night, and the castle wakes.
+> north
+Octagonal Room
+> north
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> east
+Upper Passage
+> push door
+It gives an inch, gritting on stone. Your shoulder aches.
+> push door
+Another inch, dearly bought. It wants more than an arm. A lever might spare your shoulder -- or your whole frame might do it.
+> push door
+You set your whole frame to it. With a shriek of hinges the heavy door grinds back.
+> east
+The moonlight through the diamond panes is full of dust, and the dust is wrong: it thickens, gathers, takes shape. Three young women stand in the moonbeam where no women were -- two dark, with high aquiline noses like the Count's, and one fair, fair as fair can be. They look at you and laugh together, a silvery, musical laugh, like water-glasses played by a cunning hand. "He is young and strong," one whispers. "There are kisses for us all."
+Ladies' Wing
+A wide chamber deep in dust, where moonlight through diamond panes falls on a little oak table and a great couch. Ladies sat here once, singing, while their menfolk rode to war. The heavy door is west; the window looks out on nothing but air.
+
+The fair one comes on, bending, until you can hear the churning of her tongue behind the teeth, and her breath is honey-sweet, with a bitter under it, the bitter smell of blood. Your eyelids weigh a hundred years each. Some part of you says: door, west, now. It says it very quietly.
+> west
+Upper Passage
+> up
+South Landing
+> look out window
+Moonlight, and the wall dropping sheer away -- and out of the Count's window below, a head emerges, and then a whole man, and he crawls DOWN the castle wall, face down, cloak spread about him like great wings, fingers and toes gripping the bare stone. You watch until the dark takes him. Where his body has gone, why may not another body go? Mem.: the mortar is washed clean between the stones -- handholds every yard.
+> down
+Upper Passage
+> east
+The moonlight through the diamond panes is full of dust, and the dust is wrong: it thickens, gathers, takes shape. Three young women stand in the moonbeam where no women were -- two dark, with high aquiline noses like the Count's, and one fair, fair as fair can be. They look at you and laugh together, a silvery, musical laugh, like water-glasses played by a cunning hand. "He is young and strong," one whispers. "There are kisses for us all."
+Ladies' Wing
+
+The fair one comes on, bending, until you can hear the churning of her tongue behind the teeth, and her breath is honey-sweet, with a bitter under it, the bitter smell of blood. Your eyelids weigh a hundred years each. Some part of you says: door, west, now. It says it very quietly.
+> show crucifix to women
+You hold up the old woman's beads, and it is as if you had thrust a torch at three moths. They recoil hissing, beauty curdling into something older, and pour backward into the moonbeam, and the dust is only dust, sifting down through empty light. The room stands silent. The silence is on your side, for once.
+> west
+Upper Passage
+> west
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> south
+Octagonal Room
+> south
+Great Bedroom
+There is a travelling bag here.
+The travelling bag contains:
+  A letter paper
+  A shaving glass
+> sleep
+You bolt the door that has no bolt, and lie down in your clothes with the beads in your fist, and sleep as the hunted sleep.
+
+A cock crows, thin and far. Morning. You are safe -- as safe as this place allows.
+
+There is hot water steaming at your door, and no one in the corridor who could have carried it. You could do with a shave.
+> examine glass
+You prop the glass on the sill and lather, and have made the first stroke when a hand falls on your shoulder and the Count's voice says "Good-morning." You start -- the razor nicks your chin -- and the start is this: in the glass you can see the whole room behind you, and there is no one in it.
+
+The blood runs down your chin, and his eyes blaze, and his hand darts for your throat -- and touches the beads of the crucifix, and stops as if it had touched a stove. The change is instant, and courtly. "Take care how you cut yourself. It is more dangerous than you think in this country." He plucks up the glass. "And this is the wretched thing that has done the mischief. It is a foul bauble of man's vanity. Away with it!" -- and flings it through the bars, where it rings to pieces on the stones far below. A long silvered sliver lies on the sill. When you look up from it, you are alone.
+> take shard
+You pick the sliver off the sill and wrap it in a handkerchief. It is honest, and small, and it shows what is there. You may want a thing that does that.
+> write paper
+He has had you write three letters, post-dated -- the twelfth of June, the nineteenth, the twenty-ninth -- saying that you have left the castle and are well. You know now the span of your life, and you write a fourth letter he has not asked for: in shorthand, to Mina, the truth of this place. If it reaches the coast of Yorkshire before you do, at least the truth will not die in here with you.
+> north
+Octagonal Room
+> north
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> east
+Upper Passage
+> up
+South Landing
+> remove boots
+You pull off your boots and knot the laces through your belt. The stone is cold through your stockings, and closer, somehow. Fingers and toes, like the lizard went.
+> climb out window
+Narrow Ledge
+You stand on a hand's-breadth of crumbling stone above a gulf of moonlit air; the window at your back, the wall going north along the face. The wind pulls at your coat like a living thing. Do not look down.
+> north
+Sixty heartbeats of sideways prayer, and you are under the window the crawling thing came out of. It is unlatched.
+> in
+You came in by his window, as he goes out by it. Whatever this room was, it is now only where a thing keeps its gold and its door to the earth below.
+The Count's Room
+A bare, dusty chamber no servant tends. In one corner, dulled with grave-dust, lies a mound of old gold, and near it a heavy door stands ajar on a descending stair. The door to the hall is locked, and its lock is new. The window opens on the ledge.
+> take gold
+You fill your pockets with coins three centuries cold. If you live, you will need them.
+> open corner door
+The heavy door swings inward on a stone stair screwing down into the dark, and the smell comes up to meet you: old earth, newly turned.
+> down
+Circular Stair
+A stone screw of a stair, lit only through loopholes, going steeply down into an odour you know before you can name it: old earth, newly turned.
+> down
+Dark Passage
+A tunnel of dressed stone. The deathly, sickly odour of fresh-dug earth thickens with every step. The passage runs north and south.
+> south
+Ruined Chapel
+The roof is broken and the light looks in on ground dug over and over. Great wooden boxes stand ranked like coffins waiting for a congregation -- you count fifty. Steps descend into the vaults; the dark passage runs north.
+A workman's shovel leans against a heap of turned earth.
+> take shovel
+Taken.
+> down
+Old Vault
+Fragments of ancient coffins and piles of dust. In the third recess a single great box rests on new-dug earth, its lid leaning against the wall, and the lid is pierced with holes.
+> open box
+You lift the lid aside. On a bed of new-dug earth lies the Count -- but younger, the white hair iron-grey, the cheeks fuller, the lips redder, with fresh blood dried at their corners and trickled down the chin. He is gorged, like a filthy leech, exhausted with his repletion. The eyes are open, stony, dead-alive, and there is no breath, and no pulse, and no doubt at all left in you about anything.
+> attack count with shovel
+You swing the shovel with everything your arm has ever owned -- and the head turns on the pillow of earth, and the eyes fall full upon you, dead and blazing at once, and the shovel turns in your hand and glances from the face, gashing the forehead deep above the brows. The lid falls half across the box with the wind of your swing. Your hand will not lift the shovel again, and you know it, and so does he.
+> up
+Ruined Chapel
+> north
+Dark Passage
+> north
+Circular Stair
+> up
+The Count's Room
+> out
+Narrow Ledge
+> south
+You edge back south along the wall to the window you first came out of.
+> in
+South Landing
+> down
+Upper Passage
+> west
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> south
+Octagonal Room
+> south
+Great Bedroom
+There is a travelling bag here.
+> sleep
+You sleep the afternoon away in the one safe room, and wake with the light going red on the wall.
+
+The sun drops behind the western peaks. Night, and the castle wakes.
+> sleep
+You bolt the door that has no bolt, and lie down in your clothes with the beads in your fist, and sleep as the hunted sleep.
+
+A cock crows, thin and far. Morning. You are safe -- as safe as this place allows.
+
+From below comes the ring of hammers and the chatter of strange voices. Gypsies -- Szgany -- have camped in the courtyard, working at great square boxes. Where there are hands, letters may travel.
+> throw shorthand letter through bars
+You wrap the shorthand letter about a coin from your purse and drop it through the bars. Below, a brown hand fields it neatly; a hat is swept off in a bow of great mockery and some little truth. It is done. Whatever else happens in this castle, a page of it is over the wall.
+> sleep
+You sleep the afternoon away in the one safe room, and wake with the light going red on the wall.
+
+The sun drops behind the western peaks. Night, and the castle wakes.
+> sleep
+You bolt the door that has no bolt, and lie down in your clothes with the beads in your fist, and sleep as the hunted sleep.
+
+A cock crows, thin and far. Morning. You are safe -- as safe as this place allows.
+
+Heavy wheels grind in the courtyard, and cracking whips, and the chorus of the Szgany dies away down the rocky road. The great door is shut, and the chains rattle; there is a grinding of the key in the lock. You are alone in the castle with those awful women. The wall, then. Today, in the light, or never.
+> north
+Octagonal Room
+> north
+Dining Room
+A card in a strange, spidery hand is propped against the salt.
+> east
+Upper Passage
+> up
+South Landing
+> climb out window
+Narrow Ledge
+> climb down
+You lower yourself over the lip, and the world becomes very simple: fingers, toes, and the clean-washed joints of the stone. God does not make walls this old without handholds. Keep climbing.
+> climb down
+Halfway. Once a stone goes out under your foot and falls a long time before it makes any sound at all. You press your face to the wall until the castle stops swaying, and go on. Keep climbing.
+> climb down
+Stone by stone, joint by joint, and then softness under your feet: grass, and steep meadow, and the trees taking you in like a church. You look up once. The castle stands black and jagged against the sky, and no face shows at any window, and you turn your back on it and run, fall, run, downhill, west, alive.
+
+Here the shorthand journal of Jonathan Harker breaks off. Weeks later a sick man will wake in a hospital at Buda-Pesth, and a letter will go to England.
+
+-- From the journal of Mina Murray, Whitby, August. --
+
+Bedroom at the Crescent
+The room you share with Lucy at the Crescent. The window looks over the harbour to the East Cliff, where the abbey stands against the sky like a memory. The stairs lead down to the door.
+The workbasket contains:
+  A big safety pin
+> look out window
+Red roofs below, the harbour, the pier with its lighthouse, and beyond the water the East Cliff with the abbey on it, noble and ruined. The sea is grey and there is a queer stillness in the air, the kind the fishermen do not like.
+> down
+West Cliff
+The paved walk above the harbour. Below, red roofs piled anyhow like a picture of Nuremberg, and one long granite pier curving into the sea with a lighthouse at its elbow. The Crescent door is behind you; the way down to the drawbridge is east.
+> east
+The Drawbridge
+The one bridge over the Esk, and the only way between the cliffs. Fishermen's houses crowd the far bank, and the church steps rise beyond to the east.
+> east
+The 199 Steps
+The famous stairs wind up the East Cliff in a long, gentle curve, a hundred and ninety-nine of them, and every one an eternity when you are running. The churchyard is up; the drawbridge is down; a path runs north along the shore to Tate Hill Pier.
+> up
+St. Mary's Churchyard
+Tombstones lean over the town where the cliff has fallen away, and walks and seats thread the graves, and the harbour glitters far below. Lucy's favourite seat rests on a flat tombstone. The steps go down.
+> talk to swales
+"Yabblins! There be a vast o' lies written on them steans. Full o' lies, and the whole thing only a pack o' vanities. Wheer be they now?" He knocks the tombstone with his stick, companionably. "But I be not afraid o' dyin', not a bit; on'y I don't want to die if I can help it. My time is nigh at hand. Death be all that I can be sure of." He looks out at the sea and stops smiling. "There's something in that wind and that haze out yonder that sounds, and looks, and tastes, and smells like death."
+> read tombstone
+The seat rests on a flat tombstone. Sacred to the memory of George Canon, who died in the hope of a glorious resurrection, on the twenty-ninth of July, eighteen hundred and seventy-three, falling from the rocks at Kettleness. This tomb was erected by his sorrowing mother to her dearly beloved son. He was the only son of his mother, and she was a widow. Mr. Swales will tell you, if you let him, that the young man threw himself off those rocks to spite her.
+> down
+The 199 Steps
+> down
+The Drawbridge
+> west
+West Cliff
+> up
+Bedroom at the Crescent
+The workbasket contains:
+  A big safety pin
+> sleep
+Eighth of August. The sun goes down in a bank of cloud the colour of an old bruise, and by ten the storm is on the town like a hand coming down. Out of the fog a schooner runs for the harbour under all her sail, and every soul on the pier holds their breath -- and she takes the sand at Tate Hill Pier at a leap, and an immense dog bounds up from her hold and is gone into the dark of the churchyard.
+
+They find her helmsman lashed to the wheel, head fallen on his breast, dead these two days, and a crucifix bound about his hands and the spokes. The searchlight sweeps the deck and finds nothing else alive.
+> down
+West Cliff
+> east
+The Drawbridge
+> east
+The 199 Steps
+> north
+Tate Hill Pier
+A tongue of sand and gravel under the East Cliff. The schooner lies where she leapt, driven high on the sand with all sail set, her timbers groaning as the tide leaves her. A track of cart-wheels goes away from her side up the shore. The steps are south.
+> read log
+The log of the Demeter, out of Varna, in a hand that gets worse. Sixteenth of July: one of the crew missing. Bulgarin gone, said the mate, and no man saw him go. Twenty-fourth: another gone; the men are in a panic and go about two together. Twenty-eighth: four days in hell, and only five hands left. Second of August: another gone at midnight between two bells, and the man at the wheel screaming.
+
+Third of August: the mate came to me wild-eyed. 'It is here; I know it now. On the watch last night I saw It, like a man, tall and thin and ghastly pale.' He went below with a knife, and came up backwards, and went over the rail rather than stay. I am captain, and it is my duty to stay by my ship, and I will tie my hands to the wheel, and with them that which He -- It -- dare not touch. Then whether I be man or madman, God and the Blessed Virgin shall judge. The log goes on for one line more: 'If we are wrecked, mayhap this bottle may be found.'
+> examine captain
+He is lashed to the wheel with his own hands bound over the spokes, and between the palms and the wood is a crucifix, the beads wound round both wrists. He has been dead two days, and he brought his ship in.
+> south
+The 199 Steps
+> down
+The Drawbridge
+> west
+West Cliff
+> up
+Bedroom at the Crescent
+The workbasket contains:
+  A big safety pin
+> sleep
+Ninth of August. Morning, and the sea lying flat and innocent as a mirror, as if it had done nothing at all in the night. Down at Tate Hill Pier there is a crowd, and the masts of a ship where no ship should be.
+> sleep
+The day goes by in tea and talk of the wreck. Lucy is restless; twice you find her at the window, looking east.
+> sleep
+Eleventh of August, three in the morning. You wake because the room is wrong: the door of the room is open, and Lucy's bed is empty, and her dress and shoes are where she left them. Out of the window, on the East Cliff, on her favourite seat above the town, something white sits, and something long and black bends over it.
+
+You take what is at hand and run, and the town is a maze of steps and sleeping windows, and the two-mile way is longer than any road in your life.
+> take shawl
+Taken.
+> take pin
+Taken.
+> down
+West Cliff
+> east
+The Drawbridge
+> east
+The 199 Steps
+> up
+St. Mary's Churchyard
+There is a Lucy here.
+> put shawl on lucy
+You throw the shawl about her and draw the edges together at her throat. She is cold as the stone she sits on, and asleep, and her breath comes in long heavy gasps, as though she were trying to get her lungs full at every breath. The shawl will not hold itself shut.
+> pin lucy
+You pin the shawl at her throat with the big safety pin, and in your haste, or your clumsiness, or the dark, you must have pricked her: she gives a small sound and puts her hand up to her neck, still sleeping. Afterwards, in the light, there are two little red points on her throat, and a drop of blood on the band of her nightdress, and you apologise for that pin a hundred times in a week.
+
+Then she wakes, and shivers, and clings to you, and does not know how she came there. You put your own shoes on her feet, and daub your bare feet with mud so that no one who meets you will look twice, and take her home through the grey beginning of the day.
+
+Nineteenth of August. A telegram, and then a letter, and the summer folds up like a deck chair. Jonathan is found -- alive, in a hospital at Buda-Pesth, brain-fevered, with a journal he begs you never to read unless you must. You go to him, and you marry him there, and Lucy writes that she is quite well again, only tired, only a little pale.
+
+-- From the diary of Dr. John Seward, kept in phonograph. Purfleet, September. --
+
+You are John Seward, doctor of medicine, keeper of a lunatic asylum, and a man who was refused, kindly, by Lucy Westenra in May. Your friend Arthur is engaged to her. Your patient Renfield has begun to keep accounts. And the great house next door, empty these many years, has been bought by a foreign gentleman.
+
+Dr. Seward's Study
+Your study at the asylum: the phonograph with its wax cylinders, a locked safe, a case-bottle of brandy, and a window giving on the grounds. The corridor is east.
+> play phonograph
+The cylinder turns and your own voice comes out of the horn, dry and tired and honest, and tells you where you stand.
+
+"Miss Westenra is ill at Hillingham and no examination shows why. The professor's orders, which I set down exactly: the window shut at sundown; the garlic flowers rubbed on the sash, on the door, on the fireplace; the wreath about her neck; and someone by her all night."
+> east
+Asylum Corridor
+Whitewashed and echoing. Somewhere down the ward a patient laughs, and stops. Your study is west, Renfield's room north, the guest room east, and the door to the grounds south.
+> north
+Renfield's Room
+A bare room smelling of sugar and something older. Flies stitch the sunbeam, and the window, screwed shut, looks toward the trees of the neighbouring park. The corridor is south.
+Renfield is here.
+> catch fly
+You cup your hand over a fat bluebottle on the pane and take it, alive and indignant, and feel foolish, and keep it anyway.
+> give fly to renfield
+He takes the fly with enormous delicacy, considers it, and eats it, and his whole face clears like weather. "The blood is the life!" he says. "The blood is the life!" Then, confidentially, as one professional to another: "You will see, doctor. I shall not need to be mad much longer." You write it down, and the professor, when he reads it, will go very quiet.
+> south
+Asylum Corridor
+> south
+Asylum Grounds
+Lawn and old trees inside a high wall. Beyond the wall eastward rise the heavier trees of Carfax, and its ruined roofs. The asylum door is north; the London road runs south.
+> south
+The London Road
+A stretch of road with a cab-stand and a railway station in walking distance, which is to say: from here the day's errands run. North to the asylum; west to Hillingham; south to the churchyard at Kingstead; south-east to the mean streets of Walworth.
+> west
+Van Helsing has come from Amsterdam by the night train because you wired him, and he has looked at Lucy for three minutes without saying anything, and now he takes you out onto the landing and shuts the door.
+
+"Friend John. There is blood gone out of that girl and no wound to let it out by, and no disease in her to spend it. There must be transfusion of blood at once, or she die." It is done before noon: Arthur's blood, and Arthur white with pride and terror, and Lucy rosy for the first time in a week.
+
+Then the professor sets a great box on the table and opens it, and the room fills with a smell like a Dutch kitchen. Garlic flowers, brought from Haarlem by wire and rail. "You think I am a mad old man. Perhaps. Now attend, for I say it once and then I say it every night until you weary of me. At sundown: the window shut. The flowers rubbed on the sash, and on the door, and on the fireplace -- every whiff of air that enter, it must pass the flower. And this wreath about her neck, and she shall not take it off. And someone by her in the night."
+
+He presses a little silver crucifix into your hand as you go, and does not explain it, and does not smile.
+Hillingham
+The Westenra hall: flowers, good furniture, and a stillness that has learned to listen for a sickroom bell. The road is east; Lucy's room is up.
+Van Helsing is here, waiting on you.
+> up
+Lucy's Room
+A pretty bedroom trying to stay one: the bed, the fireplace, and the window on the shrubbery, its latch bright with use. On the air, sometimes, a beating of wings.
+Lucy lies against the pillows, pale but rosy at the lips, and smiles at you as though you were the one who wanted nursing.
+There is a Lucy here.
+> close window
+You shut the sash and turn the latch. The room is close at once, and the close air is the price, and it is a cheap one.
+> rub garlic on sash
+You rub the white blossoms along the sash and the frame and into the joint of the latch, as the professor showed you: so, and so. Every whiff of air that enters must pass the flower.
+> rub garlic on door
+You rub the garlic over the door and the jamb and the keyhole, and feel like a fool, and go on doing it thoroughly, which is the correct professional response to feeling like a fool.
+> rub garlic on fireplace
+You rub the flowers about the grate and lay a handful in the cold ash. A chimney is a door.
+All three ways are stopped. The room smells like a Dutch kitchen and is, for tonight, a fortress.
+> examine band
+She wears a black velvet band about her throat, with an old diamond buckle Arthur gave her; and when you lift it, there on the neck, just over the jugular, are two little punctures, not healthy-looking, with no sign of disease, and the edges of them white and worn as though something had worried at them.
+> hang wreath on lucy
+You lay the wreath of garlic flowers about her neck and close it. She wrinkles her nose, and then breathes in deeply, and something in her face lets go. "Peace in its smell," she says, half asleep, and sleeps like a child.
+> down
+Hillingham
+> smell sherry
+A decanter of sherry on the sideboard, the household's small evening kindness to itself.
+> tell mrs westenra about garlic
+You explain, gravely, and without one word of the truth, that the flowers are medicine: strange, foreign, sovereign, and on no account to be moved. She looks at you the way she used to look at Lucy's governess. "Then they shall stay, doctor, though the room smells like a public-house cellar. You would not laugh at me if you knew how little I sleep."
+> talk to maids
+A twist of sugar from the kitchen, and no questions asked, which in a madhouse is a kind of professional courtesy.
+> up
+Lucy's Room
+There is a Lucy here.
+> wait
+The light goes off the lawn. Evening.
+> wait
+Morning, the twelfth of September.
+> down
+Hillingham
+> east
+The London Road
+> north
+Asylum Grounds
+> in
+Asylum Corridor
+> north
+Renfield's Room
+> give sugar to renfield
+He takes the sugar and sets it out on the sill in a careful line, to bring the flies, to bring the spiders, to bring the sparrows. Then he leans close, and the madness goes out of his voice altogether. "He is at hand. The Master. In the house of the chapel, in his boxes of holy earth. Count the boxes, doctor -- He counts them."
+> south
+Asylum Corridor
+> out
+Asylum Grounds
+> south
+The London Road
+> west
+Hillingham
+> up
+Lucy's Room
+There is a Lucy here.
+> watch lucy
+You draw the chair to the bedside, and take out your notebook, and do not use it. This is the whole of medicine tonight: to be in the room.
+
+The light goes off the lawn. Evening.
+
+Midnight, and you are in the chair by the bed with your eyes open, and the flapping begins at the pane: soft, insistent, patient, like something being polite. Then the whole window bursts inward in a storm of glass and a great gaunt grey head is in the room, red-eyed, filling the broken frame, and Lucy sits up with a cry. It does not come in. It is looking at you, and waiting for something -- for a scream, for a faint, for an invitation.
+> show crucifix to wolf
+You hold it up between the thing and the bed, and your hand does not shake, which surprises you for the rest of your life. The great gaunt grey head withdraws. Little specks of dust swirl in at the broken pane and find no way further, and turn back on the air as though the threshold were a wall of glass. Then the shrubbery is only shrubbery.
+
+You board the pane with the fire-screen and sit by her until morning, and in the morning Lucy is better, and asks for breakfast, and complains about the flowers.
+> wait
+Morning, the thirteenth of September.
+
+Van Helsing comes at eight, and takes her pulse, and looks at her gums, and sits down rather suddenly on the end of the bed. "The first gain is ours!" he says. "Check to the King!" And then, because he is what he is, he goes out onto the landing and cries like a child, and comes back in laughing, and calls it King Laugh, and tells you that it is the only thing that keeps a man from going mad in a house like this.
+
+That evening the professor puts five chairs in your study and lectures until two in the morning, and no one interrupts him twice.
+
+"The nosferatu do not die like the bee when he sting once. He is strong of twenty men; he command the wolf and the rat and the bat; he can grow small, or vanish in the mist; he throw no shadow, and make no reflect in the mirror. But he cannot enter anywhere at the first, unless there be some one of the household who bid him come. He cannot pass running water at the slack or the flood of the tide. He must sleep in the earth of his own place, in his boxes, and he is powerless in the day. Garlic he flee; the crucifix and the Sacred Wafer he cannot abide; and the branch of wild rose on his box he cannot leave it. Sterilise his earth, and he have nowhere to lay him down, and then we take him at our leisure -- as a fox in his hole."
+
+He opens a case on your desk and issues it out like a sergeant: a crucifix for each man, a wreath of garlic, a revolver and a knife, an electric lamp for the breast, and to each an envelope of the Sacred Wafer, which he has by an Indulgence from Amsterdam and will not discuss. "To-night, the house next door. Fifty boxes came from Varna. Let us see how many are still at home."
+> down
+Hillingham
+> east
+The London Road
+> north
+Asylum Grounds
+> east
+Carfax
+Twenty acres of black pond and older trees around a house of all periods, part of it a keep with barred windows high up. Against it leans a chapel of old times. The place holds its breath. The asylum wall is west; the front door is north.
+> unlock door with keys
+A surgeon's fingers and a burglar's tools. After a little play the bolt shoots back with a rusty clang, and the door swings in on air that has not been breathed since the Tudors, and something under that which has.
+> in
+Carfax Hall
+Dust lies inches deep, torn by hobnailed footprints, and cobwebs hang like old rags from the beams. On a table lies a great bunch of keys, every one with a time-yellowed label. The chapel is east, through a low arched door ribbed with iron.
+On a table lies a great bunch of keys, every one with a time-yellowed label.
+> take bunch
+Taken.
+> read labels
+A great bunch of old keys, each with a label in a clerk's hand, all yellowed but one. Chicksand Street, Mile End New Town. Jamaica Lane, Bermondsey. And one label newer than the rest, the ink hardly grey: a house in Piccadilly.
+> east
+The smell arrives before the sight of it: earth, and blood, and something worse, as though corruption had itself become corrupt. You count the great boxes by the lamp: twenty-nine. Twenty-nine, out of fifty.
+
+Then Morris swings his lamp at the far wall and swears, and the wall moves. It is not a wall. Along the floor, on the boxes, over the beams, a mass of phosphorescence twinkles like stars in a black sky: the whole place is becoming alive with rats, and they are not running away.
+Carfax Chapel
+A chapel of old times, high and dark, its floor deep in earth. Great wooden boxes stand in the gloom. The hall is west; the outer door south is bolted.
+
+The rats come on, and the sound of them is the worst part: not squeaking but a dry rushing, like grain poured out of a sack. Godalming has his hand in his pocket. "I brought the dogs up to the wall," he says. "Someone had better call them." He puts a little silver whistle into your hand.
+> blow whistle
+You blow, and the note is thin and hardly a sound at all, and then three white shapes come over the sill of the outer door like water over a weir: the terriers, professional, joyous, entirely without fear. The carpet of rats breaks and drains away into the walls as though someone had pulled a plug, and in ten seconds the chapel is only a filthy room with boxes in it, and three dogs are having the evening of their lives.
+> put wafer in boxes
+It takes the better part of an hour, and it is the strangest hour of your professional life: lid by lid, the turnscrew and the crowbar, the sour breath of the earth coming up, and in each box a portion of the Host laid in the mould, and the professor saying the words over it in Latin while Morris holds the lamp. Twenty-nine boxes. When the last lid goes back the chapel feels like an ordinary filthy room, and everyone notices at once, and nobody says so.
+
+"Twenty-nine," says Van Helsing. "And fifty came. Friend John, we must find the other twenty-one before he miss these."
+
+-- From the diary of Dr. Seward, the third of October. --
+
+In the evening Renfield asks to be let out, and does it well: sane, courteous, urgent, a reasonable man reasoning. He will not say why. "I am a sane man fighting for his soul," he says at last, and you write that down and refuse him, because you are a doctor and it is a madhouse, and that refusal is the second-worst thing you ever do.
+
+At midnight the attendant's cry brings you to his room, and he is face down on the floor in his own blood with his back broken. He lives long enough to tell you the rest: the fog, and the invitation, and the promised rats with life in their eyes, and how he took hold of the Master and tried to stop him when he understood, at last, whose life was being taken out of the house.
+
+The Harkers' door is locked. You break it in together.
+
+Jonathan lies on the bed insensible, breathing like a man drugged. On the edge of the bed, in his nightdress, kneels Mina, and standing over her with her face pressed to his breast is the Count, and one white hand holds her hands behind her, and the other keeps her head down, and her white nightdress is smeared with blood, and a thin stream of it runs down his bare chest where his own nails have opened it. It is like nothing so much as a child forcing a kitten's nose into a saucer of milk to make it drink.
+
+The professor holds up the envelope of the Host, and the Count's face goes, and the whole thing is gone in a rush of vapour under the door. Mina wipes her lips and screams a word into the dark, twice, and it is the worst sound in this book: "Unclean! Unclean!"
+
+At dawn the professor lays the Wafer on her forehead to bless her, and it sears the skin as if it had been white-hot, and leaves a red scar there. He drops on his knees. "We must not despair. Madam Mina, when that scar go from your forehead, it will be because God has judged us all."
+> west
+Carfax Hall
+> out
+Carfax
+> west
+Asylum Grounds
+> in
+Asylum Corridor
+> north
+Renfield's Room
+> give notebook to renfield
+He has had that of you already, and the account is settled.
+> south
+Asylum Corridor
+> out
+Asylum Grounds
+> south
+The London Road
+> se
+A Court off Walworth
+A brick court of drying-lines and doorsteps. The carter Bloxam lodges here, and will remember with his throat what his head forgets. The road back is northwest.
+> give beer to bloxam
+The beer goes down in one long professional swallow and Mr. Bloxam becomes a different and much better man. "Them boxes? Nine big 'uns to a 'ouse off Piccadilly -- a 'igh 'un, stone front with a bow, 'igh steps up. Old gent 'elped me with 'em, an' 'e took 'is end like they was pounds o' tea, an' me a-puffin' like a grampus. Cold 'ands, cold as a tomb-'andle. An' the dust in that 'all, guv'nor -- you could ha' slep' on it."
+> nw
+The London Road
+> east
+No. 347, Piccadilly
+A high house with a stone bow front and steps up to the door. Dust crusts the windows, and behind the area railings is the white scar where a board reading For Sale was torn away. London flows past without looking. There is a bench in Green Park opposite.
+> ask godalming about door
+Godalming looks at the house, and then at the street, and does the one thing none of the rest of you could have thought of: he strolls off and comes back in a four-wheeler with a locksmith in it.
+
+The man kneels to the door with the calm of a tradesman on a job, tries three keys, files a fourth, and has it open in ten minutes; a constable comes by and looks on with approval at a gentleman putting his own house in order; the professor tips him half a crown, and the locksmith hands over a new key and drives away. Not a soul takes the slightest notice. It is done as such things are rightly done, and at the time such things are rightly done.
+> in
+The House in Piccadilly
+The dining-room of an empty mansion, and it smells like the chapel at Carfax. Eight great boxes stand about the floor. On the table: a bundle of title deeds, a clothes brush, and a jug and basin, the water in the basin reddened as if with blood, and a little heap of keys of all sorts and sizes. A window looks down into the mews.
+> read deeds
+The title deeds of the Piccadilly house, and with them, in a bundle tied with tape, the deeds and conveyances of the others: Mile End New Town, Bermondsey, and Carfax at Purfleet. Every lair in England, in a bundle on a table, because he is a landlord now and landlords keep their papers. Jonathan's own office drew half of them.
+
+Godalming and Morris take the Bermondsey and Mile End addresses between them and are gone down the steps before anyone can argue. Six boxes and six boxes. That leaves one.
+> put wafer in boxes
+Eight lids, eight portions of the Host, eight boxes turned from beds into holes in the ground. It goes quicker than Carfax; you are getting professional at it, and that is its own small horror.
+
+A boy comes up the steps with a telegram from Mina at Purfleet, and Van Helsing reads it and goes the colour of paper. It says: LOOK OUT FOR D. HE HAS JUST NOW, TWELVE FORTY, COME FROM CARFAX HURRIEDLY AND HASTENED TOWARDS THE SOUTH. HE MAY BE GOING TO LOOK FOR YOU. MINA.
+
+A key turns softly in the hall door.
+
+He comes into the room as smoothly as oil poured, and stops dead, and his face becomes a thing you will describe in your diary for two pages and never get right: waxen, hook-nosed, red-eyed, with the parted lips showing white sharp teeth, and the scar of an old deep gash white on his forehead. He looks at the open boxes and then at the five of you, and hisses, and the hiss has laughter in it somewhere.
+> attack dracula with kukri
+Jonathan is faster than any of you: the great kukri knife goes up and comes down with everything Exeter has been storing since May. The Count sways aside with a movement no living spine could make, and the blade shears through the breast of his coat -- and out of the rent falls a stream of banknotes and gold, spilling and rolling on the boards, and he stoops and claws a handful of it up as he goes, which is somehow more terrible than the teeth.
+
+"You think to baffle me, you -- with your pale faces all in a row, like sheep in a butcher's. You shall be sorry yet, each one of you!"
+> show wafer to dracula
+The professor is beside you with the envelope held out, and you have the crucifix up, and the Count goes backward before them across the room with his face convulsed, the courtly manner gone entirely, a rat in a corner of a barn. There is nothing noble left in him at all.
+
+"You think to baffle me, you -- with your pale faces all in a row, like sheep in a butcher's. You shall be sorry yet, each one of you!"
+> wait
+The light goes off the lawn. Evening.
+
+He makes for the door, and Morris is in it, so he turns and goes at the window instead -- a run, and a leap, and the glass goes out in a shower into the mews below, and he lands on the cobbles twenty feet down on his feet, and is not hurt at all.
+
+From the stable door he looks back up at the five faces in the broken window. "You think you have left me without a place to rest; but I have more. My revenge is just begun! I spread it over centuries, and time is on my side. Your girls that you all love are mine already; and through them you and others shall yet be mine." And he is gone into the fog toward the river, and there is no use whatever in following.
+
+Van Helsing gathers you up out of the wreck of the afternoon. "He is beaten, and he know it. Sterilise all his earth, and he must go home to the last of it, by water, for he cannot cross running water but at the turn of the tide, and a box on a ship is a box he cannot leave. And Madam Mina -- forgive me, my dear -- Madam Mina is joined to him now, and what she can hear in her trance, we shall hear also."
+
+At dawn she goes under his hands and speaks: "I hear the lapping of water. It is level with me, and the creaking of a chain, and the sound of men running overhead." So: a ship, and going out with the tide. The Czarina Catherine sailed from Doolittle's Wharf for Varna on the tide, with one great box in her hold.
+
+-- From the journal of Mina Harker, aboard the Orient Express. --
+
+Hotel Odessus, Varna
+A shuttered hotel room grown small with waiting: maps on the table, the kukri whetted daily, and every dawn and dusk the professor's hands making passes before Mina's closed eyes. There is nowhere to go. There is only news to wait for.
+> wait
+Dawn. The professor makes his passes and she goes under between one breath and the next, and speaks in a voice flat as a reading of the weather: "I hear the lapping of water. It is level with me, and the creaking of a chain, and the sound of men running overhead. There is no sun." So he is still afloat, and still boxed, and still ours to catch.
+
+Three weeks of this. The Czarina Catherine does not come to Varna.
+> wait
+A boy runs up the stairs with a wire from Lloyd's, and the professor reads it standing, and then sits down without looking for the chair.
+
+Twenty-eighth of October. Czarina Catherine reported entering Galatz at one o'clock to-day. Galatz. Not Varna. He read our plan in her sleeping mind while we read his in it, and he has beaten us by a hundred miles of coast.
+> read telegram
+(Taken)
+28 October. -- Czarina Catherine reported entering Galatz at one o'clock to-day. Three weeks you waited at Varna; he was never coming to Varna. He read the plan in Mina's sleeping mind as the professor reads the sea in hers.
+> wait
+Thirty hours by train, and the whole company of you off it at Galatz in the raw river morning, and down to the wharf before the ship has her warps ashore.
+
+The Wharf at Galatz
+Brown river, tarred rope, and the Czarina Catherine warping in. A Scots captain glares from the rail at the devil's own luck that blew him here. The box is gone ashore already; what remains is paper, and the truth at the bottom of it.
+> wait
+The captain has his say, the bill of lading is in your hand, and the map is on the crate beside you. Somewhere in the paper is a road.
+> read bill
+One box, earth, consigned to Immanuel Hildesheim of Burgen-strasse; and Hildesheim, for five pounds, says he passed it to Petrof Skinsky, who deals with the Slovaks that trade down the river to the port. And Skinsky, when they go to find him, is found instead: in a churchyard, with his throat torn open as if by a wild beast. So the box is on the water, going up.
+> read map
+The rivers of the country, drawn fine: the Danube, and out of it the Sereth going north, and into the Sereth at Fundu the Bistritza, and the Bistritza climbing up and up into the mountains toward a pass the map calls Borgo.
+
+Mina has her finger on Fundu and is not moving it.
+> ask van helsing about river
+Mina reads it out in the flat clear voice she uses for timetables, and it is the finest piece of work anybody does in this whole affair.
+
+"He must go by water, for he cannot cross running water of himself, and he is in his box and helpless in the day. The Sereth is, at Fundu, joined by the Bistritza, and the Bistritza runs up round the Borgo Pass. The loop it makes is manifestly as close to Dracula's castle as can be got by water. Therefore: the launch up the river, the horses by the Bistritza road, and the carriage to the Borgo Pass -- and one of us must go to the castle itself and do what is there to be done."
+
+"I go to the castle," says Van Helsing, "and Madam Mina come with me, for I dare not leave her, and I dare not take her, and of two things I dare not I choose the one I can watch."
+
+-- From the memorandum of Abraham Van Helsing. --
+
+The launch went up the river; Godalming and Jonathan on it. Morris and Seward rode the bank. I took Madam Mina by carriage, up and up into the snow, and on the fifth of November, near sunset, I made a camp in a hollow of the rock below the castle, and I am afraid, and it is a long time since I was afraid.
+
+Camp below the Castle
+A hollow in the rock like a doorway between two boulders. Snow flurries walk the dark like women in trailing garments. Far above, the castle cuts its jagged line against the sky; the road up to it climbs from here.
+Madam Mina sits by the fire, too quiet, and does not feel the cold.
+> draw circle
+I took of the Wafer, and crumbled it fine, and I drew a ring round Madam Mina in the snow, wide enough for the fire and the two of us, and over the ring I passed the crumbs of the Host, and said what one says.
+
+Then the test, which I hated. "Come to me, Madam Mina," I said, and held out my hands.
+
+She rose, and took one step, and stood as one stricken. "I cannot," she said, and put her hands to her face. And I rejoiced -- God forgive me, I rejoiced -- for what she could not do, none of those we dread could do either. She is inside the ring, and the ring holds both ways, and that is the whole of my comfort tonight.
+> wait
+The sun goes down behind the ranges and the cold comes up out of the rock like water filling a cellar. Madam Mina shivers, and it is not the cold: she is strange and quiet, and her eyes have gone somewhere I cannot follow. Mem.: before dark. Whatever is to be done, before dark.
+> wait
+They come with the snow, and at first they are only the snow: whirling figures of mist and dust that resolve, if you look too long, into three women. Two dark, one fair, and I know them from a young man's journal which I have read until I dream it.
+
+They call to her in a voice like the tingling of glasses played on by a cunning hand. "Come, sister. Come to us. Come! Come!" And Madam Mina, inside the ring, weeps, and does not move, and holds my hand hard enough to hurt. The horses scream in the dark, and after a while they stop.
+> wait
+Morning, the sixth of November, and a red sun coming up over the snow with a bad grace. The three of them are gone from the ring's edge as the light comes, going up toward the castle like blown paper.
+
+The horses are dead. All of them, and no mark on them, and the snow about them not much trodden. Well. We do not need horses to go up, only to come down, and I am not certain we shall be coming down.
+> up
+Castle Courtyard
+> break door with hammer
+I beat the great doors off their rusty hinges with the smith's hammer, and threw them down, lest some ill-intent or ill-chance should close them behind me and leave me shut in a place I could not get out of. Bitter experience of another man's journal has taught me this.
+> north
+Ruined Chapel
+> down
+Old Vault
+> put wafer in tomb
+You lay a portion of the Wafer on the black earth within the great tomb, and so banish him from it, Un-Dead, for ever. Whatever races the sunset toward this place is racing toward a locked door.
+> kill sisters
+It was butcher work; had I not been upheld by thoughts of other dead, and of the living over whom hung such a pall of fear, I could not have gone on. I tremble and tremble even yet, though till all was over, God be thanked, my nerve did stand.
+
+And then the wonderful thing: in the very moment of the stroke, before the dust took them, each face was such a face as I could look on without loathing -- a look of gladness, of peace, of a thing let out of a trap. Then they crumbled into their native dust, as though the death that should have come centuries ago had at last had its way.
+> up
+Ruined Chapel
+> seal door
+Then I went about the castle, and to every door and every window and every crack of the entrances I put the crumbs of the Host, and sealed them, so that never more can the Count enter there, Un-Dead. And when the last one was done I stood in the courtyard in the snow and found that my hands were shaking and had been for some time.
+
+Far below, on the road out of the pass, there is a black speck moving fast, and behind it other specks, and the sun is going down the sky much too quickly for the fifth hour of the afternoon.
+
+-- From the journal of Jonathan Harker, the sixth of November. --
+
+You are Jonathan Harker, and you have ridden this road all day with a horse under you that is finished, and the sun is going down.
+
+The Borgo Road
+The last light lies red on the snow. The leiter-wagon stands in the road with the Szgany about it like a river round a stone, and on the cart is a great square chest.
+The sun stands a hand's-breadth above the peaks.
+There is a Szgany here.
+
+Then Morris and Seward come up out of the river-road at the gallop, one on each flank, and Godalming behind you, and the Winchesters come down level across four saddles. Twice you shout Halt, and the leader of the Szgany points his whip at the sun and then at the castle above, and says something in his own tongue, and every man of them puts a hand to his knife.
+> stop wagon
+You do not remember deciding. You are off the horse and through the gypsies and up on the cart, and with a strength that seems to belong to somebody else you get your hands under the great box and heave it over the wheel, and it goes down into the snow with a sound like a door closing in an empty house.
+
+The Szgany come at you with their knives, and Morris comes through them from the other side to reach the box, and does not stop when they cut him. There is blood on the snow and some of it is his; he has his hand pressed to his side and it is coming through his fingers, and he gets to the box anyway.
+> open box
+You get the point of the great kukri under the lid and throw your weight on it, and the nails draw with a quick screeching sound, and the lid is thrown back.
+
+He lies on the earth, the box half full of it: waxen-pale, deathly, the red eyes open, with that horrible vindictive look you know so well. And as you look, the eyes see the sinking sun, and the hate in them turns to triumph.
+> cut throat with kukri
+The sweep and flash of the great kukri -- and Quincey's bowie driven home in the same breath. Before your eyes, almost in the drawing of a breath, the whole body crumbles into dust and passes from your sight.
+
+In that moment of final dissolution there is in the face a look of peace, such as you would never have believed could have rested there.
+
+The sun goes behind the peaks. The Szgany turn and ride for their lives, and the wolves stream after them into the dark, and the snow is suddenly only snow.
+
+Quincey Morris is down in it, his hand pressed to his side, smiling. Mina kneels by him and takes his head on her knee, and he looks up at her forehead, and says: "It was worth for this to die. Look! The snow is not more stainless than her forehead! The curse has passed away!" And with a smile, and in silence, he dies, a gallant gentleman.
+
+Seven years after, you will bring a boy to this country: a boy with a bundle of names that links our little band of men together, though we call him Quincey. There is no proof of any of it -- only a mass of typewriting, and the professor's word, standing with the boy on his knee: "We want no proofs; we ask none to believe us."
+
+*** You have won ***
+
+Your score is 204 (total of 210 points), in 211 moves.
+That earns you the rank of King Laugh.
+Your score is 204 (total of 210 points), in 211 moves.
+That earns you the rank of King Laugh.
+
+Would you like to restart the game from the beginning, restore a saved game position, or end this session of the game?
+(Type RESTART, RESTORE, or QUIT):

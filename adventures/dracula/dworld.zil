@@ -9,7 +9,7 @@ plus three castle rooms revisited."
 ACT I - CASTLE DRACULA"
 
 <ROOM COURTYARD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Castle Courtyard")
       (NORTH PER COURTYARD-NORTH)
       (IN PER COURTYARD-NORTH)
@@ -22,7 +22,7 @@ wolves. There is no going back on foot.")
 
 <OBJECT GREAT-DOOR
 	(IN LOCAL-GLOBALS)
-	(SYNONYM DOOR GATE)
+	(SYNONYM DOOR GATE DOORS)
 	(ADJECTIVE GREAT NAILED OUTER)
 	(DESC "great door")
 	(FLAGS DOORBIT NDESCBIT)
@@ -50,7 +50,7 @@ battlements a jagged line against the sky. It has stood so for centuries,
 and looks willing to stand so for centuries more.")>
 
 <ROOM ENTRANCE-HALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Entrance Hall")
       (LDESC
 "A stone hall lit by a hanging silver lamp. The great outer door is bound
@@ -63,7 +63,7 @@ with chains and massive bolts, and a stone stair winds upward into gloom.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM WINDING-STAIR
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Winding Stair")
       (LDESC
 "Steps of worn stone circle upward, ringing under your feet. The draught
@@ -75,7 +75,7 @@ carries the far howling of wolves.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM UPPER-PASSAGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Upper Passage")
       (LDESC
 "A long stone corridor of doors, doors everywhere, and every one locked
@@ -107,7 +107,7 @@ down; a doorway opens west.")
 	(ACTION STUCK-DOOR-FCN)>
 
 <ROOM DINING-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Dining Room")
       (LDESC
 "A table of gold plate stands before a mighty hearth where a log fire
@@ -133,7 +133,7 @@ at it, and is never seen to eat.")>
 <OBJECT GOLD-SERVICE
 	(IN DINING-ROOM)
 	(SYNONYM SERVICE PLATE CUPS)
-	(ADJECTIVE GOLD GOLDEN)
+	(ADJECTIVE GOLDEN BEATEN)
 	(DESC "golden service")
 	(FLAGS NDESCBIT TRYTAKEBIT)
 	(ACTION GOLD-SERVICE-FCN)>
@@ -141,7 +141,7 @@ at it, and is never seen to eat.")>
 <OBJECT DINING-FIRE
 	(IN DINING-ROOM)
 	(SYNONYM FIRE HEARTH LOGS)
-	(ADJECTIVE LOG MIGHTY)
+	(ADJECTIVE MIGHTY ROARING)
 	(DESC "log fire")
 	(FLAGS NDESCBIT)
 	(TEXT
@@ -161,7 +161,7 @@ nothing were wrong.")>
 "I have to be absent for a while. Do not wait for me. -- D.")>
 
 <ROOM LIBRARY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Library")
       (LDESC
 "Shelves of English books climb the walls: law, history, an atlas, a
@@ -209,7 +209,7 @@ to know your great England.\"")>
 	(TEXT "A deep sofa, much sat in, facing a hearth long cold.")>
 
 <ROOM OCTAGONAL-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Octagonal Room")
       (LDESC
 "A small eight-sided chamber without a single window, lit by one lamp.
@@ -220,7 +220,7 @@ Doors face each other like patient sentries, north and south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM BEDROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Great Bedroom")
       (LDESC
 "Your bedroom: a curtained bed, a fresh log fire, and a barred window on
@@ -268,7 +268,7 @@ The only door is north.")
 <OBJECT LETTER-PAPER
 	(IN TRAVELLING-BAG)
 	(SYNONYM PAPER PEN)
-	(ADJECTIVE LETTER WRITING)
+	(ADJECTIVE WRITING BLANK)
 	(DESC "letter paper")
 	(FLAGS TAKEBIT READBIT)
 	(SIZE 1)
@@ -317,7 +317,7 @@ The only door is north.")
 	(ACTION CRUCIFIX-FCN)>
 
 <ROOM SOUTH-LANDING
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "South Landing")
       (LDESC
 "A tall stone-mullioned window fills this landing with sky. Below the
@@ -338,7 +338,7 @@ treetops. The narrow stair goes down.")
 	(ACTION LANDING-WINDOW-FCN)>
 
 <ROOM LADIES-WING
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Ladies' Wing")
       (LDESC
 "A wide chamber deep in dust, where moonlight through diamond panes falls
@@ -397,7 +397,7 @@ in through the door.")>
 	(ACTION BRIDES-FCN)>
 
 <ROOM CASTLE-LEDGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Narrow Ledge")
       (NORTH PER LEDGE-NORTH)
       (SOUTH PER LEDGE-SOUTH)
@@ -409,7 +409,7 @@ offers, and it barely offers that.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM DRACULA-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Count's Room")
       (LDESC
 "A bare, dusty chamber no servant tends. In one corner, dulled with
@@ -457,7 +457,7 @@ a long time ago.")>
 	(ACTION DRACULA-WINDOW-FCN)>
 
 <ROOM CIRCULAR-STAIR
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Circular Stair")
       (LDESC
 "A stone screw of a stair, lit only through loopholes, going steeply down
@@ -469,7 +469,7 @@ into an odour you know before you can name it: old earth, newly turned.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM DARK-PASSAGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Dark Passage")
       (LDESC
 "A tunnel of dressed stone. The deathly, sickly odour of fresh-dug earth
@@ -481,7 +481,7 @@ thickens with every step. The passage runs north and south.")
       (FLAGS RLANDBIT)>
 
 <ROOM RUINED-CHAPEL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Ruined Chapel")
       (NORTH PER CHAPEL-NORTH)
       (DOWN PER CHAPEL-DOWN)
@@ -529,7 +529,7 @@ not much of a weapon. It is, however, the only one in the castle.")>
 	(ACTION CHAPEL-DOOR-FCN)>
 
 <ROOM VAULT
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Old Vault")
       (UP PER VAULT-UP)
       (ACTION VAULT-FCN)
@@ -566,7 +566,7 @@ quiet. Only the third recess holds anything new.")>
 
 <OBJECT SISTER-TOMBS
 	(IN VAULT)
-	(SYNONYM TOMBS)
+	(SYNONYM TOMBS SISTERS SISTER WOMEN)
 	(ADJECTIVE THREE)
 	(DESC "three tombs")
 	(FLAGS NDESCBIT INVISIBLE)
@@ -675,7 +675,7 @@ you have learned to watch what walks in it.")>
 ACT II SCENE 1 - WHITBY"
 
 <ROOM CRESCENT-BEDROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Bedroom at the Crescent")
       (LDESC
 "The room you share with Lucy at the Crescent. The window looks over the
@@ -738,7 +738,7 @@ you are married. If you are married. The letter from Buda-Pesth says he
 is ill, and coming home to you slowly.")>
 
 <ROOM WEST-CLIFF
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "West Cliff")
       (LDESC
 "The paved walk above the harbour. Below, red roofs piled anyhow like a
@@ -773,7 +773,7 @@ and broken arches. They say a white lady shows herself in one of the
 windows. Today every window is only sky.")>
 
 <ROOM DRAWBRIDGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Drawbridge")
       (LDESC
 "The one bridge over the Esk, and the only way between the cliffs.
@@ -786,7 +786,7 @@ to the east.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CHURCH-STEPS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The 199 Steps")
       (LDESC
 "The famous stairs wind up the East Cliff in a long, gentle curve, a
@@ -801,7 +801,7 @@ along the shore to Tate Hill Pier.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CHURCHYARD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "St. Mary's Churchyard")
       (LDESC
 "Tombstones lean over the town where the cliff has fallen away. Walks
@@ -824,7 +824,7 @@ down; the abbey ruin is south.")
 
 <OBJECT TOMBSTONES
 	(IN CHURCHYARD)
-	(SYNONYM TOMBSTONES GRAVES STONES)
+	(SYNONYM GRAVES STONES HEADSTONE)
 	(ADJECTIVE LEANING)
 	(DESC "tombstones")
 	(FLAGS NDESCBIT READBIT)
@@ -843,7 +843,7 @@ says, stand over no man at all: the sea kept them.")>
 	(ACTION SWALES-FCN)>
 
 <ROOM ABBEY-RUIN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Whitby Abbey")
       (LDESC
 "A noble ruin of immense size, all empty windows and broken arches. They
@@ -855,7 +855,7 @@ here. The churchyard lies north.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TATE-HILL-PIER
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Tate Hill Pier")
       (SOUTH TO CHURCH-STEPS)
       (ACTION TATE-HILL-PIER-FCN)
@@ -908,7 +908,7 @@ cargo, signed for, carted, and gone.")>
 ACT II SCENE 2 - LONDON / PURFLEET"
 
 <ROOM STUDY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Dr. Seward's Study")
       (LDESC
 "Your study at the asylum: the phonograph with its wax cylinders, a
@@ -962,7 +962,7 @@ figures added up in batches, and the totals added in batches again, the
 bookkeeping of a man banking lives. He asks after it daily.")>
 
 <ROOM CORRIDOR
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Asylum Corridor")
       (LDESC
 "Whitewashed and echoing. Somewhere down the ward a patient laughs, and
@@ -977,7 +977,7 @@ and the door to the grounds south.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM RENFIELD-CELL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Renfield's Room")
       (LDESC
 "A bare room smelling of sugar and something older. Flies stitch the
@@ -1015,7 +1015,7 @@ trees of the park next door: Carfax. Renfield stands at it for hours,
 like a dog at a larder door.")>
 
 <ROOM GUEST-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Harkers' Room")
       (LDESC
 "The room given to Jonathan and Mina: a bed by the window, her typewriter
@@ -1053,7 +1053,7 @@ them anyway. Somebody in this house is methodical about hope.")>
 	(ACTION MINA-FCN)>
 
 <ROOM ASYLUM-GROUNDS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Asylum Grounds")
       (LDESC
 "Lawn and old trees inside a high wall. Beyond the wall eastward rise the
@@ -1095,7 +1095,7 @@ an inch, old brick under older ivy.")>
 kennel wire with bright commercial interest.")>
 
 <ROOM CARFAX-LAWN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Carfax")
       (LDESC
 "Twenty acres of black pond and older trees around a house of all
@@ -1136,7 +1136,7 @@ west; the front door is north.")
 you are glad of that, and then you wonder why.")>
 
 <ROOM CARFAX-HALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Carfax Hall")
       (LDESC
 "Dust lies inches deep, torn by hobnailed footprints; cobwebs hang like
@@ -1172,7 +1172,7 @@ in. Under those, older marks. Someone has paced this hall barefoot, many
 nights, alone.")>
 
 <ROOM CARFAX-CHAPEL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Carfax Chapel")
       (LDESC
 "The smell arrives before the sight of it: earth, blood, and something
@@ -1203,7 +1203,7 @@ of every bolt in England.")
 	(ACTION RATS-FCN)>
 
 <ROOM LONDON-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The London Road")
       (LDESC
 "From here the day's errands run: north to the asylum, west to
@@ -1218,7 +1218,7 @@ and the mean streets of Walworth southeast between.")
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM HILLINGHAM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Hillingham")
       (LDESC
 "The Westenra hall: flowers, good furniture, and a stillness that has
@@ -1254,7 +1254,7 @@ road is east.")
 	(ACTION SHERRY-FCN)>
 
 <ROOM LUCYS-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Lucy's Room")
       (LDESC
 "A pretty bedroom trying to stay one: the bed, the fireplace, and the
@@ -1326,7 +1326,7 @@ sometimes, a beating of wings. The stair goes down.")
 	(SIZE 1)
 	(ACTION WAFER-FCN)>
 
-<OBJECT STAKE
+<OBJECT WOOD-STAKE
 	(SYNONYM STAKE)
 	(ADJECTIVE WOODEN CHARRED ROUND)
 	(DESC "wooden stake")
@@ -1341,7 +1341,7 @@ it means.")>
 	(SYNONYM HAMMER)
 	(ADJECTIVE HEAVY COAL-CELLAR)
 	(DESC "heavy hammer")
-	(FLAGS TAKEBIT TOOLBIT)
+	(FLAGS TAKEBIT TOOLBIT WEAPONBIT)
 	(SIZE 4)
 	(TEXT
 "A heavy hammer, such as in households is used in the coal-cellar. In
@@ -1385,6 +1385,14 @@ England would care to argue.")>
 free. The professor thinks of everything, which is another way of
 saying he has done this before.")>
 
+<OBJECT SUGAR
+	(SYNONYM SUGAR TWIST)
+	(ADJECTIVE WHITE)
+	(DESC "twist of sugar")
+	(FLAGS TAKEBIT)
+	(SIZE 1)
+	(ACTION SUGAR-FCN)>
+
 <OBJECT BEER
 	(SYNONYM BEER BOTTLE)
 	(DESC "bottle of beer")
@@ -1402,7 +1410,7 @@ saying he has done this before.")>
 	(TEXT "Silver enough to loosen most tongues in Walworth.")>
 
 <ROOM KINGSTEAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Kingstead Churchyard")
       (LDESC
 "Yews and junipers black against the sky, headstones adrift in the
@@ -1432,7 +1440,7 @@ The road is north.")
 what they see to themselves.")>
 
 <ROOM WESTENRA-TOMB
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Westenra Tomb")
       (LDESC
 "Candlelight makes it worse: time-discoloured stone, rusted iron,
@@ -1470,7 +1478,7 @@ stopped being something you take for granted.")>
 	(ACTION MISSAL-FCN)>
 
 <ROOM PICCADILLY-STEPS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "No. 347, Piccadilly")
       (LDESC
 "A high house with a stone bow front and steps up to the door. Dust
@@ -1502,7 +1510,7 @@ home is west.")
 without appearing to watch anything at all.")>
 
 <ROOM PICCADILLY-HOUSE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The House in Piccadilly")
       (LDESC
 "The dining-room of an empty mansion, smelling like the chapel at
@@ -1563,7 +1571,7 @@ coat. The ordinariness of it is the worst thing in the room.")>
 out for anything that does not mind a fall.")>
 
 <ROOM WALWORTH
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "A Court off Walworth")
       (LDESC
 "A brick court of drying-lines and doorsteps. The carter Bloxam lodges
@@ -1625,7 +1633,7 @@ me out.\"")>
 ACT III - THE CHASE"
 
 <ROOM VARNA-HOTEL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Hotel Odessus, Varna")
       (LDESC
 "A shuttered hotel room grown small with waiting: maps on the table, the
@@ -1662,7 +1670,7 @@ Varna. He read the plan in Mina's sleeping mind as the professor reads
 the sea in hers.")>
 
 <ROOM GALATZ-WHARF
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Wharf at Galatz")
       (LDESC
 "Brown river, tarred rope, and the Czarina Catherine warping in. A Scots
@@ -1687,7 +1695,7 @@ the bottom of it.")
 	(ACTION BILL-FCN)>
 
 <ROOM CAMP
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Camp below the Castle")
       (LDESC
 "A hollow in the rock like a doorway between two boulders. Snow flurries
@@ -1748,7 +1756,7 @@ a rider an hour away.")>
 twice as welcome.")>
 
 <ROOM FROZEN-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "The Borgo Road")
       (LDESC
 "The last light lies red on the snow. Down the winding road comes the
@@ -1814,6 +1822,10 @@ nobleman to sign. That is all. That is surely all." CR CR>
 	<SETG FUMBLE-NUMBER 90> ;"no random fumbles: determinism"
 	<SETG CRUCIFIX-WORN T>
 	<SETG BOOTS-WORN T>
+	;"The two standing clocks. TICK -1 = a permanent daemon; each
+	routine returns immediately unless its own act is running."
+	<QUEUE I-CASTLE -1>
+	<QUEUE I-PURFLEET -1>
 	<V-LOOK>
 	<MAIN-LOOP>
 	<AGAIN>>
@@ -1842,12 +1854,12 @@ nobleman to sign. That is all. That is surely all." CR CR>
 <PROPDEF TEXT 0>
 
 <ROOM ON-LAKE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "On the Lake")
       (FLAGS RLANDBIT)>
 
 <ROOM IN-LAKE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "In the Lake")
       (FLAGS RLANDBIT)>
 

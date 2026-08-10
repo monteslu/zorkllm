@@ -12,6 +12,37 @@ are the forms the design needs that it lacks."
 <SYNTAX WATCH OBJECT = V-WATCH>
 <SYNONYM WATCH OBSERVE GUARD>
 
+;"ASK someone ABOUT something. The engine has TELL X ABOUT Y (V-TELL)
+but no ASK form at all; ASK routes to the same action so every NPC
+routine can answer either phrasing with one <VERB? TELL> test."
+<SYNTAX ASK OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) ABOUT OBJECT
+	= V-TELL>
+<SYNTAX ASK OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) FOR OBJECT
+	= V-ASK-FOR>
+<SYNTAX ASK OBJECT (FIND ACTORBIT) (ON-GROUND IN-ROOM) = V-TELL>
+
+<SYNTAX CATCH OBJECT = V-CATCH>
+<SYNONYM CATCH TRAP>
+
+<SYNTAX SIT = V-SIT-DOWN>
+<SYNTAX SIT ON OBJECT = V-SIT-ON>
+
+;"The engine has WEAR but no un-wear: REMOVE/DOFF fall through to
+V-TAKE, whose 'already wearing it' check fires before the object's own
+action ever runs, so the boots could never come off. A distinct verb
+gives BOOTS-FCN (and the crucifix) a hook of their own."
+;"gsyntax's only THROW-with-indirect forms demand an ACTORBIT target
+(THROW X AT/WITH someone), so THROW LETTER THROUGH BARS could never
+reach the window's action. THROUGH is already a synonym of WITH, so a
+plain non-ACTORBIT form is what the design's phrasings need."
+<SYNTAX THROW OBJECT (HELD CARRIED HAVE) WITH OBJECT = V-THROW-AT>
+<SYNTAX THROW OBJECT (HELD CARRIED HAVE) AT OBJECT = V-THROW-AT>
+<SYNTAX THROW OBJECT (HELD CARRIED HAVE) OUT OBJECT = V-THROW-AT>
+
+<SYNTAX REMOVE OBJECT (HELD CARRIED) = V-DOFF>
+<SYNTAX TAKE OFF OBJECT (HELD CARRIED) = V-DOFF>
+<SYNONYM REMOVE DOFF>
+
 <SYNTAX WRITE OBJECT = V-WRITE>
 <SYNONYM WRITE COMPOSE>
 
@@ -64,6 +95,30 @@ intercepted by an object or room action; these are the polite floors."
 <ROUTINE V-WATCH ()
 	 <TELL "You watch for a while. Nothing changes but the light." CR>>
 
+<ROUTINE V-ASK-FOR ()
+	 <TELL "You are given nothing but a look." CR>>
+
+<ROUTINE V-CATCH ()
+	 <TELL "Your hands close on nothing but air and dignity." CR>>
+
+<ROUTINE V-SIT-DOWN ()
+	 <TELL "You sit down for a moment. It does not help, but it is not
+nothing." CR>>
+
+<ROUTINE V-SIT-ON ()
+	 <TELL "There is no sitting on that." CR>>
+
+;"Objects intercept this; the floor just drops the thing."
+<ROUTINE V-THROW-AT ()
+	 <TELL "It bounces off, and lies where it falls." CR>
+	 <MOVE ,PRSO ,HERE>>
+
+<ROUTINE V-DOFF ()
+	 <COND (<NOT <FSET? ,PRSO ,WEARBIT>>
+		<TELL "You are not wearing that." CR>)
+	       (T
+		<TELL "You take off " D ,PRSO "." CR>)>>
+
 <ROUTINE V-WRITE ()
 	 <TELL "There is nothing here worth setting down." CR>>
 
@@ -85,8 +140,11 @@ intercepted by an object or room action; these are the polite floors."
 <ROUTINE V-RUB-ON ()
 	 <TELL "You rub " D ,PRSO " on " D ,PRSI ", to no clear purpose." CR>>
 
+;"SLEEP is a phase-advance in every act, but only where sleeping is
+safe; elsewhere it warns once and refuses. Per-act clocks own the
+actual advance (DO-SLEEP is defined in DACT1)."
 <ROUTINE V-SLEEP ()
-	 <TELL "You are not so tired as that, yet." CR>>
+	 <DO-SLEEP>>
 
 <ROUTINE V-HELP ()
 	 <TELL
@@ -120,7 +178,7 @@ game warns you plainly, believe it." CR>>
 "------------------------------------------------------------------
 Engine-required verbs and hooks."
 
-<GLOBAL SCORE-MAX 250>
+<GLOBAL SCORE-MAX 210>
 
 <ROUTINE V-SCORE ("OPTIONAL" (ASK? T))
 	 <TELL "Your score is " N ,SCORE>
@@ -129,12 +187,12 @@ Engine-required verbs and hooks."
 	       (T <TELL " moves.">)>
 	 <CRLF>
 	 <TELL "That earns you the rank of ">
-	 <COND (<L? ,SCORE 25> <TELL "Solicitor's Clerk">)
-	       (<L? ,SCORE 60> <TELL "Journal-Keeper">)
-	       (<L? ,SCORE 100> <TELL "Believer in Things You Cannot">)
-	       (<L? ,SCORE 150> <TELL "Pupil of Van Helsing">)
-	       (<L? ,SCORE 200> <TELL "Sterilizer of Earth">)
-	       (<L? ,SCORE 235> <TELL "Philosopher and Metaphysician">)
+	 <COND (<L? ,SCORE 20> <TELL "Solicitor's Clerk">)
+	       (<L? ,SCORE 50> <TELL "Journal-Keeper">)
+	       (<L? ,SCORE 85> <TELL "Believer in Things You Cannot">)
+	       (<L? ,SCORE 125> <TELL "Pupil of Van Helsing">)
+	       (<L? ,SCORE 165> <TELL "Sterilizer of Earth">)
+	       (<L? ,SCORE 200> <TELL "Philosopher and Metaphysician">)
 	       (T <TELL "King Laugh">)>
 	 <TELL "." CR>
 	 ,SCORE>
