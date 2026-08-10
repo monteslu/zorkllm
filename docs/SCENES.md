@@ -98,10 +98,10 @@ guess, and a good one for a linear story - hand-correct the `act` field
 for rooms a walkthrough happens to reach early or late.
 
 One thing this does **not** solve: a recurring subject looking like
-itself across rooms. The same white house seen from two sides, or a
-companion who appears in twenty rooms, will drift. Treat that as a known
-limitation to be caught in review rather than something the pipeline
-guarantees.
+itself across rooms. The same white house seen from two sides will drift.
+For *characters* the answer is simply to leave them out (see below); for
+landmarks, treat drift as a known limitation to be caught in review
+rather than something the pipeline guarantees.
 
 ## Do not feed the source files in
 
@@ -129,10 +129,24 @@ should hold to a few rules, all of which come from the same principle -
   present. Nothing else belongs in the depiction. An invented cave in a
   room with no cave is not a stylistic liberty; it is a lie about the
   world model, and a player who acts on it wastes turns being refused.
-- **Depict the room, not the moment.** Use `scenery` for the standing
-  image and treat `occupants` as optional overlay. A permanent
-  illustration containing a character who wandered off is wrong from the
-  second visit onward.
+- **Depict places, not people.** Use `scenery` and ignore `occupants`
+  entirely. This is the strongest single rule here, and it holds for four
+  independent reasons: characters wander, so a permanent image containing
+  one is wrong from the second visit onward; recurring characters drift
+  the most visibly of anything a generator produces, because people read
+  faces far more sharply than they read trees; a character is the likeliest
+  route for film iconography to contaminate a book-sourced depiction; and
+  an empty room lets the player occupy it. Classic adventure illustration
+  is nearly all unpeopled places for the same reason.
+
+  The exception is a character the room's own `scenery` names, because
+  they are part of the place rather than passing through it: Oz's Forest
+  Spring *is* a man of tin rusted mid-swing, and omitting him leaves an
+  unexplained clearing. The test is which field the character appears in.
+  If they are in `occupants`, leave them out. If the LDESC itself puts
+  them there, they belong - and that is also where a review pass should
+  look hardest, since a named character is exactly where film iconography
+  creeps in.
 - **No text in a depiction.** Signage, labels, and lettering are almost
   always rendered wrong, and a room's readable objects are handled by the
   game's own `READ` verb anyway.
