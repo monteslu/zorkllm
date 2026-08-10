@@ -746,6 +746,115 @@ Cheap and disproportionately satisfying:
 The single negative point, itemised in the score report, got the biggest
 laugh of anything in the game per byte spent.
 
+### 3.7 Scripted openings strand non-ideal players — the prologue must drive itself
+
+**The most serious bug this game shipped with, and the one I would look
+for first in any future adaptation.**
+
+The prologue was written as a chain: `GET TOTO` → cyclone → `CLOSE TRAP
+DOOR` → `SLEEP` → land → `OUT` → Oz. Every link was reachable only by the
+player typing the intended command. Fifty turns of chaotic
+natural-language input through the LLM layer — three runs, two models,
+three context sizes — **never once reached Oz.** The player examined
+furniture in a gray room while a cyclone waited politely offstage.
+
+Three separate stalls, and the third only became visible after fixing the
+first two:
+
+1. **The storm needed permission.** `START-CYCLONE` was reachable only
+   from `DO-GRAB-TOTO` and the trap-door exit.
+2. **The flight never ended.** `LAND-HOUSE` fired only from `V-SLEEP`.
+3. **The landed house was a room with an unguessed exit.** Even after
+   landing, a player who never types `OUT` sits in Kansas forever.
+
+**The rule: a scripted opening must advance on wall-clock turns, not on
+player insight.** Baum supports it and so will your book — the cyclone
+comes whether Dorothy cooperates or not, and she "lay down upon her bed"
+and slept through the flight. The story already knows how to proceed
+without the player; let it.
+
+The shape that fixed it — one counter per phase, escalating in-voice
+nudges, then the story proceeds:
+
+```zil
+<ROUTINE KANSAS-TICK ()
+	 <SETG KANSAS-TURNS <+ ,KANSAS-TURNS 1>>
+	 <COND (<==? ,KANSAS-TURNS 2> <TELL CR "...the wind gives a long
+low wail..." CR> <RTRUE>)
+	       (<==? ,KANSAS-TURNS 3> <TELL CR "\"Run for the cellar!\""
+CR> <RTRUE>)
+	       (<==? ,KANSAS-TURNS 4> <TELL CR "...the house shakes so
+hard it is difficult to stand." CR> <RTRUE>)
+	       (<G? ,KANSAS-TURNS 5>
+		<COND (<IN? ,TOTO ,FARMHOUSE>
+		       <TELL CR "You make a grab for Toto and he bolts..." CR>
+		       <MOVE ,TOTO ,WINNER>)>
+		<START-CYCLONE>
+		<RTRUE>)>
+	 <RFALSE>>
+```
+
+Four properties that make this forgiving without cheapening the game:
+
+- **The scored deed is untouched.** Closing the trap door yourself is
+  still the only way to earn its 5 points. The auto-advance rescues Toto
+  but awards nothing — the wanderer finishes the prologue on 0.
+- **A player doing it properly sees no nudges at all**, because each one
+  is gated on the state the player would have changed. Assert this: my
+  verifier fails if a nudge string appears in the scored transcript.
+- **Nudges escalate in-fiction** (distant wind → Aunt Em's voice → the
+  house shaking) so they read as the storm arriving, not as hints.
+- **Drive it from your permanent `-1` demon**, gated on a phase global,
+  and return early so the prologue branch cannot perturb banter timing
+  once it is over. Mine dies permanently the moment Dorothy is out of the
+  house.
+
+**Budget turns against *parsed* commands, not typed lines.** The
+Z-machine clock only advances on a successful parse (`CLOCKER` runs from
+`MAIN-LOOP` after `PARSER` wins). Junk input — `x bed`, `sing`,
+misspellings, anything the dictionary rejects — costs the player nothing
+and drives no story. I measured it: **15 unparsed commands produced one
+storm beat.** An LLM-driven player generates a lot of unparsed input, so
+counters tuned against typed lines will feel three times slower than you
+intended. Tune them against a real junk transcript.
+
+**Write the wanderer as a permanent test.** `walkthrough-wanderer.txt` in
+this directory contains no useful command whatsoever; `verify.mjs`
+asserts it reaches the first real location, scores zero, and does not
+die. I proved the test can fail by reverting the fix — it reported
+`WANDERER STRANDED` — then restored it. A regression test you have never
+seen fail is not yet a test.
+
+### 3.8 A self-requeueing QUEUE works; a guard clause above it is what breaks
+
+Worth pinning down precisely, because it looks like an engine defect and
+is not. `<ENABLE <QUEUE I-FOO n>>` called from *inside* `I-FOO` does
+re-arm correctly — `CLOCKER` decrements the slot's tick to 0 and *then*
+calls the routine, so the routine's `PUT` of a fresh tick survives the
+sweep. I built a four-beat probe game to confirm it: all four beats
+fired.
+
+What actually swallows the later beats is a once-only guard sitting
+*above* the beat logic in the same `COND`:
+
+```zil
+<ROUTINE I-FLIGHT ()
+	 <COND (,TOTO-FELL   ... )
+	       (,FLIGHT-BEAT <RFALSE>)   ;"<-- after beat 1 this always wins"
+	       (<AND ...> ... beat 2 unreachable ... )>>
+```
+
+Reproduced in the probe: same routine, one guard added, **1 beat instead
+of 4.** The clause order makes every branch below it dead once the guard
+is set.
+
+Two takeaways. First, when a queued beat "doesn't fire", suspect your
+`COND` ordering before you suspect `CLOCKER`. Second, prefer **one
+monotonic counter compared with `==?`/`G?`** over a set of boolean
+guards: `<==? ,FLIGHT-TURNS 4>` cannot develop an unreachable branch, and
+the whole beat sheet is legible in one screen. That is why the rewritten
+prologue has no guard flags at all.
+
 ---
 
 ## 4. Things I tried that did NOT work
@@ -961,3 +1070,10 @@ their own §8 list *before* the design, not after.
     `"the Scarecrow"` yields "the the Scarecrow". And give proper-named
     actors a `<TALKING?>` clause, or bare `TALK TO TOTO` reaches the
     engine's hardcoded "The Toto pauses for a moment". §1.7
+12. A scripted opening must advance on turns, not on player insight, or
+    non-ideal players are stranded in room one forever. Nudge in voice,
+    then proceed; keep the scored deed player-only; test it with a
+    walkthrough made entirely of junk. §3.7
+13. The clock only ticks on a *successful parse* — junk input drives no
+    story, so tune timers against a real junk transcript, not against
+    typed lines. §3.7

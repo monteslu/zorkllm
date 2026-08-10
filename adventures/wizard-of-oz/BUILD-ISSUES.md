@@ -314,3 +314,97 @@ Total: exactly 250, achieved by `walkthrough.txt` and asserted by
   `V-INVENTORY` (the engine has no article model). Toto is therefore
   returned to the room by the follow demon each turn unless a scene holds
   him, which also matches the fiction better.
+
+---
+
+## 16. The clock only advances on a successful parse
+
+**Not a defect — a constraint with real design consequences.** `CLOCKER`
+runs from `MAIN-LOOP` only after `PARSER` returns a win. Input the
+dictionary rejects (`x bed`, `sing`, a misspelling) prints its error and
+costs the player *no game time*: no demon fires, no timer advances,
+`MOVES` does not increment.
+
+**Measured here:** 15 consecutive unparsed commands produced **one** storm
+beat.
+
+**Why it matters:** an LLM-driven player generates a lot of unparsed
+input, so any timer tuned against "turns the player types" runs several
+times slower than intended in practice. This is the mechanism behind the
+stranded-prologue bug (§17) — the storm counters were not actually wrong,
+they were being starved.
+
+**Fix:** tune every timer against a real junk transcript, not against a
+clean walkthrough. `walkthrough-wanderer.txt` exists partly to keep this
+honest.
+
+---
+
+## 17. Scripted openings strand non-ideal players
+
+**Symptom:** 50 turns of chaotic natural-language input through the LLM
+layer — three runs, two models, three context sizes — never reached Oz.
+The player sat in the Kansas farmhouse examining furniture.
+
+**Root cause:** every link of the prologue chain was reachable only by the
+player typing the intended command. `START-CYCLONE` only from
+`DO-GRAB-TOTO`/`CELLAR-EXIT`; `LAND-HOUSE` only from `V-SLEEP`; and (found
+only after fixing those two) leaving the landed house only from `OUT`.
+
+**Fix:** the prologue now advances on its own clock, driven from the
+permanent `I-OZ` demon and gated on `STORM-PHASE`, with escalating
+in-voice nudges before each automatic step. The scored deed is unchanged —
+closing the trap door yourself is still the only way to earn its 5 points,
+and a player doing it properly sees no nudges at all. Full pattern in
+LESSONS.md §3.7.
+
+**Regression guard:** `walkthrough-wanderer.txt` (no useful command in it)
+plus assertions in `verify.mjs` that it reaches Munchkin Clearing, scores
+**0**, does not die, and that no nudge string leaks into the scored
+transcript. Proven to fail by reverting the fix before restoring it.
+
+---
+
+## 18. Self-requeueing QUEUE works; a guard clause above it does not
+
+**Reported symptom:** `<ENABLE <QUEUE I-FLIGHT n>>` called from inside
+`I-FLIGHT` appeared not to re-fire.
+
+**Actual cause:** the mechanism is fine. `CLOCKER` decrements the slot's
+tick to 0 and *then* calls the routine, so the routine's `PUT` of a fresh
+tick survives the sweep. Verified with a purpose-built four-beat probe
+game: all four beats fired.
+
+What swallows later beats is a once-only guard sitting **above** the beat
+logic in the same `COND`:
+
+```zil
+(,FLIGHT-BEAT <RFALSE>)   ;"after beat 1 this always wins; everything
+                            below it is unreachable"
+```
+
+Reproduced in the probe — same routine, one guard added, **1 beat instead
+of 4.**
+
+**Fix / preference:** when a queued beat "doesn't fire", check `COND`
+ordering before suspecting the clock. Prefer one monotonic counter
+compared with `==?`/`G?` over boolean guards; a counter cannot develop an
+unreachable branch. The rewritten prologue uses no guard flags at all.
+
+---
+
+## 19. Trap door state contradicted its own room description
+
+**Symptom:** the farmhouse description says the trap door stands "open in
+the middle of the floor", but `CLOSE TRAP DOOR` answered "It is already
+closed."
+
+**Root cause:** the object was declared `(FLAGS NDESCBIT DOORBIT)` with no
+`OPENBIT`, while the prose (and the story — Aunt Em threw it open and went
+down the ladder) says otherwise.
+
+**Fix:** added `OPENBIT` to the declaration. Also made the cyclone
+re-opening it explicit ("The trap door bangs open again under the pull of
+the wind") instead of silently `FSET`-ing it, so a player who shuts it
+pre-emptively is told what happened rather than finding it mysteriously
+open two turns later.

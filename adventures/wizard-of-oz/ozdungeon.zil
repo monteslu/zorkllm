@@ -716,7 +716,9 @@ little farmhouse.")
 	(SYNONYM TRAPDOOR DOOR RING)
 	(ADJECTIVE TRAP)
 	(DESC "trap door")
-	(FLAGS NDESCBIT DOORBIT)
+	;"Aunt Em threw it open and went down the ladder; the room
+	 description says so, so the flag must agree from turn one."
+	(FLAGS NDESCBIT DOORBIT OPENBIT)
 	(ACTION TRAP-DOOR-FCN)>
 
 <OBJECT KANSAS-CUPBOARD

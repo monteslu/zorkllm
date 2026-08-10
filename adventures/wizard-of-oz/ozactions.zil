@@ -666,6 +666,12 @@ wind, and the floor tips. The house whirls around two or three times and
 rises slowly through the air, like a balloon." CR CR
 "This is the strangest thing that has ever happened to you. You decide,
 sensibly, to wait and see what happens next." CR>
+	 ;"The wind takes the trap door whatever state it was in; say so if
+	  the player had shut it, rather than reopening it silently."
+	 <COND (<NOT <FSET? ,TRAP-DOOR ,OPENBIT>>
+		<TELL CR
+"The trap door bangs open again under the pull of the wind, and stays
+open." CR>)>
 	 <FSET ,TRAP-DOOR ,OPENBIT>
 	 <SETG FLIGHT-TURNS 0>
 	 <RTRUE>>
