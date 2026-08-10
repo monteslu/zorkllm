@@ -1,0 +1,127 @@
+# TREASURE ISLAND - the winning path. 350 points.
+# --- Act I: the Admiral Benbow ---
+take spot
+read spot
+search body
+take gully
+take compass
+cut string with gully
+up
+unlock chest with key
+open chest
+take clothes
+move gear
+move cloak
+take packet
+down
+out
+east
+down
+wait
+wait
+give packet to doctor
+read map
+# --- Act II: Bristol and the Hispaniola ---
+north
+give note to silver
+south
+board ship
+down
+take cheese
+up
+enter barrel
+wait
+wait
+wait
+wait
+wait
+exit
+enter cabin
+# --- Act III: the island ---
+go ashore
+north
+north
+east
+give cheese to ben
+south
+east
+in
+take cutlass
+wait
+attack pirate with cutlass
+attack pirate with cutlass
+# --- the escapade, the coracle, the anchorage ---
+out
+west
+south
+south
+open tent
+take coracle
+take spade
+north
+launch coracle
+cut hawser with gully
+wait
+wait
+cut hawser with gully
+wait
+wait
+cut hawser with gully
+pull cord
+wait
+wait
+wait
+jump
+# --- Captain Hawkins ---
+lower flag
+down
+take brandy
+take wine
+up
+give brandy to hands
+wait
+down
+sneak
+up
+give wine to hands
+wait
+wait
+climb mast
+prime pistols
+shoot hands
+down
+land
+# --- the bar silver (optional) and the return in the dark ---
+south
+west
+up
+north
+dig sand with spade
+dig sand with spade
+south
+down
+east
+se
+east
+in
+wait
+wait
+take page
+read page
+stay
+# --- the hunt on a rope, the ambush, the cave ---
+wait
+wait
+wait
+wait
+take pistol
+wait
+follow doctor
+follow doctor
+follow doctor
+follow doctor
+follow doctor
+up
+wait
+score
+sail

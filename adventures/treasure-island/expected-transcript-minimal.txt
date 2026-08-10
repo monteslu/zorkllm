@@ -1,0 +1,449 @@
+Squire Trelawney, Doctor Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, I take up my pen in the year of grace seventeen-something, and go back to the night it all began - the night of the black spot.
+
+You are Jim Hawkins, fourteen, of the Admiral Benbow inn, Black Hill Cove. For months an old buccaneer called Billy Bones has lodged under your roof, drinking rum against doctor's orders and paying you a silver fourpenny a month to keep your weather-eye open for a seafaring man with one leg. This afternoon a blind beggar came tap-tapping up the frozen road, gripped your arm like a vise, and pressed something into the captain's palm. "And now that's done," said the blind man, and skipped out into the fog.
+
+The captain read his palm just once. "Ten o'clock!" he cried. "Six hours. We'll do them yet" - and sprang up, and reeled, and went down like a felled mast. Thundering apoplexy, the doctor would call it. Dead, is what it is, on the parlour floor, with the little black round of paper still lying by his hand.
+
+Your mother has run for help to the hamlet; you know already what help the neighbours will be. The fire is low. The clock ticks. Out on the road, faint and far off for now, you can hear it if you hold your breath: tap. Tap. Tap.
+
+TREASURE ISLAND: A Tale of the Sea-Cook - freely adapted from Robert Louis Stevenson. Type as you please; the inn, at least for the moment, is yours.
+
+Benbow Parlour
+The parlour of the Admiral Benbow, your whole world until tonight. The fire is down to embers, the overturned chair is where he knocked it, and Billy Bones lies full length on the floor, one arm thrown out, dead of a thundering apoplexy. The road door is out; the bar is west; the stairs go up.
+By the dead man's hand lies a little round of paper, blackened on the one side: the black spot itself.
+> take spot
+Taken.
+> read spot
+A little round of paper, blackened on the one side. On the other, in a good clear hand: "You have till ten tonight."
+> search body
+You go through the captain's pockets the way he taught you to gut a fish: quickly, and without discussion. A gully knife with a crooked handle, a pocket compass, and a pitiful drift of odds and ends - tobacco, a thimble, needles and thread.
+
+And round his neck, under the shirt, a bit of tarry string with something heavy on the end of it.
+> take gully
+Taken.
+The clock ticks. Ten o'clock, the spot said.
+> cut string with gully
+The string is tarred and tough, but the gully is the captain's own and knows its work. The key drops into your hand.
+
+You pocket the captain's gully too. A boy going where you are going wants a knife.
+> up
+Captain's Room
+The captain's room, smelling of tobacco and tar. His great sea-chest stands at the bed's foot where it has stood since the day he came, the initial B burned into the lid with a hot iron. The stairs go down.
+> unlock chest with key
+The lock is stiff, but the key turns and the lid throws back.
+> open chest
+Up goes the lid on a smell of tar and tobacco, and there on top, folded and brushed, a very good suit of clothes that has never been worn.
+Far off on the frozen road: tap - tap - tap. It stops. It starts again.
+> take clothes
+You lift the clothes clear. Below them the chest is a jumble: a quadrant, a tin canikin, sticks of tobacco, a Spanish watch, two braces of handsome pistols, and a handful of West Indian shells.
+Taken.
+> move gear
+You shift the whole rattling lot to one side. Under it lies an old boat-cloak, whitened with sea salt.
+> move cloak
+You turn back the cloak, and there, the last things in the chest: a bundle sewn up in oilcloth, and a canvas bag that gives out, at a touch, the jingle of gold.
+> take packet
+You have it: Flint's fist, sewn up in oilcloth, and heavier in the hand than paper has any right to be. Now go.
+> down
+Benbow Parlour
+There is a captain's odds and ends here.
+There is a pocket compass here.
+> out
+The cold takes your breath. Somewhere east, down toward the bridge, the dell stream is running under a stone arch - which is the only roof in this parish that Pew's crew will not think to look under.
+Road by the Cove
+The frosty road outside the inn. Fog is thinning off the cove and the moon is coming up fast, which is bad news for anyone hoping to run unseen. The inn door stands south; the road runs east toward the bridge and west toward Kitt's Hole.
+The tapping again, nearer, and this time a low whistle answers it from the hill. Whatever Flint's crew wants, it is in that chest upstairs - and you have minutes, not hours.
+> east
+Behind you, down the road, the tapping has stopped - which is worse than the tapping.
+Little Bridge
+A little stone bridge over the dell stream, barely tall enough for a dog to walk under. The road runs on toward the hamlet, but lights are bobbing on the hill behind you and they are not friendly ones. The bank drops down to the arch below.
+> down
+Tap. Tap. Tap - and then a voice out of the dark, thin and cruel: "Down with the door!" The door of your father's inn goes down in four blows.
+Under the Bridge
+You crouch in the black under the arch, knees in the stream, close enough to the inn to hear everything. Which is rather the problem with hiding here.
+Boots on the stairs, and the whole house being turned over above your head. Then a shout: "Bill's dead!" - and the blind man screaming at them to go up and scatter and find it, find it, find it.
+
+"The chest's turned out and there's nought in it!" - "It's these people of the inn - it's that boy!" Glass goes. Your mother's chairs go.
+> wait
+Time passes...
+A whistle on the hill, twice - and the whole pack breaks and runs for Kitt's Hole, and the blind man is left in the road hammering at nothing with his stick and cursing them for a set of rats. Then: horses. Four of them, at a gallop, out of the moon. A pistol shot. And Pew, blind and turned around and running the wrong way, goes under the hoofs of the first horse with a scream that ends the night.
+> wait
+Time passes...
+Supervisor Dance finds you in the stream with your knees blue and Flint's fist inside your shirt. "Boy," says he, "you'll ride behind me," and you do, all the way to Doctor Livesey's, and from there to the squire's, and the night turns into the best supper of your life.
+
+Squire's Hall
+The squire's library: bookcases to the ceiling, busts on top of them, a sea-coal fire, and two gentlemen with pipes who have just heard your story - Doctor Livesey, neat as new paint, and Squire Trelawney, six feet of enthusiasm in a travelling coat.
+> give packet to doctor
+The doctor snips the stitches with a pocket scissors and out come two things: a book, and a sealed paper. The book is accounts - crosses and sums and a place-name now and then, "Offe Caraccas", and at the foot of it, in the same big hand, "Bones, his pile." Twenty years of somebody else's blood, totted up neat.
+
+Then the seal, and the squire on his feet before it is fairly open: the map of an island, nine miles long and five across, shaped like a fat dragon standing up, with soundings and hills and three crosses of red ink - and by the last, in a small neat hand: "Bulk of treasure here." "Livesey," cries the squire, "I fit out a ship in Bristol dock, and you shall be ship's doctor, and Hawkins here shall come as cabin-boy!" The doctor folds the chart and hands it, of all people, to you. "Keep it close, Jim. A landlord's boy is the last pocket they'll pick."
+> read map
+(Taken)
+The island, nine miles by five, shaped like a fat dragon standing up, with soundings, hills, and the names of the anchorages. Three crosses of red ink, and by the last: "Bulk of treasure here."
+
+On the back, in the same small neat hand: "Tall tree, Spy-glass shoulder, bearing a point to the N. of N.N.E. Skeleton Island E.S.E. and by E. Ten feet." Then, squeezed in below, as if it hardly mattered: "Bar silver is in the north cache; you can find it by the trend of the east hummock, ten fathoms south of the black crag with the face on it."
+
+The squire is as good as his word and twice as loud about it. Within three weeks there is a letter from Bristol, and a coach, and a morning when the sea smells close enough to touch.
+
+Bristol. You have never seen so much water put to work at once.
+Bristol Quayside
+Bristol docks at their busiest: tar and salt, figureheads leaning overhead, sailors with rings in their ears singing at the capstans. You could stand here a year. The Spy-glass tavern is up the street north; the Hispaniola's boat waits at the steps east.
+> north
+A big man gets up from a table by the far wall as you come in - very tall, very strong, with a face as big as a ham, and one leg cut off close by the hip. He crosses the floor on a crutch, hopping like a bird, and he is smiling at you before he knows who you are.
+The Spy-Glass
+A bright little tavern with a great brass telescope for a sign, red curtains, sanded floor, and a fog of pipe smoke full of loud seafaring men. The door back to the quay is south.
+> give note to silver
+He breaks the seal and gives a great start. "Oh!" says he. "I see. You're our new cabin-boy. Pleased I am to see you" - and then his eye goes past you to the door, where a man at the far table has got up all at once and gone out of it like a rat down a drain.
+
+"Oh, stop him! Who was it? Harry! Run and catch him!" Silver thumps the floor with his crutch. "Who did you say he was? Black Dog? Ah, and in my house! Morgan, you was a-talkin' with him - what was you talkin' of?" "We was a-talkin' of keel-hauling," says Morgan, and Silver laughs till the glasses ring. "Keel-hauling, was you! Well, you'll be keel-hauled for it yourself one of these days." Then, to you, gravely: "You and me should get on well, Hawkins, for I'll take my davy I should be rated ship's boy. But come now - the squire must hear of this from me, and I'll walk down with you."
+> south
+Bristol. You have never seen so much water put to work at once.
+Bristol Quayside
+> board ship
+The boat puts you under the Hispaniola's side and you go up her ladder like a monkey with an errand.
+
+The voyage is three weeks of blue water and hard work and small kindnesses. The squire is loud, the doctor is dry, and Captain Smollett is right about everything and popular with nobody. Mr. Arrow, the mate, turns out to be drunk on liquor nobody can find, and one black night between two watches he simply is not there any more, and nobody is very surprised. Silver keeps the galley like a chapel and you like the sound of his voice better than you mean to.
+
+Now it is the last evening before landfall, the wind has dropped, the watch is forward looking for the island, and you have a fancy for an apple.
+
+Hispaniola, Deck
+The deck of the Hispaniola, two hundred tons, the sweetest schooner a boy ever stood on. Forward, the fore companion drops to the galley; aft, the companion goes down to the cabin. Amidships stands Long Tom, the brass nine, and beside it the apple barrel, broached for any hand with a fancy.
+> enter barrel
+You are now in the apple barrel.
+In you get bodily. Scarce an apple left; you sit in the dark on the staves with the ship rocking you half to sleep - until a heavy man sits down with a clash against the barrel, and the staves knock against your ear, and you understand, all at once and completely, that you must not move.
+> wait
+Time passes...
+Silver's voice, close enough to touch through the staves, and warm as a hearth: "Flint was cap'n; I was quartermaster, along of my timber leg. Now, here's what I say to you, Dick: you're smart as paint, I seen that when I set my eyes on you, and I'll talk to you like a man."
+> wait
+Time passes...
+"Here it is about gentlemen of fortune. They lives rough, and they risk swinging, but they eat and drink like fighting-cocks. Now, the most goes for rum and a good fling, and to sea again in their shirts. But that's not my course. I lays it by, a bit here and a bit there, and none suspecting. I'm fifty, mark you; once back from this cruise I set up gentleman in earnest."
+> wait
+Time passes...
+Israel Hands, sour and impatient: "I didn't want no more o' the gentlemen. Look here - how long are we a-going to stand off and on like a blessed bumboat? I've had a'most enough o' Cap'n Smollett; I want to go into that cabin, I do. I want their pickles and wines and that." "Israel," says Silver, "your head ain't much account, but you're able to hear, I reckon. You'll berth forward, and you'll live hard, and you'll speak soft, till I give the word."
+> wait
+Time passes...
+"When? I'll tell you when. The last moment I can manage - and that's when. Cap'n Smollett sails the ship for us; the squire and doctor has a map, and I don't know where it is, do I? No more do you. So let them find the stuff and help us get it aboard, and then we'll see. If I was sure of you all, I'd have Smollett navigate us half-way back again before I struck." "And what do we do with 'em?" asks Dick. "Dead men don't bite," says Silver cheerfully. "I claim Trelawney. I'll wring his calf's head off his body with these hands."
+> wait
+Time passes...
+"Dick," says Silver, "jump up, like a sweet lad, and get me an apple, to wet my pipe like." Your heart stops entirely. But Hands says he'd sooner have rum, and Silver sends Dick for the key to the spirit locker instead, and while their backs are turned a voice comes down out of the dark forward, clear as a bell:
+
+"Land ho!"
+
+The whole ship breaks into a rush of feet, and you are alone with a barrel and the worst news in England.
+> exit
+You are on your own feet again.
+You wait until the deck is full of feet and voices, and then you slip over the edge of the barrel and drop down among them in the dark, and nobody so much as looks at you. You know, now, what nineteen men intend to do to the seven you love. Aft, then - the cabin - and quickly.
+> enter cabin
+You get the three of them alone in the cabin and tell it all, and nobody interrupts once. When you have done, Captain Smollett looks at the doctor and the doctor looks at the squire. "Trelawney," says Smollett, "that crew of yours - well, sir. Twenty-six hands aboard, and seven of them are ours: you, me, the doctor, Hunter, Joyce, Redruth, and Gray, if Gray's a man. Nineteen against seven, and we must strike no blow before they do." The doctor puts his hand on your shoulder. "Jim here can help us more than anyone. The men are not shy with him, and Jim notices things."
+
+Morning, then: the anchor down in Captain Kidd's Anchorage, the island grey with unpleasant-looking woods, and the boats going ashore full of men who are no longer pretending very hard. Silver invites you along, in his kindest voice. You go, because you are exactly the sort of boy who goes.
+Stern Cabin
+The stern cabin, snug as a strong-box: chart table, lockers, and the stern window open on the wake.
+> go ashore
+You go down into the gig with the rest of them, and Silver's hand is on your shoulder the whole way in, friendly as a father's.
+
+You are over the gunwale and into the sand before the boat has properly touched, and away into the trees with Silver bawling your name behind you in a voice you have never heard him use.
+Anchorage Beach
+A curve of grey sand inside Captain Kidd's Anchorage, dead still, smelling of sodden leaves and rotting tree trunks. The doctor would stake his wig there's fever here. The two gigs are drawn up on the sand. Marsh lies north, and woods run east along the shore.
+> north
+Out of the fen, a room away and hidden by the reeds, comes a cry of anger - then a scuffle - then a long-drawn scream that stops in the middle of itself. Every marsh bird in the anchorage goes up at once, and the whole fen rings, and then the silence comes back and lies down flat.
+
+Tom had a name and a dooty; Silver had a crutch and a knife. You did not see it, and you will hear it the rest of your life.
+The Marsh
+Willows, bulrushes, and outlandish swampy trees; the ground quakes and steams under the sun. Somewhere a duck gets up with a clatter, then a whole screaming cloud of them - something is moving on the far side of the fen. Higher ground lies north; the beach is south.
+> north
+Open Woods
+Live oaks growing low and twisted like brambles, scattered pines fifty and seventy feet high, and the Spy-glass trembling through the haze above everything. Paths go all ways: marsh south, a two-peaked hill east, a long slope rising west, sandy lowlands north, and the shore southeast.
+> east
+A gravel spout rattles down off the shoulder above you, and something that is not a goat goes flitting between two pine trunks, quick and dark and bent double. Then it comes out into the open and drops on its knees in the sand with its hands held out.
+
+"Ben Gunn," says the creature. "I'm poor Ben Gunn, I am, and I haven't spoke with a Christian these three years." He is white for want of sun, and clothed in goat-skins and ship's canvas stitched with brass buttons and bits of stick. "Marooned," he says. "Three years, and lived on goats and berries and oysters. But mate - I'm rich. Rich!" He looks quickly over both shoulders. "You ain't a one-legged man, are you? Not you. And you'd tell me true if Flint's own ship was out there in the anchorage?" He listens to the answer with his mouth open, and then, in a whisper, as if it were the great business of the day: "You mightn't happen to have a piece of cheese about you, now? Toasted, mostly. I dream of it."
+Foot of the Two-Peaked Hill
+The ground climbs toward a hill with two craggy peaks. Gravel spouts rattle down from ledge to ledge as if something up there moves when you move. Among the rocks there are mounds laid out in rows - a cemetery, of goats, with every grave tended.
+> south
+Woods by the Shore
+Fir and live-oak growing almost to the tide line. Through the trunks you can see the anchorage one way and white surf the other. Paths: beach west, the two-peaked hill north, a cleared knoll east where a British flag flies, and a long sandy spit south.
+> east
+Outside the Stockade
+A wide cleared slope around a knoll, stumps everywhere, and on the knoll a log-house behind a six-foot paling with never a door in it - you go over or you stay out. The Union Jack snaps overhead, which is the best thing you have seen all day.
+> in
+You go over the paling and are hauled down the other side by the collar by a delighted Squire Trelawney. The garrison's story comes out in six lines: the jolly-boat run ashore under fire, the stores mostly lost, poor Redruth shot through and lying now under the Union Jack, and the doctor - who has been asking questions about a marooned man on this island in a tone you recognise.
+
+Night comes down cold. Morning comes up hot. And at nine o'clock, out of the fog at the edge of the woods, a white flag on a stick, and a voice you have missed more than you will admit: "Flag o' truce! Silver to come up and make terms!"
+The Log-House
+The log-house: unsquared pine, sand underfoot and in your teeth, loopholes on every side, and a clear spring rising in a sunken ship's kettle by the porch. It smells of woodsmoke and crowded men.
+Silver comes up the slope on his crutch in the sand, cheerful as a Sunday. "Here's the p'ints. You give us the chart, and we'll give you your choice: come aboard with us when the treasure's shipped, or stop here with food and drink and the first ship we sight sent in for you." Captain Smollett does not get up. "Is that all? Then hear me. You can't find the treasure. You can't sail the ship - there's not a man among you fit to. You can't fight us. And now you'll get up out of that sand and go, or the next time I see you I'll put a bullet in your back."
+
+Silver's face is a study. "Them that die'll be the lucky ones," says he, and hauls himself up, and goes.
+> take cutlass
+Taken.
+An hour of nothing at all, which is worse than shooting. Then Gray, at his loophole, in a voice of purest politeness: "If you please, sir - if I see anyone, am I to fire?" "I told you so!" cries the captain.
+> wait
+Time passes...
+A volley out of the woods, and the balls come through the loopholes and sing round the room. Then the yell, and the rush - seven of them over the north fence at once, and their leader is not shot and does not stop, and comes bodily in through the porch with a cutlass up.
+
+"Out, lads, out, and fight 'em in the open!" roars Smollett. "Cutlasses!" There is a pile of them by the door.
+> attack pirate with cutlass
+You get the point up and he runs onto it, more from haste than from your skill. He roars, and falls back against the doorpost with his hand to his ribs, and comes on again.
+The boarder comes at you again, cutlass swinging, and the whole house is smoke and shouting.
+> attack pirate with cutlass
+He goes down across the doorway and does not get up, and all at once the thing is over: the boarders break and run for the fence and the woods take them. Five of them are down and only four of us are standing, and the captain has a ball through the shoulder and is swearing about paperwork.
+
+Afterwards, in the hot afternoon, the doctor takes his hat and his pistols and walks out into the trees without saying where. "If I am right," you tell Gray, "he is going to see Ben Gunn." The rest of the garrison sleeps in the heat, and nobody at all is watching the gate.
+> out
+Nobody is watching. You fill your pockets with biscuit, take a brace of pistols with powder-horn and ball, and are over the fence before your conscience can vote. This is your second folly, and it will save every life you love - but you do not know that yet.
+
+Outside the Stockade
+> west
+Woods by the Shore
+> south
+Sandy Spit
+A low spit of dunes and scrub running south between the anchorage and the open sea, joined at half-water to Skeleton Island. The surf on the sea side never stops - you believe now that nowhere on this island is out of earshot of it. A tall rock, peculiarly white, shows above the brush to the south.
+> south
+The White Rock
+The white rock, taller than a man, over a small hollow of green turf hidden by banks and knee-deep underwood. Down in the hollow crouches a little tent of goat-skins, like what the gipsies carry about in England.
+> open tent
+You lift the goat-skins. Under them, upside down on the turf, lies a boat - if you are feeling generous. It is a coracle: a lop-sided frame of tough wood with goat-skin stretched over it, hairy side in, and about big enough for one boy and his poor judgement. Beside it is an old spade, worn bright at the edge.
+> take coracle
+You get her up on your head, which is how they are carried and also why Ben Gunn walks the way he does.
+
+By the time you are out of the hollow the sun is down behind the Spy-glass, the fog is coming in off the sea in cold handfuls, and away across the anchorage the pirates' camp fire has been lit. Two lights on the black water: the fire ashore, and the cabin window of the Hispaniola.
+> take spade
+Taken.
+> north
+Sandy Spit
+> launch coracle
+You slide her down the sand and get in, and she takes you at once - a lop-sided, dancing little thing that goes any way but the one you paddle, and rides the ebb like a cork with an opinion.
+
+On the Anchorage
+Black water, black fog, and two lights: the glow of the pirates' camp fire ashore, and a blur at the stern window of the Hispaniola. The ebb carries you down on her; the coracle turns any way but the one you paddle. Her hawser rises dead ahead, taut as a bowstring.
+> cut hawser with gully
+Taut as a bowstring. A taut hawser suddenly cut is a thing as dangerous as a kicking horse. Your nerve - for once - does you a service. Wait for the wind.
+> wait
+Time passes...
+A puff of wind comes down off the trees; the schooner swings her head and the hawser dips slack in your hand.
+> wait
+Time passes...
+> cut hawser with gully
+With the strain off her you cut strand after strand, and the hawser gives, and gives, and stops - she rides by two.
+> wait
+Time passes...
+> wait
+Time passes...
+A puff of wind comes down off the trees; the schooner swings her head and the hawser dips slack in your hand.
+> cut hawser with gully
+The last two strands part with a noise like a shot in your hands, and the Hispaniola is loose. She turns very slowly, all at once enormous, and starts down the anchorage with the ebb - and you with her, a trailing cord of the hawser still in your fist.
+> pull cord
+You haul yourself up the cord until your head comes level with the cabin window - and there, an arm's length off, in the lamplight, are Israel Hands and the man in the red cap, locked together in a deadly wrestle, each with a hand at the other's throat.
+
+You drop back into the coracle with your heart going, and the current takes you, and the two lights swing away astern.
+> wait
+Time passes...
+The current turns south and then west, and the island goes past you sideways in the dark, and there is nothing to be done about any of it. You lie down in the bottom of the coracle among the wet and let her ride.
+> wait
+Time passes...
+You must have slept, so you must have lain there hours, dreaming of the Admiral Benbow. When you sit up the world has been swapped: grey dawn, the whole west coast of the island going by, and the surf breaking on Haulbowline Head with a noise like a mill. Sea lions bark on the rocks and take no interest in you at all.
+> wait
+Time passes...
+And then, out of the north, under her mainsail and her two jibs, with nobody at the helm and nobody on deck, the Hispaniola comes down on you - yawing, gathering, filling the sky. Her bowsprit is over your head. Now or never.
+> jump
+You jump, and get both hands on the bowsprit shrouds, and hang there with the water tearing under you - and then, as the schooner rolls, you are up and over and rolling on her deck. Behind you a dull blow tells you the Hispaniola has charged down and struck the coracle, and that there is no retreat left anywhere in the world.
+
+Hispaniola, Deck
+> lower flag
+Down comes the cursed black flag, and overboard with it. God save the King, and there's an end to Captain Silver!
+> down
+Stern Cabin
+> take brandy
+Taken.
+> take wine
+Taken.
+> up
+Hispaniola, Deck
+> give brandy to hands
+He takes the bottle in both hands, knocks the neck off against the bulwark, and drinks like a man who has been waiting all day for exactly this. Then he wipes his mouth and looks at you with a new expression altogether.
+
+"By thunder, but I wanted some o' that! Now, look here. You gives me food and drink and a old scarf to tie my wound up, and I'll tell you how to sail her - and that's about square all round, I take it. North Inlet, says you? Why, I haven't no ch'ice, not I! I'd help you sail her up to Execution Dock, by thunder, so I would." And so, with a boy at the tiller and a wounded murderer conning her, the Hispaniola comes round on the wind and stands north.
+The land goes by fast on both sides. Hands cons her from the deck with his eyes half shut, and you learn more about steering in an hour than in three weeks of being shouted at.
+> wait
+Time passes...
+Then Hands hesitates, artful as a cat. "Jim," says he, "I reckon you might go below and get me a - well, a bottle of wine, Jim. This here brandy's too strong for my head. Wine, and a corkscrew, and take your time about it."
+> down
+Stern Cabin
+> sneak
+You go forward along the sparred gallery on your hands and knees, without a sound, and put one eye round the corner of the fore companion.
+
+Israel Hands is on his hands and knees on the deck, moving quicker than a man with that leg has any business moving. He hauls a long knife - a dirk, blood-stained to the handle - out of a coil of rope, looks at it, tries the point on his palm, hides it in the breast of his jacket, and trundles back to his old place against the bulwarks with a groan. So that is settled, then. You go back the way you came, and your hands are shaking, and you are grinning like a fool.
+> up
+Hispaniola, Deck
+> give wine to hands
+"Here's luck!" says Hands, and knocks the neck off this one too, like a man who has done it often. He is in high good humour, and asks you twice whether you have ever been to sea before, and both times forgets the answer.
+"Cut me a piece o' that scarf," says Hands, and drinks, and cons her in past the point. "Starboard a little - so - steady - now, my hearty, luff!"
+> wait
+Time passes...
+Hispaniola, Deck
+She takes the sand with a shock that puts the whole deck on its side. The masts swing over; the sea comes in through the scuppers; you and Hands and dead O'Brien all go rolling into the lee scuppers together in a heap.
+
+And when you get your head up, there is Hands, already half-way toward you, with the dirk in his hand.
+> wait
+Time passes...
+He is between you and the bow, and coming on. The shrouds, Jim, the shrouds!
+> climb mast
+You go up the mizzen shrouds with your hands and feet doing the thinking, and the dirk strikes the mast not half a foot below you as you go.
+
+Safe for a moment, you remember your pistols - and snap one at him: click. The priming is soaked through with sea-water. Powder and ball you have; a dry recharge is the work of a moment, if he gives you a moment.
+Cross-Trees
+You sit the cross-trees of the mizzen, the whole tilted deck below you and green water below that. Because the ship lies canted on the sand, the mast hangs far out over the bay: a bad place to drop from, a worse one to be caught in.
+Below you Hands takes the dirk in his teeth, gets his wounded leg into the shrouds, and begins - slowly, with groans - to climb.
+> prime pistols
+You draw the useless charges and reprime, one pistol and then the other, with the powder-horn between your knees and a murderer on the ladder.
+He stops a third of the way up, with his head level with your feet, and takes the dirk out of his mouth.
+
+"One more step, Mr. Hands," said I, "and I'll blow your brains out! Dead men don't bite, you know." He stopped instantly. "Jim," says he, "I reckon I'll have to strike, which comes hard, you see, for a master mariner to a ship's younker like you, Jim." And while you are drinking in his words and smiling away, as conceited as a cock upon a wall, his right hand goes back over his shoulder.
+> shoot hands
+Both my pistols went off, and both of them escaped out of my hands. He gave a sort of gulp, loosed his hold upon the shrouds, and plunged head first into the water.
+
+He rose once to the surface in a lather of foam and blood, and then sank again for good. Being both shot and drowned, he was food for fish in the very place where he had designed your slaughter.
+
+The dirk holds you to the mast by a pinch of skin. You tear it loose with a shudder, and it is nothing worse than a torn shoulder and a lesson.
+> down
+Hispaniola, Deck
+> land
+You lower yourself over the canted side and wade ashore in water to your waist, with the sun going down red behind the trees.
+
+North Inlet
+A narrow northern anchorage like a river's mouth, flat sand, trees to the water on every side, and two ships for company: the Hispaniola lying beached on her side with your handiwork trailing from her, and a nameless three-masted wreck so old that shore bushes flower on her deck.
+> south
+Open Woods
+> se
+Woods by the Shore
+> east
+Outside the Stockade
+> in
+You feel your way in past the porch in the dark, pleased with yourself, composing the first sentence of your report - and out of the black overhead comes a shriek that stops your heart in your chest:
+
+"Pieces of eight! Pieces of eight! Pieces of eight!"
+
+A torch goes up. Six men are on their feet at once, and one voice cuts across all of them, cheerful as a Sunday: "Who goes? Well, well - Jim Hawkins, shiver my timbers, dropped in, eh? Now that's friendly."
+
+They turn out your pockets before they let you sit down, and Silver holds the chart up to the firelight for a long, long moment. "So the doctor's chart weren't the only one! Well, well. First and last, we've split upon Jim Hawkins."
+The Log-House
+You tell them the whole of it, because there is nothing left to keep: the apple barrel, the schooner cut adrift and beached where they will never find her, Israel Hands in the bay. "Kill me, if you please, or spare me. But one thing I'll say and no more: if you spare me, bygones are bygones, and when you fellows are in court for piracy, I'll save you all I can. So the laugh's on my side." Nobody moves. Silver's eye is very bright. "I'll bear it in mind," says he.
+> wait
+Time passes...
+The parrot says something that would curl a chaplain's wig.
+George Merry gets up with four grievances and counts them on his fingers: this cruise is a failure, the crew is dying, the cook has bungled the terms, and the boy is a hostage nobody wants. The five of them go out into the sand to hold council, and the fire crackles, and Silver whistles a little through his teeth and does not look worried, which frightens you more than the knives.
+> wait
+Time passes...
+"Pieces of eight! Pieces of eight!" screams the parrot, and goes on screaming until Silver quiets her.
+They come back in and Merry hands Silver something small and black. Silver turns it over. "The black spot! I thought so. And where might you have got the paper? Why - hillo! Look here, now, this ain't lucky. You've gone and cut this out of a Bible. What fool's cut a Bible?" Dick, who has the fever coming on him, looks at the fire. Silver flicks the paper over to you, cool as a card-player. "There. Have a look at what they think of me."
+
+Then he plays the chart across the fire like an ace, and the whole temper of the room turns over in a second: "Barbecue forever! Silver for cap'n!"
+> take page
+Taken.
+You sleep, in the end, because a boy will. And in the grey of the morning there is the doctor at the edge of the wood with his hat on the back of his head, come to see his patients: lemon-peel eyes, and "you call it a prison, Silver; I call it a hospital." He physics the fevered Dick, and looks the mutineers over one by one, and asks, quite calmly, to speak with the boy.
+> read page
+A round of paper, blacked on one side with ash. On the other side, in a shaky hand, one word: "Depposed." And running across the back of it, the print it was cut from: "Without are dogs and murderers."
+Silver walks you down to the fence himself. "You'll give me your word as you won't slip your cable, and I'll give you mine as I'll not leave the pair of you." You give it. Then, over the paling, the doctor's voice, low and hard and very fast:
+
+"Jim - whip over, and we'll run for it."
+The parrot says something that would curl a chaplain's wig.
+> stay
+"Doctor," you say, "I passed my word." And you can hear yourself say it, and how young it sounds, and you say it anyway.
+
+The doctor takes a long breath. "Then take this: they'll find the Hispaniola gone, and they'll have to make what they can of that. Keep close to Silver when the pinch comes - and Jim: I'll not leave you." Aloud, to the sea-cook, over his shoulder as he goes: "Silver - look out for squalls when you find it."
+
+Breakfast, then, and the hunt forms up: five buccaneers with picks and crowbars, Silver with two guns slung about him and the parrot on his shoulder, and a rope round your waist with the other end in his fist, so that you go along after him like a dancing bear.
+Slope of the Plateau
+A long climb west: miry ground at the bottom, then broom and flowering shrubs, nutmeg thickets, and the red columns of great pines. The air turns fresh as you rise. The plateau levels off above; the woods are back east.
+The party fans out across the slope, shouting to each other through the scrub. They dig at every hummock, and turn up nothing but pig-nuts and the roots of things, and Silver takes his bearings off the Spy-glass and says nothing at all.
+> wait
+Time passes...
+"Pieces of eight! Pieces of eight!" screams the parrot, and goes on screaming until Silver quiets her.
+Plateau of the Pines
+The open top of the plateau, big pines wide apart. At the foot of one, half swallowed in a green creeper, a human skeleton lies stretched on the ground - dead straight, feet one way, hands raised over its head the other way, like a diver frozen mid-plunge. Nothing about it is natural.
+At the top of the plateau the man in front lets out a cry, and they all run, and there it is under the big pine: a skeleton, stretched dead straight, the feet one way and the hands over the head the other.
+
+"He's been thinner in his day," says Morgan. "This is good sea-cloth," says Merry, going through the rags. Silver hops round it on his crutch and gets down and sights along the bones with his compass. "East-southeast and by east. That's a p'inter, that is - Flint's humour, if I know the man. Six of them he took ashore, and one of them lies here as a compass needle." He straightens up and the sun is out and nobody laughs. "Great guns, messmates - but if Flint was living, this would be a hot spot for you and me."
+> wait
+Time passes...
+Spy-Glass Shoulder
+The lower shoulder of the Spy-glass, sheer rock above, the whole island below: the anchorage and Skeleton Island behind you, the Cape of the Woods fringed with surf ahead, open sea both sides. Three pines on this line could be called tall, but one, northwest of here, is a giant - a red column big as a cottage.
+They halt on the shoulder to get their breath, and it is then, out of the trees in front of them, thin and high and quavering, that a voice begins to sing:
+
+"Fifteen men on the dead man's chest - Yo-ho-ho, and a bottle of rum!"
+
+Nothing you will ever see again will be quite the colour those five men go. Morgan grovels on the ground. "It's Flint, by -" and then the voice breaks off in the middle of a note, as if a hand had been laid across the singer's mouth.
+> wait
+Time passes...
+The parrot says something that would curl a chaplain's wig.
+Then the wail comes, from farther off, and there is not a man there who does not know the words: "Darby M'Graw! Darby M'Graw! Fetch aft the rum, Darby!" - Flint's last words on earth, said out loud on a hot morning in front of five of the men who heard him say them.
+
+Silver's face is grey, but his jaw is set. "There was an echo. And who ever seen a sperrit with a shadow? Well then, what's he doing with an echo to him? That ain't in natur', surely?" Merry, slowly, working it out: "You're right - and it weren't Flint's voice. It was liker - by the powers, it was liker Ben Gunn!" "Ben Gunn!" roars Morgan, getting up off his knees. "Dead or alive, nobody minds Ben Gunn." And it is extraordinary how the fear goes out of them, and how fast.
+> wait
+Time passes...
+The Tall Pine
+The giant pine, two hundred feet of it, with a shadow a ship's company could drill in. Under it the ground has already told the whole story: a great pit, sides fallen in, grass sprouted on the bottom, a pick-shaft broken in two, and packing boards branded with a hot iron: WALRUS.
+The tall tree comes in sight and they break into a run, dragging you at the rope's end, and then all five of them stop dead as if they had hit a wall.
+
+There is a great pit in the ground under the pine. The sides have fallen in and grass has sprouted in the bottom of it, and there is a broken pick-shaft, and boards branded WALRUS. The cache had been found and rifled; the seven hundred thousand pounds were gone.
+
+Silver's face goes hard as flint, and his hand comes back and finds your shoulder, and his voice is a whisper you can hardly hear. "Jim," says he, "take that, and stand by for trouble" - and passes you a double-barrelled pistol.
+> take pistol
+You take it, and at the same moment you understand exactly where the seven hundred thousand pounds went, and who dug it, and what a wedge of cheese is worth. Silver has begun, very quietly, to move round the pit so that the two of you are shoulder to shoulder.
+"Pieces of eight! Pieces of eight!" screams the parrot, and goes on screaming until Silver quiets her.
+Merry is down in the pit and up again with the fever on him. "Two guineas! Comrades, that's him, that's the man - him and that boy - I'll have his heart out!" and he raises his arm and his voice for the charge.
+
+Right in the middle of it, crack! crack! crack! - three musket-shots out of the nutmeg thicket. Merry tumbles head first into the excavation; the man with the bandage spins like a top and goes down full length; and the other three turn and run for their lives. Silver's two barrels go into Merry as he struggles up, and he tells him so, looking down: "George, I reckon I settled you."
+
+Out of the thicket come the doctor, Gray, and Ben Gunn, with the gunsmoke still on them. Away over the scrub you can see the three survivors still running, right for Mizzenmast Hill, and the doctor calls Gray back off the chase. Silver takes off his hat. "Doctor Livesey," says he, "you saved my life, and Jim's too. And you're Ben Gunn - well, I never."
+> wait
+Time passes...
+The parrot says something that would curl a chaplain's wig.
+> follow doctor
+"This way, Jim," says the doctor, and the whole strange procession - doctor, squire's man, marooned man, sea-cook and boy - goes down off the plateau together, while Ben Gunn tells how he found the skeleton and rifled the cache and carried seven hundred thousand pounds up to his cave on his back, a little at a time, in two years of afternoons.
+
+Spy-Glass Shoulder
+> follow doctor
+Plateau of the Pines
+"Pieces of eight! Pieces of eight!" screams the parrot, and goes on screaming until Silver quiets her.
+> follow doctor
+Slope of the Plateau
+> follow doctor
+Open Woods
+The parrot says something that would curl a chaplain's wig.
+> follow doctor
+Foot of the Two-Peaked Hill
+> up
+And there it is: heaped coin and quadrilaterals built of bars of gold, Flint's treasure, that seventeen men of the Hispaniola have died for already and nobody knows how many hundreds before them.
+
+Captain Smollett is on a mattress by the fire with his shoulder strapped up. "John Silver," says he, "you're a prodigious villain and an imposter - a monstrous imposter, sir. I am told I am not to prosecute you. Well then, I will not." And then, to you, without turning his head: "You're a good boy in your line, Jim, but I don't think you and me'll go to sea again. You're too much of the born favourite for me."
+Ben Gunn's Cave
+A large airy cave with a sandy floor, a spring rising into a pool of clear water overhung with ferns, and - once you see it you can see nothing else - great heaps of coin and quadrilaterals built of bars of gold, glowing back at the fire. Flint's treasure, that seventeen men of the Hispaniola have already died for.
+Supper, then: salt goat, and a bottle of old wine out of the Hispaniola, and all of us together in the firelight, and Long John sitting back in the shadow with a good appetite and a civil word for everybody - the same bland, polite, obsequious seaman of the voyage out.
+
+The days after are the hardest work of your life: bread-bag after bread-bag of coin carried down the hill and rowed out to the schooner, English and French and Spanish and Portuguese, doubloons and double guineas and moidores and sequins, the pictures of all the kings of Europe for the last hundred years, and the parrot on a spar overhead counting it. "Pieces of eight! Pieces of eight!"
+
+On the last morning the three survivors are left ashore with powder and shot and stores and the doctor's good advice, and everything is aboard, and the tide serves.
+"Pieces of eight! Pieces of eight!" screams the parrot, and goes on screaming until Silver quiets her.
+> wait
+Time passes...
+The parrot says something that would curl a chaplain's wig.
+> score
+Your score is 300 of a possible 350, in 133 moves.
+That rates you: Sea-Cook.
+> sail
+The Hispaniola stands out of North Inlet with the same colours flying that the captain fought under at the stockade. On the spit, three marooned men kneel in the sand with their arms out; the doctor hails them the news of the stores you have left, and one of them, by way of thanks, puts a musket-ball through the main-sail.
+
+At the first port with lights and fruit-boats, Long John Silver goes over the side in a shore boat, quietly, in the dark, with a sack of coin worth three or four hundred guineas to help him on his further wanderings. Ben Gunn confesses everything at dawn. You are all of you, on the whole, pleased to be so cheaply quit of him.
+
+Home, then: five men of all that sailed, and the gold notched into every one of your natures. Smollett retires; Gray saves and rises; Ben Gunn gets a thousand pounds and spends it in nineteen days. And you - you have money enough, and no wish on earth to see that accursed island again. Oxen and wain-ropes would not bring you back. Though on the worst nights you still hear the surf booming on its coasts, and start upright in bed with the sharp voice of Captain Flint ringing in your ears: "Pieces of eight! Pieces of eight!"
+
+
+
+    ****  You have won  ****
+
+Your score is 325 of a possible 350, in 133 moves.
+That rates you: Cap'n.
+
+Would you like to restart the game from the beginning, restore a saved game position, or end this session of the game?
+(Type RESTART, RESTORE, or QUIT):

@@ -1,0 +1,108 @@
+# TREASURE ISLAND - minimal path: no compass, no cheese, no bar silver.
+# Proves the optional content is optional. Finishes at 325, rank Cap'n.
+take spot
+read spot
+search body
+take gully
+cut string with gully
+up
+unlock chest with key
+open chest
+take clothes
+move gear
+move cloak
+take packet
+down
+out
+east
+down
+wait
+wait
+give packet to doctor
+read map
+north
+give note to silver
+south
+board ship
+enter barrel
+wait
+wait
+wait
+wait
+wait
+exit
+enter cabin
+go ashore
+north
+north
+east
+south
+east
+in
+take cutlass
+wait
+attack pirate with cutlass
+attack pirate with cutlass
+out
+west
+south
+south
+open tent
+take coracle
+take spade
+north
+launch coracle
+cut hawser with gully
+wait
+wait
+cut hawser with gully
+wait
+wait
+cut hawser with gully
+pull cord
+wait
+wait
+wait
+jump
+lower flag
+down
+take brandy
+take wine
+up
+give brandy to hands
+wait
+down
+sneak
+up
+give wine to hands
+wait
+wait
+climb mast
+prime pistols
+shoot hands
+down
+land
+south
+se
+east
+in
+wait
+wait
+take page
+read page
+stay
+wait
+wait
+wait
+wait
+take pistol
+wait
+follow doctor
+follow doctor
+follow doctor
+follow doctor
+follow doctor
+up
+wait
+score
+sail

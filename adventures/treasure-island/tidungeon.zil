@@ -1,6 +1,6 @@
 "TIDUNGEON - the world of Treasure Island: rooms, objects, GO, stubs."
 
-<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND>
+<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN OUT LAND>
 
 "=== ACT I - Black Hill Cove ==="
 
@@ -61,7 +61,7 @@ one side: the black spot itself.")
 
 <OBJECT ODDMENTS
 	(IN PARLOUR)
-	(SYNONYM ODDMENTS TOBACCO THIMBLE NEEDLES PIGTAIL THREAD)
+	(SYNONYM TOBACCO THIMBLE NEEDLES PIGTAIL THREAD ENDS)
 	(ADJECTIVE ODD)
 	(DESC "captain's odds and ends")
 	(FLAGS TAKEBIT INVISIBLE)
@@ -167,9 +167,9 @@ initial B burned into the lid with a hot iron. The stairs go down.")
 
 <OBJECT CHEST-ODDMENTS
 	(IN SEA-CHEST)
-	(SYNONYM QUADRANT CANIKIN WATCH PISTOLS SHELLS COMPASSES STICKS)
+	(SYNONYM GEAR QUADRANT CANIKIN WATCH SHELLS ODDMENTS)
 	(ADJECTIVE SEAMAN)
-	(DESC "seaman's oddments")
+	(DESC "seaman's gear")
 	(FLAGS TAKEBIT INVISIBLE)
 	(SIZE 4)
 	(ACTION CHEST-ODDMENTS-FCN)>
@@ -224,7 +224,6 @@ moon is coming up fast, which is bad news for anyone hoping to run
 unseen. The inn door stands south; the road runs east toward the bridge
 and west toward Kitt's Hole.")
       (SOUTH TO PARLOUR)
-      (IN TO PARLOUR)
       (EAST TO BRIDGE)
       (WEST
 "You'd walk straight into the smugglers' cove the lugger lies in. Even
@@ -475,8 +474,8 @@ men. The door back to the quay is south.")
 	(ACTION ROGER-FCN)>
 
 <OBJECT ISRAEL-HANDS
-	(SYNONYM HANDS ISRAEL COXSWAIN MARINER)
-	(ADJECTIVE ISRAEL WOUNDED)
+	(SYNONYM ISRAEL HANDS COXSWAIN MARINER)
+	(ADJECTIVE WOUNDED)
 	(DESC "Israel Hands")
 	(FLAGS ACTORBIT NDESCBIT)
 	(ACTION HANDS-FCN)>
@@ -569,7 +568,7 @@ men. The door back to the quay is south.")
 
 <OBJECT SHIP-BISCUIT
 	(SYNONYM BISCUIT BISCUITS BREAD)
-	(ADJECTIVE SHIP)
+	(ADJECTIVE HARD)
 	(DESC "ship's biscuit")
 	(FLAGS TAKEBIT NDESCBIT FOODBIT)
 	(SIZE 1)
@@ -735,7 +734,6 @@ knoll a log-house behind a six-foot paling with never a door in it -
 you go over or you stay out. The Union Jack snaps overhead, which is
 the best thing you have seen all day.")
       (WEST TO SHORE-WOODS)
-      (IN TO LOG-HOUSE)
       (ACTION CLEARING-FCN)
       (GLOBAL SPYGLASS-HILL)
       (FLAGS RLANDBIT ONBIT)>
@@ -816,7 +814,7 @@ the best thing you have seen all day.")
 <OBJECT SPRING-KETTLE
 	(IN LOG-HOUSE)
 	(SYNONYM KETTLE SPRING)
-	(ADJECTIVE SHIP)
+	(ADJECTIVE IRON)
 	(DESC "ship's kettle")
 	(FLAGS NDESCBIT)
 	(ACTION KETTLE-FCN)>
@@ -836,7 +834,7 @@ the best thing you have seen all day.")
 	(ACTION BOARDER-FCN)>
 
 <OBJECT PIRATES
-	(SYNONYM PIRATES BUCCANEERS MUTINEERS MERRY MORGAN DICK GEORGE)
+	(SYNONYM PIRATES MUTINEERS MERRY MORGAN DICK GEORGE CREW)
 	(ADJECTIVE SIX)
 	(DESC "buccaneers")
 	(FLAGS ACTORBIT NDESCBIT)
@@ -1142,7 +1140,7 @@ the Hispaniola have already died for.")
 
 <OBJECT PISTOLS
 	(SYNONYM PISTOLS BRACE)
-	(ADJECTIVE SHIP)
+	(ADJECTIVE LOADED)
 	(DESC "brace of pistols")
 	(FLAGS TAKEBIT WEAPONBIT)
 	(SIZE 3)
@@ -1203,6 +1201,17 @@ the Hispaniola have already died for.")
 	(DESC "water")
 	(FLAGS DRINKBIT)>
 
+"A catch-all topic so ASK/TELL ABOUT never dies on an unknown noun; the
+actors' own routines answer in character and ignore the topic."
+
+<OBJECT TOPICS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM FLINT MUTINY ISLAND TREASURE HIMSELF ME EVERYTHING PLAN)
+	(ADJECTIVE BURIED)
+	(DESC "that subject")
+	(FLAGS NDESCBIT)
+	(ACTION TOPICS-FCN)>
+
 <OBJECT WALL
 	(IN GLOBAL-OBJECTS)
 	(SYNONYM WALL WALLS)
@@ -1234,13 +1243,14 @@ against them."
 	<SETG HERE ,PARLOUR>
 	<SETG LIT T>
 	<SETG WINNER ,ADVENTURER>
+	<PUTP ,ADVENTURER ,P?ACTION ,ADVENTURER-FCN>
 	<SETG PLAYER ,WINNER>
 	<MOVE ,WINNER ,HERE>
 	<SETG LOAD-ALLOWED 500>
 	<SETG FUMBLE-NUMBER 100>
 	<COND (<NOT <FSET? ,HERE ,TOUCHBIT>>
 	       <INTRO-TEXT>)>
-	<ENABLE <QUEUE I-BENBOW -1>>
+	<INIT-SCENES>
 	<V-LOOK>
 	<MAIN-LOOP>
 	<AGAIN>>
