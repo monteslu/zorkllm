@@ -143,9 +143,15 @@ Declare directions first - the engine expects the game to do it:
 
 Rooms and objects:
 
+Use `(LOC ROOMS)` for a room's parent, never `(IN ROOMS)`: `IN` is a
+registered direction, so `(IN ROOMS)` compiles as an `IN` *exit* pointing
+at the ROOMS object and silently breaks inward movement from that room.
+(Tiny Quest below predates this finding and is masked by it; three of the
+five `adventures/` games hit it.)
+
 ```zil
 <ROOM GARDEN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Overgrown Garden")               ;"the status-line name"
       (LDESC "You are standing in ...")       ;"printed on entry/LOOK"
       (NORTH TO SHED-INTERIOR IF SHED-DOOR IS OPEN ELSE
@@ -180,9 +186,13 @@ it), `NDESCBIT` (not listed in room descriptions), `INVISIBLE`,
 v3 allows 32 flags total, and the engine uses most of them - a small
 game has about a dozen free.
 
-Give treasures `(VALUE n)` for points on first pickup and `(TVALUE n)`
-for points when placed in the trophy location, or just SETG SCORE
-yourself in an action routine (Tiny Quest does the latter).
+**Do not use `(VALUE n)` / `(TVALUE n)` to award points.** The stock
+`V-TAKE` never calls `SCORE-OBJ`, and the other call site is compiled out
+under `ZORK-NUMBER 0`, so those properties are inert - every game in
+`adventures/` hit this. Award explicitly in your own action routines with
+a one-shot flag per award, and never inside a TAKE branch (the parser's
+implicit take bypasses object ACTION routines entirely). See
+[ENGINE-NOTES.md](ENGINE-NOTES.md) for the full pattern.
 
 ### The actions file (`tactions.zil`)
 
