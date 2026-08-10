@@ -7,6 +7,23 @@ import { dirname } from 'node:path';
 import { ZMachine } from '../vendor/zmachine.mjs';
 import { extractVocabulary, dictWordLength, extractVerbs, extractNouns } from './vocab.js';
 
+/**
+ * The order ZIL games declare directions in, which fixes their property
+ * numbers: `<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT
+ * LAND>`. Note it is NOT north-south-east-west - assuming the obvious
+ * compass order mislabelled every exit in Zork while getting the count
+ * right, which is the most convincing kind of wrong.
+ */
+const DIRECTION_ORDER = ['north', 'east', 'west', 'south', 'northeast', 'northwest',
+  'southeast', 'southwest', 'up', 'down', 'in', 'out', 'land'];
+/** The eight compass points plus up/down, for probing. */
+const COMPASS = DIRECTION_ORDER.slice(0, 10);
+const OPPOSITE = {
+  north: 'south', south: 'north', east: 'west', west: 'east',
+  northeast: 'southwest', southwest: 'northeast',
+  northwest: 'southeast', southeast: 'northwest', up: 'down', down: 'up',
+};
+
 const PROMPT_TRIM = /\n?>\s*$/;
 
 export class GameSession {
@@ -17,6 +34,9 @@ export class GameSession {
 
   /** Object number of the player ("cretin"), located lazily on v4+. */
   #playerObj = undefined;
+
+  /** Property number of NORTH, set by calibrateDirections(). */
+  dirBase = undefined;
   /** @type {string[]} unique room names in the order first visited (authoritative, from the engine) */
   visitedRooms = [];
   /** True once the game has quit */
@@ -35,7 +55,17 @@ export class GameSession {
   /**
    * @param {Buffer} story raw story file bytes
    */
-  constructor(story) {
+  /**
+   * @param {Buffer} story raw story file bytes
+   * @param {{random?: (range: number) => number}} [options]
+   *   options.random replaces the VM's RNG with a caller-supplied one, so a
+   *   second interpreter can be run against this one and compared over
+   *   RANDOM-driven behaviour rather than around it.
+   */
+  constructor(story, options = {}) {
+    this.options = options;
+    /** Raw story bytes, kept so a throwaway probe session can be spun up. */
+    this.story = story;
     this.version = story.readUInt8(0);
     this.vocabulary = extractVocabulary(story);
     this.dictWordLength = dictWordLength(story);
@@ -85,7 +115,7 @@ export class GameSession {
         }
       },
     };
-    this.zm = ZMachine.load(story, io);
+    this.zm = ZMachine.load(story, io, options);
   }
 
   /**
@@ -237,15 +267,125 @@ export class GameSession {
         if (len === 1 || len === 4 || len === 5) found.push(num);
         p = at + len;
       }
-      // Property numbers descend from the last declared direction, and the
-      // engine's own order is N S E W NE NW SE SW U D IN OUT.
-      const order = ['north', 'south', 'east', 'west', 'northeast', 'northwest',
-        'southeast', 'southwest', 'up', 'down', 'in', 'out'];
-      const high = Math.max(...found, 0);
-      if (!high) return [];
+      const base = this.dirBase;
+      if (base === null || base === undefined) return [];
+      // IN/OUT/LAND are engine artifacts rather than ways a player would
+      // be told to go - notably `(IN ROOMS)` compiles to an IN "exit" in
+      // every room that uses that idiom.
       return found.sort((a, b) => b - a)
-        .map((n) => order[high - n])
-        .filter(Boolean);
+        .map((n) => DIRECTION_ORDER[base - n])
+        .filter((d) => d && !['in', 'out', 'land'].includes(d));
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Learn which property number is NORTH by walking, once, on a throwaway
+   * copy of the game.
+   *
+   * Direction properties occupy the top of the property range, descending
+   * from north in declaration order - but the base number depends on how
+   * many properties the game defines, and non-direction properties share
+   * that range, so it cannot be inferred from the numbers alone. Three
+   * attempts to infer it all failed, most visibly by announcing "the way
+   * out is north" on a ship's deck whose only exit was down.
+   *
+   * Ground truth is cheap: walk each compass direction from the starting
+   * room, see which ones move the player, and align that set against the
+   * room's direction-shaped properties. The probe runs on its own
+   * GameSession built from the same bytes, so the player's game is never
+   * touched, and the answer holds for every room in the file.
+   * @returns {Promise<number|null>}
+   */
+  async calibrateDirections() {
+    if (this.dirBase !== undefined) return this.dirBase;
+    this.dirBase = null;
+    try {
+      const probe = new GameSession(this.story);
+      await probe.start();
+      const start = probe.status?.location;
+      if (!start) return null;
+
+      // One fresh session per direction. Walking and stepping back on a
+      // single session assumes exits are symmetric, and they are not:
+      // Zork's West of House leads onward in ways that do not return, so
+      // a single-session probe saw one exit where there are five.
+      const moved = [];
+      for (const dir of COMPASS) {
+        const attempt = new GameSession(this.story);
+        await attempt.start();
+        await attempt.send(dir);
+        const now = attempt.status?.location;
+        if (now && now !== start) moved.push(dir);
+      }
+      if (!moved.length) return null;
+
+      // Direction-shaped properties of the starting room, high to low.
+      const numbers = probe.#directionProps();
+      if (!numbers.length) return null;
+
+      // The first direction that moved us is the lowest-indexed one in
+      // compass order that the room actually has, so its property number
+      // fixes the scale: base = number + index-in-compass-order.
+      // Try every plausible base and keep the one whose predictions match
+      // what walking actually did. Accepting the first base that merely
+      // CONTAINS the walked set is not enough - a wrong base can predict a
+      // superset and look convincing while mislabelling everything.
+      const walked = new Set(moved);
+      let best = null;
+      let bestError = Infinity;
+      for (let candidate = numbers[0]; candidate <= numbers[0] + DIRECTION_ORDER.length; candidate++) {
+        const predicted = numbers.map((n) => DIRECTION_ORDER[candidate - n]).filter(Boolean);
+        const set = new Set(predicted);
+        // A direction that moved the player and is not predicted is a hard
+        // error; a prediction that did not move them is soft, since
+        // conditional and door exits legitimately refuse. IN/OUT/LAND are
+        // free: they are engine artifacts, not player-facing directions.
+        const missed = [...walked].filter((d) => !set.has(d)).length;
+        const extra = predicted.filter(
+          (d) => !walked.has(d) && !['in', 'out', 'land'].includes(d),
+        ).length;
+        // A base that predicts nothing at all has no missed and no extra,
+        // so it scores perfectly while explaining nothing. Require that it
+        // account for at least one real exit before it can win.
+        if (!predicted.some((d) => walked.has(d))) continue;
+        const error = missed * 100 + extra;
+        if (error < bestError) { bestError = error; best = candidate; }
+      }
+      this.dirBase = best;
+      return best;
+    } catch {
+      return null;
+    }
+  }
+
+  /** Direction-shaped property numbers of the current room, high to low. */
+  #directionProps() {
+    try {
+      const ot = this.zm.objectTable;
+      const player = this.#findPlayer(ot);
+      const room = player && ot.getParent(player);
+      if (!room) return [];
+      const mem = ot.memory ?? this.zm.memory;
+      let p = ot.getPropertyTableAddress(room);
+      p += 1 + mem.readByte(p) * 2;
+      const out = [];
+      for (;;) {
+        const size = mem.readByte(p);
+        if (size === 0) break;
+        let num; let len; let at;
+        if (this.version >= 4) {
+          num = size & 0x3f;
+          if (size & 0x80) { len = (mem.readByte(p + 1) & 0x3f) || 64; at = p + 2; }
+          else { len = (size & 0x40) ? 2 : 1; at = p + 1; }
+        } else {
+          num = size & 0x1f; len = (size >> 5) + 1; at = p + 1;
+        }
+        if (len >= 1 && len <= 5) out.push(num);
+        p = at + len;
+      }
+      return out.sort((a, b) => b - a);
     } catch {
       return [];
     }
@@ -312,7 +452,7 @@ export class GameSession {
  * @param {string} storyPath
  * @returns {Promise<GameSession>}
  */
-export async function loadGame(storyPath) {
+export async function loadGame(storyPath, options = {}) {
   const story = await readFile(storyPath);
-  return new GameSession(story);
+  return new GameSession(story, options);
 }

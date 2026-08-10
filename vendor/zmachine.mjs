@@ -3432,7 +3432,9 @@ var Executor = class {
       this.storeResult(ins, 0);
     } else {
       let result;
-      if (this.randomMode === "random") {
+      if (typeof this.externalRandom === "function") {
+        result = this.externalRandom(range);
+      } else if (this.randomMode === "random") {
         result = Math.floor(Math.random() * range) + 1;
       } else {
         result = this.nextPredictableRandom() % range + 1;
@@ -4116,7 +4118,8 @@ var ZMachine = class _ZMachine {
    * @param storyData The story file data
    * @param io The I/O adapter for input/output
    */
-  constructor(storyData, io) {
+  constructor(storyData, io, options = {}) {
+    this.options = options;
     this.originalStory = storyData.slice(0);
     this.memory = new Memory(storyData);
     this.header = new Header(this.memory);
@@ -4129,6 +4132,12 @@ var ZMachine = class _ZMachine {
     this.decoder = new Decoder(this.memory, this.version);
     this.decoder.setTextDecoder((addr) => this.textDecoder.decode(addr));
     this.executor = new Executor(this.memory, this.header, this.stack, this.variables, this.version, io, this.textDecoder);
+    // A caller-supplied RNG makes two interpreters comparable: rather than
+    // reimplementing the same algorithm twice and hoping the arithmetic
+    // agrees, both call one function. Differential testing against a second
+    // implementation then covers RANDOM-driven behaviour - the thief,
+    // combat, idle barks - instead of having to exclude it.
+    if (typeof options.random === 'function') this.executor.externalRandom = options.random;
     this.objectTable = new ObjectTable(this.memory, this.version, this.header.objectTableAddress);
     this.properties = new Properties(this.memory, this.version, this.objectTable);
     this.dictionary = new Dictionary(this.memory, this.version, this.header.dictionaryAddress);
@@ -4155,7 +4164,7 @@ var ZMachine = class _ZMachine {
    * @param io The I/O adapter
    * @returns A new ZMachine instance
    */
-  static load(storyData, io) {
+  static load(storyData, io, options) {
     let buffer;
     if (storyData instanceof Uint8Array) {
       buffer = new ArrayBuffer(storyData.byteLength);
@@ -4163,7 +4172,7 @@ var ZMachine = class _ZMachine {
     } else {
       buffer = storyData;
     }
-    return new _ZMachine(buffer, io);
+    return new _ZMachine(buffer, io, options);
   }
   /**
    * Current program counter

@@ -485,11 +485,13 @@ export class ZorkAgent {
    */
   async #retrySay(question) {
     const scope = this.session.scope?.() ?? { carrying: [], present: [] };
-    const ways = this.session.exits?.() ?? [];
+    // NOTE: session.exits() is not trustworthy yet - the direction/property
+    // mapping cannot be read reliably from a story file, and a wrong answer
+    // is worse than none ("the way out is north" on a deck whose only exit
+    // was down). Left out of the hint until it is exact.
     const facts = [
       scope.present.length ? `Here: ${scope.present.join(', ')}.` : '',
       scope.carrying.length ? `Carrying: ${scope.carrying.join(', ')}.` : 'Carrying nothing.',
-      ways.length ? `Ways out: ${ways.join(', ')}.` : '',
     ].filter(Boolean).join(' ');
     this.history.push({
       role: 'user',
@@ -604,12 +606,8 @@ export class ZorkAgent {
       ? ` Carrying: ${scope.carrying.join(', ')}.` : ' Carrying nothing.';
     const present = scope.present.length
       ? ` Here: ${scope.present.join(', ')}.` : '';
-    // Exits the room actually declares. A room may describe its geography
-    // in prose the player cannot parse into a direction ("north lie the
-    // Allees de Meilhan"); this is the compass answer, and it is free.
-    const ways = this.session.exits?.() ?? [];
-    const out = ways.length ? ` Ways out: ${ways.join(', ')}.` : '';
-    return `[state: in "${s.location}"${tally}.${carrying}${present}${out}${rooms}]`;
+
+    return `[state: in "${s.location}"${tally}.${carrying}${present}${rooms}]`;
   }
 
   /** History entries before this index are evicted from the LLM window. */

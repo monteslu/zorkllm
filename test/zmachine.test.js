@@ -90,3 +90,24 @@ console.log(`\nzmachine tests: ${passed} passed`);
        s.status.score === null && s.status.turns === null, JSON.stringify(s.status));
   }
 }
+
+// --- an injected RNG makes RANDOM-driven play reproducible ---
+{
+  const lcg = (seed) => {
+    let s = seed >>> 0;
+    return (range) => { s = (Math.imul(s, 1103515245) + 12345) >>> 0; return (s % range) + 1; };
+  };
+  const play = async (options) => {
+    const g = await loadGame(join(GAMES, 'zork1.z3'), options);
+    let out = await g.start();
+    for (const c of ['n', 'n', 'e', 'open window', 'enter window', 'w', 'take sword',
+      'move rug', 'open trap door', 'take lamp', 'turn on lamp', 'down', 'n',
+      'kill thief with sword', 'kill thief with sword']) out += '\n' + await g.send(c);
+    return out;
+  };
+  const first = await play({ random: lcg(42) });
+  const same = await play({ random: lcg(42) });
+  const other = await play({ random: lcg(99) });
+  ok('same injected seed replays byte-identically', first === same, 'transcripts differ');
+  ok('a different seed changes RANDOM-driven play', first !== other, 'seeds had no effect');
+}
