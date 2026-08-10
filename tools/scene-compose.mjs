@@ -90,6 +90,24 @@ for (const room of manifest.rooms) {
     clauses.push({ source: 'extracted', text: room.scenery, note: 'engine LOOK output, uncleaned' });
   }
 
+  // Derived exclusions: things the manifest already knows do not belong in
+  // a standing depiction of this room. These are computed, not authored -
+  // an occupant is a creature or object the engine listed separately from
+  // the room's own description, which is precisely the definition of "not
+  // part of the place".
+  if (!room.dark && room.occupants?.length) {
+    const subjects = room.occupants
+      .map((line) => line.replace(/\s+is here\b.*$/i, '').replace(/^(a|an|the)\s+/i, '').trim())
+      .filter((t) => t && t.split(/\s+/).length <= 4);
+    if (subjects.length) {
+      clauses.push({
+        source: 'derived',
+        text: `do not depict: ${subjects.join(', ')}`,
+        note: 'manifest occupants - seen here but not part of the room',
+      });
+    }
+  }
+
   const act = (style.acts ?? []).find((a) => a.name === room.act);
   if (style.style) clauses.push({ source: 'authored', text: style.style, note: 'style file' });
   if (act?.mood) {
@@ -114,9 +132,10 @@ if (format === 'json') {
       console.log(`    ${c.text.replace(/\n/g, '\n    ')}`);
     }
     const usable = r.clauses.filter((c) => ['extracted', 'model', 'authored'].includes(c.source));
+    const derived = r.clauses.filter((c) => c.source === 'derived').map((c) => c.text);
     console.log('\n  PROMPT:');
     console.log('    ' + usable.map((c) => c.text.replace(/\s*\.\s*$/, '')).join('. ') + '.');
-    console.log('\n  NEGATIVE: ' + r.negative.join('; '));
+    console.log('\n  NEGATIVE: ' + [...r.negative, ...derived].join('; '));
     console.log();
   }
 }

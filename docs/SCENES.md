@@ -19,11 +19,24 @@ authored "bright clear daylight" comes to look like a fact about a room
 whose text never mentions the sky.
 
 `tools/scene-compose.mjs` exists to keep that visible. It performs no
-inference of its own, tags every clause with its provenance
-(`extracted`, `authored`, `model`), and **refuses to run** when a clause
-a human is supposed to supply is missing, rather than filling the gap.
-There is no default style and no default mood; an incomplete style file
-is an error, not an invitation to guess.
+inference of its own, tags every clause with its provenance, and
+**refuses to run** when a clause a human is supposed to supply is
+missing, rather than filling the gap. There is no default style and no
+default mood; an incomplete style file is an error, not an invitation to
+guess.
+
+Four provenance classes:
+
+- **`extracted`** - the engine printed it. Ground truth.
+- **`derived`** - computed from the manifest by rule, no judgement. The
+  per-room "do not depict" list is built from `occupants`, because an
+  occupant is by definition something the engine listed separately from
+  the room's own description - that *is* the test for "not part of the
+  place", so it needs no author. Anything mechanically knowable belongs
+  here rather than in the authored style file.
+- **`authored`** - a person wrote it, and it carries the passage it
+  derives from.
+- **`model`** - `scene-clean.mjs` output, subtractive and guard-checked.
 
 ## Why the object tree is the wrong source
 
