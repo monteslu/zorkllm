@@ -44,6 +44,20 @@ typedef struct zr_runtime {
     struct { const char *name; cz_val *value; } *globals;
     size_t global_count, global_cap;
 
+    /* Host-supplied RNG, so RANDOM-driven play is comparable against the
+     * Z-machine rather than excluded from the comparison. */
+    int (*random)(int range);
+
+    /* Set by RFATAL/QUIT so the main loop can act rather than a builtin
+     * calling exit(). */
+    bool fatal;
+    bool quit;
+
+    /* Property writes: the declared model is immutable, so PUTP records
+     * an override here. */
+    struct { int obj; const char *prop; cz_val *value; } *puts;
+    size_t put_count, put_cap;
+
     char err[512];
 } zr_runtime;
 
@@ -69,6 +83,8 @@ bool zr_flag(const zr_runtime *r, int obj, const char *flag);
 void zr_set_flag(zr_runtime *r, int obj, const char *flag, bool on);
 
 /** Globals, by name. */
+void zr_put_property(zr_runtime *r, int obj, const char *prop, cz_val *value);
+cz_val *zr_get_property(zr_runtime *r, int obj, const char *prop);
 cz_val *zr_global(zr_runtime *r, const char *name);
 void zr_set_global(zr_runtime *r, const char *name, cz_val *value);
 
