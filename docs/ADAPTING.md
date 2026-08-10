@@ -149,6 +149,32 @@ entries cost a full day each to learn. The process rules that matter:
   and final score. That script is the acceptance gate; "it compiled"
   proves nothing.
 
+## The build checklist
+
+Design rules that cannot be run do not get followed - all five briefs said
+"no unmarked dead ends" and all five games shipped rooms that name no
+exit. So the checklist is tooling, not prose:
+
+```sh
+node tools/audit-game.mjs  --all      # rooms naming no exit; unspeakable destinations
+node tools/audit-mlook.mjs            # M-LOOK overrides that dropped an exit sentence
+node tools/audit-reach.mjs  --all     # unreachable rooms (static maps only)
+node adventures/<game>/verify.mjs     # walkthrough + wanderer assertions
+```
+
+Per game, before calling it done:
+
+1. The walkthrough passes and asserts no parser-failure string appears.
+2. The score table sums to SCORE-MAX **along a single path** - two games
+   shipped totals that counted mutually exclusive branches, so no
+   playthrough could reach the stated maximum.
+3. A wanderer test exists, in both typed-junk and unparseable-input
+   variants, and has been proven able to fail.
+4. Audit findings are triaged and the deliberate ones documented with a
+   one-line reason.
+5. Rebuild from source and `cmp` - the story file must reproduce
+   byte-identically.
+
 ## Writing for the ear
 
 All of it - rooms, responses, deaths - may be spoken by TTS:
@@ -182,6 +208,23 @@ dictionary.
 
 Two more findings from playtesting adaptations through an LLM front end:
 
+- **Every room's description must name a way out.** This is the single
+  most common defect found across five finished games, and it is invisible
+  to a walkthrough because the author knows the route. The player's
+  correct instinct when stuck is LOOK; if LOOK names no direction, LOOK
+  cannot help them. Exceptions are legitimate and should be deliberate: a
+  scripted scene, a room you genuinely cannot leave yet, or an impasse
+  whose refusal text names the answer ("There is a button beside it, for
+  a bell"). The rule is not "always name an exit" - it is *never leave a
+  player with no way to learn one*.
+- **An NPC must not name a place the parser cannot hear.** "Come to the
+  counting-house" is a dead end the moment COUNTING is not a dictionary
+  word. Anything the game tells the player to do, the game must accept.
+- **A timer should punish failing to solve the puzzle, not failing to
+  walk fast enough afterwards.** Every countdown has a window between
+  "solved it" and "reached safety" that should be unkillable. One game's
+  wanderer test died on the bridge one move from safety, following the
+  game's own hints.
 - **Scripted openings strand non-ideal players.** Zork drops you in a free
   world where any input does something; a plotted novel wants Act I to
   happen in order. A player typing natural chaos may never produce the one

@@ -90,6 +90,12 @@ descriptions from a story file, and `czil/README.md` for the compiler
 itself (its test gate: the trilogy compiled from this repo's sources
 plays transcript-identical to the shipped 1980s binaries).
 
+Games are verified in three layers - a walkthrough (proves completable),
+static audits in `tools/` (prove coherent), and a wanderer test of pure
+junk input (proves a lost player is never stranded). See
+[ENGINE-NOTES.md](docs/ENGINE-NOTES.md) for why the first alone is not
+enough.
+
 `adventures/` holds full adaptations in progress - five classic novels
 (Treasure Island, Dracula, The Count of Monte Cristo, Alice in
 Wonderland, The Wonderful Wizard of Oz), each with deep study notes and

@@ -161,26 +161,108 @@ into parser commands, which changes two engine-level assumptions:
 
 ## Testing
 
+**The walkthrough proves a game is completable. It cannot prove a game is
+survivable.** A walkthrough is written by whoever built the game, so it
+encodes their mental model and only demonstrates that someone who already
+knows the answer can win. Every game in `adventures/` passed its
+walkthrough while still stranding a real player. Testing needs three
+layers, and only the first is common practice.
+
+### 1. The walkthrough (proves completable)
+
 - **Assert "no parser-failure strings anywhere in the transcript" in the
   very first version of your verifier.** [confirmed by 3 games] One game
-  was scoring 97/100 while four commands silently failed; another found
-  three bugs this way that its score assertion missed. Scoring well does
-  not mean the walkthrough is clean.
-- **A clean ZIL compile means almost nothing.** One builder wrote 2,700
-  lines across two acts between playtests: they compiled clean and had
-  eleven runtime failures, with four rooms made unreachable by a single
-  property collision. Never write a second scene on an untested mechanic.
-- **The walkthrough passing tells you nothing about failure states.** Three
-  of one game's eight designed deaths were broken on first test.
-- **Derive death tests from the winning walkthrough programmatically**:
-  take the prefix up to a command, append the wrong move. Eight
-  reproducible death tests from one short script.
+  scored 97/100 while four commands silently failed; another found three
+  bugs this way that its score assertion missed.
+- **The walkthrough passing tells you nothing about failure states.**
+  Three of one game's eight designed deaths were broken on first test.
+  Derive death tests from the winning path programmatically: take the
+  prefix up to a command, append the wrong move.
+- Rebuild from source and `cmp` against the shipped story file. Every game
+  here reproduces byte-identically, which is what makes a frozen
+  transcript trustworthy.
+
+### 2. Static audits (prove coherent)
+
+`tools/audit-game.mjs` reads the game's own text and flags rooms whose
+description names no way out, and places an NPC directs the player toward
+in words the parser does not know. `tools/audit-mlook.mjs` catches a
+narrower defect described below. Neither plays the game, so neither can be
+fooled by a tester who knows the route.
+
+The failure they were built for: an NPC said "come to the counting-house"
+while COUNTING was not a dictionary word, in a room whose description
+named no exit. The player typed eight sensible commands and quit.
+
+**A finding is a question, not a defect.** On these five games most
+findings are deliberate - scripted scenes, rooms you cannot leave yet,
+impasses whose refusal text names the answer. Ask "can a lost player
+learn a way out of here?" and accept "yes, the refusal tells them" as a
+pass.
+
+### 3. Wanderer tests (prove survivable)
+
+A walkthrough of nothing but junk and unparseable input, asserting the
+player still reaches the next act. This is the layer that catches
+stranding, and it found bugs in every game that added one.
+
+The recipe, distilled from the builder who developed it:
+
+- **Build it from a real failing transcript.** Junk invented at your desk
+  is too parseable - one builder's first wanderer passed while the game
+  was still broken.
+- **Assert four things**: reaches the location, scores *zero* (a wanderer
+  that knows answers stops testing anything), does not die, and clears
+  with at least five inputs of headroom. Passing by one input is a
+  coincidence.
+- **Assert the negative too** - that no nudge string appears in the
+  *scored* transcript. That caught two leaks the moment timers were
+  compressed.
+- **Prove the test can fail**, then restore. An assertion that has never
+  failed is a guess.
+- **Add an unparseable-input variant.** Natural-language play yields
+  roughly one parsed command per three player inputs, so a typed-junk
+  wanderer never exercises the starved clock. One builder's LLM variant
+  caught a bug its typed sibling structurally could not.
+- **Read its transcript end to end.** It is the only time you see the game
+  as a lost player does.
+
+### What a walkthrough never types
+
+The most transferable framing anyone produced this round: **list the verbs
+a player types reflexively - LOOK, INVENTORY, EXAMINE, X, the compass -
+and ask what your walkthrough does with each. Anything on that list it
+never types is untested surface.** Real bugs found exactly there:
+
+- `X` was not a synonym for `EXAMINE`. Every modern IF player types it;
+  the walkthrough never did, because its author knew to type EXAMINE.
+- Four scored objects were absent from `INVENTORY`, because a custom
+  `<MOVE obj ,WINNER>` skips the housekeeping that clears `NDESCBIT`. The
+  walkthrough never typed INVENTORY after taking anything.
+- A room's `M-LOOK` override dropped the exit sentence its LDESC had. The
+  LDESC still looks right in source and the room still works; only the
+  text a player reads is wrong. Five of one game's six real defects were
+  this. Note the distinction: a handler ending `<RTRUE>` *suppresses* the
+  LDESC, so its text is all the player sees; one ending `<RFALSE>` merely
+  prepends and the exits still print. Only the suppressing kind can hide a
+  way out.
+
+### Debugging the tests themselves
+
 - **Dump, don't theorise.** When a walk or a word misbehaves, dump the
   room's property table or the word's dictionary entry. A 40-line script
   over the story file beats any amount of reading.
-- Rebuild from source and `cmp` against the shipped `.z8` — every game in
-  `adventures/` reproduces byte-identically, which is what makes the frozen
-  transcripts trustworthy.
+- **Test your matcher against real input before trusting its output.** The
+  exit auditor here was "fixed" three times on guesses - line-0 matching,
+  longest-text, truncation - before anyone checked whether its regex
+  matched the sentences these games actually write. It did not: "The hall
+  is north." failed to parse, producing 16 false positives across two
+  games. A builder hit the same trap independently and wrote it up as *the
+  dictionary dump confirmed a hypothesis I had already formed rather than
+  testing it*.
+- **A clean compile means almost nothing.** One builder wrote 2,700 lines
+  between playtests: they compiled clean and had eleven runtime failures,
+  four rooms made unreachable by a single property collision.
 
 ## Process that worked
 
