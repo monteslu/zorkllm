@@ -130,7 +130,7 @@
 "=== ACT I ROOMS ==="
 
 <ROOM FARMHOUSE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Farmhouse, Kansas")
       (OUT PER FARMHOUSE-OUT)
       (EAST PER FARMHOUSE-OUT)
@@ -139,7 +139,7 @@
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CLEARING
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Munchkin Clearing")
       (LDESC
 "The house sits crookedly on a green lawn beside a sparkling brook, with
@@ -152,7 +152,7 @@ begins here and runs away to the west.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM YELLOW-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Road Of Yellow Brick")
       (LDESC
 "Yellow bricks run straight and true between dainty blue fences, past
@@ -167,7 +167,7 @@ to the south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CORNFIELD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Cornfield")
       (LDESC
 "Ripe corn stretches away beyond a blue fence. The road lies back to the
@@ -177,7 +177,7 @@ north.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM FOREST-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Forest Road")
       (LDESC
 "The bricks here are broken and full of holes, and great trees meet
@@ -191,7 +191,7 @@ east and west; a footpath leads north toward a log cottage.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM WOODMAN-COTTAGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Log Cottage")
       (LDESC
 "A snug cottage of logs and branches with a bed of dried leaves in one
@@ -204,7 +204,7 @@ north you can hear water running.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM SPRING-GLADE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Forest Spring")
       (LDESC
 "A little spring rises clear and cold among the trees. The cottage lies
@@ -215,7 +215,7 @@ back to the south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM BRAMBLE-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Choked Road")
       (LDESC
 "Branches and whole trees have grown so thick across the road here that
@@ -228,7 +228,7 @@ back to the east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM DEEP-FOREST
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Deep Forest")
       (LDESC
 "The forest is old and dark here, and the road of yellow brick picks its
@@ -242,7 +242,7 @@ way through, east to west.")
 "=== ACT II ROOMS ==="
 
 <ROOM GORGE-EDGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Edge Of The Gorge")
       (LDESC
 "The road ends at a gorge so wide and deep that the jagged rocks at the
@@ -255,7 +255,7 @@ jump away. The forest lies back east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM KALIDAH-WOOD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Gloomy Wood")
       (LDESC
 "The trees crowd close and dark, and strange heavy footfalls circle you
@@ -268,7 +268,7 @@ road struggles on west.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM SECOND-GORGE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Second Gorge")
       (LDESC
 "This gulf is far too broad for any leap. One great tree stands right at
@@ -281,7 +281,7 @@ down. The gloomy wood is back east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM RIVERBANK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Riverbank")
       (LDESC
 "A broad river slides swiftly past, west across your way. On the far
@@ -296,7 +296,7 @@ back east now.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM MIDRIVER
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Middle Of The River")
       (LDESC
 "Water everywhere, moving faster than it looked from shore. The raft has
@@ -306,7 +306,7 @@ ideas of its own about where you are going.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM FAR-BANK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Grassy Bank")
       (LDESC
 "Soft green grass, flowers, fruit trees, and no road anywhere. The river
@@ -321,7 +321,7 @@ north, upriver.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM STORK-BEND
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Bend In The River")
       (LDESC
 "From here you can see, far out in the water, a small blue-hatted figure
@@ -334,7 +334,7 @@ runs south; to the north a red haze of flowers begins.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM POPPY-FIELD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Deadly Poppy Field")
       (LDESC
 "Scarlet poppies crowd so thick and bright they dazzle the eyes, and
@@ -346,7 +346,7 @@ grass shows far to the north.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GREEN-BANK
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Green Bank")
       (LDESC
 "Fresh sweet grass beyond the last of the poppies. The road of yellow
@@ -359,7 +359,7 @@ brick shows again to the east, running through green country.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GREEN-ROAD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Green Country Road")
       (LDESC
 "The road of yellow brick again, smooth and well paved, running east
@@ -372,7 +372,7 @@ pass. Mostly they watch the Lion.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CITY-GATE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Before The Gate")
       (LDESC
 "A wall of green stone, high and thick, and in it a great gate studded
@@ -386,7 +386,7 @@ bell.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GATE-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Arched Gate Room")
       (LDESC
 "A high arched room whose walls glisten with countless emeralds. A
@@ -402,7 +402,7 @@ other way.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM EMERALD-STREET
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Emerald City Street")
       (LDESC
 "Green marble houses, green glass windows, green sky, green everything;
@@ -417,7 +417,7 @@ plaza opens east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM PALACE-COURT
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Palace Of Oz")
       (LDESC
 "A soldier with a long green beard guards the palace door, and a big
@@ -432,7 +432,7 @@ room is north; the street is south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GREEN-CHAMBER
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Green Chamber")
       (LDESC
 "The sweetest little room in the world: green silk sheets, a fountain
@@ -443,7 +443,7 @@ queer pictures. Stairs lead down.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM THRONE-ROOM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Throne Room")
       (LDESC
 "A big round room with a high arched roof, walls and floor crusted with
@@ -458,7 +458,7 @@ bright as the sun. The doors are to the south.")
 "=== ACT III ROOMS ==="
 
 <ROOM WEST-FIELDS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Trackless Fields")
       (LDESC
 "No road leads west, only soft grass, daisies, and buttercups, with the
@@ -471,7 +471,7 @@ keeps one window toward you like an eye. The city gate is back east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM WEST-HILLS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Rough Hills")
       (LDESC
 "The ground is rougher and hillier here, and there are no trees and no
@@ -484,7 +484,7 @@ The fields are back east.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CASTLE-KITCHEN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Castle Kitchen")
       (LDESC
 "A great sooty kitchen of yellow stone: a hearth with a wood fire, black
@@ -496,7 +496,7 @@ the door. The hall is north.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CASTLE-HALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Castle Hall")
       (LDESC
 "A long hall hung with yellow banners. The kitchen is south, the
@@ -512,7 +512,7 @@ courtyard east, and a narrow stair climbs up under the roof.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM COURTYARD
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Castle Courtyard")
       (LDESC
 "A small yard closed in by a high iron fence, with a pile of clean straw
@@ -523,7 +523,7 @@ in one corner. The hall is back west.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GARRET
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Cold Garret")
       (LDESC
 "A narrow bed under the castle roof. From the little window, all the
@@ -533,7 +533,7 @@ Winkie country lies yellow below. The stair goes down.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM ROCKY-PLAIN
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Rocky Plain")
       (LDESC
 "A country thickly covered with sharp rocks, west of the castle. One
@@ -545,7 +545,7 @@ tree, far to the north, stands taller than all the rest.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM TALL-TREE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Foot Of A Tall Tree")
       (LDESC
 "One tree stands taller than all the rest, its trunk too smooth to
@@ -555,7 +555,7 @@ climb. The rocky plain is back south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM LOST-FIELDS
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Endless Yellow Fields")
       (LDESC
 "Buttercups and daisies in every direction, and no road, and no shadow
@@ -574,7 +574,7 @@ to say which way is east.")
 "=== ACT IV ROOMS ==="
 
 <ROOM WORKSHOP
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Little Room Behind The Throne")
       (LDESC
 "A cluttered chamber of wonders: a great papier-mache head in a corner,
@@ -586,7 +586,7 @@ cotton on a wire. The throne room is west.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM BALLOON-PLAZA
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Plaza Before The Palace")
       (LDESC
 "A great open plaza of green marble east of the palace street. The road
@@ -598,7 +598,7 @@ south leaves the city toward the country of the Quadlings.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM FIGHTING-TREES
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Edge Of A Thick Wood")
       (LDESC
 "The first row of trees stands shoulder to shoulder like a fence of
@@ -610,7 +610,7 @@ branches. At you. The city lies back north.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CHINA-WALL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Foot Of A White Wall")
       (LDESC
 "A wall higher than your head and smooth as the inside of a dish, made,
@@ -624,7 +624,7 @@ sight, barring the way south. The wood is back north.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM CHINA-COUNTRY
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Dainty China Country")
       (LDESC
 "A floor as smooth and shining as a big platter, set with china houses
@@ -637,7 +637,7 @@ lives. A lower wall closes the country to the south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM QUADLING-FOREST
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Grand Old Forest")
       (LDESC
 "The oldest, mossiest forest you have ever seen. The way runs south,
@@ -649,7 +649,7 @@ downhill out of the trees.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM HAMMER-HILL
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Rocky Hill")
       (LDESC
 "A steep hill covered with great rocks bars the way south, and from
@@ -662,7 +662,7 @@ A rough voice says: \"Keep back!\"")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM QUADLING-FARM
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Quadling Country")
       (LDESC
 "Fields of ripening grain, red fences, red farmhouses, and short, fat,
@@ -674,7 +674,7 @@ south.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM GLINDA-THRONE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Glinda's Castle")
       (LDESC
 "A throne room the color of sunrise. On a throne of rubies sits a witch
@@ -685,7 +685,7 @@ soldiers by the door try not to stare at the Lion.")
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
 <ROOM KANSAS-PRAIRIE
-      (IN ROOMS)
+      (LOC ROOMS)
       (DESC "Kansas Prairie")
       (LDESC
 "Flat gray prairie under a wide sky, and there, brand new against it, a
@@ -788,6 +788,8 @@ little farmhouse.")
 	(SYNONYM SHOES HEELS HEEL PAIR)
 	(ADJECTIVE SILVER POINTED)
 	(DESC "silver shoes")
+	;"Plural DESC: the engine cannot say \"There is a silver shoes here.\""
+	(FDESC "The silver shoes sit on the grass where the feet were.")
 	(FLAGS TAKEBIT WEARBIT)
 	(SIZE 2)
 	(ACTION SILVER-SHOES-FCN)>
@@ -1005,6 +1007,9 @@ little farmhouse.")
 	(SYNONYM SPECTACLES GLASSES)
 	(ADJECTIVE GREEN)
 	(DESC "green spectacles")
+	;"Plural DESC: the engine's \"There is a X here.\" cannot say it,
+	 so give it its own sentence."
+	(FDESC "A pair of green spectacles lies ready on the lid of the box.")
 	(FLAGS TAKEBIT WEARBIT INVISIBLE)
 	(SIZE 1)
 	(ACTION SPECTACLES-FCN)>
@@ -1503,8 +1508,8 @@ little farmhouse.")
 
 "Unreachable stub rooms for generic engine verb branches."
 
-<ROOM ON-LAKE (IN ROOMS) (DESC "On the Lake") (FLAGS RLANDBIT)>
-<ROOM IN-LAKE (IN ROOMS) (DESC "In the Lake") (FLAGS RLANDBIT)>
+<ROOM ON-LAKE (LOC ROOMS) (DESC "On the Lake") (FLAGS RLANDBIT)>
+<ROOM IN-LAKE (LOC ROOMS) (DESC "In the Lake") (FLAGS RLANDBIT)>
 
 "Unplaced stub carrying engine-referenced flags no real object uses."
 

@@ -280,7 +280,8 @@ personal remark of itself against your head." CR>)
 		       <TELL
 "A tidy little room with a table in the window. On the table lie a fan
 and two or three pairs of tiny white kid gloves, and by the
-looking-glass stands a little bottle with no label at all." CR>)>
+looking-glass stands a little bottle with no label at all. The way out
+is down the stairs and out the front door." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-END>
 		<COND (<G? ,SIEGE-PHASE 0> <SIEGE-BEAT>)
@@ -571,12 +572,13 @@ cart-wheels, feebly stretching out one paw to touch you.">)
 		       <TELL
 "Your head is up among the branches. Below, the wood spreads its leaves
 like a green sea; above, there is only sky and a very disapproving
-pigeon." CR>)
+pigeon. You could climb up into the treetops, or walk north or south
+without much noticing the trees." CR>)
 		      (T
 		       <TELL
-"A thick wood of quite ordinary trees, with a bramble bank to the west
-and something scuffling hopefully about your ankles: a puppy, delighted
-with you. Paths run north and south." CR>)>
+"A thick wood of quite ordinary trees, with a bramble tunnel running
+west under the bank and something scuffling hopefully about your ankles:
+a puppy, delighted with you. Paths run north and south." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-END> <WORLD-PULSE>)>>
 
@@ -758,15 +760,17 @@ then!\" in a sulky tone, and settles down into her nest." CR>)>
 "A clearing ruled by one large mushroom exactly your own height. On top
 of it, arms folded, sits a large blue caterpillar, quietly smoking a
 long hookah and taking not the smallest notice of you or of anything
-else." CR>)
+else. The bramble tunnel runs back east." CR>)
 		      (<IN? ,CATERPILLAR ,MUSHROOM-CLEARING>
 		       <TELL
 "A clearing with a knee-high mushroom in it. Something small and blue on
-top of it is pointedly ignoring you, and succeeding." CR>)
+top of it is pointedly ignoring you, and succeeding. The bramble tunnel
+runs back east." CR>)
 		      (T
 		       <TELL
 "A quiet clearing with a large round mushroom in the middle of it, and a
-faint smell of hookah smoke that has nowhere in particular to be." CR>)>
+faint smell of hookah smoke that has nowhere in particular to be. The
+bramble tunnel runs back east." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-END>
 		<COND (<==? ,CATERPILLAR-PHASE 3>
@@ -1560,8 +1564,8 @@ it." CR>
 		       <TELL
 "The long tea table, at peace for the first time in months. The things
 are being washed. The Dormouse sleeps in the exact center of the table,
-by common consent, as an ornament. Behind the house stands an old stone
-well." CR>)
+by common consent, as an ornament. Behind the house an old stone well
+goes down, and a path leads west." CR>)
 		      (T
 		       <TELL
 "A long table set out under a tree in front of a house with a
@@ -1569,7 +1573,7 @@ fur-thatched roof and chimneys shaped like ears. The table is laid for a
 great many more than three, but the March Hare, the Hatter, and a
 sleeping Dormouse are all crowded together at one corner of it, crying
 \"No room! No room!\" -- which is nonsense, and you say so. Behind the
-house stands an old stone well." CR>)>
+house an old stone well goes down, and a path leads west." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-ENTER>
 		<SETG SEATED <>>)

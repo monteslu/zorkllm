@@ -13,6 +13,8 @@ node $ROOT/czil/dist/czil-compile.mjs cristo.zil \
 echo "== verify (walkthrough, 400/400, frozen transcript)"
 node verify.mjs
 
+node verify.mjs >/dev/null && echo "   wanderer: ok"
+
 for t in tests/*.txt; do
   echo "== $t"
   node $ROOT/czil/tests/play.mjs cristo.z8 "$t" | tail -4

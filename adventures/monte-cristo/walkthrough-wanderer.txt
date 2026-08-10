@@ -1,0 +1,102 @@
+# THE COUNT OF MONTE CRISTO - the wanderer regression test.
+#
+# A player who never guesses FURL SAILS must still get off the Pharaon
+# and into Marseilles. The first nine lines are verbatim what a real
+# player typed before giving up: DROP ANCHOR, PICK UP ANCHOR, TALK TO
+# MORREL, GO TO COUNTING HOUSE, LOOK, DEBARK, LEAVE SHIP, LEAVE BOAT.
+# The 195-command walkthrough passed 400/400 while that session was
+# stranded at turn three, which is the whole reason this file exists:
+# a walkthrough proves the game is completable by its author, not
+# survivable by a stranger.
+#
+# Nothing here is the intended solution. The intended opening is FURL
+# SAILS then DROP ANCHOR; this player never furls anything. They get
+# ashore because the room now says which way the quay is and because
+# every refusal names the thing that is actually blocking them.
+#
+# Asserted by verify.mjs: must reach Marseilles Quay, must NOT have
+# scored the docking point (this player never earned it), must not die,
+# and must never be told to go somewhere the parser cannot hear.
+#
+# NOTE on pacing: the Z-machine clock only advances on a SUCCESSFUL
+# parse, so the rejected lines below cost the player no story time.
+# That is deliberate - it is what a real session looks like.
+
+# --- the real player's session, verbatim ---
+drop anchor
+pick up anchor
+talk to morrel
+go to counting house
+look
+debark
+leave ship
+leave boat
+
+# --- flailing: scenery, nouns, and verbs the parser will refuse ---
+examine morrel
+examine danglars
+talk to danglars
+examine crew
+examine sails
+examine anchor
+inventory
+read letter
+examine purse
+look
+x deck
+sing
+shout
+jump
+pray
+examine harbor
+examine quay
+examine town
+smell
+listen
+wait
+
+# --- trying to leave, every way a person would phrase it ---
+go to quay
+go ashore
+go to marseilles
+leave
+out
+exit
+disembark
+climb down
+swim
+west
+land
+look
+
+# --- reading the room again ---
+examine ship
+examine helm
+talk to crew
+ask morrel about ship
+ask danglars about ship
+look
+wait
+
+# --- The player is now doing what the refusals told them to do, in
+# their own words. Nothing below is quoted from the walkthrough: it is
+# what someone types after being told "furl the sails first, and then
+# let the anchor go" and "drop the anchor, and then the quay is yours".
+lower sails
+go to quay
+let go the anchor
+drop anchor
+go to quay
+
+# --- ashore at last, and the quay's own description does the rest ---
+look
+go to counting house
+talk to morrel
+go to quay
+go to meilhan
+look
+go to catalans
+look
+examine mercedes
+go to quay
+look

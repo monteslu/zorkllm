@@ -454,3 +454,85 @@ re-opening it explicit ("The trap door bangs open again under the pull of
 the wind") instead of silently `FSET`-ing it, so a player who shuts it
 pre-emptively is told what happened rather than finding it mysteriously
 open two turns later.
+
+---
+
+## 20. `(IN ROOMS)` compiles as an IN *exit* — inward movement broken game-wide
+
+**Symptom:** `IN`, `ENTER`, `INSIDE`, and `GO IN` answered *"You can't go
+there without a vehicle."* in **every room in the game**, including the
+Emerald City gate whose own description says "The city is in through the
+inner gate."
+
+**Root cause:** `IN` is a registered direction (it is in the game's own
+`<DIRECTIONS ...>` line, as the engine requires). So the conventional
+room-parent declaration `(IN ROOMS)` — which Zork I itself uses, and
+which Tiny Quest copies — compiles as an `IN` **exit pointing at the
+`ROOMS` object**. `ROOMS` is not a room and has no `RLANDBIT`, so `GOTO`
+falls through to `NO-GO-TELL` and blames a missing vehicle.
+
+This masks any real `IN` exit: `CLEARING` declared `(IN TO FARMHOUSE)`
+and it never once worked.
+
+**Fix:** `(LOC ROOMS)` for every room. 46 rooms changed here.
+
+```zil
+<ROOM CITY-GATE
+      (LOC ROOMS)        ;"NOT (IN ROOMS)"
+      ...
+```
+
+**Note:** `docs/AUTHORING.md` documents this (added after this game's
+dungeon file was written — see its note that three of the five
+`adventures/` games hit it). Worth checking on any game that predates
+that guidance: the symptom is silent, since `IN` is rarely on the
+critical path, and the error message points at vehicles rather than at
+exits.
+
+---
+
+## 21. The engine cannot say "There is a <plural> here."
+
+**Symptom:** *"There is a green spectacles here."* — and, if the player
+ever dropped them, *"There is a silver shoes here."*, naming the title
+object of the game.
+
+**Root cause:** the room-contents lister prints `"There is a " D obj
+" here."` with no article or number agreement. Any `DESC` that is plural
+or a mass noun reads wrong.
+
+**Fix:** give those objects an `FDESC`, which the engine prints instead
+of the generic sentence:
+
+```zil
+(DESC "silver shoes")
+(FDESC "The silver shoes sit on the grass where the feet were.")
+```
+
+**Sweep for it:** any object with `TAKEBIT`, no `NDESCBIT`, no `FDESC`,
+and a `DESC` ending in `s`. Two in this game; both fixed. (`bundle of
+blue clothes` is fine — the head noun is singular.)
+
+---
+
+## 22. Static dead-end audit: triage of the 5 flagged rooms
+
+`tools/audit-game.mjs` flags rooms whose own description names no way
+out. All five flagged here are **intentional**, but the audit was still
+worth running: chasing them down found §20 and §21, neither of which the
+auditor was looking for.
+
+| Room | Verdict | Reason |
+|---|---|---|
+| Little Room Behind The Throne | false positive | LDESC ends "The throne room is west."; the checker truncates at ~100 chars and cut it off |
+| Castle Kitchen | false positive | LDESC ends "The hall is north."; same truncation |
+| Arched Gate Room | false positive | LDESC ends "The city is in through the inner gate; the country is out the other way." Same truncation |
+| Before The Gate | intentional | Every failed attempt reprints the solution: "There is a button beside it, for a bell." `WEST` back to the road always works |
+| Rocky Hill | intentional | The game's designed impasse. Every attempt to climb ends with the Woodman naming the answer: "Call the Winged Monkeys. You have still the right to command them once more." `NORTH` retreats |
+
+**The checker's blind spot, stated plainly:** it reads room descriptions
+only, so it cannot see an exit announced by a companion, by a scripted
+beat, or by the failure text of the blocking action itself. In a game
+built on companion guidance that is most of the guidance. Treat its
+output as a worklist, not a defect list — but do walk every entry, because
+the walking is what finds the real bugs.

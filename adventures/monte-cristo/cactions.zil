@@ -233,6 +233,11 @@ words; players type them, so declare them."
 <SYNONYM NE NORTHEAST>
 <SYNONYM NW NORTHWEST>
 
+;"Words a player reaches for when they want off a ship. DISEMBARK is
+already a verb in gsyntax but only with an object; these give the bare
+forms somewhere to land."
+<SYNONYM LEAVE DEBARK DISEMBARK ASHORE>
+
 <SYNTAX KNOCK OBJECT = V-KNOCK>
 
 <SYNTAX DIG OBJECT (ON-GROUND IN-ROOM) = V-DIG>
@@ -434,6 +439,318 @@ nobody here to say it to." CR>
 		<RTRUE>)
 	       (T <RFALSE>)>>
 
+"=== GO TO <place> ===
+
+The engine's V-WALK-TO answers 'You should supply a direction!', which
+is useless to a player who has just been told to come to the
+counting-house. These route a named destination: walk there when it is
+one move away, name the direction when it is further, and say something
+in-world when it is not reachable from here at all. GO TO, WALK TO,
+ENTER and the bare noun all arrive here."
+
+<GLOBAL PLACE-HERE-CACHE 1>
+
+<ROUTINE PLACE-FCN ()
+	 <COND (<VERB? WALK-TO GETIN THROUGH BOARD CLIMB-FOO WALK>
+		<GO-TO-PLACE ,PRSO>
+		<RTRUE>)
+	       (<VERB? EXAMINE FIND>
+		<GO-TO-PLACE ,PRSO T>
+		<RTRUE>)
+	       ;"LEAVE SHIP parses as DROP SHIP, and a player who types it
+		on a deck means the opposite of dropping: they want off."
+	       (<VERB? DROP>
+		<COND (<EQUAL? .PLACE-HERE-CACHE 0> <NULL-F>)>
+		<LEAVE-PLACE ,PRSO>
+		<RTRUE>)
+	       (<VERB? TAKE MOVE PUT GIVE ATTACK MUNG>
+		<TELL "That is a place, not a thing you can handle." CR>
+		<RTRUE>)
+	       (T <RFALSE>)>>
+
+;"LEAVE <the place you are standing in>: take the way out. Naming
+ somewhere else is just an awkward way of saying GO THERE."
+<ROUTINE LEAVE-PLACE (PLACE)
+	 <COND (<NOT <EQUAL? .PLACE <PLACE-HERE>>>
+		<GO-TO-PLACE .PLACE>
+		<RTRUE>)
+	       (<EQUAL? ,HERE ,DECK>
+		<TELL "You make for the side." CR>
+		<DO-WALK ,P?WEST>)
+	       (<EQUAL? ,HERE ,CABIN> <DO-WALK ,P?UP>)
+	       (T <DO-WALK ,P?EXIT>)>
+	 <RTRUE>>
+
+;"Walk the player toward .PLACE. LOOK? true means only describe the way,
+never move (that is EXAMINE QUAY, which should not teleport anyone).
+A destination more than one room off gets the first leg and says so,
+rather than pretending it is next door."
+<ROUTINE GO-TO-PLACE (PLACE "OPTIONAL" (LOOK? <>) "AUX" DIR)
+	 <COND (<EQUAL? .PLACE <PLACE-HERE>>
+		<TELL "You are there." CR>
+		<RTRUE>)>
+	 <SET DIR <PLACE-DIR .PLACE>>
+	 <COND (<NOT .DIR>
+		<TELL "You cannot get to the " D .PLACE " from here." CR>
+		<RTRUE>)
+	       (<AND <NOT <PLACE-ADJACENT? .PLACE>> <NOT .LOOK?>>
+		<TELL "The " D .PLACE " is not next door, but the way to it
+starts off in this direction." CR>
+		<GO-ONE-LEG .DIR>
+		<RTRUE>)
+	       (<EQUAL? .DIR 1>
+		<TELL "The " D .PLACE " ">
+		<PLACE-VERB .PLACE>
+		<TELL " north of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?NORTH>)>)
+	       (<EQUAL? .DIR 2>
+		<TELL "The " D .PLACE " ">
+		<PLACE-VERB .PLACE>
+		<TELL " south of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?SOUTH>)>)
+	       (<EQUAL? .DIR 3>
+		<TELL "The " D .PLACE " ">
+		<PLACE-VERB .PLACE>
+		<TELL " east of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?EAST>)>)
+	       (<EQUAL? .DIR 4>
+		<TELL "The " D .PLACE " ">
+		<PLACE-VERB .PLACE>
+		<TELL " west of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?WEST>)>)
+	       (<EQUAL? .DIR 5>
+		<TELL "The " D .PLACE " is below you." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?DOWN>)>)
+	       (<EQUAL? .DIR 6>
+		<TELL "The " D .PLACE " is above you." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?UP>)>)
+	       (<EQUAL? .DIR 7>
+		<TELL "You go in." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?ENTRANCE>)>)
+	       (<EQUAL? .DIR 8>
+		<TELL "You go out." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?EXIT>)>)
+	       (<EQUAL? .DIR 9>
+		<TELL "The " D .PLACE " lies northwest of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?NW>)>)
+	       (<EQUAL? .DIR 10>
+		<TELL "The " D .PLACE " lies southeast of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?SE>)>)
+	       (<EQUAL? .DIR 11>
+		<TELL "The " D .PLACE " lies southwest of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?SW>)>)
+	       (<EQUAL? .DIR 12>
+		<TELL "The " D .PLACE " lies northeast of here." CR>
+		<COND (<NOT .LOOK?> <DO-WALK ,P?NE>)>)>
+	 <RTRUE>>
+
+;"The Allees de Meilhan is a plural; everything else is singular."
+<ROUTINE PLACE-VERB (PLACE)
+	 <COND (<EQUAL? .PLACE ,P-MEILHAN> <TELL "lie">)
+	       (T <TELL "lies">)>>
+
+;"True when .PLACE really is one move away, so the direction line can be
+ stated as fact. Everything else gets routed a leg at a time."
+<ROUTINE PLACE-ADJACENT? (PLACE)
+	 <COND (<EQUAL? ,HERE ,DECK>
+		<EQUAL? .PLACE ,P-QUAY ,P-CABIN ,P-TOWN ,SHIP-T>)
+	       (<EQUAL? ,HERE ,QUAY>
+		<EQUAL? .PLACE ,P-OFFICE ,P-MEILHAN ,P-CATALANS ,P-RESERVE>)
+	       (<EQUAL? ,HERE ,CABIN> <EQUAL? .PLACE ,P-DECK ,SHIP-T>)
+	       (<EQUAL? ,HERE ,OFFICE ,MEILHAN ,CATALANS ,RESERVE>
+		<EQUAL? .PLACE ,P-QUAY ,P-TOWN>)
+	       (<EQUAL? ,HERE ,STREET>
+		<EQUAL? .PLACE ,P-SALON ,P-BANK ,P-PRESS ,P-PEERS ,P-ASSIZES
+			,P-TELEGRAPH ,P-VHALL ,P-AUTEUIL>)
+	       (T <RTRUE>)>>
+
+;"Take one step in the given direction code."
+<ROUTINE GO-ONE-LEG (DIR)
+	 <COND (<EQUAL? .DIR 1> <DO-WALK ,P?NORTH>)
+	       (<EQUAL? .DIR 2> <DO-WALK ,P?SOUTH>)
+	       (<EQUAL? .DIR 3> <DO-WALK ,P?EAST>)
+	       (<EQUAL? .DIR 4> <DO-WALK ,P?WEST>)
+	       (<EQUAL? .DIR 5> <DO-WALK ,P?DOWN>)
+	       (<EQUAL? .DIR 6> <DO-WALK ,P?UP>)
+	       (<EQUAL? .DIR 7> <DO-WALK ,P?ENTRANCE>)
+	       (<EQUAL? .DIR 8> <DO-WALK ,P?EXIT>)
+	       (<EQUAL? .DIR 9> <DO-WALK ,P?NW>)
+	       (<EQUAL? .DIR 10> <DO-WALK ,P?SE>)
+	       (<EQUAL? .DIR 11> <DO-WALK ,P?SW>)
+	       (<EQUAL? .DIR 12> <DO-WALK ,P?NE>)>>
+
+;"Which place object stands for the room the player is in."
+<ROUTINE PLACE-HERE ()
+	 <COND (<EQUAL? ,HERE ,DECK> ,P-DECK)
+	       (<EQUAL? ,HERE ,CABIN> ,P-CABIN)
+	       (<EQUAL? ,HERE ,QUAY> ,P-QUAY)
+	       (<EQUAL? ,HERE ,OFFICE> ,P-OFFICE)
+	       (<EQUAL? ,HERE ,MEILHAN> ,P-MEILHAN)
+	       (<EQUAL? ,HERE ,CATALANS> ,P-CATALANS)
+	       (<EQUAL? ,HERE ,RESERVE> ,P-RESERVE)
+	       (<EQUAL? ,HERE ,INN> ,P-INN)
+	       (<EQUAL? ,HERE ,CELL34> ,P-CELL34)
+	       (<EQUAL? ,HERE ,CELL27> ,P-CELL27)
+	       (<EQUAL? ,HERE ,GROTTO1 ,GROTTO2> ,P-GROTTO)
+	       (<EQUAL? ,HERE ,SALON> ,P-SALON)
+	       (<EQUAL? ,HERE ,CSTUDY> ,P-STUDY)
+	       (<EQUAL? ,HERE ,BANKHALL ,BANKOFF> ,P-BANK)
+	       (<EQUAL? ,HERE ,PRESS> ,P-PRESS)
+	       (<EQUAL? ,HERE ,PEERS> ,P-PEERS)
+	       (<EQUAL? ,HERE ,ASSIZES> ,P-ASSIZES)
+	       (<EQUAL? ,HERE ,TELEGARDEN ,TELETOWER> ,P-TELEGRAPH)
+	       (<EQUAL? ,HERE ,AUTSALON> ,P-AUTEUIL)
+	       (<EQUAL? ,HERE ,AUTGARDEN> ,P-GARDEN)
+	       (<EQUAL? ,HERE ,VHALL ,NOIRTIER-ROOM ,VALROOM> ,P-VHALL)
+	       (T <>)>>
+
+;"Direction code from HERE to .PLACE, or false if there is no one-move
+ answer. 1 N 2 S 3 E 4 W 5 D 6 U 7 in 8 out 9 NW 10 SE 11 SW 12 NE."
+<ROUTINE PLACE-DIR (PLACE)
+	 <COND (<EQUAL? ,HERE ,DECK>
+		<COND (<EQUAL? .PLACE ,P-QUAY ,P-TOWN> 4)
+		      (<EQUAL? .PLACE ,P-CABIN> 5)
+		      (<EQUAL? .PLACE ,P-OFFICE ,P-MEILHAN ,P-CATALANS
+			       ,P-RESERVE>
+		       4)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,CABIN>
+		<COND (<EQUAL? .PLACE ,P-DECK ,P-QUAY ,P-TOWN> 6) (T <>)>)
+	       (<EQUAL? ,HERE ,QUAY>
+		<COND (<EQUAL? .PLACE ,P-OFFICE> 4)
+		      (<EQUAL? .PLACE ,P-MEILHAN> 1)
+		      (<EQUAL? .PLACE ,P-CATALANS> 2)
+		      (<EQUAL? .PLACE ,P-RESERVE> 3)
+		      (<EQUAL? .PLACE ,P-DECK ,P-CABIN> 7)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,OFFICE>
+		<COND (<AND <EQUAL? .PLACE ,P-MEILHAN> <EQUAL? ,ACT 3>> 1)
+		      (<EQUAL? .PLACE ,P-QUAY ,P-TOWN ,P-DECK ,P-MEILHAN
+			       ,P-CATALANS ,P-RESERVE>
+		       3)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,MEILHAN>
+		<COND (<AND <EQUAL? .PLACE ,P-OFFICE> <EQUAL? ,ACT 3>> 2)
+		      (<EQUAL? .PLACE ,P-QUAY ,P-TOWN ,P-DECK ,P-OFFICE
+			       ,P-CATALANS ,P-RESERVE>
+		       2)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,CATALANS>
+		<COND (<EQUAL? .PLACE ,P-QUAY ,P-TOWN ,P-DECK ,P-OFFICE
+			       ,P-MEILHAN ,P-RESERVE>
+		       1)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,RESERVE>
+		<COND (<EQUAL? .PLACE ,P-QUAY ,P-TOWN ,P-DECK ,P-OFFICE
+			       ,P-MEILHAN ,P-CATALANS>
+		       4)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,CELL34>
+		<COND (<EQUAL? .PLACE ,P-CELL27> 4) (T <>)>)
+	       (<EQUAL? ,HERE ,TUNNEL>
+		<COND (<EQUAL? .PLACE ,P-CELL27> 4)
+		      (<EQUAL? .PLACE ,P-CELL34> 3)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,CELL27>
+		<COND (<EQUAL? .PLACE ,P-CELL34> 3) (T <>)>)
+	       (<EQUAL? ,HERE ,BEAUCAIRE-ROAD>
+		<COND (<EQUAL? .PLACE ,P-INN> 7)
+		      (<EQUAL? .PLACE ,P-TOWN ,P-QUAY ,P-OFFICE> 2)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,INN>
+		<COND (<EQUAL? .PLACE ,P-TOWN ,P-QUAY ,P-OFFICE> 8) (T <>)>)
+	       (<EQUAL? ,HERE ,CLEARING>
+		<COND (<AND <EQUAL? .PLACE ,P-GROTTO> ,GROTTO-OPEN> 5)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,GROTTO1>
+		<COND (<EQUAL? .PLACE ,P-ISLAND> 6) (T <>)>)
+	       (<EQUAL? ,HERE ,SALON>
+		<COND (<EQUAL? .PLACE ,P-STUDY> 3)
+		      (<EQUAL? .PLACE ,P-TOWN> 2)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,CSTUDY>
+		<COND (<EQUAL? .PLACE ,P-SALON ,P-TOWN> 4) (T <>)>)
+	       (<EQUAL? ,HERE ,STREET>
+		<COND (<EQUAL? .PLACE ,P-SALON ,P-STUDY> 1)
+		      (<EQUAL? .PLACE ,P-BANK> 4)
+		      (<EQUAL? .PLACE ,P-PRESS> 3)
+		      (<EQUAL? .PLACE ,P-PEERS> 10)
+		      (<EQUAL? .PLACE ,P-ASSIZES> 2)
+		      (<EQUAL? .PLACE ,P-TELEGRAPH> 9)
+		      (<EQUAL? .PLACE ,P-VHALL> 11)
+		      (<EQUAL? .PLACE ,P-AUTEUIL ,P-GARDEN> 7)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,BANKHALL>
+		<COND (<EQUAL? .PLACE ,P-TOWN> 3) (T <>)>)
+	       (<EQUAL? ,HERE ,BANKOFF>
+		<COND (<EQUAL? .PLACE ,P-BANK ,P-TOWN> 3) (T <>)>)
+	       (<EQUAL? ,HERE ,PRESS ,PEERS ,ASSIZES>
+		<COND (<EQUAL? .PLACE ,P-TOWN ,P-SALON> <STREET-WAY>)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,TELEGARDEN>
+		<COND (<EQUAL? .PLACE ,P-TELEGRAPH> 6)
+		      (<EQUAL? .PLACE ,P-TOWN ,P-SALON> 10)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,TELETOWER>
+		<COND (<EQUAL? .PLACE ,P-TOWN ,P-SALON> 5) (T <>)>)
+	       (<EQUAL? ,HERE ,AUTSALON>
+		<COND (<EQUAL? .PLACE ,P-GARDEN> 3)
+		      (<EQUAL? .PLACE ,P-TOWN ,P-SALON> 8)
+		      (T <>)>)
+	       (<EQUAL? ,HERE ,AUTGARDEN>
+		<COND (<EQUAL? .PLACE ,P-AUTEUIL> 4) (T <>)>)
+	       (<EQUAL? ,HERE ,VHALL>
+		<COND (<EQUAL? .PLACE ,P-TOWN ,P-SALON> 12) (T <>)>)
+	       (<EQUAL? ,HERE ,NOIRTIER-ROOM>
+		<COND (<EQUAL? .PLACE ,P-VHALL ,P-TOWN> 2) (T <>)>)
+	       (<EQUAL? ,HERE ,VALROOM>
+		<COND (<EQUAL? .PLACE ,P-VHALL ,P-TOWN> 4) (T <>)>)
+	       (T <>)>>
+
+;"From the three Paris rooms that hang off the street, the way back is
+ the reverse of the way in; they differ, so name each."
+<ROUTINE STREET-WAY ()
+	 <COND (<EQUAL? ,HERE ,PRESS> 4)
+	       (<EQUAL? ,HERE ,PEERS> 9)
+	       (<EQUAL? ,HERE ,ASSIZES> 1)
+	       (T <>)>>
+
+;"GO TO <place>. The stock routine only ever says 'You should supply a
+ direction!'; a player who has been told to come to the counting-house
+ has supplied one, in the only terms the game gave them."
+<ROUTINE V-WALK-TO ()
+	 <COND (<AND ,PRSO <EQUAL? <GETP ,PRSO ,P?ACTION> ,PLACE-FCN>>
+		<GO-TO-PLACE ,PRSO>
+		<RTRUE>)
+	       (<AND ,PRSO <OR <IN? ,PRSO ,HERE>
+			       <GLOBAL-IN? ,PRSO ,HERE>>>
+		<TELL "It's here!" CR>
+		<RTRUE>)
+	       (T
+		<TELL
+"You should supply a direction. North, south, east, west, up or down."
+CR>
+		<RTRUE>)>>
+
+;"SHIP is both a place you can leave and a thing Morrel grieves over in
+ 1829. On the Pharaon it behaves as a place; anywhere else it is the
+ conversation topic it has always been."
+<ROUTINE SHIP-FCN ()
+	 <COND (<EQUAL? ,HERE ,DECK ,CABIN ,QUAY>
+		<COND (<VERB? DROP>
+		       <LEAVE-PLACE ,P-DECK>
+		       <RTRUE>)
+		      (<VERB? WALK-TO GETIN THROUGH BOARD WALK>
+		       <GO-TO-PLACE ,P-DECK>
+		       <RTRUE>)
+		      (<VERB? EXAMINE>
+		       <TELL
+"The Pharaon, three-masted, in mourning trim, and yours to bring to her
+rest." CR>
+		       <RTRUE>)>
+		<RFALSE>)
+	       (T <TOPIC-FCN>)>>
+
 <ROUTINE V-PUT-BY ()
 	 <COND (<AND <EQUAL? ,PRSO ,PLATE> <EQUAL? ,PRSI ,CELL-DOOR>>
 		<PERFORM ,V?DROP ,PLATE>
@@ -475,12 +792,21 @@ interested." CR>
 		<RFALSE>)
 	       (T <RFALSE>)>>
 
+;"Refusing to let the player off the ship is the game's first gate, and
+ for one real player it was also its last: the old text said only that
+ she was not at her rest, which names no action. Every refusal now says
+ which job is left, in the words the game will accept for it."
 <ROUTINE DECK-ASHORE ()
 	 <COND (,DOCKED ,QUAY)
+	       (<NOT ,SAILS-FURLED>
+		<TELL
+"She is still under way, and a captain does not step ashore off a
+moving ship. Furl the sails first, and then let the anchor go." CR>
+		<RFALSE>)
 	       (T
 		<TELL
-"The ship is not yet at her rest. She is your charge before she is your
-triumph." CR>
+"The canvas is in, but she is still drifting on the tide. Drop the
+anchor, and then the quay is yours." CR>
 		<RFALSE>)>>
 
 <ROUTINE FURL-THE-SAILS ()

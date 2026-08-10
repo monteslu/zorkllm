@@ -190,6 +190,7 @@ You are admitted as a substitute." CR CR
 	 <SETG QUEEN-PHASE 5>
 	 <SETG CROQUET-OPEN T>
 	 <MOVE ,FLAMINGO ,WINNER>
+	 <FCLEAR ,FLAMINGO ,NDESCBIT>
 	 <MOVE ,HEDGEHOG ,CROQUET-GROUND>
 	 <MOVE ,THE-QUEEN ,CROQUET-GROUND>
 	 <MOVE ,THE-KING ,CROQUET-GROUND>
@@ -315,6 +316,7 @@ seen how these people are about heads." CR>
 <ROUTINE PAINT-BRUSH-FCN ()
 	 <COND (<AND <VERB? TAKE> <NOT <IN? ,PAINT-BRUSH ,WINNER>>>
 		<MOVE ,PAINT-BRUSH ,WINNER>
+		<FCLEAR ,PAINT-BRUSH ,NDESCBIT>
 		<TELL
 "You take up a brush. It is heavy with red, and the gardeners make room
 for you with the relief of men who have found a professional." CR>
@@ -557,6 +559,7 @@ looking you in the face." CR>)>
 		       <TELL "You have it, more or less." CR>)
 		      (T
 		       <MOVE ,FLAMINGO ,WINNER>
+		       <FCLEAR ,FLAMINGO ,NDESCBIT>
 		       <TELL
 "You get the flamingo under your arm, with its legs hanging down." CR>)>
 		<RTRUE>)
@@ -575,7 +578,8 @@ prove it." CR>)
 	       (T
 		<SETG FLAMINGO-TAME T>
 		<COND (<NOT <IN? ,FLAMINGO ,WINNER>>
-		       <MOVE ,FLAMINGO ,WINNER>)>
+		       <MOVE ,FLAMINGO ,WINNER>
+		       <FCLEAR ,FLAMINGO ,NDESCBIT>)>
 		<TELL
 "You smooth the flamingo's feathers the right way for some time. It
 settles its neck under your arm with a pleased grunt, and consents to be
@@ -1240,6 +1244,7 @@ world, walks quietly out of the door and is not seen again." CR>
 <ROUTINE SQUEAKY-PENCIL-FCN ()
 	 <COND (<AND <VERB? TAKE> <NOT <IN? ,SQUEAKY-PENCIL ,WINNER>>>
 		<MOVE ,SQUEAKY-PENCIL ,WINNER>
+		<FCLEAR ,SQUEAKY-PENCIL ,NDESCBIT>
 		<COND (<NOT ,F-PENCIL>
 		       <SETG F-PENCIL T>
 		       <SCORE-UPD 1>)>

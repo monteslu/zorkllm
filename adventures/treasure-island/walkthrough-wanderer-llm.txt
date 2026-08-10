@@ -1,0 +1,77 @@
+# TREASURE ISLAND - the STARVED-CLOCK wanderer test (LLM traffic).
+#
+# The companion to walkthrough-wanderer.txt, and the more important of
+# the two. That file is junk the parser mostly ACCEPTS. This one is what
+# an LLM front end actually emits when a player types chat, questions
+# and flailing natural language at it: mostly things the parser rejects
+# outright, interleaved with occasional real commands.
+#
+# Why it matters here more than anywhere else in the batch: Act I is a
+# countdown, and the Z-machine clock advances ONLY on a successful parse
+# (CLOCKER runs from MAIN-LOOP under `,P-WON`; a rejected parse skips it,
+# and neither M-BEG nor M-END fires either). So this player burns dozens
+# of inputs while the story clock barely moves - the countdown starves.
+#
+# That cuts BOTH ways, and both are tested here:
+#   - the player cannot die of a timer they are not advancing, but
+#   - the game's escalating hints are also on that clock, so a player
+#     who needs help waits three times as long in wall-clock terms to
+#     get it. The hints must therefore be worth the wait when they land.
+#
+# Asserted by verify.mjs: must reach the Squire's Hall, must NOT die,
+# and must NOT reach the 350-point ending.
+
+# --- chat, questions, and confusion: almost none of this parses ---
+whats going on here
+who is this dead guy
+is he really dead
+wtf
+look
+can i search the body
+what should i do
+im scared
+look at the dead man
+examine body
+is there anything in his pockets
+search body
+whats a gully
+hello
+can you help me
+i dont know what to do
+look
+
+# --- poking about while the clock crawls ---
+whats upstairs
+up
+is there anything here
+look
+whats in the chest
+open chest
+its locked isnt it
+where is the key
+down
+
+# --- the hints have landed by now: the chest, and the key on his neck ---
+take the key from his neck
+take key
+i need to cut the string
+cut string with gully
+ok now upstairs
+up
+unlock chest with key
+open chest
+whats inside
+take clothes
+move gear
+move cloak
+take packet
+did i get it
+
+# --- and the route out, which the game named ---
+down
+out
+which way now
+east
+down
+wait
+wait

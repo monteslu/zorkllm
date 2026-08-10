@@ -22,8 +22,9 @@ something in v3 builds."
 "You stand at the helm of the three-master Pharaon, gliding into
 Marseilles harbor under a February sun. The crew waits on your word,
 for Captain Leclere lies sewn in his hammock at the bottom of the sea,
-and at nineteen you have brought his ship home. On the quay, all
-Marseilles has turned out to watch.")
+and at nineteen you have brought his ship home. The quay lies west,
+close enough to hear, and all Marseilles has turned out on it to watch.
+Captain Leclere's cabin is below, down the companion ladder.")
       (DOWN TO CABIN)
       (WEST PER DECK-ASHORE)
       (LAND PER DECK-ASHORE)
@@ -38,7 +39,8 @@ Marseilles has turned out to watch.")
       (LDESC
 "Captain Leclere's little cabin still smells of pipe smoke and sea-damp
 charts. His sword and cross of honor lie boxed for his widow. It was
-here, dying, he made you swear to touch at Elba.")
+here, dying, he made you swear to touch at Elba. The companion ladder
+goes back up to the deck.")
       (UP TO DECK)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -65,7 +67,7 @@ for a feast. Yours.")
       (LDESC
 "Ledgers, sealing wax, and the smell of ink and tar. Portraits of
 Morrel ships line the wall. M. Morrel does business here the way other
-men keep faith.")
+men keep faith. The door east opens on the quay.")
       (EAST PER OFFICE-EAST)
       (NORTH PER OFFICE-NORTH)
       (ACTION OFFICE-FCN)
@@ -77,7 +79,8 @@ men keep faith.")
       (LDESC
 "Your father's narrow fifth-floor room: a bed, a crucifix, a few
 nasturtiums in a window box, and a bare cupboard he is too proud to
-mention. A faded red purse lies on the mantelpiece.")
+mention. A faded red purse lies on the mantelpiece. Five flights of
+stairs go back down, and the quay is south.")
       (SOUTH PER MEILHAN-SOUTH)
       (ACTION MEILHAN-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -89,7 +92,7 @@ mention. A faded red purse lies on the mantelpiece.")
 "White cottages above a bright cove; nets drying in the wind. At her
 doorway stands Mercedes, and the sea behind her is nothing to her
 eyes. In the shadow of the wall, her cousin Fernand watches you with a
-Catalan's stillness.")
+Catalan's stillness. The road back to the quay runs north.")
       (NORTH TO QUAY)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -99,8 +102,8 @@ Catalan's stillness.")
       (LDESC
 "Under the leafless arbor of La Reserve the wedding table is laid:
 Arles sausages, boiled crawfish, wine of La Malgue. Everyone you love
-is here. The morning sun touches the foamy waves into a network of
-ruby-tinted light.")
+is here, and the quay lies west through the vines. The morning sun
+touches the foamy waves into a network of ruby-tinted light.")
       (WEST PER RESERVE-WEST)
       (ACTION RESERVE-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -300,7 +303,8 @@ look, and smiles thinly.")>
       (LDESC
 "Faria's cell is the same stone as yours, and entirely different: a
 disused hearth, a bed, and everywhere the invisible library of a free
-mind. You could believe the walls here were thinner. They are not.")
+mind. You could believe the walls here were thinner. They are not. The
+burrow goes back east, under the bed.")
       (EAST TO TUNNEL)
       (ACTION CELL27-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -620,7 +624,7 @@ gives back only what it does not want.")>
 "A spar off the wreck, big enough to bear a swimmer's chest.")>
 
 <OBJECT TARTAN-SHIP
-	(SYNONYM SHIP TARTAN VESSEL BOAT)
+	(SYNONYM TARTAN LATEEN)
 	(ADJECTIVE GENOESE)
 	(DESC "Genoese tartan")
 	(FLAGS NDESCBIT)
@@ -800,7 +804,8 @@ the Jeune-Amelie shrinking toward the horizon. You are alone.")
       (LDESC
 "The notches end at a huge circular boulder squatting on a bed of
 smaller stones. Moss and myrtle have sworn it has sat here since the
-Flood. Cardinal Spada's men swore the same thing, in 1498.")
+Flood. Cardinal Spada's men swore the same thing, in 1498. The goat
+path runs back west toward the creek.")
       (WEST TO ISLE-PATH)
       (DOWN PER CLEARING-DOWN)
       (ACTION CLEARING-FCN)
@@ -812,8 +817,9 @@ Flood. Cardinal Spada's men swore the same thing, in 1498.")
       (DESC "The First Grotto")
       (LDESC
 "A dim and bluish light seeps through crevices; the granite walls
-sparkle as if sown with diamond dust. The air is warm and dry.
-Somewhere in this glitter, a second door is pretending to be a wall.")
+sparkle as if sown with diamond dust. The air is warm and dry. The
+stair goes back up to the daylight, and somewhere in this glitter a
+second door is pretending to be a wall.")
       (UP TO CLEARING)
       (EAST PER GROTTO1-EAST)
       (ACTION GROTTO1-FCN)
@@ -849,9 +855,10 @@ stands here, its signboard groaning in the wind: the Pont du Gard.")
       (IN ROOMS)
       (DESC "The Pont du Gard Inn")
       (LDESC
-"A failing inn on the Beaucaire road. Caderousse, gone gray and sour,
-wipes a table that no traveler will sit at. Poverty has been at work
-on him the way the sea works on a wreck.")
+"A failing inn on the Beaucaire road, and the road is the only way
+out. Caderousse, gone gray and sour, wipes a table that no traveler
+will sit at. Poverty has been at work on him the way the sea works on
+a wreck.")
       (OUT TO BEAUCAIRE-ROAD)
       (EXIT TO BEAUCAIRE-ROAD)
       (WEST TO BEAUCAIRE-ROAD)
@@ -1094,10 +1101,10 @@ and French. Two hundred and eighty-seven thousand francs of mercy.")>
 
 <OBJECT SHIP-T
 	(IN GLOBAL-OBJECTS)
-	(SYNONYM SHIP PHARAON)
+	(SYNONYM SHIP PHARAON BOAT VESSEL)
 	(DESC "Pharaon")
 	(FLAGS NDESCBIT)
-	(ACTION TOPIC-FCN)>
+	(ACTION SHIP-FCN)>
 
 <OBJECT COCLES
 	(IN OFFICE)
@@ -1160,6 +1167,187 @@ from." CR CR
 	(SYNONYM WALL WALLS)
 	(DESC "wall")
 	(ACTION CWALL-FCN)>
+
+"=== PLACES ===
+
+A player who is told to come to the counting-house types GO TO
+COUNTING HOUSE, and a player standing on a deck types GO TO QUAY. Every
+destination this game names in its own prose is a global object here, so
+those words are in the dictionary and PLACE-FCN can either walk the
+player there or say which way it lies. Without these the game directs
+the player in words its own parser refuses to hear, which is how one
+real player got stranded on the Pharaon at turn three."
+
+<OBJECT P-QUAY
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM QUAY WHARF DOCK HARBOR SHORE)
+	(DESC "quay")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-OFFICE
+	(IN GLOBAL-OBJECTS)
+	;"COUNTING is the adjective and HOUSE the noun, so GO TO COUNTING
+	  HOUSE parses as an adjective-noun pair; the hyphenated and
+	  run-together spellings are separate nouns because the parser
+	  splits on the hyphen. COUNTING must not also be a SYNONYM here
+	  (see BUILD-ISSUES section 1)."
+	(SYNONYM HOUSE OFFICE COUNTINGH COUNTIN)
+	(ADJECTIVE COUNTING MORRELS)
+	(DESC "counting-house")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-MEILHAN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM MEILHAN ALLEES)
+	(DESC "Allees de Meilhan")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-CATALANS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM CATALANS VILLAGE COTTAGES)
+	(ADJECTIVE CATALAN)
+	(DESC "Catalan village")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-RESERVE
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM RESERVE)
+	(DESC "arbor of La Reserve")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-DECK
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM DECK HELM)
+	(DESC "deck")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-CABIN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM CABIN)
+	(ADJECTIVE CAPTAINS)
+	(DESC "captain's cabin")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-INN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM INN TAVERN)
+	(DESC "Pont du Gard inn")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-BANK
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM BANK)
+	(DESC "bank")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-PRESS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM NEWSPAPER IMPARTIAL)
+	(DESC "newspaper offices")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-PEERS
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM CHAMBER GALLERY)
+	(DESC "Chamber of Peers")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-ASSIZES
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM ASSIZES COURT COURTS)
+	(DESC "Court of Assizes")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-TELEGRAPH
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM TELEGRAP TOWER)
+	(DESC "telegraph")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-AUTEUIL
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM AUTEUIL COACH CARRIAGE)
+	(DESC "house at Auteuil")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-VHALL
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM FAUBOURG)
+	(DESC "Villefort's house")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-SALON
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM SALON)
+	(DESC "salon")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-STUDY
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM WARDROBE)
+	(DESC "study")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-GARDEN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM GARDEN)
+	(DESC "garden")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-CELL27
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM ABBES)
+	(ADJECTIVE TWENTYSEV)
+	(DESC "abbe's cell")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-CELL34
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM CELL)
+	(ADJECTIVE THIRTYFOU)
+	(DESC "your cell")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-GROTTO
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM GROTTO GROTTOES)
+	(DESC "grotto")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-ISLAND
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM ISLAND CRISTO MONTECRIS)
+	(DESC "island of Monte Cristo")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+
+<OBJECT P-TOWN
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM MARSEILLE TOWN CITY PARIS)
+	(DESC "town")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
 
 "Unreachable stub rooms for generic engine verb branches."
 

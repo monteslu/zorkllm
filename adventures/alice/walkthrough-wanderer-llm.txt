@@ -1,0 +1,77 @@
+# WONDERLAND - the STARVED-CLOCK wanderer regression test.
+#
+# The companion to walkthrough-wanderer.txt, and the more important of
+# the two. That file is junk the parser mostly ACCEPTS; this one is what
+# an LLM front end actually emits when a player types chat and flailing
+# natural language at it: conversational asides, questions aimed at the
+# narrator rather than the world, and commands phrased as sentences.
+#
+# Why this matters more than it looks. The Z-machine clock advances ONLY
+# on a successful parse: CLOCKER runs from MAIN-LOOP under `,P-WON`, so a
+# rejected parse ticks nothing, and neither M-BEG nor M-END fires. Around
+# two thirds of natural-language input does not survive translation into
+# a parsed command. So every timed beat in this game - the fall, the
+# Rabbit's-house siege, the royal procession, the twelve-beat trial -
+# runs at roughly a third of the rate a clean transcript implies.
+#
+# For a game built almost entirely out of timed set pieces, that is the
+# whole ballgame. This file keeps it honest. Most lines below are
+# unparseable on purpose; the ones that parse are phrased the way a
+# person actually types, not the way the walkthrough does.
+#
+# It has already earned its place: it found that three unparseable
+# commands during the fall used to cost the player the marmalade jar
+# (+2, and the container the entire treacle puzzle depends on), because
+# the fall advanced on failed parses while the jar did not wait.
+#
+# Asserted by verify.mjs:
+#   - must reach the Hall of Doors under natural-language flailing
+#   - must still be holding the marmalade jar on arrival
+#   - must never end the game, and never print a Zork-voiced default
+im alice right? or am i
+whats going on
+who is my sister reading about
+this is boring
+is that a rabbit
+did that rabbit just talk
+wait what
+look
+follow the white rabbit please
+i want to go north
+north
+whoa
+where does this hole go
+can i go down there
+is it safe
+i guess i'll jump in
+down
+am i falling
+this is a very long fall
+grab that jar
+whats in the jar
+is there marmalade in it
+how long have i been falling
+do cats eat bats
+do bats eat cats
+i give up on that question
+look around
+did i land
+ouch
+where am i now
+is the rabbit still here
+i'll follow the passage
+go north
+keep going north
+north
+wow look at all these doors
+try the doors
+are they all locked
+thats annoying
+whats on the table
+is that a key
+pick up the key
+what about that curtain over there
+pull the curtain aside
+look behind the curtain
+theres a tiny door
+how am i supposed to fit through that

@@ -782,17 +782,17 @@ whether cats eat bats, and whether bats eat cats, and find you cannot
 answer either question, which makes them equally good questions." CR>)
 		      (<==? ,FALL-PHASE 2>
 		       <SETG FALL-PHASE 3>
-		       <COND (<IN? ,MARMALADE-JAR ,FALLING>
-			      <MOVE ,MARMALADE-JAR ,LOCAL-GLOBALS>
-			      <TELL CR
-"The marmalade jar sails up and away; you manage to put it back into a
-cupboard as you pass, so as not to kill anybody underneath." CR>)>
 		       <TELL CR
 "Shelves, and cupboards, and here and there a map or a picture hung upon
 a peg, and still no bottom to speak of. After a fall like this, you
 think, you shall think nothing of tumbling down stairs." CR>)
 		      (<==? ,FALL-PHASE 3>
 		       <SETG FALL-PHASE 4>
+		       ;"The jar rides the whole way down with you. A player who
+			 spends the fall typing words the parser does not know
+			 must not lose a scoreable item for it."
+		       <COND (<IN? ,MARMALADE-JAR ,FALLING>
+			      <MOVE ,MARMALADE-JAR ,LOCAL-GLOBALS>)>
 		       <TELL CR
 "Thump! Thump! You land on a heap of sticks and dry leaves, not a bit
 hurt." CR CR>
@@ -807,8 +807,12 @@ hurt." CR CR>
 	       (<AND <VERB? FILL> <EQUAL? ,HERE ,TREACLE-WELL>>
 		<FILL-THE-JAR>
 		<RTRUE>)
-	       (<AND <VERB? TAKE> <NOT <IN? ,MARMALADE-JAR ,WINNER>>>
-		<MOVE ,MARMALADE-JAR ,WINNER>
+	       (<AND <VERB? TAKE> <NOT <IN? ,MARMALADE-JAR ,ADVENTURER>>>
+		<MOVE ,MARMALADE-JAR ,ADVENTURER>
+		;"A custom MOVE skips what the engine's take path does for free:
+		  clear NDESCBIT or the jar stays invisible to INVENTORY."
+		<FCLEAR ,MARMALADE-JAR ,NDESCBIT>
+		<FSET ,MARMALADE-JAR ,TOUCHBIT>
 		<COND (<NOT ,F-JAR>
 		       <SETG F-JAR T>
 		       <SCORE-UPD 2>)>

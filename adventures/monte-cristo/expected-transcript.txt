@@ -10,7 +10,7 @@ THE COUNT OF MONTE CRISTO
 An interactive tragedy of patience.
 
 Deck of the Pharaon
-You stand at the helm of the three-master Pharaon, gliding into Marseilles harbor under a February sun. The crew waits on your word, for Captain Leclere lies sewn in his hammock at the bottom of the sea, and at nineteen you have brought his ship home. On the quay, all Marseilles has turned out to watch.
+You stand at the helm of the three-master Pharaon, gliding into Marseilles harbor under a February sun. The crew waits on your word, for Captain Leclere lies sewn in his hammock at the bottom of the sea, and at nineteen you have brought his ship home. The quay lies west, close enough to hear, and all Marseilles has turned out on it to watch. Captain Leclere's cabin is below, down the companion ladder.
 > furl sails
 "Furl the topsails!" The canvas comes in along the yards like a bird folding. Danglars watches from the mast and says nothing, which is his way of saying a great deal.
 > drop anchor
@@ -19,7 +19,7 @@ The anchor goes down in a roar of chain and the Pharaon comes to rest in the roa
 "Come aboard, M. Morrel! She is home."
 > down
 Captain's Cabin
-Captain Leclere's little cabin still smells of pipe smoke and sea-damp charts. His sword and cross of honor lie boxed for his widow. It was here, dying, he made you swear to touch at Elba.
+Captain Leclere's little cabin still smells of pipe smoke and sea-damp charts. His sword and cross of honor lie boxed for his widow. It was here, dying, he made you swear to touch at Elba. The companion ladder goes back up to the deck.
 > open chest
 You lift the lid. Leclere's sword and his cross of honor lie inside, wrapped for a widow in Marseilles who does not yet know she is one.
 > up
@@ -29,7 +29,7 @@ Marseilles Quay
 Fishwives, porters, and half the town crowd the sun-white stones of the quay. North lie the Allees de Meilhan where your father lives; south, the Catalan village; west, Morrel's counting-house. Eastward, under its arbor by the water, the tables of La Reserve are being laid for a feast. Yours.
 > west
 Morrel's Counting-House
-Ledgers, sealing wax, and the smell of ink and tar. Portraits of Morrel ships line the wall. M. Morrel does business here the way other men keep faith.
+Ledgers, sealing wax, and the smell of ink and tar. Portraits of Morrel ships line the wall. M. Morrel does business here the way other men keep faith. The door east opens on the quay.
 > talk to morrel
 "You brought her home through the gales and you touched at Elba on a dying man's word. Both are what I want in a captain." He puts out his hand. "At twenty, captain of the Pharaon!"
 
@@ -38,7 +38,7 @@ Somewhere behind the ledgers, a pen stops scratching.
 Marseilles Quay
 > north
 A Room in the Allees de Meilhan
-Your father's narrow fifth-floor room: a bed, a crucifix, a few nasturtiums in a window box, and a bare cupboard he is too proud to mention. A faded red purse lies on the mantelpiece.
+Your father's narrow fifth-floor room: a bed, a crucifix, a few nasturtiums in a window box, and a bare cupboard he is too proud to mention. A faded red purse lies on the mantelpiece. Five flights of stairs go back down, and the quay is south.
 > give purse to father
 "Keep it, Edmond, I want for nothing." You put it in his hands and close his fingers over it, and he stops arguing, which tells you what the cupboard has been telling you.
 
@@ -49,7 +49,7 @@ In the doorway, Caderousse watches the silver go by with the eyes of a man doing
 Marseilles Quay
 > south
 The Catalan Village
-White cottages above a bright cove; nets drying in the wind. At her doorway stands Mercedes, and the sea behind her is nothing to her eyes. In the shadow of the wall, her cousin Fernand watches you with a Catalan's stillness.
+White cottages above a bright cove; nets drying in the wind. At her doorway stands Mercedes, and the sea behind her is nothing to her eyes. In the shadow of the wall, her cousin Fernand watches you with a Catalan's stillness. The road back to the quay runs north.
 > kiss mercedes
 She comes off the doorstep into your arms and all Marseilles may look if it likes. "You are late, Edmond, and you are alive. I forgive the first."
 
@@ -60,7 +60,7 @@ In the shadow of the wall, Fernand turns his face away.
 Marseilles Quay
 > east
 The Arbor at La Reserve
-Under the leafless arbor of La Reserve the wedding table is laid: Arles sausages, boiled crawfish, wine of La Malgue. Everyone you love is here. The morning sun touches the foamy waves into a network of ruby-tinted light.
+Under the leafless arbor of La Reserve the wedding table is laid: Arles sausages, boiled crawfish, wine of La Malgue. Everyone you love is here, and the quay lies west through the vines. The morning sun touches the foamy waves into a network of ruby-tinted light.
 Morrel is on his feet with a glass. "To the Pharaon, and to her captain!" The table roars.
 > wait
 Time passes...
@@ -192,7 +192,7 @@ The Tunnel
 A burrow a man may pass on his elbows, fifty feet of clawed-out dark between your cell and the abbe's. The air tastes of earth and patience.
 > west
 Cell Number 27 - the Abbe's Cell
-Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not.
+Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not. The burrow goes back east, under the bed.
 > study with faria
 Italian first, because it is the language of the treasure; then Spanish, English, German, Greek. He has no books, so he is the book.
 
@@ -366,7 +366,7 @@ You went over the side among the rocks this morning and lay very still until the
 The Jeune-Amelie is a sail on the horizon now. On the moss beside you, Jacopo has left a pickaxe, a powder horn, a gun, biscuits and rum, out of his own share.
 
 The Circular Rock
-The notches end at a huge circular boulder squatting on a bed of smaller stones. Moss and myrtle have sworn it has sat here since the Flood. Cardinal Spada's men swore the same thing, in 1498.
+The notches end at a huge circular boulder squatting on a bed of smaller stones. Moss and myrtle have sworn it has sat here since the Flood. Cardinal Spada's men swore the same thing, in 1498. The goat path runs back west toward the creek.
 There is a powder horn here.
 There is a pickaxe here.
 > count rocks
@@ -401,7 +401,7 @@ The flagstone rises on the ring, easily, on a bevel cut by a mason who was paid 
 Steps, going down into a blue-lit dark.
 > down
 The First Grotto
-A dim and bluish light seeps through crevices; the granite walls sparkle as if sown with diamond dust. The air is warm and dry. Somewhere in this glitter, a second door is pretending to be a wall.
+A dim and bluish light seeps through crevices; the granite walls sparkle as if sown with diamond dust. The air is warm and dry. The stair goes back up to the daylight, and somewhere in this glitter a second door is pretending to be a wall.
 > knock on wall
 You go along the wall with your knuckles: solid, solid, solid.
 
@@ -436,7 +436,7 @@ A white dusty road between Bellegarde and Beaucaire. A failing inn stands here, 
 The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
 > entrance
 The Pont du Gard Inn
-A failing inn on the Beaucaire road. Caderousse, gone gray and sour, wipes a table that no traveler will sit at. Poverty has been at work on him the way the sea works on a wreck.
+A failing inn on the Beaucaire road, and the road is the only way out. Caderousse, gone gray and sour, wipes a table that no traveler will sit at. Poverty has been at work on him the way the sea works on a wreck.
 > talk to caderousse
 "I am the Abbe Busoni," you say, "and I attended a prisoner who died in the Chateau d'If. Edmond Dantes. He left a diamond, to be divided among the few who loved him."
 
@@ -500,7 +500,7 @@ Salon of the Count of Monte Cristo
 No. 30, Champs-Elysees. Silk, bronze, and rumor. Paris has decided you are a Balkan prince, a vampire, or the devil; you have not corrected Paris. Ali stands at the door; your study lies east; the city waits south.
 > north
 Haydee's Apartments
-Incense, cushions, and a silence from farther east than Greece. Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom you bought out of slavery and who looks at you as if you were the sun.
+Incense, cushions, and a silence from farther east than Greece. Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom you bought out of slavery and who looks at you as if you were the sun. The salon is back through the curtain, south.
 > ask haydee about janina
 "I was four years old. The French officer my father trusted with the castle of Yanina took the Sultan's money and opened the gate."
 
@@ -513,13 +513,13 @@ She brings out a satin satchel: her birth record, her baptism record, and the bi
 Salon of the Count of Monte Cristo
 > south
 The Champs-Elysees
-Carriages, gossip, and gaslight. From here the city is yours: the bank west, the press east, the Chamber of Peers southeast, the law courts south, the telegraph northwest, the Villefort house southwest. And, by coach, the quiet house at Auteuil.
+Carriages, gossip, and gaslight. From here the city is yours. The bank lies west and the press east; the Chamber of Peers southeast, the law courts south, the telegraph northwest, the Villefort house southwest. Your own house is north, and a coach at the kerb will take you in to Auteuil.
 > west
 Danglars's Bank - Antechamber
-Marble bought with margins. Clerks scratch in ledgers; above the double doors, a gilt baron's crest that smells of fresh paint.
+Marble bought with margins. Clerks scratch in ledgers; above the double doors, a gilt baron's crest that smells of fresh paint. The Baron's office is west, the street east.
 > west
 Danglars's Office
-Baron Danglars fills his chair like a sack of coin. On the wall, a portrait of his wife he did not choose; on his desk, the only faith he keeps: the daily quotations.
+Baron Danglars fills his chair like a sack of coin. On the wall, a portrait of his wife he did not choose; on his desk, the only faith he keeps: the daily quotations. The way out is east.
 > show letter to danglars
 "On the house of Thomson and French, of Rome. Unlimited." He reads the word three times and looks up at you with the expression of a man who has heard a noise in the cellar.
 
@@ -531,7 +531,7 @@ The Champs-Elysees
 A note is brought up on a tray, in a hand disguising itself out of habit: a friend warns the Count that a man will enter his house by the study window tonight.
 > northwest
 Garden Below the Telegraph
-A kitchen garden at the foot of an old tower crowned with black jointed arms. The keeper is on his knees among the peas, at war with the dormice, a man of a thousand francs a year.
+A kitchen garden at the foot of an old tower crowned with black jointed arms. A ladder climbs up into it; the street is southeast. The keeper is on his knees among the peas, at war with the dormice, a man of a thousand francs a year.
 > give notes to operator
 Fifteen notes of a thousand francs, laid on the wall between the pea sticks.
 
@@ -539,7 +539,7 @@ Fifteen notes of a thousand francs, laid on the wall between the pea sticks.
 "Just so." He puts them in his shirt and stands up, and he is a different man, and he knows it.
 > up
 The Telegraph Platform
-Up here the signal arms creak overhead like a gallows-tree of news. Through the glass you can see the next tower's semaphore twitching out the fortunes of France, one angle at a time.
+Up here the signal arms creak overhead like a gallows-tree of news. Through the glass you can see the next tower's semaphore twitching out the fortunes of France, one angle at a time. The ladder goes back down.
 > send signal
 He works the arms to your dictation without once asking what they mean, and down the line, tower after tower, a lie goes to Paris at the speed of light: Don Carlos has crossed the Bidassoa. Spain is in revolt.
 
@@ -592,7 +592,7 @@ Salon of the Count of Monte Cristo
 The Champs-Elysees
 > east
 Offices of l'Impartial
-Ink-fog, proof sheets, and the guillotine-thump of the press below. Beauchamp the journalist can smell a story through wax seals.
+Ink-fog, proof sheets, and the guillotine-thump of the press below. Beauchamp the journalist can smell a story through wax seals. The street is west.
 > tell beauchamp about janina
 He listens with his pen down, which from Beauchamp is reverence.
 
@@ -603,7 +603,7 @@ Within the week the Chamber of Peers appoints a committee of inquiry, and the Co
 The Champs-Elysees
 > southeast
 Gallery of the Chamber of Peers
-Velvet benches above a floor of old men and older honors. Today the Count de Morcerf answers a question of history: what happened at Janina?
+Velvet benches above a floor of old men and older honors, and a staircase down to the street northwest. Today the Count de Morcerf answers a question of history: what happened at Janina?
 Morcerf is magnificent. Thirty years of service, a wound at Ligny, the honor of a soldier; and the committee is halfway to apologizing when the usher announces a witness.
 > wait
 Time passes...
@@ -649,14 +649,14 @@ The Champs-Elysees
 The coach goes out through the barrier and down to Auteuil, and Bertuccio, on the box, does not say one word the whole way.
 
 The House at Auteuil - Salon
-A pleasure-house with its shutters' eyes put out; you have had it lit and aired, and still the walls hold their breath. Bertuccio, your steward, will not look at the garden door.
+A pleasure-house with its shutters' eyes put out; you have had it lit and aired, and still the walls hold their breath. The garden lies east, and the coach out to Paris waits at the door. Bertuccio, your steward, will not look at the garden door.
 > talk to bertuccio
 "I declared the vendetta against him because he would not avenge my brother. I followed him to this house. One night in September I saw him come down into that garden with a spade and a box, and I put my knife in his back under the plantain tree."
 
 "And then I dug up what he had buried, excellency, because I thought it was money." He has to stop. "It was a child, monsieur. A living child."
 > east
 The Auteuil Garden
-A walled garden gone half wild. One plantain tree stands over turned earth like a mourner who has forgotten whom he mourns.
+A walled garden gone half wild, with the salon back through the door west. One plantain tree stands over turned earth like a mourner who has forgotten whom he mourns.
 > dig earth with spade
 Two feet down, the spade turns up the ironwork of a small box, rusted to lace, with nothing at all inside it.
 
@@ -673,10 +673,10 @@ Back through the barrier, into the gaslight.
 The Champs-Elysees
 > southwest
 Villefort's House - Hall
-The procureur's house in the Faubourg Saint-Honore: cold marble, hushed servants, and lately a smell of medicine on every landing. Death has been a frequent caller this season.
+The procureur's house in the Faubourg Saint-Honore: cold marble, hushed servants, and lately a smell of medicine on every landing. Noirtier's room is north, Valentine's east, and the street northeast. Death has been a frequent caller this season.
 > north
 Noirtier's Room
-The old conventionist sits paralyzed in his great chair, alive only in his eyes; and his eyes are two loaded pistols. A dictionary and a bell-cord serve him for a voice.
+The old conventionist sits paralyzed in his great chair, alive only in his eyes; and his eyes are two loaded pistols. A dictionary and a bell-cord serve him for a voice. The hall is south.
 > talk to noirtier
 You read to him from the dictionary and he blinks once for the letter he wants, and it takes an hour, and at the end of the hour he has spelt out two things.
 
@@ -689,7 +689,7 @@ He has named her without a word, and there is not a court in France that could u
 Villefort's House - Hall
 > east
 Valentine's Room
-White curtains, a glass of lemonade on the night table, and a girl growing paler by the week while her family calls it nerves.
+White curtains, a glass of lemonade on the night table, and a girl growing paler by the week while her family calls it nerves. The hall is west.
 > give pill to valentine
 "Trust me as you would trust Providence. Sleep, and whatever you hear, do not wake."
 
@@ -700,7 +700,7 @@ Villefort's House - Hall
 The Champs-Elysees
 > south
 The Court of Assizes
-The great criminal court, packed to the cornices. Villefort prosecutes the prisoner Benedetto with his usual marble calm; the prisoner wears a curious smile, as if he alone knows the last line.
+The great criminal court, packed to the cornices, with the doors to the street behind you to the north. Villefort prosecutes the prisoner Benedetto with his usual marble calm; the prisoner wears a curious smile, as if he alone knows the last line.
 Villefort opens for the crown with his usual marble calm. The prisoner Benedetto, who was arrested at his own betrothal to Mademoiselle Danglars, listens as though the whole thing were a play he has already read.
 > wait
 Time passes...

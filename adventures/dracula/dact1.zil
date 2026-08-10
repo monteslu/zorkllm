@@ -862,14 +862,14 @@ Down is the only direction left in the world." CR>)
 		      (<EQUAL? ,LEDGE-POS 1>
 		       <TELL
 "A hand's-breadth of crumbling stone under the Count's own window,
-which stands unlatched. The wind pulls at your coat like a living
-thing. Do not look down." CR>)
+which stands unlatched: you could go in. The ledge runs back south.
+The wind pulls at your coat like a living thing. Do not look down." CR>)
 		      (T
 		       <TELL
 "You stand on a hand's-breadth of crumbling stone above a gulf of
-moonlit air; the window at your back, the wall going north along the
-face. The wind pulls at your coat like a living thing. Do not look
-down." CR>)>
+moonlit air. The window at your back is the way in; the ledge runs
+north along the face, and the wall itself goes down. The wind pulls at
+your coat like a living thing. Do not look down." CR>)>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-BEG>
 		<COND (<AND <G? ,DESCENT 0> <L? ,DESCENT 3>>
@@ -891,10 +891,27 @@ toes. Keep climbing." CR>
 		       <RTRUE>)>)>
 	 <RFALSE>>
 
+;"The guard against climbing down too early. It used to be pure mood --
+'Not yet. Not while Mina waits.' -- which reads well and tells a stuck
+player nothing at all about what they are waiting FOR. It now names the
+condition, and by night it names the other one too."
 <ROUTINE LEDGE-GUARD ()
 	 <TELL
 "A thousand feet of moonlight below. At its foot a man may sleep -- as
-a man. Not yet. Not while Mina waits." CR>>
+a man. Not yet. Not while Mina waits." CR>
+	 <COND (,NIGHT
+		<TELL
+"And not in the dark, with the whole of it awake and hunting. This is a
+thing to do by daylight." CR>)
+	       (<IN? ,SZGANY ,COURTYARD>
+		<TELL
+"Besides: the Szgany are still in the courtyard below, and they answer
+to the boyar, and they would carry you back up the stair by the arms.
+Wait until the carts have gone." CR>)
+	       (T
+		<TELL
+"You would want the courtyard empty first, and the whole day ahead of
+you." CR>)>>
 
 <ROUTINE LEDGE-NORTH ()
 	 <COND (<EQUAL? ,LEDGE-POS 1>
@@ -1156,17 +1173,19 @@ that all went one way." CR>)>
 "The old vault, swept by winter draughts. Three tombs stand here that
 were never here before -- new-old, unmarked, waiting -- and beyond
 them one great tomb more lordly than all the rest. On it is one word:
-Dracula." CR>)
+Dracula. The steps go up to the chapel." CR>)
 		      (,BOX-OPENED
 		       <TELL
 "Fragments of ancient coffins and piles of dust. In the third recess
 the great box rests on new earth, its pierced lid thrown back, and
-what is in it does not sleep. It waits with its eyes open." CR>)
+what is in it does not sleep. It waits with its eyes open. The steps go
+up to the chapel." CR>)
 		      (T
 		       <TELL
 "Fragments of ancient coffins and piles of dust. In the third recess a
 single great box rests on new-dug earth, its lid leaning against the
-wall, and the lid is pierced with holes." CR>)>
+wall, and the lid is pierced with holes. The steps go up to the
+chapel." CR>)>
 		<RTRUE>)
 	       (T <ACT1-COMMON .RARG>)>>
 

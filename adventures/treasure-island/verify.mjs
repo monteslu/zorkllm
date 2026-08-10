@@ -49,6 +49,22 @@ const RUNS = [
     score: 325,
     rank: "Cap'n",
   },
+  // The wanderer tests. A walkthrough is written by whoever built the game
+  // and only proves it is completable by someone who already knows the
+  // answer. These two prove a LOST player survives Act I - the act with the
+  // countdown - and reaches the squire's hall on the strength of the game's
+  // own escalating hints. They are not expected to win, or to score well;
+  // they are expected not to die.
+  {
+    name: 'wanderer',
+    script: join(here, 'walkthrough-wanderer.txt'),
+    survives: "Squire's Hall",
+  },
+  {
+    name: 'wanderer-llm',
+    script: join(here, 'walkthrough-wanderer-llm.txt'),
+    survives: "Squire's Hall",
+  },
 ];
 
 const bless = process.argv.includes('--bless');
@@ -82,6 +98,36 @@ for (const run of RUNS) {
     continue;
   }
   const { transcript, commands } = await play(run);
+
+  // --- wanderer runs: survival, not victory ---
+  if (run.survives) {
+    if (transcript.includes('****  You have died  ****')) {
+      fail(run, 'a lost player died in Act I - the countdown is too tight '
+        + 'or the hints do not land in time');
+    }
+    if (transcript.includes('****  Your adventure is over  ****')) {
+      fail(run, 'a lost player lost the packet to the raid');
+    }
+    if (!transcript.includes(run.survives)) {
+      fail(run, `never reached ${run.survives}`);
+    }
+    // A wanderer must NOT accidentally win: if they do, this file has
+    // stopped being a test of the game's forgiveness and become a second
+    // walkthrough.
+    if (transcript.includes('****  You have won  ****')) {
+      fail(run, 'the wanderer won the game - it is no longer a wanderer test');
+    }
+    if (!failures) {
+      const rejects = (transcript.match(
+        /I don't know the word|There was no verb|not clear what you're referring/g,
+      ) ?? []).length;
+      console.log(
+        `ok [${run.name}] ${commands.length} inputs (${rejects} unparsed), `
+        + `survived Act I to ${run.survives}`,
+      );
+    }
+    continue;
+  }
 
   // 1. the game was actually won
   if (!transcript.includes('****  You have won  ****')) {

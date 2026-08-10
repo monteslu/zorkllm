@@ -208,3 +208,58 @@ command, which is the authoritative in-game report regardless of version.
   trail never saw an intervening dawn and skipped the act's turning
   point entirely.
 - **`OPEN TOMB DOOR`** (two-noun phrase) is not parsed; `OPEN DOOR` is.
+
+---
+
+## 10. Exit-description audit (triage of `tools/audit-game.mjs`)
+
+The static audit flagged 18 rooms + 2 vocabulary items. Judged
+individually against what the game actually prints on LOOK. Result: 6
+real defects fixed, 12 correct as written, 1 vocabulary fix, 1
+vocabulary false positive.
+
+### Real defects, fixed
+
+| Room | What was wrong | Fix |
+|---|---|---|
+| **The House in Piccadilly** | Named **no** way out at all. Worst of the set: the chase act, under time pressure, and the room is entered through a one-way scripted ruse. | "The way out is down the stairs." |
+| **Old Vault** | All three description variants named no exit. Dark room at the bottom of a one-way descent — the strandable case. | "The steps go up to the chapel." |
+| **Narrow Ledge** (both positions) | Named the window as scenery but never that you can go **in** through it, nor that the ledge runs north/down. | Now names in, north, and down. |
+| **Carfax Hall** | The `M-LOOK` override named the chapel east but dropped the LDESC's "the way out is south". | Restored. |
+| **Lucy's Room** | `M-LOOK` override dropped the LDESC's "The stair goes down." | Restored. |
+| **Winding Stair / Circular Stair** | Pure connectors that named neither end — "circle upward" implies up but never says what is down. | Both ends named. |
+
+**The pattern behind five of these:** I wrote a richer description inside
+an `M-LOOK` handler and, in rewriting, dropped the exit sentence the
+original LDESC had. **When an `M-LOOK` override replaces an LDESC, diff
+them for exits.** The LDESC in `dworld.zil` was correct in every one of
+these cases; the override silently regressed it.
+
+### Correct as written — deliberately left
+
+| Room | Why |
+|---|---|
+| Dining Room, Octagonal Room, Great Bedroom, Library, Crescent Bedroom, St. Mary's Churchyard, Tate Hill Pier, Asylum Corridor, The London Road, A Court off Walworth, No. 347 Piccadilly | All name their exits in prose the checker's regex does not match — "Doors face each other like patient sentries, north and south", "The only door is north", "The road back is northwest", "Your study is west, Renfield's room north…". Verified by LOOK in play. |
+| **Hotel Odessus, Varna** | Says "There is nowhere to go. There is only news to wait for." That is an *answer*, not a silence — it tells the player the room is a waiting room and WAIT is the move. Left as is. |
+
+### Vocabulary
+
+- **"varna" — real, fixed.** The chase names Varna and Galatz constantly
+  and the room is titled for one, but neither was in the dictionary.
+  Added a `PORT-G` global with `(SYNONYM VARNA GALATZ PORT ODESSUS
+  HOTEL)` and a per-location description.
+- **"foot" — false positive.** It is the idiom "There is no going back on
+  foot" in the Castle Courtyard, matched by the directive regex as
+  "go…back…to…foot". Not a destination; nothing to fix.
+
+### Found by the wanderer test, not by the audit
+
+- **`X` was not a synonym for `EXAMINE`.** The engine defines
+  `DESCRIBE WHAT WHATS` and no `X`. A wandering player types `x thing`
+  constantly and got `I don't know the word "x"`. Added.
+- **`V-DOFF` printed "You take off pair of boots."** Missing article.
+- **The ledge guard refused without explaining.** "Not yet. Not while
+  Mina waits." reads well and tells a stuck player *nothing* about what
+  they are waiting for. It now names the actual condition — the Szgany
+  still in the courtyard, or the dark — so a refusal is a hint instead
+  of a wall.

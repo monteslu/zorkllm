@@ -50,8 +50,9 @@ impossibly drowsy, and the daisies are almost worth picking.")
       (DESC "Under the Hedge")
       (LDESC
 "You are at a great hedge at the edge of the field. Under it gapes a
-large rabbit-hole, and from somewhere down it comes a fading voice: \"Oh
-my ears and whiskers, how late it's getting!\"")
+large rabbit-hole going straight down, and from somewhere below comes a
+fading voice: \"Oh my ears and whiskers, how late it's getting!\" The field
+lies south.")
       (SOUTH TO RIVERBANK)
       (DOWN PER HEDGE-DOWN)
       (ACTION HEDGE-FIELD-FCN)
@@ -578,7 +579,8 @@ where the trees grow doors.")
 a house if you are nine inches tall. On the doorstep sits a footman with
 the face of a frog, staring stupidly up into the sky. From inside comes
 a most extraordinary noise: howling, sneezing, and every now and then a
-great crash, as if a dish had been broken to pieces.")
+great crash, as if a dish had been broken to pieces. The door leads in;
+the crossroads lie east.")
       (EAST TO CROSSROADS)
       (WEST PER DUCHESS-DOOR-IN)
       (ACTION DUCHESS-LAWN-FCN)
@@ -607,7 +609,7 @@ great crash, as if a dish had been broken to pieces.")
 sits on a three-legged stool nursing a howling baby; the cook stirs a
 cauldron of soup and, at intervals, throws everything within reach. On
 the hearth a large cat grins from ear to ear. There is far, far too much
-pepper.")
+pepper. The door out leads east.")
       (OUT TO DUCHESS-LAWN)
       (EAST TO DUCHESS-LAWN)
       (ACTION KITCHEN-FCN)
@@ -762,7 +764,7 @@ pepper.")
 "The bottom of the well, and it is a treacle-well: the walls glisten
 brown and the air is thick and sweet enough to slice. Three small
 sisters sit learning to draw, and what they draw is treacle, and also
-everything that begins with an M.")
+everything that begins with an M. The bucket rope goes back up.")
       (UP TO TEA-GARDEN)
       (ACTION TREACLE-WELL-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
@@ -949,7 +951,7 @@ east.")
       (LDESC
 "A little ledge of rock by the sea, where the Mock Turtle sits, sad and
 lonely, sighing as if his heart would break. It is all his fancy, that;
-he hasn't got no sorrow, you know.")
+he hasn't got no sorrow, you know. The ledge runs back west.")
       (WEST TO SEASIDE)
       (ACTION TURTLE-ROCK-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>

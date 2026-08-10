@@ -667,9 +667,9 @@ the fen. Higher ground lies north; the beach is south.")
       (LDESC
 "Live oaks growing low and twisted like brambles, scattered pines fifty
 and seventy feet high, and the Spy-glass trembling through the haze
-above everything. Paths go all ways: marsh south, a two-peaked hill
-east, a long slope rising west, sandy lowlands north, and the shore
-southeast.")
+above everything. Paths go all ways: the marsh lies south, a two-peaked
+hill east, a long slope rising west, sandy lowlands north, and the
+shore southeast.")
       (SOUTH TO MARSH)
       (EAST TO HILL-FOOT)
       (WEST TO PLATEAU-SLOPE)
@@ -714,8 +714,8 @@ of goats, with every grave tended.")
       (DESC "Woods by the Shore")
       (LDESC
 "Fir and live-oak growing almost to the tide line. Through the trunks
-you can see the anchorage one way and white surf the other. Paths:
-beach west, the two-peaked hill north, a cleared knoll east where a
+you can see the anchorage one way and white surf the other. The beach
+lies west, the two-peaked hill north, a cleared knoll east where a
 British flag flies, and a long sandy spit south.")
       (WEST TO LANDING-BEACH)
       (NORTH TO HILL-FOOT)
@@ -731,8 +731,9 @@ British flag flies, and a long sandy spit south.")
       (LDESC
 "A wide cleared slope around a knoll, stumps everywhere, and on the
 knoll a log-house behind a six-foot paling with never a door in it -
-you go over or you stay out. The Union Jack snaps overhead, which is
-the best thing you have seen all day.")
+you go over, or you stay out. The Union Jack snaps overhead, which is
+the best thing you have seen all day. The woods are back west; the
+log-house is in, over the fence.")
       (WEST TO SHORE-WOODS)
       (ACTION CLEARING-FCN)
       (GLOBAL SPYGLASS-HILL)
@@ -870,7 +871,7 @@ brush to the south.")
 "The white rock, taller than a man, over a small hollow of green turf
 hidden by banks and knee-deep underwood. Down in the hollow crouches a
 little tent of goat-skins, like what the gipsies carry about in
-England.")
+England. The spit runs back north.")
       (NORTH TO SANDY-SPIT)
       (ACTION WHITE-ROCK-FCN)
       (GLOBAL SEA)
@@ -982,7 +983,8 @@ back east.")
 half swallowed in a green creeper, a human skeleton lies stretched on
 the ground - dead straight, feet one way, hands raised over its head
 the other way, like a diver frozen mid-plunge. Nothing about it is
-natural.")
+natural. The shoulder of the Spy-glass lies west, the black crag north,
+and the slope goes back down east.")
       (DOWN TO PLATEAU-SLOPE)
       (EAST TO PLATEAU-SLOPE)
       (WEST TO SPYGLASS-SHOULDER)
@@ -1078,7 +1080,8 @@ broken in two, and packing boards branded with a hot iron: WALRUS.")
 "A black crag rises off the north slope, and weather has beaten a face
 into it - brows, a broken nose, a mouth full of shadow, watching the
 sea. A long hummock of sand trends away east below it. Ten fathoms
-south of the crag... but that is the map's phrase, not yours.")
+south of the crag... but that is the map's phrase, not yours. The
+plateau of the pines is back south.")
       (SOUTH TO SKELETON)
       (ACTION CRAG-FCN)
       (GLOBAL SEA SPYGLASS-HILL)

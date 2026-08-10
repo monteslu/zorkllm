@@ -853,6 +853,67 @@ tightening a timer is exactly when nudges start firing before the player
 has had a chance to act, and gating each nudge on the player not having
 acted yet (`<AND <==? ,TURNS 2> <IN? ,TOTO ,FARMHOUSE>>`) is the fix.
 
+### 3.7b The wanderer recipe, distilled
+
+The pattern the other games are copying, in the order I would build it now:
+
+1. **Get a real failing transcript first.** Not an imagined one. Every
+   number that matters here (3:1 ticks, 32% never-a-command, 55%
+   rejected) came from an actual session that failed. A junk file you
+   invent at your desk will be too parseable, which is exactly how the
+   first version of this test passed while the game was still broken.
+2. **Two files, and the starved one is the real test.**
+   `walkthrough-wanderer.txt` (junk that mostly parses) and
+   `walkthrough-wanderer-llm.txt` (55% rejected). Proven necessary: with
+   the storm artificially slowed, the first PASSES and the second FAILS.
+3. **Assert four things, not one:** reaches the first real location;
+   scores **zero** (the auto-advance must never hand over a scored deed);
+   does not die or win; and clears the finish with **at least 5 inputs of
+   headroom**. Passing by one input is a coincidence, not a test.
+4. **Assert the negative too.** Every nudge string must be *absent* from
+   the scored transcript. This is the assertion that keeps the forgiving
+   path from leaking into the expert path, and it caught two real leaks
+   the moment I compressed the timers.
+5. **Prove the test can fail.** Break the fix, watch the failure message,
+   restore. I did this twice — once for the stranding, once for the
+   starved clock — and the second time it revealed that my *first*
+   wanderer file could not see the bug at all.
+6. **Re-freeze deliberately.** When timing legitimately shifts, diff with
+   the probabilistic lines filtered out first and confirm nothing but
+   pacing moved; then re-freeze and say so.
+
+One thing I would add that is not obvious: **the wanderer test doubles as
+a prose test.** Reading its transcript end to end is the only time you
+see your game the way a lost player does, and it is where I found the
+"Toto is here, being a dog about it" line printing while Toto was
+actually hanging in the trap door.
+
+### 3.7c Run a static dead-end audit, then walk every hit
+
+`tools/audit-game.mjs` flags rooms whose description names no way out.
+Oz came out cleanest of five games (5 flagged, 0 vocabulary problems) and
+**all five flagged rooms were intentional** — three were truncation
+artifacts, two were designed impasses with in-voice guidance.
+
+Run it anyway. Chasing down five false positives is what uncovered two
+genuine game-wide bugs the auditor was not looking for: `(IN ROOMS)`
+silently breaking every inward exit (BUILD-ISSUES §20) and the engine
+being unable to say "There is a <plural> here" (§21). **The value was in
+the walking, not in the flagging.**
+
+Know its blind spot so you can triage fast: it reads room descriptions
+only, so it cannot see an exit announced by a companion, by a scripted
+beat, or by the blocking action's own failure text. In a companion-driven
+game that is most of your guidance. The two Oz rooms it flagged as walls
+are the two where a companion says the answer out loud on every failed
+attempt — which is the *opposite* of a wall, and the pattern I would
+recommend for any deliberate impasse:
+
+> "Call the Winged Monkeys," says the Tin Woodman quietly. "You have
+> still the right to command them once more."
+
+If you want a room to be hard, make the failure text name the key.
+
 ### 3.8 A self-requeueing QUEUE works; a guard clause above it is what breaks
 
 Worth pinning down precisely, because it looks like an engine defect and
@@ -1106,4 +1167,9 @@ their own §8 list *before* the design, not after.
     yields roughly **one tick per three player inputs** (a third of its
     output never becomes a command at all). Divide every timed beat's
     pacing by three, and keep a rejection-heavy transcript in the test
-    suite. §3.7, BUILD-ISSUES §16
+    suite. §3.7, §3.7b, BUILD-ISSUES §16
+14. Use `(LOC ROOMS)`, never `(IN ROOMS)` — `IN` is a direction, so the
+    conventional form compiles as a broken IN *exit* and silently kills
+    inward movement everywhere. BUILD-ISSUES §20
+15. The engine cannot say "There is a <plural> here." Give plural or
+    mass-noun DESCs an `FDESC`. BUILD-ISSUES §21

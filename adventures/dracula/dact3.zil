@@ -876,3 +876,28 @@ know." CR CR>
 	 <TELL "*** The sun set ***" CR CR>
 	 <V-SCORE>
 	 <FINISH>>
+
+"---- The ports, so the chase's place-names are speakable ----"
+
+<ROUTINE PORT-G-FCN ()
+	 <COND (<VERB? EXAMINE TELL>
+		<COND (<EQUAL? ,HERE ,VARNA-HOTEL>
+		       <TELL
+"Varna, on the Black Sea, where the Czarina Catherine was to make port
+and did not. There is nothing to do in Varna but wait for a wire, and
+that is precisely what he counted on." CR>)
+		      (<EQUAL? ,HERE ,GALATZ-WHARF>
+		       <TELL
+"Galatz, a hundred miles up the coast from where you waited, with the
+river going north out of it into his own country. He read the plan out
+of Madam Mina's sleeping mind and landed where we were not." CR>)
+		      (T
+		       <TELL
+"Varna and Galatz are behind you now, and the river after them, and
+what is left is this road and the sun going down it." CR>)>
+		<RTRUE>)
+	       (<VERB? WALK-TO FOLLOW>
+		<TELL
+"Not on your own feet. This part of the chase is done by telegram, by
+train, and by launch." CR>
+		<RTRUE>)>>

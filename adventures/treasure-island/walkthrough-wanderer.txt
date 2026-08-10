@@ -1,0 +1,70 @@
+# TREASURE ISLAND - the wanderer regression test (typed junk).
+#
+# A player who does not guess the intended opening must still get out of
+# the Admiral Benbow with the oilskin packet before Pew's crew arrives.
+# Act I is the most timer-dependent act in the game: a 30-turn countdown
+# with a 13-turn heist inside it, and a player who dies to a countdown
+# they did not understand is the exact failure this file exists to
+# prevent.
+#
+# This player is lost. They look, they poke at scenery, they walk into
+# the wrong rooms, and they type things the parser rejects. They only
+# reach the chest because the game's escalating warnings TELL them where
+# it is (turn 11 names the sea-chest and the key round the captain's
+# neck; turn 16 names the route out).
+#
+# Asserted by verify.mjs: must reach the Squire's Hall (i.e. survive the
+# raid with the packet), must NOT die, and must NOT reach the 350-point
+# ending - this player is not playing well, only surviving.
+#
+# NOTE on pacing: the Z-machine clock advances only on a SUCCESSFUL
+# parse. The unparseable lines below cost the player no clock at all,
+# which is exactly why they are safe to type and exactly why the timer
+# is tuned against parsed turns rather than typed lines.
+
+# --- flailing in the parlour, learning nothing ---
+look
+examine body
+xyzzy
+examine chair
+what do i do
+examine embers
+help me
+look
+
+# --- wandering into the bar, which is a dead end for the plot ---
+west
+examine till
+drink rum
+examine candle
+blarg
+east
+
+# --- upstairs, still not understanding ---
+up
+examine bed
+examine window
+open chest
+qwerty
+down
+
+# --- by now the game has named the chest and the key ---
+search body
+examine string
+take key
+cut string with gully
+up
+unlock chest with key
+open chest
+take clothes
+move gear
+move cloak
+take packet
+
+# --- and named the route out ---
+down
+out
+east
+down
+wait
+wait

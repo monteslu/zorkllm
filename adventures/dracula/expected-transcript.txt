@@ -25,7 +25,7 @@ Entrance Hall
 A stone hall lit by a hanging silver lamp. The great outer door is bound with chains and massive bolts, and a stone stair winds upward into gloom.
 > up
 Winding Stair
-Steps of worn stone circle upward, ringing under your feet. The draught carries the far howling of wolves.
+Steps of worn stone circle upward to the passage, and down to the hall, ringing under your feet. The draught carries the far howling of wolves.
 > up
 Upper Passage
 A long stone corridor of doors, doors everywhere, and every one locked and bolted. At its end a heavy door sags against the floor, and a narrower stair climbs up to a landing full of sky. The winding stair goes down; a doorway opens west.
@@ -179,7 +179,7 @@ South Landing
 You pull off your boots and knot the laces through your belt. The stone is cold through your stockings, and closer, somehow. Fingers and toes, like the lizard went.
 > climb out window
 Narrow Ledge
-You stand on a hand's-breadth of crumbling stone above a gulf of moonlit air; the window at your back, the wall going north along the face. The wind pulls at your coat like a living thing. Do not look down.
+You stand on a hand's-breadth of crumbling stone above a gulf of moonlit air. The window at your back is the way in; the ledge runs north along the face, and the wall itself goes down. The wind pulls at your coat like a living thing. Do not look down.
 > north
 Sixty heartbeats of sideways prayer, and you are under the window the crawling thing came out of. It is unlatched.
 > in
@@ -192,7 +192,7 @@ You fill your pockets with coins three centuries cold. If you live, you will nee
 The heavy door swings inward on a stone stair screwing down into the dark, and the smell comes up to meet you: old earth, newly turned.
 > down
 Circular Stair
-A stone screw of a stair, lit only through loopholes, going steeply down into an odour you know before you can name it: old earth, newly turned.
+A stone screw of a stair, lit only through loopholes. It goes up to the Count's room, and steeply down into an odour you know before you can name it: old earth, newly turned.
 > down
 Dark Passage
 A tunnel of dressed stone. The deathly, sickly odour of fresh-dug earth thickens with every step. The passage runs north and south.
@@ -204,7 +204,7 @@ A workman's shovel leans against a heap of turned earth.
 Taken.
 > down
 Old Vault
-Fragments of ancient coffins and piles of dust. In the third recess a single great box rests on new-dug earth, its lid leaning against the wall, and the lid is pierced with holes.
+Fragments of ancient coffins and piles of dust. In the third recess a single great box rests on new-dug earth, its lid leaning against the wall, and the lid is pierced with holes. The steps go up to the chapel.
 > open box
 You lift the lid aside. On a bed of new-dug earth lies the Count -- but younger, the white hair iron-grey, the cheeks fuller, the lips redder, with fresh blood dried at their corners and trickled down the chin. He is gorged, like a filthy leech, exhausted with his repletion. The eyes are open, stony, dead-alive, and there is no breath, and no pulse, and no doubt at all left in you about anything.
 > attack count with shovel
@@ -410,7 +410,7 @@ The Westenra hall: flowers, good furniture, and a stillness that has learned to 
 Van Helsing is here, waiting on you.
 > up
 Lucy's Room
-A pretty bedroom trying to stay one: the bed, the fireplace, and the window on the shrubbery, its latch bright with use. On the air, sometimes, a beating of wings.
+A pretty bedroom trying to stay one: the bed, the fireplace, and the window on the shrubbery, its latch bright with use. On the air, sometimes, a beating of wings. The stair goes down.
 Lucy lies against the pillows, pale but rosy at the lips, and smiles at you as though you were the one who wanted nursing.
 There is a Lucy here.
 > close window
@@ -497,7 +497,7 @@ Twenty acres of black pond and older trees around a house of all periods, part o
 A surgeon's fingers and a burglar's tools. After a little play the bolt shoots back with a rusty clang, and the door swings in on air that has not been breathed since the Tudors, and something under that which has.
 > in
 Carfax Hall
-Dust lies inches deep, torn by hobnailed footprints, and cobwebs hang like old rags from the beams. On a table lies a great bunch of keys, every one with a time-yellowed label. The chapel is east, through a low arched door ribbed with iron.
+Dust lies inches deep, torn by hobnailed footprints, and cobwebs hang like old rags from the beams. On a table lies a great bunch of keys, every one with a time-yellowed label. The chapel is east, through a low arched door ribbed with iron; the way out is south.
 On a table lies a great bunch of keys, every one with a time-yellowed label.
 > take bunch
 Taken.
@@ -565,7 +565,7 @@ Godalming looks at the house, and then at the street, and does the one thing non
 The man kneels to the door with the calm of a tradesman on a job, tries three keys, files a fourth, and has it open in ten minutes; a constable comes by and looks on with approval at a gentleman putting his own house in order; the professor tips him half a crown, and the locksmith hands over a new key and drives away. Not a soul takes the slightest notice. It is done as such things are rightly done, and at the time such things are rightly done.
 > in
 The House in Piccadilly
-The dining-room of an empty mansion, and it smells like the chapel at Carfax. Eight great boxes stand about the floor. On the table: a bundle of title deeds, a clothes brush, and a jug and basin, the water in the basin reddened as if with blood, and a little heap of keys of all sorts and sizes. A window looks down into the mews.
+The dining-room of an empty mansion, and it smells like the chapel at Carfax. Eight great boxes stand about the floor. On the table: a bundle of title deeds, a clothes brush, and a jug and basin, the water in the basin reddened as if with blood, and a little heap of keys of all sorts and sizes. A window looks down into the mews. The way out is down the stairs.
 > read deeds
 The title deeds of the Piccadilly house, and with them, in a bundle tied with tape, the deeds and conveyances of the others: Mile End New Town, Bermondsey, and Carfax at Purfleet. Every lair in England, in a bundle on a table, because he is a landlord now and landlords keep their papers. Jonathan's own office drew half of them.
 

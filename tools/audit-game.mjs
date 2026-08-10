@@ -122,8 +122,16 @@ async function auditOne(name, storyRel, walkRel) {
     if (!room) return;
     const lines = text.split('\n').map((l) => l.trim());
     const entry = seen.get(room) ?? { text: '', said: [] };
-    if (lines[0] === room) entry.text ||= lines.slice(1).join(' ');
-    else if (text.trim()) entry.said.push(text.trim());
+    // Find the room name anywhere in the output, not only on line 0. An
+    // intro paragraph before the first room name would otherwise push the
+    // real opening description into `said`, and a later brief-mode
+    // revisit gets graded instead - which reported Treasure Island's
+    // Benbow Parlour as exitless when its full text names three exits.
+    // First full description wins; later ones carry event text.
+    const idx = lines.indexOf(room);
+    if (idx >= 0) {
+      if (!entry.text) entry.text = lines.slice(idx + 1).join(' ');
+    } else if (text.trim()) entry.said.push(text.trim());
     seen.set(room, entry);
   };
   note(opening);

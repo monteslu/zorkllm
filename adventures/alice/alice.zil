@@ -20,6 +20,17 @@ Built on the MIT-licensed Zork engine files (zil/zork1). Compile with:
 <INSERT-FILE "GMACROS" T>
 <INSERT-FILE "GSYNTAX" T>
 
+";Filler words an LLM front end emits constantly. BUZZ makes the parser
+ ignore them rather than reject the whole command: 'grab THAT jar',
+ 'go to THE door', 'i WANT to go north'. Roughly two thirds of natural
+ language fails to parse (see walkthrough-wanderer-llm.txt); every word
+ absorbed here is a turn the player gets back."
+
+<BUZZ THAT THIS THESE THOSE MY YOUR SOME PLEASE JUST NOW OVER THERE
+      REALLY VERY QUITE RATHER ABOUT AROUND AT WELL OK OKAY LETS LET
+      I I'LL ILL IM I'M WANT TRY GUESS THINK MAYBE PERHAPS
+      WOW WHOA HEY UM UH SO ANYWAY AGAIN>
+
 "--- New verbs for Wonderland (spiked and proven before use) ---"
 
 <SYNTAX CRY = V-CRY>

@@ -115,6 +115,67 @@ changed a design decision.
   exactly two hits and never rolls, so the transcript is byte-stable. He
   kills only after three consecutive turns of not fighting, as designed.
 
+## Static audit triage (`tools/audit-game.mjs`)
+
+The audit reported 8 dead-end rooms and 1 unspeakable word. Triaged: **5 were
+real and are fixed**, 4 were false positives (3 dead-end, 1 unspeakable).
+
+**Fixed — the room named no direction at all, and a player could be stranded:**
+
+| Room | Exits | Added to the room text |
+|---|---|---|
+| Galley | up/out to the deck | "The companion goes back up to the deck." (both phases) |
+| The White Rock | north only | "The spit runs back north." |
+| Outside the Stockade | west, and in over the paling | "The woods are back west; the log-house is in, over the fence." |
+| Plateau of the Pines | down/east, west, north | "...the shoulder of the Spy-glass lies west, the black crag north, and the slope goes back down east." |
+| Below the Black Crag | south only | "The plateau of the pines is back south." |
+
+White Rock and Black Crag are the serious two: both are one-exit rooms reached
+at night, mid-escapade, by a player carrying the act's critical items.
+
+**Not fixed — false positives, with reasons:**
+
+- **Open Woods** and **Woods by the Shore** already named every exit, but as a
+  noun-then-direction list ("Paths go all ways: marsh south, a two-peaked hill
+  east...") which the checker's regex reads as scenery. I recast the lead-in
+  ("the marsh lies south", "The beach lies west") because it reads better aloud
+  anyway, and the checker now passes them. No exit was added or removed.
+- **Benbow Parlour** is a **tooling artifact, not a game bug.** The room text
+  has always ended "The road door is out; the bar is west; the stairs go up."
+  The audit stores the first description it sees per room (`entry.text ||= ...`)
+  and only recognises one when `lines[0] === room`. On turn zero the five-
+  paragraph intro precedes the room name, so the opening is filed as `said[]`
+  and the first *brief-mode revisit* ("There is a captain's odds and ends
+  here...") becomes the room's text. Proof: run the same audit against
+  `walkthrough-wanderer.txt`, whose player LOOKs in the parlour before leaving,
+  and it reports "ok - every room names a way out".
+- **"night"** comes from the intro's first sentence, "go back to the night it
+  all began". The DIRECTIVE regex reads `go ... to the <noun>` as travel
+  instruction; it is narrative framing. Adding NIGHT to the dictionary would
+  make the parser accept "go to night", which is worse than leaving it.
+
+## Act I countdown retune (from the wanderer test)
+
+The wanderer test found a real bug the walkthrough never could. Original clock:
+warnings at 8/14/19, death after 21 parsed turns, against a 13-turn heist. A
+lost-but-recovering player — one following the game's own hints — **died on the
+bridge one move from safety at turn 29.**
+
+Two changes:
+
+1. **Clock extended to 30 turns with a four-stage hint ladder** (6, 11, 16, 22,
+   final warning at 26). The hints now escalate from flavour to naming the
+   sea-chest *and* the key on the captain's neck, to naming the exact route out
+   ("out to the road, east to the bridge, and down under the arch").
+2. **The countdown stops threatening a player who has solved the act.** Once
+   `S-PACKET` is set and the player is clear of the inn and the road outside it,
+   the clock only hurries them along. Death remains for anyone still in the
+   house, or dawdling on the road, when the crew arrives — both cases still
+   tested and still fatal.
+
+Scores are unchanged (350/325); only the warning cadence moved, so the frozen
+transcripts were legitimately re-blessed.
+
 ## Known rough edges
 
 - `DIG` with no object asks *"What do you want to dig in?"*; `DIG SAND` or

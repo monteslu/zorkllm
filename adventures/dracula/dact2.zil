@@ -1021,7 +1021,7 @@ kindness to itself." CR>)>
 		<TELL
 "A pretty bedroom trying to stay one: the bed, the fireplace, and the
 window on the shrubbery, its latch bright with use. On the air,
-sometimes, a beating of wings.">
+sometimes, a beating of wings. The stair goes down.">
 		<COND (<IN? ,LUCY ,LUCYS-ROOM>
 		       <TELL CR>
 		       <LUCY-CONDITION>)>
@@ -1614,7 +1614,7 @@ turned in a generation -- except, plainly, lately." CR>
 "Dust lies inches deep, torn by hobnailed footprints, and cobwebs hang
 like old rags from the beams. On a table lies a great bunch of keys,
 every one with a time-yellowed label. The chapel is east, through a low
-arched door ribbed with iron." CR>
+arched door ribbed with iron; the way out is south." CR>
 		<RTRUE>)
 	       (T <ACT2-COMMON .RARG>)>>
 
@@ -2024,7 +2024,8 @@ CR>)>>
 Carfax. Eight great boxes stand about the floor. On the table: a bundle
 of title deeds, a clothes brush, and a jug and basin, the water in the
 basin reddened as if with blood, and a little heap of keys of all sorts
-and sizes. A window looks down into the mews." CR>
+and sizes. A window looks down into the mews. The way out is down the
+stairs." CR>
 		<RTRUE>)
 	       (<EQUAL? .RARG ,M-END>
 		<COND (<AND ,PICC-WAFERED <NOT <G? ,PICC-SCENE 0>>>

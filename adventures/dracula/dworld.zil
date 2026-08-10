@@ -66,8 +66,9 @@ with chains and massive bolts, and a stone stair winds upward into gloom.")
       (LOC ROOMS)
       (DESC "Winding Stair")
       (LDESC
-"Steps of worn stone circle upward, ringing under your feet. The draught
-carries the far howling of wolves.")
+"Steps of worn stone circle upward to the passage, and down to the hall,
+ringing under your feet. The draught carries the far howling of
+wolves.")
       (DOWN TO ENTRANCE-HALL)
       (UP TO UPPER-PASSAGE)
       (ACTION ACT1-STAIR-FCN)
@@ -460,8 +461,9 @@ a long time ago.")>
       (LOC ROOMS)
       (DESC "Circular Stair")
       (LDESC
-"A stone screw of a stair, lit only through loopholes, going steeply down
-into an odour you know before you can name it: old earth, newly turned.")
+"A stone screw of a stair, lit only through loopholes. It goes up to the
+Count's room, and steeply down into an odour you know before you can
+name it: old earth, newly turned.")
       (UP TO DRACULA-ROOM)
       (DOWN PER CSTAIR-DOWN)
       (ACTION CIRCULAR-STAIR-FCN)
@@ -1642,6 +1644,18 @@ making passes before Mina's closed eyes. There is nowhere to go. There
 is only news to wait for.")
       (ACTION VARNA-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
+
+"The chase names its ports constantly -- Varna, Galatz -- and the Varna
+room is even titled for one. A player who types the name the game keeps
+saying should get an answer, not 'you can't see any varna here'."
+
+<OBJECT PORT-G
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM VARNA GALATZ PORT ODESSUS HOTEL)
+	(ADJECTIVE BLACK)
+	(DESC "port")
+	(FLAGS NDESCBIT)
+	(ACTION PORT-G-FCN)>
 
 <OBJECT RIVER-MAP
 	(SYNONYM MAP MAPS)

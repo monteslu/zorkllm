@@ -39,6 +39,10 @@ plain non-ACTORBIT form is what the design's phrasings need."
 <SYNTAX THROW OBJECT (HELD CARRIED HAVE) AT OBJECT = V-THROW-AT>
 <SYNTAX THROW OBJECT (HELD CARRIED HAVE) OUT OBJECT = V-THROW-AT>
 
+;"X is the near-universal IF abbreviation for EXAMINE and the engine
+does not define it. A wandering player types it constantly."
+<SYNONYM EXAMINE X>
+
 <SYNTAX REMOVE OBJECT (HELD CARRIED) = V-DOFF>
 <SYNTAX TAKE OFF OBJECT (HELD CARRIED) = V-DOFF>
 <SYNONYM REMOVE DOFF>
@@ -117,7 +121,7 @@ nothing." CR>>
 	 <COND (<NOT <FSET? ,PRSO ,WEARBIT>>
 		<TELL "You are not wearing that." CR>)
 	       (T
-		<TELL "You take off " D ,PRSO "." CR>)>>
+		<TELL "You take off the " D ,PRSO "." CR>)>>
 
 <ROUTINE V-WRITE ()
 	 <TELL "There is nothing here worth setting down." CR>>

@@ -1,0 +1,88 @@
+# WONDERLAND - wanderer regression test (typed junk).
+#
+# A walkthrough proves the game is completable by somebody who already
+# knows the answer. This file proves something different and, for a
+# player, more important: that somebody who does NOT know the answer,
+# who pokes at the world with plausible-but-wrong commands, still gets
+# carried into the game rather than stranded at the entrance.
+#
+# Every line here is what a real player types before they have a model
+# of the world: wrong nouns, wrong verbs, sightseeing, and the four or
+# five things everybody tries in a text adventure (LOOK, INVENTORY,
+# EXAMINE ME, XYZZY). Roughly half do not parse.
+#
+# The bar this file sets, asserted by verify.mjs:
+#   - must reach the Hall of Doors, i.e. get down the rabbit-hole and
+#     through the passage without ever being told the right command
+#   - must never end the game
+#   - must never print a Zork-voiced default (see verify.mjs list)
+#
+# Wonderland should pass this more easily than its siblings: the design
+# is deliberately forgiving, no move is fatal, and the only genuinely
+# required action in Act 1 is going down a hole that the room now names.
+look
+examine me
+inventory
+xyzzy
+who am i
+hello
+talk to sister
+ask sister about book
+read book
+take book
+smell
+listen
+sing
+dance
+pray
+jump
+wait
+look at rabbit
+follow rabbit
+where did it go
+chase the rabbit
+north
+look
+examine hedge
+examine hole
+look in hole
+knock on hole
+enter hole
+open hole
+climb into the hole
+down
+look
+take jar
+examine jar
+read label
+eat marmalade
+look at shelves
+take shelf
+wait
+scream
+how far down is this
+wait
+look
+stand up
+brush myself off
+examine leaves
+search leaves
+look under leaves
+take stick
+north
+look
+where am i
+run
+north
+look
+examine table
+look under table
+examine key
+take key
+examine doors
+open doors
+unlock doors
+knock on doors
+count doors
+examine curtain
+look behind curtain

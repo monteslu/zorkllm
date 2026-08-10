@@ -137,6 +137,64 @@ if (expected !== null) {
   }
 }
 
+// ---------------------------------------------------------------------
+// Wanderer tests. The walkthrough proves the game is COMPLETABLE by
+// somebody who knows the answers; these prove it is SURVIVABLE by
+// somebody who does not. Both files are mostly input the parser
+// rejects, and a rejected parse ticks no clock (CLOCKER runs from
+// MAIN-LOOP under ,P-WON), so timed beats crawl. A game made of timed
+// set pieces has to hold up under that.
+
+async function wander(file, label) {
+  const path = join(here, file);
+  let text;
+  try {
+    text = await readFile(path, 'utf8');
+  } catch {
+    failures.push(`${label}: ${file} missing`);
+    return;
+  }
+  const cmds = text.split('\n').map((l) => l.trim())
+    .filter((l) => l && !l.startsWith('#'));
+  const s = await loadGame(STORY);
+  const lines = [await s.start()];
+  let ran = 0;
+  for (const c of cmds) {
+    if (s.ended) break;
+    lines.push(`> ${c}`);
+    lines.push(await s.send(c));
+    ran++;
+  }
+  const t = lines.join('\n');
+
+  if (ran !== cmds.length) {
+    failures.push(`${label}: game ended early (${ran}/${cmds.length} commands)`);
+  }
+  // Must actually get somewhere: down the hole and into the hall.
+  if (!/Hall of Doors/.test(t)) {
+    failures.push(`${label}: never reached the Hall of Doors - a confused player is stranded`);
+  }
+  // Zork's voice must never leak; in this game every refusal is bespoke.
+  for (const leak of ['You have lost your mind', 'What a concept',
+                      'reread the manual', "isn't notably helpful",
+                      'has no effect', 'A valiant attempt']) {
+    if (t.includes(leak)) failures.push(`${label}: Zork default leaked - "${leak}"`);
+  }
+  return t;
+}
+
+const wj = await wander('walkthrough-wanderer.txt', 'wanderer(typed)');
+const wl = await wander('walkthrough-wanderer-llm.txt', 'wanderer(llm)');
+
+// The LLM wanderer's specific regression: natural phrasing must not cost
+// the marmalade jar. It is +2 and the container the treacle puzzle needs,
+// and it used to be lost to three unparseable commands during the fall.
+if (wl && !/marmalade jar/i.test(wl.split('> inventory').pop() ?? '')) {
+  if (!/You take the jar as it drifts past/.test(wl)) {
+    failures.push('wanderer(llm): lost the marmalade jar to natural phrasing');
+  }
+}
+
 if (failures.length) {
   console.error('FAIL');
   for (const f of failures) console.error('  - ' + f);
@@ -144,4 +202,5 @@ if (failures.length) {
 }
 
 console.log(`PASS: ${executed} commands, 100/100, Quite Mad, Thank You.`);
+console.log('PASS: both wanderer tests reach the Hall of Doors.');
 process.exit(0);

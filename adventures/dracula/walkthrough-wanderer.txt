@@ -1,0 +1,158 @@
+# DRACULA - the wanderer regression test.
+#
+# The walkthrough proves the game is completable by someone who already
+# knows the answer. This file asks the opposite question: what happens to
+# a player who does NOT know, types junk and half-English, and relies on
+# LOOK and the room text to tell them what to do?
+#
+# Dracula is the hardest case in the batch, because Harker's escape is a
+# real puzzle sequence: the wall crawl needs boots off, the descent needs
+# the Szgany to have left, and the castle is deliberately opaque -- it is
+# survival horror and being trapped IS the act. So the bar here is NOT
+# "a wanderer escapes". The bar is:
+#
+#   1. A wanderer is never SILENTLY stuck. Every room they can reach
+#      tells them, on LOOK, where its exits are.
+#   2. The game never strands them in an unwinnable state without
+#      saying so -- if the way out has closed, the text says it closed.
+#   3. Junk input never crashes, never corrupts the act state, and never
+#      kills them without the warning the fair-death policy promises.
+#
+# NOTE on pacing, borrowed from Oz's finding and confirmed here: the
+# Z-machine clock advances only on a SUCCESSFUL parse. CLOCKER runs from
+# MAIN-LOOP under `,P-WON`, so a rejected command skips it and neither
+# M-BEG nor M-END fires. Most lines below are unparseable on purpose,
+# which means a wandering player experiences the castle's day/night
+# cycle at roughly a third of the rate the clean walkthrough suggests.
+# Act I's clock is driven by SLEEP rather than by turn count, so this is
+# safe here -- but it is exactly why the escape deadline must never be
+# a pure turn counter.
+#
+# Asserted by verify.mjs (--wanderer): must survive to the end of the
+# run, must never hit an unhandled parser crash, and every room entered
+# must name a way out.
+
+wtf am i doing here
+look
+where am i
+open the big door
+knock on door
+hello?
+north
+look
+who are you
+up
+look
+up
+look
+examine doors
+open doors
+west
+look
+talk to the count
+ask dracula about england
+ask dracula about the castle
+x card
+read card
+south
+look
+south
+look
+sleep
+look
+x bag
+open bag
+i
+take lamp
+north
+north
+west
+look
+read atlas
+x books
+east
+east
+down
+down
+look
+open door
+unlock door
+scream
+help
+up
+up
+up
+look
+look out window
+x window
+climb out window
+down
+west
+south
+south
+sleep
+look
+x glass
+i
+north
+north
+east
+push door
+push door
+push door
+east
+look
+x women
+show crucifix to women
+west
+up
+look
+remove boots
+climb out window
+look
+north
+look
+in
+look
+x gold
+take gold
+open corner door
+down
+look
+down
+look
+south
+look
+take shovel
+down
+look
+open box
+look
+up
+north
+north
+up
+up
+out
+south
+in
+down
+west
+south
+south
+sleep
+look
+sleep
+look
+north
+north
+east
+up
+look
+climb out window
+look
+climb down
+climb down
+climb down
+look
+score

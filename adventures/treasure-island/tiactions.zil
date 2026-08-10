@@ -152,23 +152,54 @@ seventeen men of the Hispaniola's did. The sea keeps no favourites." CR CR>
 	<COND (<NOT <EQUAL? ,ACT 1>> <RFALSE>)>
 	<SETG BENBOW-CLOCK <+ ,BENBOW-CLOCK 1>>
 	<COND (<EQUAL? ,HERE ,UNDER-BRIDGE> <RFALSE>)>
-	<COND (<EQUAL? ,BENBOW-CLOCK 8>
+	;"A player who has the packet and is already clear of the inn has
+	 solved this act; the clock stops threatening and only hurries them.
+	 Death here is reserved for someone still in the house (or dawdling
+	 on the road outside it) when the crew arrives."
+	<COND (<AND ,S-PACKET
+		    <NOT <EQUAL? ,HERE ,PARLOUR ,BAR ,CAPTAINS-ROOM>>
+		    <NOT <EQUAL? ,HERE ,COVE-ROAD>>
+		    <G? ,BENBOW-CLOCK 26>>
+	       <COND (<EQUAL? ,BENBOW-CLOCK 27>
+		      <TELL
+"Behind you the door of the Admiral Benbow goes down. Whatever happens
+now happens to the house, not to you - if you get under that arch." CR>
+		      <RTRUE>)>
+	       <RFALSE>)>
+	;"The escalation ladder. A player who cannot work out the opening
+	 must be TOLD, in stages, and with enough clock left to act on it:
+	 flavour, then the objective by name, then the route by name, then
+	 the exact command. Dying to a countdown you did not understand is
+	 the one failure this act must never produce."
+	<COND (<EQUAL? ,BENBOW-CLOCK 6>
 	       <TELL
 "Far off on the frozen road: tap - tap - tap. It stops. It starts
 again." CR>
 	       <RTRUE>)
-	      (<EQUAL? ,BENBOW-CLOCK 14>
+	      (<EQUAL? ,BENBOW-CLOCK 11>
 	       <TELL
-"The tapping again, nearer, and this time a low whistle answers it from
-the hill. Whatever Flint's crew wants, it is in that chest upstairs -
-and you have minutes, not hours." CR>
+"The tapping again, nearer, and a low whistle answers it from the hill.
+Whatever Flint's crew is coming for, it is in the captain's sea-chest,
+up the stairs - and the captain kept the key on a string round his own
+neck." CR>
 	       <RTRUE>)
-	      (<EQUAL? ,BENBOW-CLOCK 19>
+	      (<EQUAL? ,BENBOW-CLOCK 16>
+	       <TELL
+"Lights on the hill now, and more than one. Whatever is in that chest,
+take it and run: out to the road, east to the bridge, and down under
+the arch before they come." CR>
+	       <RTRUE>)
+	      (<EQUAL? ,BENBOW-CLOCK 22>
 	       <TELL
 "Feet on the road - many feet, running. Get out, get east, get under
-something." CR>
+something. Now." CR>
 	       <RTRUE>)
-	      (<G? ,BENBOW-CLOCK 21>
+	      (<EQUAL? ,BENBOW-CLOCK 26>
+	       <TELL
+"They are at the top of the road. If you are still in this house when
+they reach the door, you will not leave it." CR>
+	       <RTRUE>)
+	      (<G? ,BENBOW-CLOCK 29>
 	       <JIGS-UP
 "They come through the door of your father's inn like weather. The blind
 man's stick finds you before his crew does, and his hand is on your arm
@@ -974,12 +1005,14 @@ CR>)>
 	       <COND (,SEA-PHASE
 		      <TELL
 "The galley, ransacked: dishes down, lockers staved, and the cage in the
-corner standing open and empty. Silver has taken her ashore." CR>)
+corner standing open and empty. Silver has taken her ashore. The
+companion goes back up to the deck." CR>)
 		     (T
 		      <TELL
 "Silver's galley, clean as a new pin, dishes burnished and hanging, and
 Cap'n Flint the parrot in her cage in the corner, sidling and swearing.
-It smells of bacon and better days." CR>)>
+It smells of bacon and better days. The companion goes back up to the
+deck." CR>)>
 	       <RTRUE>)>
 	<RFALSE>>
 

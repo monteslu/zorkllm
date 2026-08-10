@@ -243,7 +243,7 @@ You push the button, and a silvery tinkle sounds somewhere inside. The great gat
 "Everyone in the Emerald City must wear spectacles night and day," he says. "If you did not, the brightness and the glory of the Emerald City would blind you. Even I sleep in mine."
 Arched Gate Room
 A high arched room whose walls glisten with countless emeralds. A little green man stands by a big green box, jingling a small key on a chain. The city is in through the inner gate; the country is out the other way.
-There is a green spectacles here.
+A pair of green spectacles lies ready on the lid of the box.
 > wear spectacles
 The Guardian finds a pair to fit you, and puts them over your eyes, and locks them on behind your head with the little key. Then a pair for the Scarecrow, and a pair for the Woodman, and a very large pair for the Lion, and a very small pair for Toto, who is not consulted.
 > north

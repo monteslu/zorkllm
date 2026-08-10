@@ -134,10 +134,104 @@ if (existsSync(FROZEN)) {
   console.log(`note: no ${FROZEN} yet - run with --write to freeze it`);
 }
 
+// ---------------------------------------------------------------------
+// 5. The wanderer test.
+//
+// The walkthrough above is written by whoever built the game, so passing
+// it only proves the game is completable by someone who already knows
+// the answer. This game scored 400/400 while a real player was stranded
+// on the Pharaon at turn three, having typed eight reasonable things and
+// found no way off the deck.
+//
+// walkthrough-wanderer.txt contains none of the intended solution. It
+// opens with that player's session verbatim and continues with junk,
+// scenery and unparseable input. It must still reach Marseilles - not
+// because the script knows the trick, but because the room now says
+// which way the quay is and every refusal names the job that is left.
+// ---------------------------------------------------------------------
+const WANDER = join(here, 'walkthrough-wanderer.txt');
+let wanderNote = '';
+
+if (existsSync(WANDER)) {
+  seed = 0x2dba7 >>> 0; // reset the RNG: each run must be deterministic
+  const wcmds = (await readFile(WANDER, 'utf8'))
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l && !l.startsWith('#'));
+
+  const w = await loadGame(STORY);
+  const wguard = setTimeout(() => {
+    console.error('[TIMEOUT: wanderer never came back to a prompt]');
+    process.exit(3);
+  }, 60000);
+
+  const wlines = [await w.start()];
+  let ashoreAt = -1;
+  let turns = 0;
+  for (const cmd of wcmds) {
+    if (w.ended) break;
+    wlines.push(`> ${cmd}`);
+    wlines.push(await w.send(cmd));
+    turns++;
+    if (ashoreAt < 0 && /Marseilles Quay/.test(wlines[wlines.length - 1])) {
+      ashoreAt = turns;
+    }
+  }
+  if (!w.ended) wlines.push(await w.send('score'));
+  clearTimeout(wguard);
+  const wtext = wlines.join('\n');
+
+  const rejected = (wtext.match(
+    /I don't know the word|There was no verb|isn't one I recognize|not clear what you|used the word/g,
+  ) || []).length;
+
+  if (ashoreAt < 0) {
+    failures.push(
+      `WANDERER STRANDED: never reached Marseilles Quay in ${turns} inputs ` +
+        `(${rejected} rejected by the parser). A player who does not guess ` +
+        'FURL SAILS must still get off the ship.',
+    );
+  } else if (turns - ashoreAt < 3) {
+    // Passing on the last input is a coincidence, not a test.
+    failures.push(
+      `wanderer reached Marseilles at input ${ashoreAt} of ${turns} — ` +
+        'fewer than 3 inputs of headroom. Lengthen the test.',
+    );
+  }
+
+  // The wanderer never furls anything on purpose, so it must not have
+  // been handed the docking point. If it has, the script has drifted
+  // into being a second walkthrough and stops testing what it is for.
+  const wscore = wtext.match(/Your score is (\d+) of/);
+  if (wscore && Number(wscore[1]) > 15) {
+    failures.push(
+      `wanderer scored ${wscore[1]}; it is meant to blunder, not to play. ` +
+        'Check the script has not acquired the intended solution.',
+    );
+  }
+  if (/\*\*\*\*  You have died  \*\*\*\*/.test(wtext)) {
+    failures.push('wanderer died; Act I is supposed to be deathless');
+  }
+
+  // Being told to go somewhere the parser cannot hear is the second half
+  // of the original bug, and it is worth asserting directly.
+  if (/Come to the counting-house/.test(wtext)
+      && /go to counting house[\s\S]{0,80}(isn't one I recognize|don't know the word)/i.test(wtext)) {
+    failures.push(
+      'Morrel directs the player to the counting-house in words the ' +
+        'parser rejects — the original unspeakable-destination bug.',
+    );
+  }
+
+  wanderNote = `, wanderer ashore at input ${ashoreAt}/${turns} (${rejected} rejected)`;
+}
+
 if (failures.length) {
   console.error('FAIL');
   for (const f of failures) console.error(`  - ${f}`);
   process.exit(1);
 }
 
-console.log(`PASS  400/400 in ${commands.length} commands, victory text intact`);
+console.log(
+  `PASS  400/400 in ${commands.length} commands, victory text intact${wanderNote}`,
+);

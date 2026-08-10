@@ -36,8 +36,8 @@ paid for with fourteen years, a sailor's jacket and hat.")
       (LDESC
 "Incense, cushions, and a silence from farther east than Greece.
 Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom
-you bought out of slavery and who looks at you as if you were the
-sun.")
+you bought out of slavery and who looks at you as if you were the sun.
+The salon is back through the curtain, south.")
       (SOUTH TO SALON)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -45,10 +45,11 @@ sun.")
       (IN ROOMS)
       (DESC "The Champs-Elysees")
       (LDESC
-"Carriages, gossip, and gaslight. From here the city is yours: the
-bank west, the press east, the Chamber of Peers southeast, the law
-courts south, the telegraph northwest, the Villefort house southwest.
-And, by coach, the quiet house at Auteuil.")
+"Carriages, gossip, and gaslight. From here the city is yours. The
+bank lies west and the press east; the Chamber of Peers southeast, the
+law courts south, the telegraph northwest, the Villefort house
+southwest. Your own house is north, and a coach at the kerb will take
+you in to Auteuil.")
       (NORTH TO SALON)
       (EAST TO PRESS)
       (SE PER STREET-SE)
@@ -66,7 +67,8 @@ And, by coach, the quiet house at Auteuil.")
       (DESC "Danglars's Bank - Antechamber")
       (LDESC
 "Marble bought with margins. Clerks scratch in ledgers; above the
-double doors, a gilt baron's crest that smells of fresh paint.")
+double doors, a gilt baron's crest that smells of fresh paint. The
+Baron's office is west, the street east.")
       (EAST TO STREET)
       (WEST TO BANKOFF)
       (FLAGS RLANDBIT ONBIT)>
@@ -76,8 +78,8 @@ double doors, a gilt baron's crest that smells of fresh paint.")
       (DESC "Danglars's Office")
       (LDESC
 "Baron Danglars fills his chair like a sack of coin. On the wall, a
-portrait of his wife he did not choose; on his desk, the only faith
-he keeps: the daily quotations.")
+portrait of his wife he did not choose; on his desk, the only faith he
+keeps: the daily quotations. The way out is east.")
       (EAST TO BANKHALL)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -86,8 +88,9 @@ he keeps: the daily quotations.")
       (DESC "Garden Below the Telegraph")
       (LDESC
 "A kitchen garden at the foot of an old tower crowned with black
-jointed arms. The keeper is on his knees among the peas, at war with
-the dormice, a man of a thousand francs a year.")
+jointed arms. A ladder climbs up into it; the street is southeast. The
+keeper is on his knees among the peas, at war with the dormice, a man
+of a thousand francs a year.")
       (SE TO STREET)
       (UP TO TELETOWER)
       (FLAGS RLANDBIT ONBIT)>
@@ -98,7 +101,8 @@ the dormice, a man of a thousand francs a year.")
       (LDESC
 "Up here the signal arms creak overhead like a gallows-tree of news.
 Through the glass you can see the next tower's semaphore twitching out
-the fortunes of France, one angle at a time.")
+the fortunes of France, one angle at a time. The ladder goes back
+down.")
       (DOWN TO TELEGARDEN)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -107,7 +111,8 @@ the fortunes of France, one angle at a time.")
       (DESC "Offices of l'Impartial")
       (LDESC
 "Ink-fog, proof sheets, and the guillotine-thump of the press below.
-Beauchamp the journalist can smell a story through wax seals.")
+Beauchamp the journalist can smell a story through wax seals. The
+street is west.")
       (WEST TO STREET)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -115,9 +120,9 @@ Beauchamp the journalist can smell a story through wax seals.")
       (IN ROOMS)
       (DESC "Gallery of the Chamber of Peers")
       (LDESC
-"Velvet benches above a floor of old men and older honors. Today the
-Count de Morcerf answers a question of history: what happened at
-Janina?")
+"Velvet benches above a floor of old men and older honors, and a
+staircase down to the street northwest. Today the Count de Morcerf
+answers a question of history: what happened at Janina?")
       (NW TO STREET)
       (ACTION PEERS-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -126,9 +131,10 @@ Janina?")
       (IN ROOMS)
       (DESC "The Court of Assizes")
       (LDESC
-"The great criminal court, packed to the cornices. Villefort
-prosecutes the prisoner Benedetto with his usual marble calm; the
-prisoner wears a curious smile, as if he alone knows the last line.")
+"The great criminal court, packed to the cornices, with the doors to
+the street behind you to the north. Villefort prosecutes the prisoner
+Benedetto with his usual marble calm; the prisoner wears a curious
+smile, as if he alone knows the last line.")
       (NORTH TO STREET)
       (ACTION ASSIZES-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -138,8 +144,9 @@ prisoner wears a curious smile, as if he alone knows the last line.")
       (DESC "The House at Auteuil - Salon")
       (LDESC
 "A pleasure-house with its shutters' eyes put out; you have had it lit
-and aired, and still the walls hold their breath. Bertuccio, your
-steward, will not look at the garden door.")
+and aired, and still the walls hold their breath. The garden lies east,
+and the coach out to Paris waits at the door. Bertuccio, your steward,
+will not look at the garden door.")
       (OUT PER AUT-OUT)
       (EXIT PER AUT-OUT)
       (WEST PER AUT-OUT)
@@ -151,8 +158,9 @@ steward, will not look at the garden door.")
       (IN ROOMS)
       (DESC "The Auteuil Garden")
       (LDESC
-"A walled garden gone half wild. One plantain tree stands over turned
-earth like a mourner who has forgotten whom he mourns.")
+"A walled garden gone half wild, with the salon back through the door
+west. One plantain tree stands over turned earth like a mourner who has
+forgotten whom he mourns.")
       (WEST TO AUTSALON)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -162,6 +170,7 @@ earth like a mourner who has forgotten whom he mourns.")
       (LDESC
 "The procureur's house in the Faubourg Saint-Honore: cold marble,
 hushed servants, and lately a smell of medicine on every landing.
+Noirtier's room is north, Valentine's east, and the street northeast.
 Death has been a frequent caller this season.")
       (NE TO STREET)
       (NORTH TO NOIRTIER-ROOM)
@@ -175,7 +184,7 @@ Death has been a frequent caller this season.")
       (LDESC
 "The old conventionist sits paralyzed in his great chair, alive only
 in his eyes; and his eyes are two loaded pistols. A dictionary and a
-bell-cord serve him for a voice.")
+bell-cord serve him for a voice. The hall is south.")
       (SOUTH TO VHALL)
       (ACTION NOIRTIER-ROOM-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -185,7 +194,8 @@ bell-cord serve him for a voice.")
       (DESC "Valentine's Room")
       (LDESC
 "White curtains, a glass of lemonade on the night table, and a girl
-growing paler by the week while her family calls it nerves.")
+growing paler by the week while her family calls it nerves. The hall
+is west.")
       (WEST TO VHALL)
       (FLAGS RLANDBIT ONBIT)>
 

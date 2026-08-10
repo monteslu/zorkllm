@@ -28,12 +28,12 @@ Taken.
 The string is tarred and tough, but the gully is the captain's own and knows its work. The key drops into your hand.
 
 You pocket the captain's gully too. A boy going where you are going wants a knife.
+Far off on the frozen road: tap - tap - tap. It stops. It starts again.
 > up
 Captain's Room
 The captain's room, smelling of tobacco and tar. His great sea-chest stands at the bed's foot where it has stood since the day he came, the initial B burned into the lid with a hot iron. The stairs go down.
 > unlock chest with key
 The lock is stiff, but the key turns and the lid throws back.
-Far off on the frozen road: tap - tap - tap. It stops. It starts again.
 > open chest
 Up goes the lid on a smell of tar and tobacco, and there on top, folded and brushed, a very good suit of clothes that has never been worn.
 > take clothes
@@ -41,6 +41,7 @@ You lift the clothes clear. Below them the chest is a jumble: a quadrant, a tin 
 Taken.
 > move gear
 You shift the whole rattling lot to one side. Under it lies an old boat-cloak, whitened with sea salt.
+The tapping again, nearer, and a low whistle answers it from the hill. Whatever Flint's crew is coming for, it is in the captain's sea-chest, up the stairs - and the captain kept the key on a string round his own neck.
 > move cloak
 You turn back the cloak, and there, the last things in the chest: a bundle sewn up in oilcloth, and a canvas bag that gives out, at a touch, the jingle of gold.
 > take packet
@@ -48,7 +49,6 @@ You have it: Flint's fist, sewn up in oilcloth, and heavier in the hand than pap
 > down
 Benbow Parlour
 There is a captain's odds and ends here.
-The tapping again, nearer, and this time a low whistle answers it from the hill. Whatever Flint's crew wants, it is in that chest upstairs - and you have minutes, not hours.
 > out
 The cold takes your breath. Somewhere east, down toward the bridge, the dell stream is running under a stone arch - which is the only roof in this parish that Pew's crew will not think to look under.
 Road by the Cove
@@ -57,6 +57,7 @@ The frosty road outside the inn. Fog is thinning off the cove and the moon is co
 Behind you, down the road, the tapping has stopped - which is worse than the tapping.
 Little Bridge
 A little stone bridge over the dell stream, barely tall enough for a dog to walk under. The road runs on toward the hamlet, but lights are bobbing on the hill behind you and they are not friendly ones. The bank drops down to the arch below.
+Lights on the hill now, and more than one. Whatever is in that chest, take it and run: out to the road, east to the bridge, and down under the arch before they come.
 > down
 Tap. Tap. Tap - and then a voice out of the dark, thin and cruel: "Down with the door!" The door of your father's inn goes down in four blows.
 Under the Bridge
@@ -110,7 +111,7 @@ Hispaniola, Deck
 The deck of the Hispaniola, two hundred tons, the sweetest schooner a boy ever stood on. Forward, the fore companion drops to the galley; aft, the companion goes down to the cabin. Amidships stands Long Tom, the brass nine, and beside it the apple barrel, broached for any hand with a fancy.
 > down
 Galley
-Silver's galley, clean as a new pin, dishes burnished and hanging, and Cap'n Flint the parrot in her cage in the corner, sidling and swearing. It smells of bacon and better days.
+Silver's galley, clean as a new pin, dishes burnished and hanging, and Cap'n Flint the parrot in her cage in the corner, sidling and swearing. It smells of bacon and better days. The companion goes back up to the deck.
 > take cheese
 Taken.
 The parrot says something that would curl a chaplain's wig.
@@ -161,7 +162,7 @@ The Marsh
 Willows, bulrushes, and outlandish swampy trees; the ground quakes and steams under the sun. Somewhere a duck gets up with a clatter, then a whole screaming cloud of them - something is moving on the far side of the fen. Higher ground lies north; the beach is south.
 > north
 Open Woods
-Live oaks growing low and twisted like brambles, scattered pines fifty and seventy feet high, and the Spy-glass trembling through the haze above everything. Paths go all ways: marsh south, a two-peaked hill east, a long slope rising west, sandy lowlands north, and the shore southeast.
+Live oaks growing low and twisted like brambles, scattered pines fifty and seventy feet high, and the Spy-glass trembling through the haze above everything. Paths go all ways: the marsh lies south, a two-peaked hill east, a long slope rising west, sandy lowlands north, and the shore southeast.
 > east
 A gravel spout rattles down off the shoulder above you, and something that is not a goat goes flitting between two pine trunks, quick and dark and bent double. Then it comes out into the open and drops on its knees in the sand with its hands held out.
 
@@ -174,10 +175,10 @@ He takes it in both hands the way another man would take a child, and capers on 
 "Now you listen, mate. Under the white rock, south down the spit, that's where Ben Gunn's boat lies - made with my two hands, mate, and Ben Gunn keeps her under a tent of goat-skins. And a word in your ear: him that digs under the tall pine will dig up pig-nuts. Ben Gunn has reasons of his own." He winks at you with his whole face. "I've a precious sight more confidence in a gen'leman born than in them gen'lemen of fortune, having been one myself."
 > south
 Woods by the Shore
-Fir and live-oak growing almost to the tide line. Through the trunks you can see the anchorage one way and white surf the other. Paths: beach west, the two-peaked hill north, a cleared knoll east where a British flag flies, and a long sandy spit south.
+Fir and live-oak growing almost to the tide line. Through the trunks you can see the anchorage one way and white surf the other. The beach lies west, the two-peaked hill north, a cleared knoll east where a British flag flies, and a long sandy spit south.
 > east
 Outside the Stockade
-A wide cleared slope around a knoll, stumps everywhere, and on the knoll a log-house behind a six-foot paling with never a door in it - you go over or you stay out. The Union Jack snaps overhead, which is the best thing you have seen all day.
+A wide cleared slope around a knoll, stumps everywhere, and on the knoll a log-house behind a six-foot paling with never a door in it - you go over, or you stay out. The Union Jack snaps overhead, which is the best thing you have seen all day. The woods are back west; the log-house is in, over the fence.
 > in
 You go over the paling and are hauled down the other side by the collar by a delighted Squire Trelawney. The garrison's story comes out in six lines: the jolly-boat run ashore under fire, the stores mostly lost, poor Redruth shot through and lying now under the Union Jack, and the doctor - who has been asking questions about a marooned man on this island in a tone you recognise.
 
@@ -213,7 +214,7 @@ Sandy Spit
 A low spit of dunes and scrub running south between the anchorage and the open sea, joined at half-water to Skeleton Island. The surf on the sea side never stops - you believe now that nowhere on this island is out of earshot of it. A tall rock, peculiarly white, shows above the brush to the south.
 > south
 The White Rock
-The white rock, taller than a man, over a small hollow of green turf hidden by banks and knee-deep underwood. Down in the hollow crouches a little tent of goat-skins, like what the gipsies carry about in England.
+The white rock, taller than a man, over a small hollow of green turf hidden by banks and knee-deep underwood. Down in the hollow crouches a little tent of goat-skins, like what the gipsies carry about in England. The spit runs back north.
 > open tent
 You lift the goat-skins. Under them, upside down on the turf, lies a boat - if you are feeling generous. It is a coracle: a lop-sided frame of tough wood with goat-skin stretched over it, hairy side in, and about big enough for one boy and his poor judgement. Beside it is an old spade, worn bright at the edge.
 > take coracle
@@ -332,10 +333,10 @@ Slope of the Plateau
 A long climb west: miry ground at the bottom, then broom and flowering shrubs, nutmeg thickets, and the red columns of great pines. The air turns fresh as you rise. The plateau levels off above; the woods are back east.
 > up
 Plateau of the Pines
-The open top of the plateau, big pines wide apart. At the foot of one, half swallowed in a green creeper, a human skeleton lies stretched on the ground - dead straight, feet one way, hands raised over its head the other way, like a diver frozen mid-plunge. Nothing about it is natural.
+The open top of the plateau, big pines wide apart. At the foot of one, half swallowed in a green creeper, a human skeleton lies stretched on the ground - dead straight, feet one way, hands raised over its head the other way, like a diver frozen mid-plunge. Nothing about it is natural. The shoulder of the Spy-glass lies west, the black crag north, and the slope goes back down east.
 > north
 Below the Black Crag
-A black crag rises off the north slope, and weather has beaten a face into it - brows, a broken nose, a mouth full of shadow, watching the sea. A long hummock of sand trends away east below it. Ten fathoms south of the crag... but that is the map's phrase, not yours.
+A black crag rises off the north slope, and weather has beaten a face into it - brows, a broken nose, a mouth full of shadow, watching the sea. A long hummock of sand trends away east below it. Ten fathoms south of the crag... but that is the map's phrase, not yours. The plateau of the pines is back south.
 > dig sand with spade
 Ten fathoms south of the crag with the face on it, on the trend of the east hummock, you put the spade in. Two feet down it rings on something that is not stone.
 > dig sand with spade

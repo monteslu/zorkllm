@@ -430,6 +430,93 @@ than a death message.
 
 ---
 
+## 3a. The walkthrough is the weakest test you will write
+
+A walkthrough is written by the person who built the game. It encodes the
+author's mental model and proves exactly one thing: *the game is completable by
+someone who already knows the answer.* Mine passed at 350/350 while Act I still
+contained a bug that killed a lost player one move from safety.
+
+Two checks find what it cannot.
+
+### 3a.1 The static audit, and how to triage it honestly
+
+`tools/audit-game.mjs` reads the game's own text and flags rooms whose
+description names no way out, plus places the game directs you to in words the
+parser rejects. It reported 9 findings for this game. **5 were real; 4 were
+false positives.** Both halves of that are the lesson.
+
+**Do not fix the checker's complaint — verify the player's experience.** For
+every finding my first move was to play into the room and read what actually
+prints. That is what separated the five genuine one-exit rooms (Galley, White
+Rock, Outside the Stockade, Plateau of the Pines, Black Crag — all of which
+genuinely stranded a player who typed LOOK) from the four that were fine.
+
+**And do not accept a finding just because a tool emitted it.** My opening room
+was flagged, and it was the finding I was told to fix first regardless. It was
+a tooling artifact: the audit keeps the *first* description per room and only
+recognises one when the room name is the first line, but on turn zero my
+five-paragraph intro precedes the room name, so the opening was discarded and a
+later brief-mode revisit was graded instead. The room has always named three
+exits. I proved it two ways — playing LOOK in it, and re-running the same audit
+against a walkthrough whose player LOOKs before leaving, which reports "ok -
+every room names a way out". Reporting that as fixed would have been a lie, and
+would have left the actual defect (an artifact affecting *every* game with an
+intro) undiagnosed for the next person.
+
+The narrow-check design deserves respect, though: an early version of that
+checker reported 141 findings for one game, which is the same as reporting
+none. Nine findings I could triage in twenty minutes is a usable tool.
+
+### 3a.2 The wanderer test is where the real bug was
+
+Two files, both of which must reach the next act without dying:
+
+- `walkthrough-wanderer.txt` — junk the parser mostly accepts: looking,
+  examining scenery, walking into dead-end rooms.
+- `walkthrough-wanderer-llm.txt` — what an LLM front end actually emits:
+  chat, questions, flailing natural language. Mine measured 47 inputs → 18
+  outright rejections.
+
+**The clock advances only on a successful parse.** `CLOCKER` runs from
+`MAIN-LOOP` under `,P-WON`; a rejected parse skips it, and neither `M-BEG` nor
+`M-END` fires. So natural-language play yields roughly one parsed command per
+three inputs and every timed beat runs at about a third of the apparent rate.
+
+That cuts both ways, and this is the part I had not thought through:
+
+- a player cannot die of a timer they are not advancing — good; but
+- **your hints are on the same starved clock.** A player who needs help waits
+  three times as long in wall-clock terms to receive it. Hints must therefore be
+  worth the wait when they finally land: name the object, name the place, name
+  the route. Flavour that merely raises tension is wasted at that rate.
+
+**What the test caught.** My Act I was a 22-turn countdown around a 13-turn
+heist. The typed wanderer — a lost player who *was* recovering, following the
+game's own escalating hints — died on the bridge at turn 29, one move from
+safety. The walkthrough could never have found this, because the walkthrough
+player never floundered.
+
+Two fixes, and the second is the transferable one:
+
+1. Extend the clock (22 → 30) and make the ladder actionable: name the chest
+   *and* the key on the captain's neck, then name the exact route out.
+2. **Stop threatening a player who has already solved the act.** Once the packet
+   is taken and the player is clear of the inn, the countdown only hurries them;
+   it no longer kills. Death stays for someone still in the house when the crew
+   arrives — which is the beat the timer exists to create.
+
+That second rule generalises: *a timer should punish failing to solve the
+puzzle, not failing to walk fast enough afterwards.* Check every countdown in
+your game for the window between "solved it" and "reached safety", and make that
+window unkillable.
+
+**Assert the wanderer does not win.** If it does, it has stopped being a
+forgiveness test and quietly become a second walkthrough. `verify.mjs` checks
+that it survives, reaches the next act, and does *not* trigger victory.
+
+---
+
 ## 4. Design-to-implementation friction
 
 `DESIGN.md` was unusually complete — 1,350 lines with per-puzzle solutions, a
