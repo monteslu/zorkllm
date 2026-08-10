@@ -174,6 +174,44 @@ should hold to a few rules, all of which come from the same principle -
   `STUDY.md`) into whatever produces the depiction, and check the output
   against it.
 
+## Cleaning a description for depiction
+
+Room prose is written for someone navigating, so it carries three things
+a depiction cannot use: exits ("the road runs on to the west"), non-visual
+detail ("and groaning"), and second person ("Munchkins bow to you"). A
+regex removes the clean cases and mangles the rest, because the useless
+clause is usually welded to a useful one inside a single sentence.
+
+`tools/scene-clean.mjs` does this with a model held to one rule: **it may
+only delete and rephrase.** Every content word in the output must already
+appear in the input, which is checked mechanically afterwards - any new
+word is reported as `introduced` rather than trusted. A cleanup step that
+can add things is precisely the failure this whole pipeline exists to
+prevent, so it is not enough to ask a model nicely; verify it.
+
+Worked examples, all three of which defeat a regex:
+
+    in   Yellow bricks run straight and true between dainty blue fences,
+         past round blue houses with domed roofs. Munchkins bow to you
+         from their fields. The road runs on to the west; a blue fence
+         borders a cornfield to the south.
+    out  Yellow bricks run straight and true between dainty blue fences,
+         past round blue houses with domed roofs. Munchkins bow from
+         their fields.
+
+    in   Beside a half-chopped tree stands a man made entirely of tin,
+         his axe lifted over his head, perfectly still. And groaning.
+         A little spring rises clear and cold among the trees. The
+         cottage lies back to the south.
+    out  Beside a half-chopped tree stands a man made entirely of tin,
+         his axe lifted over his head, perfectly still. A little spring
+         rises clear and cold among the trees.
+
+Note what survived: the fence and the cornfield are gone from the first
+because they were named only as directions, while the blue fences the
+road runs between stayed. The tin man stayed because the LDESC puts him
+there; his groaning did not, because it is a sound.
+
 ## Keying artifacts to rooms
 
 Room *names* are not unique - Zork has two rooms both called "Forest" -
