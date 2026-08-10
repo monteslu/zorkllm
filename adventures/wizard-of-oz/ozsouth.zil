@@ -1039,6 +1039,9 @@ head is stuffed with straw, you know.\"" CR>
 		<COND (<AND <==? ,STORM-PHASE 0> <IN? ,TOTO ,FARMHOUSE>>
 		       <TELL "Toto is under the bed, with only his nose
 showing." CR>)
+		      (,TOTO-FELL
+		       <TELL "Toto hangs in the open trap door with his ears
+streaming, held up by the wind, looking at you." CR>)
 		      (T <TELL "Toto is here, being a dog about it." CR>)>
 		<RTRUE>)>>
 

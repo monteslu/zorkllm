@@ -149,11 +149,84 @@ if (existsSync(frozen)) {
   }
 }
 
+// ---------------------------------------------------------------------
+// The wanderer: a player who never guesses the intended opening must
+// still reach Oz. Regression guard for the stranded-in-Kansas bug.
+// ---------------------------------------------------------------------
+const wanderFile = join(here, 'walkthrough-wanderer.txt');
+let wanderTurns = 0;
+if (existsSync(wanderFile)) {
+  seed = 0x2dba7 >>> 0; // reset the RNG so this run is deterministic too
+  const wcmds = (await readFile(wanderFile, 'utf8'))
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l && !l.startsWith('#'));
+
+  const w = await loadGame(story);
+  const wt = setTimeout(() => {
+    console.error('FAIL: wanderer timed out waiting for an input prompt');
+    process.exit(3);
+  }, 60000);
+
+  const wlines = [await w.start()];
+  let reachedAt = -1;
+  for (const cmd of wcmds) {
+    if (w.ended) break;
+    wlines.push(`> ${cmd}`);
+    wlines.push(await w.send(cmd));
+    wanderTurns++;
+    if (reachedAt < 0 && /Munchkin Clearing/.test(wlines[wlines.length - 1])) {
+      reachedAt = wanderTurns;
+    }
+  }
+  if (!w.ended) {
+    wlines.push(await w.send('score'));
+  }
+  clearTimeout(wt);
+  const wtext = wlines.join('\n');
+
+  if (reachedAt < 0) {
+    problems.push(
+      'WANDERER STRANDED: a player who never types the intended opening ' +
+        `never reached Munchkin Clearing in ${wanderTurns} commands. ` +
+        'The prologue must advance on its own.'
+    );
+  }
+  // The wanderer must not be handed the scored deed for free.
+  const wscore = [...wtext.matchAll(/Your score is (-?\d+) of a possible/g)];
+  if (wscore.length) {
+    const got = Number(wscore[wscore.length - 1][1]);
+    if (got !== 0) {
+      problems.push(
+        `wanderer scored ${got}; the auto-advancing prologue must award ` +
+          'nothing (closing the trap door yourself is what earns the 5).'
+      );
+    }
+  }
+  if (/You have died|\*\*\*\s*You have/.test(wtext)) {
+    problems.push('wanderer reached an ending; the prologue must not kill or win');
+  }
+  // A player doing it properly must see no nudges: the storm-escalation
+  // lines must be absent from the scored walkthrough above.
+  for (const nudge of [
+    'the wind gives a long low wail',
+    'Toto scratches at the door',
+    'Your eyes keep closing by themselves',
+  ]) {
+    if (transcript.includes(nudge)) {
+      problems.push(`nudge leaked into the scored path: "${nudge}"`);
+    }
+  }
+}
+
 if (problems.length) {
   console.error('FAIL:');
   for (const p of problems) console.error(`  - ${p}`);
   process.exit(1);
 }
 
-console.log(`PASS: THE SILVER SHOES, ${used} commands, 250/250, home to Kansas.`);
+console.log(
+  `PASS: THE SILVER SHOES, ${used} commands, 250/250, home to Kansas.` +
+    (wanderTurns ? ` Wanderer reaches Oz in ${wanderTurns} commands, scoring 0.` : '')
+);
 process.exit(0);

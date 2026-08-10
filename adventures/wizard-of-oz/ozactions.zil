@@ -6,10 +6,9 @@ Globals, the companion system, scoring, engine stubs, and Acts I-II."
 <GLOBAL SCORE-MAX 250>
 
 <GLOBAL ACT 1>
-<GLOBAL STORM-PHASE 0>      ;"0 kansas, 1 flying, 2 landed"
+<GLOBAL STORM-PHASE 0>      ;"0 kansas, 1 flying, 2 landed, 3 out of the house (prologue over)"
 <GLOBAL TOTO-SAVED 0>       ;"bit 1 = grabbed, bit 2 = trapdoor closed"
 <GLOBAL TOTO-FELL <>>
-<GLOBAL FLIGHT-BEAT <>>
 <GLOBAL TOTO-GONE <>>
 <GLOBAL FEET-TURNS 0>
 <GLOBAL WITCH-N-GONE <>>
@@ -196,6 +195,13 @@ limping.">>
 "Toto sits down suddenly and scratches his ear as though it were work.">>
 
 <ROUTINE I-OZ ("AUX" N)
+	 ;"The prologue drives itself from here, and returns early, so it
+	  cannot perturb banter timing on the scored path: STORM-PHASE goes
+	  to 3 the moment Dorothy is out of the house, and this whole
+	  branch is dead for the rest of the game."
+	 <COND (<AND <L? ,STORM-PHASE 3> <==? ,HERE ,FARMHOUSE>>
+		<PROLOGUE-TICK>
+		<RTRUE>)>
 	 ;"Follow: move IN-PARTY companions to HERE, silently."
 	 <COND (<AND <==? ,SCARE-STATE 1> <NOT <IN? ,SCARECROW ,HERE>>>
 		<MOVE ,SCARECROW ,HERE>)>
@@ -660,25 +666,98 @@ wind, and the floor tips. The house whirls around two or three times and
 rises slowly through the air, like a balloon." CR CR
 "This is the strangest thing that has ever happened to you. You decide,
 sensibly, to wait and see what happens next." CR>
-	 <FCLEAR ,TRAP-DOOR ,OPENBIT>
 	 <FSET ,TRAP-DOOR ,OPENBIT>
-	 <ENABLE <QUEUE I-FLIGHT 2>>
+	 <SETG FLIGHT-TURNS 0>
 	 <RTRUE>>
 
-<ROUTINE I-FLIGHT ()
-	 <COND (<N==? ,STORM-PHASE 1> <RFALSE>)>
-	 <COND (,TOTO-FELL
-		;"Toto still hanging: the game will not lose him."
-		<SETG TOTO-FELL <>>
-		<MOVE ,TOTO ,WINNER>
+"=== The prologue clock ======================================
+Baum's cyclone is not optional: Uncle Henry sees it coming, Aunt Em goes
+down the ladder, and the house goes up with Dorothy still in it. So the
+storm arrives on its own schedule whatever the player does, and
+exhaustion eventually puts her on the bed, exactly as in the book
+(\"she lay down upon her bed\").
+
+The scored sequence is untouched and still the best one: GET TOTO starts
+the cyclone early and scores nothing by itself; CLOSE TRAP DOOR on the
+hanging-Toto beat is worth 5. A player who does both sees no nudges at
+all, because every nudge below is gated on the player NOT having acted.
+
+Driven from the permanent I-OZ demon rather than a self-requeueing
+QUEUE. Both work (see LESSONS.md 3.7), but one counter with no guard
+clause above it cannot develop an unreachable branch, which is the bug
+class that stranded players here in the first place."
+
+<GLOBAL KANSAS-TURNS 0>
+<GLOBAL FLIGHT-TURNS 0>
+
+<GLOBAL LANDED-TURNS 0>
+
+<ROUTINE PROLOGUE-TICK ()
+	 <COND (<==? ,STORM-PHASE 0> <KANSAS-TICK>)
+	       (<==? ,STORM-PHASE 1> <FLIGHT-TICK>)
+	       (T <LANDED-TICK>)>>
+
+"After the landing, Toto is at the door barking to be let out and there
+is a green country outside. A player who does not think of OUT gets
+Toto's opinion, then Toto's decision."
+
+<ROUTINE LANDED-TICK ()
+	 <SETG LANDED-TURNS <+ ,LANDED-TURNS 1>>
+	 <COND (<==? ,LANDED-TURNS 2>
 		<TELL CR
-"You crawl to the hole and get Toto by the ear and haul him back in, and
-you both sit down hard on the floor. Nothing about this seems to worry
-him." CR>
+"Toto scratches at the door and looks back at you over his shoulder." CR>
 		<RTRUE>)
-	       (,FLIGHT-BEAT <RFALSE>)
-	       (<AND <IN? ,TOTO ,WINNER> <FSET? ,TRAP-DOOR ,OPENBIT>>
-		<SETG FLIGHT-BEAT T>
+	       (<==? ,LANDED-TURNS 4>
+		<TELL CR
+"Through the doorway the light is a green you have no word for, and Toto
+is barking at it steadily." CR>
+		<RTRUE>)
+	       (<G? ,LANDED-TURNS 5>
+		<TELL CR
+"Toto gets the door open with his nose and is gone into the green, and
+of course you go after him." CR CR>
+		<MOVE ,WINNER ,CLEARING>
+		<SETG HERE ,CLEARING>
+		<SETG STORM-PHASE 3>
+		<V-LOOK>
+		<RTRUE>)>
+	 <RFALSE>>
+
+<ROUTINE KANSAS-TICK ()
+	 <SETG KANSAS-TURNS <+ ,KANSAS-TURNS 1>>
+	 <COND (<==? ,KANSAS-TURNS 2>
+		<TELL CR
+"Away to the north the wind gives a long low wail, and the grass bends
+flat in a wave that runs all the way to the edge of the sky." CR>
+		<RTRUE>)
+	       (<==? ,KANSAS-TURNS 3>
+		<TELL CR
+"\"Dorothy!\" comes Aunt Em's voice, small and far down under the floor.
+\"Run for the cellar!\" Toto has not come out from under the bed." CR>
+		<RTRUE>)
+	       (<==? ,KANSAS-TURNS 4>
+		<TELL CR
+"The whistling from the south is very loud now, and the house shakes so
+hard it is difficult to stand." CR>
+		<RTRUE>)
+	       (<G? ,KANSAS-TURNS 5>
+		;"The storm does not wait to be invited."
+		<COND (<IN? ,TOTO ,FARMHOUSE>
+		       <TELL CR
+"You make a grab for Toto and he bolts, and you go after him under the
+bed, and that is where you both are when it happens." CR>
+		       <MOVE ,TOTO ,WINNER>)>
+		<START-CYCLONE>
+		<RTRUE>)>
+	 <RFALSE>>
+
+<ROUTINE FLIGHT-TICK ()
+	 <SETG FLIGHT-TURNS <+ ,FLIGHT-TURNS 1>>
+	 ;"Beat 1: Toto goes through the open trap door. Only possible if
+	  the player is holding him and has not shut it."
+	 <COND (<AND <==? ,FLIGHT-TURNS 2>
+		     <IN? ,TOTO ,WINNER>
+		     <FSET? ,TRAP-DOOR ,OPENBIT>>
 		<SETG TOTO-FELL T>
 		<MOVE ,TOTO ,FARMHOUSE>
 		<TELL CR
@@ -686,15 +765,43 @@ him." CR>
 through the open trap door. Then, because the air pressure in a cyclone
 is a strange thing, he does not fall: he hangs there in the hole with his
 ears streaming, looking up at you, very surprised." CR>
-		<ENABLE <QUEUE I-FLIGHT 4>>
 		<RTRUE>)
-	       (T
-		<SETG FLIGHT-BEAT T>
+	       (<AND <==? ,FLIGHT-TURNS 2> <IN? ,TOTO ,FARMHOUSE>>
 		<TELL CR
 "Toto creeps out from under the bed, thinks the whole business over, and
 sits down beside you with his chin on your shoe." CR>
 		<MOVE ,TOTO ,WINNER>
-		<RTRUE>)>>
+		<RTRUE>)>
+	 ;"Toto hangs there until somebody gets him. After a few turns the
+	  game does it for you: he is never lost, only unscored."
+	 <COND (<AND ,TOTO-FELL <G? ,FLIGHT-TURNS 5>>
+		<SETG TOTO-FELL <>>
+		<MOVE ,TOTO ,WINNER>
+		<TELL CR
+"You cannot leave him hanging there. You crawl to the hole and get Toto
+by the ear and haul him back in, and you both sit down hard on the
+floor. Nothing about this seems to worry him." CR>
+		<RTRUE>)>
+	 ;"Nudges toward the trap door, then sleep, then sleep regardless."
+	 <COND (<AND <==? ,FLIGHT-TURNS 4> <FSET? ,TRAP-DOOR ,OPENBIT>>
+		<TELL CR
+"The open trap door whistles horribly, and the wind comes up through it
+cold enough to hurt." CR>
+		<RTRUE>)
+	       (<==? ,FLIGHT-TURNS 6>
+		<TELL CR
+"Hour after hour, and nothing to see but gray cloud. Toto is asleep. The
+bed is right there, and you are more tired than you have ever been." CR>
+		<RTRUE>)
+	       (<==? ,FLIGHT-TURNS 8>
+		<TELL CR
+"Your eyes keep closing by themselves." CR>
+		<RTRUE>)
+	       (<G? ,FLIGHT-TURNS 9>
+		;"Book-true: she lay down upon her bed and fell asleep."
+		<LAND-HOUSE>
+		<RTRUE>)>
+	 <RFALSE>>
 
 <ROUTINE DO-TOTO-RESCUE ()
 	 <SETG TOTO-FELL <>>
@@ -757,7 +864,7 @@ ten steps." CR>
 	       (<==? ,STORM-PHASE 1>
 		<TELL "Out of a flying house? Certainly not." CR>
 		<RFALSE>)
-	       (T ,CLEARING)>>
+	       (T <SETG STORM-PHASE 3> ,CLEARING)>>
 
 <ROUTINE V-SLEEP ()
 	 <COND (<AND <==? ,HERE ,FARMHOUSE> <==? ,STORM-PHASE 1>>

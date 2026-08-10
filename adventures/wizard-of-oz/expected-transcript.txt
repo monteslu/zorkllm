@@ -32,7 +32,6 @@ You get the trap door shut, and the awful whistling under the floor stops. Toto 
 Hours of it, and the howling, and the rocking, and at last you give up being frightened and go to sleep on the bed with Toto in your arms.
 
 A shock wakes you: the house has come down with a thump, on ground, in sunlight. Toto is at the door barking to be let out.
-Toto sits down suddenly and scratches his ear as though it were work.
 > out
 Three little men in blue and a little old woman in white are waiting for you, and they bow very low. "You are welcome, most noble Sorceress, to the land of the Munchkins," says the old woman. "You have killed the Wicked Witch of the East, and set our people free."
 
@@ -43,6 +42,7 @@ The house sits crookedly on a green lawn beside a sparkling brook, with fruit tr
 Time passes...
 
 "She was so old," says the Witch of the North comfortably, "that she dried up quickly in the sun." And so she has: the feet are gone, and where they were, on the grass, sit the silver shoes.
+Toto sits down suddenly and scratches his ear as though it were work.
 > take shoes
 You pick up the silver shoes. They are lighter than they look, and the toes turn up.
 > wear shoes
@@ -51,7 +51,6 @@ You put your old worn-out shoes in the basket and the silver ones on your feet. 
 The Witch of the North comes and kisses you gently on the forehead, and where her lips touch there is a round shining mark. "No one will dare injure a person who has been kissed by the Witch of the North," she says.
 
 "The road to the City of Emeralds is paved with yellow brick," she tells you, "and you cannot miss it. When you get to Oz, do not be afraid of him, but tell him your story and ask him to help you." Then she turns about on her left heel three times and is gone, and the three Munchkins bow to the ground and walk off among the trees.
-Toto barks at nothing, twice, and looks pleased.
 > west
 Road Of Yellow Brick
 Yellow bricks run straight and true between dainty blue fences, past round blue houses with domed roofs. Munchkins bow to you from their fields. The road runs on to the west; a blue fence borders a cornfield to the south.
@@ -60,6 +59,7 @@ In the middle of the field a scarecrow in a pointed blue hat hangs on a pole, ab
 Cornfield
 Ripe corn stretches away beyond a blue fence. The road lies back to the north.
 A scarecrow hangs on a pole above the corn, in faded blue and a pointed hat.
+Toto barks at nothing, twice, and looks pleased.
 > lift scarecrow
 You take hold of him under the arms and lift him off the pole; being stuffed with straw, he is quite light. He shakes himself out, stretches, and yawns.
 
@@ -82,13 +82,13 @@ Taken.
 Forest Spring
 Beside a half-chopped tree stands a man made entirely of tin, his axe lifted over his head, perfectly still. And groaning.
 A little spring rises clear and cold among the trees. The cottage lies back to the south.
-Toto pushes his nose into your hand.
 > oil woodman
 You oil the jaws first, and the Scarecrow takes the tin head and works it gently from side to side until it moves freely. "That is a great comfort," says the Tin Woodman. "I have been holding that axe in the air ever since I rusted, and I am glad to be able to put it down."
 
 You oil the neck, and the arms, and the legs, and he bends and sighs at every joint. Then he lowers the axe at last and leans it against the tree. "I might have stood there always if you had not come along," he says. "You have certainly saved my life. Do you think Oz could give me a heart?"
 
 "Keep the oil-can in your basket," he adds, "in case I am caught in the rain."
+"What makes you a coward?" asks the Scarecrow. "It's a mystery," says the Lion. "I suppose I was born that way."
 > south
 Log Cottage
 A snug cottage of logs and branches with a bed of dried leaves in one corner. The forest road is back to the south, and among the trees to the north you can hear water running.
@@ -122,13 +122,13 @@ You oil the Woodman's jaws, working them gently until they come free.
 "This will serve me a lesson," says the Woodman, finishing his sentence at last, "to look where I step. For if I should kill another bug or beetle I should surely cry again, and crying rusts my jaws so that I cannot speak."
 
 After that he walks along with his eyes on the road, and steps over everything, and is very happy.
-"If your heads were stuffed with straw like mine," says the Scarecrow, "you would probably all live in beautiful places, and then Kansas would have no people at all."
 > ride lion
 "I think I could jump over it," says the Lion, measuring the distance with his eye. "One at a time. Who's first?"
 
 The Scarecrow goes first, and calls back that it was nothing at all. Then the Woodman, heavy as a stove, and the Lion's back legs shake when he lands. Then you, with Toto in your arms and your eyes shut. "Why don't you run and jump?" the Scarecrow asks him afterward. "That isn't the way we Lions do these things," says the Lion, panting, and lies down to rest.
 Gloomy Wood
 The trees crowd close and dark, and strange heavy footfalls circle you just out of sight. The gorge you leapt is behind you to the east; the road struggles on west.
+Toto pushes his nose into your hand.
 > west
 Second Gorge
 This gulf is far too broad for any leap. One great tree stands right at the edge, tall enough to reach the other side, if only it were lying down. The gloomy wood is back east.
@@ -179,17 +179,17 @@ Deadly Poppy Field
 Scarlet poppies crowd so thick and bright they dazzle the eyes, and their spicy scent makes the whole world feel like a warm bed. Green grass shows far to the north.
 
 You yawn, hugely, and are surprised at yourself.
-"Tol-de-ri-de-oh!" sings the Scarecrow, at every step.
-> north
-You walk north through the flowers, which go on and on, and the scent goes with you.
-
-Toto lies down in the flowers and does not get up. The Woodman picks him up and carries him without a word. Your own eyes are very heavy.
 "Tol-de-ri-de-oh!" The Lion has begun to hum along, badly.
 > north
 You walk north through the flowers, which go on and on, and the scent goes with you.
 
-"Run!" says the Scarecrow to the Lion. "Run as fast as you can, and get out of this deadly flower bed. We will carry the little girl, but if you fall asleep you are too big to be carried." The Lion runs, and is out of sight in a moment. The poppies are so soft.
+Toto lies down in the flowers and does not get up. The Woodman picks him up and carries him without a word. Your own eyes are very heavy.
 "Tol-de-ri-de-oh!" sings the Scarecrow, at every step.
+> north
+You walk north through the flowers, which go on and on, and the scent goes with you.
+
+"Run!" says the Scarecrow to the Lion. "Run as fast as you can, and get out of this deadly flower bed. We will carry the little girl, but if you fall asleep you are too big to be carried." The Lion runs, and is out of sight in a moment. The poppies are so soft.
+"Tol-de-ri-de-oh!" The Lion has begun to hum along, badly.
 > north
 You walk north through the flowers, which go on and on, and the scent goes with you.
 
@@ -203,10 +203,10 @@ Green Bank
 A little way back, the Lion lies in the flowers, fast asleep and much too heavy to carry.
 Fresh sweet grass beyond the last of the poppies. The road of yellow brick shows again to the east, running through green country.
 Toto is here, being a dog about it.
-"Tol-de-ri-de-oh!" The Lion has begun to hum along, badly.
+"Tol-de-ri-de-oh!" sings the Scarecrow, at every step.
 > wait
 Time passes...
-"Tol-de-ri-de-oh!" sings the Scarecrow, at every step.
+"Tol-de-ri-de-oh!" The Lion has begun to hum along, badly.
 > wait
 Time passes...
 
@@ -231,10 +231,10 @@ There is nothing you can do for that just now.
 A green-faced farmer straightens up from his fence to watch you go by. "Everything in the Emerald City is green," he calls, "and Oz himself is a Great Wizard, and can take on any form he wishes. But nobody has ever seen him, and I have lived here all my life."
 Green Country Road
 The road of yellow brick again, smooth and well paved, running east between green fences and green farmhouses. A farmer's family watches you pass. Mostly they watch the Lion.
-Toto chases a butterfly and loses.
 > east
 Before The Gate
 A wall of green stone, high and thick, and in it a great gate studded with emeralds that burn in the sun. Beside the gate is a button for a bell.
+Toto chases a butterfly and loses.
 > push button
 You push the button, and a silvery tinkle sounds somewhere inside. The great gate swings slowly open, and a little man about your own size, clothed all in green with a green skin, is standing in it.
 > in
@@ -263,7 +263,6 @@ You sleep in green silk, and in the morning the soldier knocks. "Oz will see you
 > down
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
-"I shall ask for courage," says the Lion. "You could ask for a smaller appetite," says the Scarecrow, and everyone considers this.
 > north
 In the middle of the room, on the marble throne, there is an enormous Head, without a body to support it or any arms or legs at all. There is no hair upon this head, but it has eyes and a nose and a mouth, and is much bigger than the head of the biggest giant.
 
@@ -288,13 +287,14 @@ The eyes look at you a long time. Then: "What do you wish me to do?" And when yo
 "But I cannot!" you say.
 
 "That is my answer, and until the Wicked Witch dies you will not see your uncle and aunt again. Now go, and do not ask me again until you have earned your wish." The great Head says nothing more, whatever you say to it, and at last you go out.
+"I shall ask for courage," says the Lion. "You could ask for a smaller appetite," says the Scarecrow, and everyone considers this.
 > south
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
-Toto sits down suddenly and scratches his ear as though it were work.
 > up
 Green Chamber
 The sweetest little room in the world: green silk sheets, a fountain that sprays green perfume, and a shelf of little green books full of queer pictures. Stairs lead down.
+Toto sits down suddenly and scratches his ear as though it were work.
 > sleep
 In the morning the soldier fetches the Scarecrow, and you wait, and at last he comes back looking thoughtful.
 
@@ -317,10 +317,10 @@ A soldier with a long green beard guards the palace door, and a big room with gr
 > south
 Emerald City Street
 Green marble houses, green glass windows, green sky, green everything; children with green skins buy green lemonade with green pennies. It is either the most beautiful city in the world or the best pair of spectacles. The palace lies north, the gate room south, and a great plaza opens east.
-The Lion looks behind himself, casually, for the fourth time this minute.
 > south
 Arched Gate Room
 A high arched room whose walls glisten with countless emeralds. A little green man stands by a big green box, jingling a small key on a chain. The city is in through the inner gate; the country is out the other way.
+The Lion looks behind himself, casually, for the fourth time this minute.
 > out
 Before The Gate
 The great gate stands open.
@@ -528,19 +528,19 @@ Foot Of A Tall Tree
 High in its branches hangs a small bundle of blue clothes and a pointed hat.
 One tree stands taller than all the rest, its trunk too smooth to climb. The rocky plain is back south.
 There is a bundle of blue clothes here.
-Toto barks at nothing, twice, and looks pleased.
 > chop tree
 The Tin Woodman sets to work with his gold-handled axe, and the tall tree comes down with a crash, and the bundle of clothes falls out of the branches and rolls to your feet.
-Toto pushes his nose into your hand.
+Toto barks at nothing, twice, and looks pleased.
 > take clothes
 Taken.
+Toto pushes his nose into your hand.
 > south
 Rocky Plain
 A country thickly covered with sharp rocks, west of the castle. One tree, far to the north, stands taller than all the rest.
-"Do you think Oz could give me a heart?" asks the Woodman. "As easily as he could give me brains," says the Scarecrow, who has never met him.
 > east
 Castle Hall
 A long hall hung with yellow banners. The kitchen is south, the courtyard east, and a narrow stair climbs up under the roof.
+"Do you think Oz could give me a heart?" asks the Woodman. "As easily as he could give me brains," says the Scarecrow, who has never met him.
 > east
 Castle Courtyard
 A small yard closed in by a high iron fence, with a pile of clean straw in one corner. The hall is back west.
@@ -557,13 +557,13 @@ The Winkies beg you all to stay, and when you will not, they load you with prese
 Then you set out east across the yellow country to find the Emerald City again.
 Endless Yellow Fields
 Buttercups and daisies in every direction, and no road, and no shadow to say which way is east.
-"Brains are the only thing worth having," says the Scarecrow. "I did not say that," says the Woodman. "No," says the Scarecrow, "you would not."
 > blow whistle
 You blow the little whistle, and in a minute you hear the pattering of small feet, and here is the Queen of the Field Mice with hundreds of her people.
 
 "I cannot guide you," she says, when she has heard. "You have had the Emerald City at your backs this whole time, which is a thing that happens to everybody." Then she notices the Cap. "But why don't you use the charm of the Cap, and call the Winged Monkeys? They will carry you to the City in less than an hour."
 
 "I did not know there was a charm," you say, and she tells you it is written inside the lining. Then the mice run away in every direction at once, because the Monkeys think it great fun to plague them.
+"Brains are the only thing worth having," says the Scarecrow. "I did not say that," says the Woodman. "No," says the Scarecrow, "you would not."
 > say eppe
 (standing on your left foot) "Ep-pe, pep-pe, kak-ke!"
 > say hillo
@@ -597,10 +597,10 @@ The Guardian finds a pair to fit you, and puts them over your eyes, and locks th
 > north
 Emerald City Street
 Green marble houses, green glass windows, green sky, green everything; children with green skins buy green lemonade with green pennies. It is either the most beautiful city in the world or the best pair of spectacles. The palace lies north, the gate room south, and a great plaza opens east.
-"What makes you a coward?" asks the Scarecrow. "It's a mystery," says the Lion. "I suppose I was born that way."
 > north
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
+"If your heads were stuffed with straw like mine," says the Scarecrow, "you would probably all live in beautiful places, and then Kansas would have no people at all."
 > up
 Green Chamber
 The sweetest little room in the world: green silk sheets, a fountain that sprays green perfume, and a shelf of little green books full of queer pictures. Stairs lead down.
@@ -633,7 +633,6 @@ And behind it, blinking, stands a little old man with a bald head and a wrinkled
 The Tin Woodman raises his axe. "Who are you?"
 
 "I am Oz, the Great and Terrible," says the little man, in a trembling voice, "but don't strike me, please don't, and I'll do anything you want me to."
-The Woodman steps carefully over an ant, and looks proud of it.
 > ask oz about humbug
 "I thought you were a great Head," says Dorothy. "And I thought you were a lovely Lady," says the Scarecrow. "And I thought you were a terrible Beast," says the Woodman. "And I thought you were a Ball of Fire," says the Lion.
 
@@ -653,23 +652,24 @@ The Woodman steps carefully over an ant, and looks proud of it.
 > east
 Little Room Behind The Throne
 A cluttered chamber of wonders: a great papier-mache head in a corner, a gauzy dress and mask on a hook, a bundle of sewn skins, and a ball of cotton on a wire. The throne room is west.
+The Woodman steps carefully over an ant, and looks proud of it.
 > examine head
 A great head made of many thicknesses of paper, with a carefully painted face, and threads at the back of the eyes and jaw. "I hung it from the ceiling by a wire," says the little man, "and stood behind the screen and pulled the threads. The voice was mine. It always was."
 > examine mask
 A dress of green silk gauze on a hook, and a mask painted like a beautiful face. "I dressed up in that and floated a little, on wires," says Oz. "The Scarecrow was very taken with her. I have never known how to feel about that."
 > examine skins
 A great bundle of skins sewn together, with slats to keep the sides out and five stuffed legs. "I crawled inside," says the little man. "It was hot in there. I used a good many strings for the eyes."
-Toto chases a butterfly and loses.
 > examine cotton ball
 A big ball of cotton hanging on a wire, with a bottle of oil beside it. "I lit it, and it floated in the air, and nobody could come near for the heat," says Oz. "The Lion did not stay long enough for me to explain, which was a relief."
+Toto chases a butterfly and loses.
 > promise
 "Keep my secret," says the little man, "and tell no one I am a humbug, and I will do my best by all of you. Come to me tomorrow morning, and you shall have what you came for. All of you."
 
 You promise. It costs nothing, and he looks so relieved that the Scarecrow shakes his hand twice, once for each of them.
-Toto trots ahead, comes back, and reports nothing, at length.
 > west
 Throne Room
 A big round room with a high arched roof, walls and floor crusted with great emeralds, and a marble throne in the middle under a light as bright as the sun. The doors are to the south.
+Toto trots ahead, comes back, and reports nothing, at length.
 > south
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
@@ -681,7 +681,6 @@ You sleep badly and wake early. Today the little man keeps his promise, and the 
 > down
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
-Toto barks at nothing, twice, and looks pleased.
 > north
 The little man keeps his word, and he does it seriously, which is what makes it work.
 
@@ -694,17 +693,18 @@ He fetches a green bottle and pours it into a green dish and gives it to the Lio
 Then he turns to you, and rubs his bald head, and says: "Give me two or three days to think it over. I shall have to build a balloon."
 Throne Room
 A big round room with a high arched roof, walls and floor crusted with great emeralds, and a marble throne in the middle under a light as bright as the sun. The doors are to the south.
+Toto barks at nothing, twice, and looks pleased.
 > south
 Palace Of Oz
 A soldier with a long green beard guards the palace door, and a big room with green furniture waits beyond it. Everyone here is very polite and nobody has ever seen Oz. Your chamber is up the stairs; the throne room is north; the street is south.
 > south
 Emerald City Street
 Green marble houses, green glass windows, green sky, green everything; children with green skins buy green lemonade with green pennies. It is either the most beautiful city in the world or the best pair of spectacles. The palace lies north, the gate room south, and a great plaza opens east.
-"With my brains," says the Scarecrow, "I calculate we are going the right way. Also that this is a road."
 > east
 The whole Emerald City has turned out. Above the crowd swells a great balloon of green silk, tugging at its ropes, with a clothes basket swinging beneath it, and the little man standing in the basket in his best coat.
 Plaza Before The Palace
 A great open plaza of green marble east of the palace street. The road south leaves the city toward the country of the Quadlings.
+"With my brains," says the Scarecrow, "I calculate we are going the right way. Also that this is a road."
 > wait
 Time passes...
 
@@ -715,7 +715,6 @@ Time passes...
 Time passes...
 
 Toto sees a kitten in the crowd and bolts after it, barking, and is gone between a hundred green legs.
-The Woodman stops, puts a hand on his tin chest, and listens to it for a while, entirely satisfied.
 > wait
 Time passes...
 
@@ -730,6 +729,7 @@ And the whole Emerald City watches its Wizard shrink to a green speck and vanish
      *** You have not won ***
 
 But you have not lost, either, whatever the sky says. Because the Scarecrow is already thinking, you can tell, because the pins are starting to stick out, and somewhere south of here, past soldiers' woods and a country made of china, lives the one person in Oz older and wiser and kinder than wizards. The story is not over.
+The Woodman stops, puts a hand on his tin chest, and listens to it for a while, entirely satisfied.
 > get toto
 You pick Toto up. He permits it.
 > south
@@ -744,7 +744,6 @@ Foot Of A White Wall
 A wall higher than your head and smooth as the inside of a dish, made, as far as you can tell, of white china. It runs left and right as far as sight, barring the way south. The wood is back north.
 > build ladder
 "Then I will make a ladder," says the Tin Woodman, "for we certainly must climb over the wall." He goes into the wood and cuts and trims until it is dark, and works on by feel, and in the morning there is a ladder leaning against the white wall and a Woodman looking modest about it.
-"I am afraid of nothing," announces the Lion. "Nothing at all. Not one thing. Shall I list them?"
 > climb ladder
 The Scarecrow goes up first, and when he reaches the top he says "Oh, my!" Then Dorothy, and she says "Oh, my!" Then Toto, who barks. Then the Lion, and then the Woodman, and each of them says "Oh, my!" in turn, and nobody can think of anything better, because below the wall is a country made entirely of china.
 
@@ -755,13 +754,13 @@ Dainty China Country
 A floor as smooth and shining as a big platter, set with china houses no taller than your waist, china barns, china cows, and little china people, none higher than your knee, going carefully about their tiny lives. A lower wall closes the country to the south.
 > examine cow
 A china cow standing on three legs. The fourth is lying in the grass a little way off, quite clean, and easily found once you look.
-"Bran-new brains," the Scarecrow says, to nobody, happily.
+"I am afraid of nothing," announces the Lion. "Nothing at all. Not one thing. Shall I list them?"
 > take leg
 Taken.
-"My heart aches a little," says the Woodman. "That is how you know it is a good one," says the Scarecrow.
+Toto sits down suddenly and scratches his ear as though it were work.
 > give leg to milkmaid
 You give the milkmaid her cow's leg, and she takes it without a word and holds it up against the cow, and then she looks at you and forgives you a little.
-Toto pushes his nose into your hand.
+"My heart aches a little," says the Woodman. "That is how you know it is a good one," says the Scarecrow.
 > talk to princess
 "Don't chase me!" says the china Princess, and, when you do not: "You see, we are not like your people. We break. Mr. Joker over there has been mended so many times he is more glue than clown, and one is never so pretty after being mended."
 > south
@@ -772,6 +771,7 @@ The far wall is lower. You climb onto the Lion's back and he gathers himself and
 "They are," says the Scarecrow, "and I am glad I am made of straw and cannot be easily damaged. There are worse things in the world than being a Scarecrow."
 Grand Old Forest
 The oldest, mossiest forest you have ever seen. The way runs south, downhill out of the trees.
+Toto chases a butterfly and loses.
 > lion, kill spider
 "I shall go alone," says the Lion. "You would only be in the way, and besides, I would rather nobody watched me be frightened." And he goes.
 
@@ -838,7 +838,6 @@ You hug the Scarecrow, and he crackles, and you both hold on a good deal longer 
 You take Toto up in your arms and knock the heels of the silver shoes together three times, and the shoes go still and attentive under you.
 
 The shoes await your command.
-Toto chases a butterfly and loses.
 > say kansas
 "Take me home to Aunt Em!" you say.
 

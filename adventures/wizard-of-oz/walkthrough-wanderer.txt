@@ -1,0 +1,73 @@
+# THE SILVER SHOES - the wanderer regression test.
+#
+# A player who never guesses the intended opening (GET TOTO, CLOSE TRAP
+# DOOR, SLEEP, OUT) must still reach Oz. This file contains no useful
+# command at all: only looking, examining scenery, and a few verbs the
+# parser rejects outright. It exists so the prologue can never again
+# strand a player in Kansas.
+#
+# Asserted by verify.mjs: must reach Munchkin Clearing, must NOT score
+# the trap-door point (this player never earned it), and must not die.
+#
+# NOTE on pacing: the Z-machine clock only advances on a SUCCESSFUL
+# parse, so the unparsed lines below ("sing", "x bed") cost the player
+# nothing and drive no story. That is deliberate - it is what a real
+# LLM-driven player produces, and it is why the storm counters are tuned
+# against parsed turns rather than typed lines.
+look
+examine stove
+jump
+examine cupboard
+examine table
+look
+x bed
+sing
+examine trap door
+wait
+listen
+smell
+examine basket
+look
+examine stove
+jump
+examine cupboard
+examine table
+look
+x bed
+sing
+examine trap door
+wait
+listen
+smell
+examine basket
+look
+examine stove
+jump
+examine cupboard
+examine table
+look
+x bed
+sing
+examine trap door
+wait
+listen
+smell
+examine basket
+look
+examine stove
+jump
+examine cupboard
+examine table
+look
+x bed
+sing
+examine trap door
+wait
+look
+examine stove
+jump
+examine cupboard
+examine table
+look
+wait
+look

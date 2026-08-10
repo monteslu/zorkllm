@@ -162,6 +162,33 @@ All of it - rooms, responses, deaths - may be spoken by TTS:
 - Read every drafted paragraph aloud in your head. If a sentence needs
   its punctuation to be understood, rewrite it.
 
+## Atmosphere has a context cost
+
+A literary adaptation prints far more text per turn than Zork does - richer
+room descriptions, longer scene beats, a bigger dictionary - and that text
+lands in the LLM's context window every turn. Measured across the five
+games here: ~3.5k tokens of system prompt (the dictionary dominates) and
+roughly 3x Zork's room text, which puts the practical floor at **16k
+context** for any model. Below that the window evicts every second turn and
+the model stops being able to hold a puzzle in mind.
+
+This is a consequence of the design choice, not the engine, so it belongs
+in the design: state the game's context requirement in DESIGN.md alongside
+the story-file target. Prose written for the ear is worth its cost - just
+know the cost exists, and do not also pay it in a needlessly large
+dictionary.
+
+Two more findings from playtesting adaptations through an LLM front end:
+
+- **Scripted openings strand non-ideal players.** Zork drops you in a free
+  world where any input does something; a plotted novel wants Act I to
+  happen in order. A player typing natural chaos may never produce the one
+  command the script waits for. Give every scripted sequence an escalating
+  nudge and then an automatic resolution, or the story simply never starts.
+- **Advice needs a bigger model than translation does.** Below roughly 4B a
+  model translates well but invents world facts when asked to coach. That
+  is a player-facing quality decision, not an engine one.
+
 ## Calibration
 
 The five shipped designs, for scoping a new one: 26-44 rooms, 17-31

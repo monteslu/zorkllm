@@ -49,14 +49,16 @@ Taken.
   the game just revealed, teaching basics like EXAMINE/INVENTORY/light/saving.
   It teaches the *medium* freely but won't volunteer puzzle solutions or magic
   words; hints escalate only as the player asks.
-- **`--no-guide` — recommended for small models (roughly 4B and under).**
-  Note quality tracks model quality, and a small model's confident-but-wrong
-  hint ("that boarded door might open" — it never does) costs a stuck player
-  more than no hint at all. Without the guide the LLM is purely a translator:
-  your phrasing in, parser commands out, and everything printed back is the
-  game engine's own text. It also drops the per-turn reflection call, so
-  turns are faster and cheaper. Larger models write genuinely useful notes;
-  keep the guide on there if you want the coaching.
+- **`--no-guide` — recommended below roughly 4B.** Note quality tracks model
+  quality, and a small model's confident-but-wrong hint costs a stuck player
+  more than no hint at all (measured: a 2B model denying that the Emerald
+  City exists, in a game about reaching it). Without the guide the LLM is
+  purely a translator: your phrasing in, parser commands out, everything
+  printed back is the game engine's own text. It is also cheaper — 48 LLM
+  calls versus 66 over an identical 50-turn session — and no slower.
+  The failure modes are asymmetric, which is why the split is worth making:
+  a bad translation costs one free parser rejection and gets retried, while
+  a bad guide note is asserted to a player with no way to check it.
 - `> command` bypasses the LLM and talks to the 1980 parser directly.
 - `/save [file]`, `/restore [file]`, `/quit`, `/help`.
 - Game text is always shown unmodified.
@@ -118,6 +120,26 @@ status line, and every deterministic shortcut (curse words, magic phrases,
 meta verbs) adapt to the loaded game's own dictionary; games lacking a word
 simply route that input through the LLM instead. Verified against Inform-
 compiled v5 games as well as the Infocom trilogy.
+
+## Two floors: 16k context, 4B model
+
+Independent requirements that fail in different ways.
+
+**Context: 16k is the floor for any model.** It is arithmetic, not
+capability. The system prompt runs ~3.5k tokens (the game's dictionary
+dominates), and a literary adaptation prints roughly 3x Zork's room text —
+so at 8k the window evicts every second turn and the model cannot hold a
+puzzle in mind. Measured over an identical 50-turn session: 22 evictions at
+8k, zero at 16k, with no latency cost (0.55s vs 0.57s per turn). It buys
+memory, not compute. Most local runtimes default to 8k regardless of what
+the model supports, so this is usually one slider away.
+
+**Capability: ~4B is the floor for guide mode only.** Translation works
+fine below it; advice does not, and more context does not fix it, because
+context was never the constraint. Run smaller models with `--no-guide`.
+
+The classic Infocom games are lighter than the `adventures/` adaptations
+and remain comfortable at 8k.
 
 ## Small context windows
 
