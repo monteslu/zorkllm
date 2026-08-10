@@ -394,6 +394,42 @@ static cz_result f_noop_false(cz_ctx *c, cz_val **a, size_t n) {
     (void)a; (void)n; return ok_val(cz_false(c));
 }
 
+/* INT finds or creates a clock slot for a routine. The engine's own INT
+ * walks a table; ours keeps a parallel list keyed by routine name, which
+ * is the same semantics without the vector arithmetic. */
+static cz_result f_int(cz_ctx *c, cz_val **a, size_t n) {
+    if (n < 1 || !ACTIVE) return ok_val(cz_false(c));
+    const char *name = atom_name(a[0]);
+    if (!name) return ok_val(cz_false(c));
+    for (size_t i = 0; i < ACTIVE->timer_count; i++) {
+        if (strcmp(ACTIVE->timers[i].routine, name) == 0) {
+            return ok_val(cz_new_fix(c, (int32_t)i));
+        }
+    }
+    if (ACTIVE->timer_count == ACTIVE->timer_cap) {
+        ACTIVE->timer_cap = ACTIVE->timer_cap ? ACTIVE->timer_cap * 2 : 32;
+        ACTIVE->timers = realloc(ACTIVE->timers, ACTIVE->timer_cap * sizeof *ACTIVE->timers);
+    }
+    size_t idx = ACTIVE->timer_count++;
+    ACTIVE->timers[idx].routine = name;
+    ACTIVE->timers[idx].tick = 0;
+    ACTIVE->timers[idx].enabled = false;
+    return ok_val(cz_new_fix(c, (int32_t)idx));
+}
+
+/* APPLY on an atom that names a routine: the clock stores routine atoms
+ * in its table and calls them by value. */
+static cz_result f_apply(cz_ctx *c, cz_val **a, size_t n) {
+    if (n < 1) return ok_val(cz_false(c));
+    const char *name = atom_name(a[0]);
+    if (name && ACTIVE) {
+        cz_val *res = NULL;
+        if (zr_call_args(ACTIVE, name, a + 1, n - 1, &res)) return ok_val(res);
+        return ok_val(cz_false(c));
+    }
+    return cz_apply(c, a[0], a + 1, n - 1, false);
+}
+
 static cz_result f_princ(cz_ctx *c, cz_val **a, size_t n) {
     for (size_t i = 0; i < n; i++) {
         if (a[i] && a[i]->type == CZ_STRING) cz_princ(c, a[i]->str.text);
@@ -448,15 +484,60 @@ zr_runtime *zr_new(zw_world *world) {
         const char *pn = atom_name(world->game->propnames[i]);
         if (!pn) continue;
         char buf[128];
+        cz_val *bare = cz_intern(r->ctx, pn, strlen(pn));
+        cz_setg(r->ctx, bare, bare);
         snprintf(buf, sizeof buf, "P?%s", pn);
         cz_setg(r->ctx, cz_intern(r->ctx, buf, strlen(buf)),
                 cz_intern(r->ctx, pn, strlen(pn)));
     }
     for (size_t i = 0; i < r->flag_count; i++) {
         char buf[128];
+        /* Flags are referenced both bare (,NONLANDBIT) and as F?NAME. */
+        cz_val *bare = cz_intern(r->ctx, r->flag_names[i], strlen(r->flag_names[i]));
+        cz_setg(r->ctx, bare, bare);
         snprintf(buf, sizeof buf, "F?%s", r->flag_names[i]);
         cz_setg(r->ctx, cz_intern(r->ctx, buf, strlen(buf)),
                 cz_intern(r->ctx, r->flag_names[i], strlen(r->flag_names[i])));
+    }
+
+    /* Objects are referenced as globals: <MOVE ,LAMP ,LIVING-ROOM> reads
+     * ,LAMP. Bind each object atom to itself so the reference resolves
+     * and the builtins can look it up by name. */
+    for (size_t i = 0; i < world->object_count; i++) {
+        const char *on = world->objects[i].name;
+        if (!on) continue;
+        cz_val *atom = cz_intern(r->ctx, on, strlen(on));
+        cz_setg(r->ctx, atom, atom);
+    }
+    /* Declared globals and constants keep their initial values. */
+    for (size_t i = 0; i < world->game->global_count; i++) {
+        cz_val *nm = world->game->globals[i].name;
+        if (nm && nm->type == CZ_ATOM) cz_setg(r->ctx, nm, world->game->globals[i].value);
+    }
+    for (size_t i = 0; i < world->game->constant_count; i++) {
+        cz_val *nm = world->game->constants[i].name;
+        if (nm && nm->type == CZ_ATOM) cz_setg(r->ctx, nm, world->game->constants[i].value);
+    }
+
+    /* Bind every ROUTINE as a global function value. Without this a ZIL
+     * routine can only be entered from C: the engine's own calls - GO
+     * calling QUEUE, CLOCKER applying a demon - report "calling
+     * unassigned atom" even though the routine loaded fine. */
+    for (size_t i = 0; i < world->game->routine_count; i++) {
+        zm_routine *rt = &world->game->routines[i];
+        const char *rn = atom_name(rt->name);
+        if (!rn) continue;
+        size_t parts = rt->body_count + 1;
+        cz_val **items = calloc(parts, sizeof *items);
+        items[0] = rt->spec;
+        for (size_t b = 0; b < rt->body_count; b++) items[b + 1] = rt->body[b];
+        cz_val *list = cz_new_seq(r->ctx, CZ_LIST, items, parts);
+        cz_val *fn = cz_new_chtype(r->ctx, cz_intern(r->ctx, "FUNCTION", 8), list);
+        free(items);
+        cz_result made = cz_eval(r->ctx, fn);
+        if (made.flow != CZ_F_ERROR) {
+            cz_setg(r->ctx, cz_intern(r->ctx, rn, strlen(rn)), made.val);
+        }
     }
 
     ACTIVE = r;
@@ -513,6 +594,8 @@ zr_runtime *zr_new(zw_world *world) {
     cz_def_subr(r->ctx, "NEXTP", f_noop_false, false);
     cz_def_subr(r->ctx, "PTSIZE", f_noop_false, false);
     cz_def_subr(r->ctx, "READ", f_noop_false, false);
+    cz_def_subr(r->ctx, "APPLY", f_apply, false);
+    cz_def_subr(r->ctx, "INT", f_int, false);
     return r;
 }
 

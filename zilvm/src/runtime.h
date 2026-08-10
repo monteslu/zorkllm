@@ -58,6 +58,12 @@ typedef struct zr_runtime {
     struct { int obj; const char *prop; cz_val *value; } *puts;
     size_t put_count, put_cap;
 
+    /* The clock. The engine keeps these in a ZIL table and indexes it
+     * with vector arithmetic; a parallel list keyed by routine name has
+     * the same semantics and survives being read by the host. */
+    struct { const char *routine; int tick; bool enabled; } *timers;
+    size_t timer_count, timer_cap;
+
     char err[512];
 } zr_runtime;
 
