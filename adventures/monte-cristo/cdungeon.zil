@@ -113,8 +113,9 @@ touches the foamy waves into a network of ruby-tinted light.")
       (DESC "Villefort's Study")
       (LDESC
 "A magistrate's room in the Palais de Justice: files, a fire in the
-grate, the king's portrait. M. de Villefort studies you like a man
-reading two letters at once. Yours, and his own future.")
+grate, the king's portrait. There is a gendarme at the door and no way
+out of this room that is yours to take. M. de Villefort studies you
+like a man reading two letters at once. Yours, and his own future.")
       (ACTION VSTUDY-FCN)
       (FLAGS RLANDBIT ONBIT)>
 

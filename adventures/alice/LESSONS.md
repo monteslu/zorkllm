@@ -345,6 +345,106 @@ strings.
 
 ---
 
+## 6a. The walkthrough proves completable, not survivable
+
+This is the lesson I most wish I had started with.
+
+A walkthrough is written by the person who built the game. It encodes the
+author's own mental model, so it can only ever prove one thing: that the game
+is completable **by somebody who already knows the answer**. It cannot prove
+the game is survivable by somebody who does not, because it never once does
+the thing a real player does — type the wrong word.
+
+WONDERLAND shipped at a verified 100/100 and still had eight rooms where a
+player at the right size, doing the right thing, had no way to learn where to
+go. My walkthrough sailed through every one of them, because it already knew
+to type DOWN.
+
+Two checks close that gap, and neither is expensive.
+
+### The dead-end check: does LOOK name a way out?
+
+A stuck player's correct instinct is LOOK. If LOOK does not name a direction,
+LOOK cannot help them, and they are stranded in a room the author considers
+obvious. `tools/audit-game.mjs` checks this statically from the game's own
+text. It found eight real ones in my game (see `AUDIT-NOTES.md`).
+
+Two traps in reading its output:
+
+- **Naming a noun is not naming an exit.** "Under it gapes a large
+  rabbit-hole" tells the player a hole exists, not that the way in is DOWN.
+  My Above the Wood was the worst case: it named *southeast, southwest, and
+  far south* as scenery, so it read like a room full of directions while the
+  only real exit, DOWN, went unmentioned.
+- **Size- or state-variant descriptions hide from static checks.** Thick Wood
+  named its exits correctly at SMALL and at NORMAL, and named nothing at all
+  at LARGE — which is exactly the state the mushroom overshoot drops you into.
+  A tool that captures one description per room will never see the variant
+  that is broken. Play to each variant deliberately.
+
+### The wanderer test: junk input that must still reach the next act
+
+Two files, and the second matters more:
+
+- `walkthrough-wanderer.txt` — typed junk a person produces before they have a
+  model of the world: wrong nouns, sightseeing, XYZZY, EXAMINE ME.
+- `walkthrough-wanderer-llm.txt` — what an LLM front end actually emits:
+  chat, questions aimed at the narrator, commands phrased as sentences.
+
+The LLM one is the important one, for a mechanical reason worth internalising:
+
+> **The Z-machine clock advances only on a successful parse.** `CLOCKER` runs
+> from `MAIN-LOOP` under `,P-WON`. A rejected parse ticks nothing — no
+> `M-BEG`, no `M-END`, no timer. Roughly two thirds of natural-language input
+> fails to become a parsed command.
+
+So every timed beat runs at about a third of the rate a clean transcript
+implies. For a game built almost entirely of timed set pieces — a three-turn
+fall, a six-beat siege, a twelve-beat trial — that is the whole ballgame.
+
+It found a real bug immediately: three unparseable commands during the fall
+used to cost the player the marmalade jar (+2, and the container the entire
+treacle puzzle depends on), because the fall advanced on failed parses while
+the jar's window did not wait. A player who typed "grab that jar" — perfectly
+reasonable English — lost a scoring item and a puzzle dependency to the word
+"that".
+
+### Two cheap fixes that buy a lot of forgiveness
+
+**`BUZZ` the filler words.** `BUZZ` makes the parser ignore a word instead of
+rejecting the whole command. Absorbing the vocabulary of natural phrasing took
+one declaration and cut my LLM wanderer's rejection rate from 37 to 28 of 49:
+
+```
+<BUZZ THAT THIS THESE THOSE MY YOUR SOME PLEASE JUST NOW OVER THERE
+      REALLY VERY QUITE RATHER ABOUT AROUND AT WELL OK OKAY LETS LET
+      I I'LL ILL IM I'M WANT TRY GUESS THINK MAYBE PERHAPS
+      WOW WHOA HEY UM UH SO ANYWAY AGAIN>
+```
+
+**Do not put a scoreable item on a short timer.** If a window can close while
+the player is typing words the parser does not know, it will. Let the item
+ride the whole sequence.
+
+### One more bug the wanderer exposed
+
+A custom `<MOVE obj ,WINNER>` in your own take handler skips what the engine's
+take path does for free. Most importantly it does not clear `NDESCBIT`, so the
+object is taken, scores its points, and is *invisible to INVENTORY* — the
+player is holding something the game will not admit they have. I had this on
+four objects and never noticed, because my walkthrough never typed INVENTORY
+after taking them. Always:
+
+```
+<MOVE ,THING ,WINNER>
+<FCLEAR ,THING ,NDESCBIT>
+<FSET ,THING ,TOUCHBIT>
+```
+
+Add `INVENTORY` to your wanderer files for exactly this reason.
+
+---
+
 ## 7. The five things I would tell another builder today
 
 1. **Read `BUILD-ISSUES.md` before writing a line.** Items 1, 2, and 4 will
@@ -359,3 +459,7 @@ strings.
 5. **Kill every source of randomness on the critical path immediately** —
    `FUMBLE-PROB` is the non-obvious one, and it is in the engine, not your
    game.
+6. **Write the wanderer test before you think you need it** (section 6a). Your
+   walkthrough proves the game is completable; only junk input proves it is
+   survivable. Mine shipped verified at 100/100 with eight rooms that stranded
+   a confused player and four objects that went invisible when taken.

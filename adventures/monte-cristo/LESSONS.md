@@ -11,19 +11,135 @@ sequence the work.
 
 The short version, if you read nothing else:
 
-1. **Audit your vocabulary for adjective/noun collisions before you write
+1. **A walkthrough proves the game is completable, not that it is
+   survivable.** This is the finding I would most want the next person to
+   have. See §0 — it is first because it cost a real player the game while
+   every test was green.
+2. **Audit your vocabulary for adjective/noun collisions before you write
    a line of action code.** In v8 a word that is both is unusable as a
    noun, silently. One five-line shell command finds them all; finding
    them late costs a day.
-2. **Conversation topics go in `GLOBAL-OBJECTS`, and the cast gets retired
+3. **Conversation topics go in `GLOBAL-OBJECTS`, and the cast gets retired
    at every act boundary.** That combination is the whole ASK/TELL system.
-3. **Preactions are per action, not per syntax line.** Adding a syntax
+4. **Preactions are per action, not per syntax line.** Adding a syntax
    line does not escape the stock preaction that will veto it.
-4. **`VERB?` takes action names, not verb words.** `<VERB? PULL>` does not
+5. **`VERB?` takes action names, not verb words.** `<VERB? PULL>` does not
    compile; PULL's action is MOVE.
-5. **Compile and replay after every scene.** The engine's error messages
+6. **Compile and replay after every scene.** The engine's error messages
    are your test suite, and a scripted replay of the whole walkthrough
    takes two seconds.
+
+---
+
+## 0. The walkthrough proves completable, not survivable
+
+This game shipped at 400/400 across 195 commands, with four branch tests,
+a frozen transcript and a clean verify. A real player then opened it,
+typed eight reasonable things on the opening screen, found no way off the
+ship, and quit at turn three.
+
+```
+DROP ANCHOR          -> "Anchor under sail? ... Furl first."
+PICK UP ANCHOR       -> same
+TALK TO MORREL       -> "Come to the counting-house when she is squared away."
+GO TO COUNTING HOUSE -> "That sentence isn't one I recognize."
+LOOK                 -> a description that never says the quay is WEST
+DEBARK               -> "I don't know the word 'debark'."
+LEAVE SHIP           -> "That is a subject, not a thing."
+LEAVE BOAT           -> "You can't see any boat here!"
+```
+
+Every one of those is a sensible thing to type. The walkthrough could
+never have caught any of it, because **I wrote the walkthrough, so it
+encodes the answer I already knew.** `WEST` is in it at line 6 and the
+question "how would a stranger find WEST?" never came up.
+
+Three distinct defects, and the third is the general one:
+
+**(a) The room named no exit.** The Deck's description mentioned "the
+quay" but never said the quay was west. Mentioning a *place* is scenery;
+a player can only act on a *direction*. Every other Act I room named its
+exits properly, which made this room the outlier and made it invisible to
+me — I had read the good ones and generalised.
+
+**(b) An NPC directed the player somewhere unspeakable.** Morrel says
+"come to the counting-house" and COUNTING was not in the dictionary. An
+NPC instructing the player in words the parser refuses is a dead end by
+construction, and it is worse than silence: it actively spends the
+player's remaining patience on a phrasing that cannot work.
+
+**(c) The refusal named no action.** `"The ship is not yet at her rest.
+She is your charge before she is your triumph."` is good prose and useless
+instruction. It says the gate is closed; it never says what opens it. My
+own style guide (DESIGN.md §10 rule 6) says *"Every 'you can't' says why
+in-world and points somewhere"* — I wrote the rule and then broke it on
+the game's very first gate. It now reads:
+
+> She is still under way, and a captain does not step ashore off a moving
+> ship. Furl the sails first, and then let the anchor go.
+
+That single sentence is the difference between a player who continues and
+a player who quits.
+
+### The fix: a wanderer test
+
+`walkthrough-wanderer.txt` contains **no part of the intended solution**.
+It opens with that player's session verbatim, continues with scenery,
+junk and verbs the parser rejects, and then does what the game's own
+refusals tell it to. `verify.mjs` asserts it reaches Marseilles Quay,
+with at least three inputs of headroom, without dying, and **without
+scoring more than 15** — that last check is what stops the wanderer from
+quietly drifting into being a second walkthrough. A wanderer that knows
+the answer has stopped testing anything.
+
+It fails loudly and usefully:
+
+```
+FAIL
+  - WANDERER STRANDED: never reached Marseilles Quay in 55 inputs
+    (4 rejected by the parser). A player who does not guess FURL SAILS
+    must still get off the ship.
+```
+
+I hit that exact failure mid-build, after fixing (a) and (b) but before
+(c) — which is how I found out that naming the exit was not enough while
+the refusal still named no action. **The test found a real bug I had not
+diagnosed**, which is the whole argument for it.
+
+### The generalisation
+
+The three defects are one shape: **the game knows something the player
+needs and does not say it.** Where the exit is; what a place is called in
+words the parser accepts; what would open a gate. So, three questions to
+ask of every room and every refusal, none of which a walkthrough asks:
+
+1. If a player types LOOK here, does the text name a **direction**?
+2. Does anything the game says direct the player to a place, and can the
+   parser **hear** that place's name?
+3. Does every refusal name the **action** that would lift it?
+
+`tools/audit-game.mjs` answers 1 and 2 statically. Run it early — it
+found twenty-one rooms in this game, of which nineteen were real. The two
+it still reports (Villefort's Study, Tiboulen) genuinely have no exits;
+both are scripted scenes that end themselves, and both now say so in
+their own text, because a player standing in a room with no way out
+deserves to be told that is deliberate.
+
+Question 3 has no static check. It is the one to hold in your head while
+writing every failure message, and the wanderer test is what catches it.
+
+**Cost of retrofitting all this: about an hour.** Cost of writing the
+wanderer file first, before Act I: perhaps ten minutes. Write it first.
+
+### Second-order lesson: fixing the message is not fixing the map
+
+Naming exits in twenty rooms is a prose edit. The deeper fix was
+**vocabulary for places**: twenty-two global objects that make every
+destination the game names in its prose into a word the parser knows, and
+a `GO TO <place>` handler that either walks the player there or says which
+way it lies. `GO TO COUNTING HOUSE`, `GO TO QUAY`, `LEAVE SHIP` and
+`GO TO MEILHAN` all work now. That is the piece worth copying wholesale —
+see §2.8.
 
 ---
 
@@ -453,6 +569,72 @@ own voice. It is thirty lines of `COND`, it is the best debugging tool in
 the game, and it is in-fiction. If your book has parallel threads, build
 one on day one and read it after every change.
 
+### 2.8 Places as objects, so GO TO <place> works
+
+The second half of the stranded-player fix (§0), and the piece I would
+lift into any new game unchanged. A novel's prose is full of place names —
+the counting-house, the quay, Auteuil, the Chamber of Peers — and a player
+who reads them will type them. By default the parser knows none of them
+and the engine's `V-WALK-TO` answers *"You should supply a direction!"*,
+which is exactly backwards: the player has supplied one, in the only terms
+the game gave them.
+
+Every destination the game names in its prose becomes a global object:
+
+```zil
+<OBJECT P-OFFICE
+	(IN GLOBAL-OBJECTS)
+	;"COUNTING is the adjective and HOUSE the noun, so GO TO COUNTING
+	  HOUSE parses as an adjective-noun pair. COUNTING must not ALSO be
+	  a SYNONYM here - that is the v8 collision from section 1.2."
+	(SYNONYM HOUSE OFFICE COUNTINGH COUNTIN)
+	(ADJECTIVE COUNTING MORRELS)
+	(DESC "counting-house")
+	(FLAGS NDESCBIT)
+	(ACTION PLACE-FCN)>
+```
+
+Three routines drive them all:
+
+- **`PLACE-HERE`** — which place object stands for the room you are in.
+  Lets `GO TO QUAY` answer "You are there."
+- **`PLACE-DIR`** — a direction code from here to there, or false. One
+  `COND` per room; tedious to write, trivial to read, and it is the only
+  place the map is stated in words rather than exits.
+- **`GO-TO-PLACE`** — says which way and takes the step. If the
+  destination is more than one room off it says so honestly (*"not next
+  door, but the way to it starts off in this direction"*) and walks one
+  leg, rather than pretending the whole map is adjacent.
+
+Then redefine `V-WALK-TO` to route place objects through it, and give
+`PLACE-FCN` the other verbs a player aims at a place: `EXAMINE QUAY`
+describes the way without teleporting; `LEAVE SHIP` (which the parser
+delivers as `DROP SHIP`) takes the way out.
+
+Four things learned building it:
+
+**Multi-word place names need adjective-noun splitting.** "counting
+house" is two words; the parser reads the first as an adjective. So
+COUNTING is the ADJECTIVE and HOUSE the SYNONYM — and per §1.2 the word
+must not be both, which is a real constraint on naming.
+
+**Places collide with topics and with props.** SHIP was three objects
+here: a place, Morrel's grief in 1829, and a Genoese tartan. One object
+must own the noun. I merged the place into the existing topic and gave it
+a handler that behaves as a place aboard ship and as a topic everywhere
+else. The audit script in §2.1 finds these.
+
+**Say "X lies west", not "X is west".** Trivial-sounding, but
+`tools/audit-game.mjs` matches direction phrasings, and more importantly
+so does a reader skimming for an actionable word. "The way out leads
+east" and "the stair goes back up" also read as instructions. "The street
+is west" reads as decoration.
+
+**Watch the articles and the plurals.** `<TELL "The " D .PLACE>` on a
+DESC of "La Reserve" prints *"The La Reserve"*, and "The Allees de
+Meilhan lies north" is wrong in the other direction. One tiny helper for
+the verb, and DESCs written without their article.
+
 ---
 
 ## 3. Things that did not work
@@ -582,10 +764,16 @@ lines were transcription rather than composition.
    FEAST` in Act I, working, at hour two. That single command validated
    the whole conversation system and let me write twenty topic tables
    without fear.
-5. Act by act, in story order, compiling and replaying the whole
+5. **Write `walkthrough-wanderer.txt` and wire its assertion into
+   verify.mjs before building Act I** (§0). Ten minutes now; an hour
+   later, and in my case only after a real player had already quit. Make
+   it fail first, so you know it can.
+6. Act by act, in story order, compiling and replaying the whole
    walkthrough-so-far after every scene. Never more than ~150 lines
-   between compiles.
-6. Branch tests, then freeze the transcript, then the docs.
+   between compiles. Run `tools/audit-game.mjs` at each act boundary, not
+   at the end — the findings are one-line prose edits while the act is
+   fresh and a slog in a batch of twenty-one.
+7. Branch tests, then freeze the transcript, then the docs.
 
 **Test by replaying the accumulating walkthrough, always from the top.**
 `node czil/tests/play.mjs game.z8 script.txt` takes about two seconds for
@@ -634,8 +822,17 @@ that work, in order of importance:
   consequence in six lines. Ask of every subplot: what does the endgame
   need from this, and is there a single scene that delivers it?
 
-**What I would do differently:** run the vocabulary audit first (it would
-have saved most of the parser time), and write the walkthrough as a living
-file from Act I rather than reconstructing it at the end — I kept it in a
-scratch directory and had to reassemble it, when it could have been the
-test artifact all along.
+**What I would do differently:** write the wanderer test before Act I
+(§0) and run the vocabulary audit first (§1.2). Those two habits between
+them account for nearly every hour I lost and the one bug that reached a
+player. Also: keep `walkthrough.txt` as a living file from Act I rather
+than reconstructing it at the end - I kept it in a scratch directory and
+had to reassemble it, when it could have been the test artifact all
+along.
+
+**The thing I got most wrong** was not a bug, it was a belief: that a
+green test suite meant a working game. Mine was as green as it gets -
+400/400, four branch tests, a frozen transcript - while the opening
+screen was a wall. Tests written by the author test the author's
+understanding. Anything that only a stranger would discover needs a test
+that does not know the answer.

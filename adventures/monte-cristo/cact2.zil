@@ -1197,8 +1197,8 @@ sound of oars comes down the wind. That way is the way back." CR>
 	 <COND (<EQUAL? .RARG ,M-LOOK>
 		<TELL
 "A grotesque mass of bare rocks, like a vast fire petrified at the
-moment of its most fervent combustion. No tree, no soul, no shelter but
-an overhanging stone." CR>
+moment of its most fervent combustion. No tree, no soul, no road off it
+in any direction, and no shelter but an overhanging stone." CR>
 		<COND (,STORM-DONE
 		       <TELL
 "Wreckage from the night lies along the waterline, and out past the

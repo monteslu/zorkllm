@@ -268,6 +268,67 @@ ours is "There is nothing worth getting up for. Yet."
 
 ---
 
+## 11. A custom take must clear `NDESCBIT` itself
+
+**Symptom.** An object is taken, prints your message, scores its points — and
+does not appear in `INVENTORY`. The player is holding something the game will
+not admit they have.
+
+**Root cause.** The engine's take path (`ITAKE`) does housekeeping beyond the
+`MOVE`: it clears `NDESCBIT` and sets `TOUCHBIT`. A handler that does its own
+`<MOVE obj ,WINNER>` — which you must do whenever you want custom text or
+scoring (item 1) — skips all of it. Scenery-style objects declared with
+`NDESCBIT` so they do not clutter a room description stay invisible forever.
+
+**Fix.**
+
+```
+<MOVE ,THING ,WINNER>
+<FCLEAR ,THING ,NDESCBIT>
+<FSET ,THING ,TOUCHBIT>
+```
+
+**Detection.** Cross-reference every `<MOVE x ,WINNER>` in your action
+routines against objects declared with `NDESCBIT`:
+
+```bash
+grep -n "MOVE ,[A-Z-]* ,WINNER>" *.zil          # custom takes
+grep -B8 "NDESCBIT" adungeon.zil | grep OBJECT  # invisible objects
+```
+
+Four objects in WONDERLAND had this and none was caught by a 100/100
+walkthrough, because the walkthrough never typed `INVENTORY` after taking
+them. Put `INVENTORY` in your wanderer test.
+
+---
+
+## 12. Filler words: `BUZZ` is the cheapest forgiveness you can buy
+
+**Symptom.** `grab that jar` → `I don't know the word "that".` The command was
+perfectly clear; one function word killed it.
+
+**Why it matters more than it looks.** The Z-machine clock advances only on a
+successful parse (`CLOCKER` runs from `MAIN-LOOP` under `,P-WON`), so a
+rejected parse ticks nothing — no `M-BEG`, no `M-END`, no timer. Natural
+language fails to parse roughly two thirds of the time, so every timed beat
+runs at about a third of the rate your transcript suggests, and any window
+that can close while the player types the wrong word eventually will.
+
+**Fix.** `BUZZ` makes the parser ignore a word rather than reject the command:
+
+```
+<BUZZ THAT THIS THESE THOSE MY YOUR SOME PLEASE JUST NOW OVER THERE
+      REALLY VERY QUITE RATHER ABOUT AROUND AT WELL OK OKAY LETS LET
+      I I'LL ILL IM I'M WANT TRY GUESS THINK MAYBE PERHAPS
+      WOW WHOA HEY UM UH SO ANYWAY AGAIN>
+```
+
+One declaration cut WONDERLAND's LLM-wanderer rejection rate from 37 to 28 of
+49 inputs. Check the engine's existing `<BUZZ>` list in `gsyntax.zil` first so
+you do not redeclare (`A AN THE IS AND OF THEN ALL ONE BUT EXCEPT` are taken).
+
+---
+
 ## Compiler notes (czil)
 
 - Object `ACTION` properties are resolved at compile time: referencing a

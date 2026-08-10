@@ -38,7 +38,7 @@ Somewhere behind the ledgers, a pen stops scratching.
 Marseilles Quay
 > north
 A Room in the Allees de Meilhan
-Your father's narrow fifth-floor room: a bed, a crucifix, a few nasturtiums in a window box, and a bare cupboard he is too proud to mention. A faded red purse lies on the mantelpiece. Five flights of stairs go back down, and the quay is south.
+Your father's narrow fifth-floor room: a bed, a crucifix, a few nasturtiums in a window box, and a bare cupboard he is too proud to mention. A faded red purse lies on the mantelpiece. Five flights of stairs lead back down, and the quay lies south.
 > give purse to father
 "Keep it, Edmond, I want for nothing." You put it in his hands and close his fingers over it, and he stops arguing, which tells you what the cupboard has been telling you.
 
@@ -80,7 +80,7 @@ Four soldiers and a corporal, and a commissary of police with his hat in his han
 They take you by the harbor road to the Palais de Justice, and a young magistrate rises from his own betrothal dinner to hear the case.
 
 Villefort's Study
-A magistrate's room in the Palais de Justice: files, a fire in the grate, the king's portrait. M. de Villefort studies you like a man reading two letters at once. Yours, and his own future.
+A magistrate's room in the Palais de Justice: files, a fire in the grate, the king's portrait. There is a gendarme at the door and no way out of this room that is yours to take. M. de Villefort studies you like a man reading two letters at once. Yours, and his own future.
 > talk to villefort
 "You are accused of being a Bonapartist agent. Your accuser is anonymous; his handwriting is disguised; his information is exact." He studies you. "You touched at Elba. You carry a letter. Give it to me."
 > give letter to villefort
@@ -95,7 +95,7 @@ He calls the gendarmes himself. There is a boat that night, and a black rock sta
     ***  ACT TWO: THE CHATEAU D'IF, 1815  ***
 
 Cell Number 34
-Stone below, stone above, stone on every side, and the sea grinding at the roots of all of it. A bed, a chair, a table, a pail, and a jug. High in one wall, a loophole with three iron bars lets in a ration of sky.
+Stone below, stone above, stone on every side, and the sea grinding at the roots of all of it. A bed, a chair, a table, a pail, and a jug. High in one wall, a loophole with three iron bars lets in a ration of sky, and the only door lies north and does not open.
 > pray
 If you pray enough, your prayers may be answered.
 > wait
@@ -192,7 +192,7 @@ The Tunnel
 A burrow a man may pass on his elbows, fifty feet of clawed-out dark between your cell and the abbe's. The air tastes of earth and patience.
 > west
 Cell Number 27 - the Abbe's Cell
-Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not. The burrow goes back east, under the bed.
+Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not. The burrow leads back east, under the bed.
 > study with faria
 Italian first, because it is the language of the treasure; then Spanish, English, German, Greek. He has no books, so he is the book.
 
@@ -293,7 +293,7 @@ Boots on the stair, and a lantern, and two men who have done this before.
 Fifty paces. The sea-noise coming up. A swing, and a swing, and: One! Two! Three!
 
 Beneath the Waves
-Cold black water, roaring in your ears. Something enormous and heavy is falling, and it is tied to your feet, and it is you.
+Cold black water, roaring in your ears. Something enormous and heavy is falling, and it is tied to your feet, and it is you. Air lies up, if you can reach it.
 > cut sack with knife
 You rip the canvas from top to bottom and shed it like a skin. But the shot still has your feet.
 > cut cord with knife
@@ -316,7 +316,7 @@ An hour, perhaps two. Your arms have stopped belonging to you and go on anyway.
 Something tears your knee. Rock. Blessed, merciful rock.
 
 The Island of Tiboulen
-A grotesque mass of bare rocks, like a vast fire petrified at the moment of its most fervent combustion. No tree, no soul, no shelter but an overhanging stone.
+A grotesque mass of bare rocks, like a vast fire petrified at the moment of its most fervent combustion. No tree, no soul, no road off it in any direction, and no shelter but an overhanging stone.
 It is the most beautiful place you have ever seen.
 > enter overhang
 You wedge yourself under the overhang with your knees at your chin. The rain goes past a foot from your face and does not touch you.
@@ -351,7 +351,7 @@ Three months among the smugglers of the Jeune-Amelie, running contraband from Le
     ***  ACT THREE: MONTE CRISTO, 1829  ***
 
 Deck of the Jeune-Amelie
-A smuggler tartan heeling under lateen sails, bound for the island of Monte Cristo with contraband and no questions. Jacopo splices a line and watches you the way honest men watch lucky ones.
+A smuggler tartan heeling under lateen sails, bound for the island of Monte Cristo with contraband and no questions. The boat that takes you ashore lies west. Jacopo splices a line and watches you the way honest men watch lucky ones.
 > land
 The Hidden Creek
 A small creek hidden like the bath of some ancient nymph, deep enough at the center for a little vessel. From the waterline, a line of old notches cut in the rocks marches away to the east.
@@ -431,12 +431,12 @@ Leghorn, and a barber, and a tailor; papers bought from a man who does not ask; 
 Fourteen years dead, you come back to Marseilles a priest, an Englishman, anything at all but a ghost. In your baggage: a black cassock, an Englishman's drab coat, and the habit of patience.
 
 The Beaucaire Road
-A white dusty road between Bellegarde and Beaucaire. A failing inn stands here, its signboard groaning in the wind: the Pont du Gard.
+A white dusty road between Bellegarde and Beaucaire. A failing inn stands here, its signboard groaning in the wind: the Pont du Gard. The door leads east; the road to Marseilles runs south.
 > wear cassock
 The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
 > entrance
 The Pont du Gard Inn
-A failing inn on the Beaucaire road, and the road is the only way out. Caderousse, gone gray and sour, wipes a table that no traveler will sit at. Poverty has been at work on him the way the sea works on a wreck.
+A failing inn on the Beaucaire road; the way out leads west, to the road. Caderousse, gone gray and sour, wipes a table that no traveler will sit at. Poverty has been at work on him the way the sea works on a wreck.
 > talk to caderousse
 "I am the Abbe Busoni," you say, "and I attended a prisoner who died in the Chateau d'If. Edmond Dantes. He left a diamond, to be divided among the few who loved him."
 
@@ -500,7 +500,7 @@ Salon of the Count of Monte Cristo
 No. 30, Champs-Elysees. Silk, bronze, and rumor. Paris has decided you are a Balkan prince, a vampire, or the devil; you have not corrected Paris. Ali stands at the door; your study lies east; the city waits south.
 > north
 Haydee's Apartments
-Incense, cushions, and a silence from farther east than Greece. Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom you bought out of slavery and who looks at you as if you were the sun. The salon is back through the curtain, south.
+Incense, cushions, and a silence from farther east than Greece. Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom you bought out of slavery and who looks at you as if you were the sun. The salon lies south, back through the curtain.
 > ask haydee about janina
 "I was four years old. The French officer my father trusted with the castle of Yanina took the Sultan's money and opened the gate."
 
@@ -516,10 +516,10 @@ The Champs-Elysees
 Carriages, gossip, and gaslight. From here the city is yours. The bank lies west and the press east; the Chamber of Peers southeast, the law courts south, the telegraph northwest, the Villefort house southwest. Your own house is north, and a coach at the kerb will take you in to Auteuil.
 > west
 Danglars's Bank - Antechamber
-Marble bought with margins. Clerks scratch in ledgers; above the double doors, a gilt baron's crest that smells of fresh paint. The Baron's office is west, the street east.
+Marble bought with margins. Clerks scratch in ledgers; above the double doors, a gilt baron's crest that smells of fresh paint. The Baron's office lies west and the street east.
 > west
 Danglars's Office
-Baron Danglars fills his chair like a sack of coin. On the wall, a portrait of his wife he did not choose; on his desk, the only faith he keeps: the daily quotations. The way out is east.
+Baron Danglars fills his chair like a sack of coin. On the wall, a portrait of his wife he did not choose; on his desk, the only faith he keeps: the daily quotations. The way out leads east.
 > show letter to danglars
 "On the house of Thomson and French, of Rome. Unlimited." He reads the word three times and looks up at you with the expression of a man who has heard a noise in the cellar.
 
@@ -592,7 +592,7 @@ Salon of the Count of Monte Cristo
 The Champs-Elysees
 > east
 Offices of l'Impartial
-Ink-fog, proof sheets, and the guillotine-thump of the press below. Beauchamp the journalist can smell a story through wax seals. The street is west.
+Ink-fog, proof sheets, and the guillotine-thump of the press below. Beauchamp the journalist can smell a story through wax seals. The street lies west.
 > tell beauchamp about janina
 He listens with his pen down, which from Beauchamp is reverence.
 
@@ -649,14 +649,14 @@ The Champs-Elysees
 The coach goes out through the barrier and down to Auteuil, and Bertuccio, on the box, does not say one word the whole way.
 
 The House at Auteuil - Salon
-A pleasure-house with its shutters' eyes put out; you have had it lit and aired, and still the walls hold their breath. The garden lies east, and the coach out to Paris waits at the door. Bertuccio, your steward, will not look at the garden door.
+A pleasure-house with its shutters' eyes put out; you have had it lit and aired, and still the walls hold their breath. The garden lies east, and the coach back out to Paris waits at the door. Bertuccio, your steward, will not look at the garden door.
 > talk to bertuccio
 "I declared the vendetta against him because he would not avenge my brother. I followed him to this house. One night in September I saw him come down into that garden with a spade and a box, and I put my knife in his back under the plantain tree."
 
 "And then I dug up what he had buried, excellency, because I thought it was money." He has to stop. "It was a child, monsieur. A living child."
 > east
 The Auteuil Garden
-A walled garden gone half wild, with the salon back through the door west. One plantain tree stands over turned earth like a mourner who has forgotten whom he mourns.
+A walled garden gone half wild; the salon lies west, back through its door. One plantain tree stands over turned earth like a mourner who has forgotten whom he mourns.
 > dig earth with spade
 Two feet down, the spade turns up the ironwork of a small box, rusted to lace, with nothing at all inside it.
 
@@ -673,10 +673,10 @@ Back through the barrier, into the gaslight.
 The Champs-Elysees
 > southwest
 Villefort's House - Hall
-The procureur's house in the Faubourg Saint-Honore: cold marble, hushed servants, and lately a smell of medicine on every landing. Noirtier's room is north, Valentine's east, and the street northeast. Death has been a frequent caller this season.
+The procureur's house in the Faubourg Saint-Honore: cold marble, hushed servants, and lately a smell of medicine on every landing. Noirtier's room lies north, Valentine's east, and the street northeast. Death has been a frequent caller this season.
 > north
 Noirtier's Room
-The old conventionist sits paralyzed in his great chair, alive only in his eyes; and his eyes are two loaded pistols. A dictionary and a bell-cord serve him for a voice. The hall is south.
+The old conventionist sits paralyzed in his great chair, alive only in his eyes; and his eyes are two loaded pistols. A dictionary and a bell-cord serve him for a voice. The hall lies south.
 > talk to noirtier
 You read to him from the dictionary and he blinks once for the letter he wants, and it takes an hour, and at the end of the hour he has spelt out two things.
 
@@ -689,7 +689,7 @@ He has named her without a word, and there is not a court in France that could u
 Villefort's House - Hall
 > east
 Valentine's Room
-White curtains, a glass of lemonade on the night table, and a girl growing paler by the week while her family calls it nerves. The hall is west.
+White curtains, a glass of lemonade on the night table, and a girl growing paler by the week while her family calls it nerves. The hall lies west.
 > give pill to valentine
 "Trust me as you would trust Providence. Sleep, and whatever you hear, do not wake."
 
@@ -748,7 +748,7 @@ Peppino reads over his shoulder at the banker's. Vampa reads Peppino. You read e
 Rome, and under Rome the catacombs of Saint Sebastian, where Luigi Vampa keeps what he is holding for you.
 
 Catacombs of Saint Sebastian
-Under Rome, among the politely stacked dead, Luigi Vampa's men play mora by torchlight. Vampa rises and uncovers his head: to him you are something between a king and a saint, and he is not sure which frightens him more.
+Under Rome, among the politely stacked dead, Luigi Vampa's men play mora by torchlight. A barred recess lies east. Vampa rises and uncovers his head: to him you are something between a king and a saint, and he is not sure which frightens him more.
 > east
 The Larder Cell
 A barred recess in the tufa where a fat man in a torn coat sits among the finest dinners in Italy, priced at one hundred thousand francs the fowl. Danglars has eaten down five millions, and is hungry.
