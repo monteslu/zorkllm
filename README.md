@@ -79,8 +79,8 @@ node czil/dist/czil-compile.mjs examples/tinyquest/tinyquest.zil -I zil/zork1 -o
 node src/cli.js tinyquest.z3
 ```
 
-See [AUTHORING.md](AUTHORING.md) for the full guide to writing games,
-[ADAPTING.md](ADAPTING.md) for how to turn a public-domain novel into a
+See [AUTHORING.md](docs/AUTHORING.md) for the full guide to writing games,
+[ADAPTING.md](docs/ADAPTING.md) for how to turn a public-domain novel into a
 buildable game design (the process behind `adventures/`, written for
 LLM agents as much as people), and `czil/README.md` for the compiler
 itself (its test gate: the trilogy compiled from this repo's sources
@@ -95,7 +95,7 @@ a complete room-by-room, puzzle-by-puzzle design.
 
 For the full internals — turn lifecycle, the COMMANDS/SAY protocol, context
 strategy, invariants, and where to make changes — see
-[ARCHITECTURE.md](ARCHITECTURE.md).
+[ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 - `vendor/zmachine.mjs` — the [`zmachine`](https://www.npmjs.com/package/zmachine)
   interpreter (MIT), bundled to a single file. Runs the real `.z3` story files;
