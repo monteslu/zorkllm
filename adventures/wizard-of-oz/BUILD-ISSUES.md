@@ -319,24 +319,70 @@ Total: exactly 250, achieved by `walkthrough.txt` and asserted by
 
 ## 16. The clock only advances on a successful parse
 
-**Not a defect — a constraint with real design consequences.** `CLOCKER`
-runs from `MAIN-LOOP` only after `PARSER` returns a win. Input the
-dictionary rejects (`x bed`, `sing`, a misspelling) prints its error and
-costs the player *no game time*: no demon fires, no timer advances,
-`MOVES` does not increment.
+**Not a defect — a constraint that silently breaks every timed beat in
+the game when a language model is driving.** `CLOCKER` runs from
+`MAIN-LOOP` only under `,P-WON` (gmain.zil:169). A rejected parse falls
+to the `(T <SETG P-CONT <>>)` branch and skips it entirely: no demon
+fires, no timer advances, `MOVES` does not increment. **Neither `M-BEG`
+nor `M-END` fires either** — verified with a probe build — so there is no
+content-side hook in the failure path at all. Counting *attempts* rather
+than successful parses would require editing `gmain.zil`, which is off
+limits, so the only clean lever is to tune the counters.
 
-**Measured here:** 15 consecutive unparsed commands produced **one** storm
-beat.
+### The numbers, measured on a real session
 
-**Why it matters:** an LLM-driven player generates a lot of unparsed
-input, so any timer tuned against "turns the player types" runs several
-times slower than intended in practice. This is the mechanism behind the
-stranded-prologue bug (§17) — the storm counters were not actually wrong,
-they were being starved.
+A 50-turn chaotic natural-language session through the LLM front end
+(e2b, 16k context, `--no-guide`):
 
-**Fix:** tune every timer against a real junk transcript, not against a
-clean walkthrough. `walkthrough-wanderer.txt` exists partly to keep this
-honest.
+| | |
+|---|---|
+| player inputs | 50 |
+| inputs producing **no game command at all** | 16 (32%) — the translator answered conversationally, because the input was chat, not action ("wtf is this a farm", "im bored") |
+| of the ~34 that reached the parser, rejected outright | a large share — HIDE HOUSE, JUMP OUT, FOLLOW ROAD, PUNCH LION, BACKFLIP, GO ONWARD |
+| **net clock ticks** | **17** |
+| **effective ratio** | **~3 player inputs per tick** |
+
+The regression file `walkthrough-wanderer-llm.txt` reproduces this: 58
+inputs, **32 rejected (55%)**, and it is what the tuning is now aimed at.
+
+For contrast, a junk transcript of *typed* commands (`walkthrough-
+wanderer.txt`) is only 8 rejections in 57 — barely starved at all. Tuning
+against that file is what let the storm ship too slow.
+
+### Why this is the sharpest finding in this document
+
+It applies to **every timed beat in every adaptation**, not just
+prologues: hunger clocks, wandering NPCs, escalating hint ladders, combat
+rounds, any `<QUEUE rtn n>`. Divide your intended pacing by three before
+you believe it. A beat you meant to land "in about five turns" lands in
+about fifteen player inputs, which is long enough for a player to
+conclude the game is broken and quit — which is exactly what happened
+here.
+
+### Fix
+
+Tune against a *rejection-heavy* transcript, and keep one in the test
+suite permanently. Concretely, the guard that matters:
+
+```js
+} else if (turns - reachedAt < 5) {
+  problems.push(
+    `wanderer (${label}) reached Oz at input ${reachedAt} of ${turns} — ` +
+      'fewer than 5 inputs of headroom.'
+  );
+}
+```
+
+Passing by one or two inputs is not a passing test; it is a coincidence
+waiting to regress.
+
+**Proof the LLM variant earns its place.** With the storm artificially
+delayed (`<G? ,KANSAS-TURNS 12>`):
+
+```
+walkthrough-wanderer.txt      -> PASSES  (bug invisible)
+walkthrough-wanderer-llm.txt  -> FAILS   (bug caught)
+```
 
 ---
 

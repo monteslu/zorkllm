@@ -809,21 +809,49 @@ Four properties that make this forgiving without cheapening the game:
   once it is over. Mine dies permanently the moment Dorothy is out of the
   house.
 
-**Budget turns against *parsed* commands, not typed lines.** The
+**Budget turns against *parsed* commands, and divide by three.** The
 Z-machine clock only advances on a successful parse (`CLOCKER` runs from
-`MAIN-LOOP` after `PARSER` wins). Junk input — `x bed`, `sing`,
-misspellings, anything the dictionary rejects — costs the player nothing
-and drives no story. I measured it: **15 unparsed commands produced one
-storm beat.** An LLM-driven player generates a lot of unparsed input, so
-counters tuned against typed lines will feel three times slower than you
-intended. Tune them against a real junk transcript.
+`MAIN-LOOP` under `,P-WON`). Rejected input costs the player nothing and
+drives no story — and neither `M-BEG` nor `M-END` fires on a rejected
+turn either, so there is no content-side hook to count attempts instead.
 
-**Write the wanderer as a permanent test.** `walkthrough-wanderer.txt` in
-this directory contains no useful command whatsoever; `verify.mjs`
-asserts it reaches the first real location, scores zero, and does not
-die. I proved the test can fail by reverting the fix — it reported
-`WANDERER STRANDED` — then restored it. A regression test you have never
-seen fail is not yet a test.
+Measured on a real 50-turn LLM session (e2b, 16k, `--no-guide`):
+
+- **16 of 50 inputs produced no game command at all** — the translator
+  answered conversationally, because the input was chat, not action
+  ("wtf is this a farm", "im bored", "did i just kill someone").
+- Of the ~34 that reached the parser, a large share bounced: HIDE HOUSE,
+  JUMP OUT, FOLLOW ROAD, PUNCH LION, BACKFLIP, GO ONWARD.
+- **Net: 50 player inputs → 17 clock ticks. Roughly 3:1.**
+
+So a beat you meant to land "in about five turns" lands after about
+fifteen player inputs. My first fix was tuned against a junk transcript
+of *typed* commands, which mostly parse (8 rejections in 57), and the
+storm consequently still had not arrived 50 turns into a real session.
+**Divide your intended pacing by three before you believe it**, and note
+that this applies to every timed beat in the game — hunger clocks,
+wandering NPCs, hint ladders — not just prologues. §16 in BUILD-ISSUES
+has the full table.
+
+**Write the wanderer as a permanent test — and make it rejection-heavy.**
+Two files in this directory: `walkthrough-wanderer.txt` (junk the parser
+mostly accepts) and `walkthrough-wanderer-llm.txt` (what an LLM front end
+really emits — 55% rejected). `verify.mjs` runs both and asserts each
+reaches the first real location, scores zero, does not die, and clears
+the finish with **at least 5 inputs of headroom** — passing by one or two
+is a coincidence, not a test.
+
+The second file is the one that matters. With the storm artificially
+delayed, the typed-junk file **passes** (bug invisible) while the LLM
+file **fails** (bug caught). I verified both directions rather than
+assuming. If you write only one wanderer test, write the starved one.
+
+Also assert the negative: every nudge string must be **absent** from the
+scored transcript, so an efficient player provably never sees a hint.
+That assertion caught two real leaks when I compressed the counters —
+tightening a timer is exactly when nudges start firing before the player
+has had a chance to act, and gating each nudge on the player not having
+acted yet (`<AND <==? ,TURNS 2> <IN? ,TOTO ,FARMHOUSE>>`) is the fix.
 
 ### 3.8 A self-requeueing QUEUE works; a guard clause above it is what breaks
 
@@ -1074,6 +1102,8 @@ their own §8 list *before* the design, not after.
     non-ideal players are stranded in room one forever. Nudge in voice,
     then proceed; keep the scored deed player-only; test it with a
     walkthrough made entirely of junk. §3.7
-13. The clock only ticks on a *successful parse* — junk input drives no
-    story, so tune timers against a real junk transcript, not against
-    typed lines. §3.7
+13. The clock only ticks on a *successful parse*, and an LLM front end
+    yields roughly **one tick per three player inputs** (a third of its
+    output never becomes a command at all). Divide every timed beat's
+    pacing by three, and keep a rejection-heavy transcript in the test
+    suite. §3.7, BUILD-ISSUES §16

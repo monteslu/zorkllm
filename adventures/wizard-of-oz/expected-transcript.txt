@@ -20,10 +20,10 @@ You dive for the bed and get hold of Toto, and start for the trap door with him 
 Then the house shakes hard, twice, and there is a great shriek from the wind, and the floor tips. The house whirls around two or three times and rises slowly through the air, like a balloon.
 
 This is the strangest thing that has ever happened to you. You decide, sensibly, to wait and see what happens next.
-> wait
-Time passes...
 
 Toto wriggles loose, runs the wrong way entirely, and drops straight through the open trap door. Then, because the air pressure in a cyclone is a strange thing, he does not fall: he hangs there in the hole with his ears streaming, looking up at you, very surprised.
+> wait
+Time passes...
 > get toto
 You lie flat and reach down and get Toto by the ear, and haul him up out of the hole and into your arms. He is delighted with himself.
 > close trap door

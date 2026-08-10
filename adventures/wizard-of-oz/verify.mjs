@@ -150,13 +150,33 @@ if (existsSync(frozen)) {
 }
 
 // ---------------------------------------------------------------------
-// The wanderer: a player who never guesses the intended opening must
+// The wanderers: a player who never guesses the intended opening must
 // still reach Oz. Regression guard for the stranded-in-Kansas bug.
+//
+// Two variants, and the second is the important one:
+//   walkthrough-wanderer.txt      junk the parser mostly ACCEPTS
+//   walkthrough-wanderer-llm.txt  what an LLM front end really emits;
+//                                 ~55% of it is rejected outright
+//
+// The clock only advances on a successful parse, so the LLM variant runs
+// the prologue at roughly a third of the apparent rate. Tuning against
+// the first file alone is exactly how the storm came to be too slow to
+// arrive in a real 50-turn session.
 // ---------------------------------------------------------------------
-const wanderFile = join(here, 'walkthrough-wanderer.txt');
-let wanderTurns = 0;
-if (existsSync(wanderFile)) {
-  seed = 0x2dba7 >>> 0; // reset the RNG so this run is deterministic too
+const REJECT_RE =
+  /I don't know the word|There was no verb|isn't one I recognize|not clear what you|used the word/g;
+
+const wanderers = [
+  { file: 'walkthrough-wanderer.txt', label: 'typed junk' },
+  { file: 'walkthrough-wanderer-llm.txt', label: 'LLM traffic' },
+];
+const wanderReports = [];
+
+for (const { file, label } of wanderers) {
+  const wanderFile = join(here, file);
+  if (!existsSync(wanderFile)) continue;
+
+  seed = 0x2dba7 >>> 0; // reset the RNG so each run is deterministic
   const wcmds = (await readFile(wanderFile, 'utf8'))
     .split('\n')
     .map((l) => l.trim())
@@ -164,58 +184,76 @@ if (existsSync(wanderFile)) {
 
   const w = await loadGame(story);
   const wt = setTimeout(() => {
-    console.error('FAIL: wanderer timed out waiting for an input prompt');
+    console.error(`FAIL: wanderer (${label}) timed out waiting for a prompt`);
     process.exit(3);
   }, 60000);
 
   const wlines = [await w.start()];
   let reachedAt = -1;
+  let turns = 0;
   for (const cmd of wcmds) {
     if (w.ended) break;
     wlines.push(`> ${cmd}`);
     wlines.push(await w.send(cmd));
-    wanderTurns++;
+    turns++;
     if (reachedAt < 0 && /Munchkin Clearing/.test(wlines[wlines.length - 1])) {
-      reachedAt = wanderTurns;
+      reachedAt = turns;
     }
   }
-  if (!w.ended) {
-    wlines.push(await w.send('score'));
-  }
+  if (!w.ended) wlines.push(await w.send('score'));
   clearTimeout(wt);
   const wtext = wlines.join('\n');
+  const rejected = (wtext.match(REJECT_RE) || []).length;
 
   if (reachedAt < 0) {
     problems.push(
-      'WANDERER STRANDED: a player who never types the intended opening ' +
-        `never reached Munchkin Clearing in ${wanderTurns} commands. ` +
-        'The prologue must advance on its own.'
+      `WANDERER STRANDED (${label}): never reached Munchkin Clearing in ` +
+        `${turns} inputs (${rejected} rejected by the parser). The prologue ` +
+        'must advance on its own clock.'
+    );
+  } else if (turns - reachedAt < 5) {
+    // Passing by one or two inputs is not a passing test; it is a
+    // coincidence waiting to regress.
+    problems.push(
+      `wanderer (${label}) reached Oz at input ${reachedAt} of ${turns} — ` +
+        'fewer than 5 inputs of headroom. Tighten the prologue counters or ' +
+        'lengthen the test.'
     );
   }
+
   // The wanderer must not be handed the scored deed for free.
   const wscore = [...wtext.matchAll(/Your score is (-?\d+) of a possible/g)];
   if (wscore.length) {
     const got = Number(wscore[wscore.length - 1][1]);
     if (got !== 0) {
       problems.push(
-        `wanderer scored ${got}; the auto-advancing prologue must award ` +
-          'nothing (closing the trap door yourself is what earns the 5).'
+        `wanderer (${label}) scored ${got}; the auto-advancing prologue must ` +
+          'award nothing (closing the trap door yourself earns the 5).'
       );
     }
   }
   if (/You have died|\*\*\*\s*You have/.test(wtext)) {
-    problems.push('wanderer reached an ending; the prologue must not kill or win');
+    problems.push(`wanderer (${label}) reached an ending; the prologue must not kill or win`);
   }
-  // A player doing it properly must see no nudges: the storm-escalation
-  // lines must be absent from the scored walkthrough above.
-  for (const nudge of [
-    'the wind gives a long low wail',
-    'Toto scratches at the door',
-    'Your eyes keep closing by themselves',
-  ]) {
-    if (transcript.includes(nudge)) {
-      problems.push(`nudge leaked into the scored path: "${nudge}"`);
-    }
+
+  wanderReports.push(
+    `${label}: Oz at input ${reachedAt}/${turns}, ${rejected} rejected, scoring 0`
+  );
+}
+
+// A player doing it properly must see no nudges at all: every
+// storm-escalation line must be absent from the scored walkthrough.
+for (const nudge of [
+  'the wind gives a long low wail',
+  'Toto has not come out from under the bed',
+  'Toto scratches at the door',
+  'no word for',
+  'Hour after hour',
+  'Your eyes keep closing by themselves',
+  'gets the door open with his nose',
+]) {
+  if (transcript.includes(nudge)) {
+    problems.push(`nudge leaked into the scored path: "${nudge}"`);
   }
 }
 
@@ -225,8 +263,6 @@ if (problems.length) {
   process.exit(1);
 }
 
-console.log(
-  `PASS: THE SILVER SHOES, ${used} commands, 250/250, home to Kansas.` +
-    (wanderTurns ? ` Wanderer reaches Oz in ${wanderTurns} commands, scoring 0.` : '')
-);
+console.log(`PASS: THE SILVER SHOES, ${used} commands, 250/250, home to Kansas.`);
+for (const r of wanderReports) console.log(`      wanderer ${r}`);
 process.exit(0);

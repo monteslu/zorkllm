@@ -1,0 +1,79 @@
+# THE SILVER SHOES - the STARVED-CLOCK wanderer regression test.
+#
+# The companion to walkthrough-wanderer.txt, and the more important of
+# the two. That file is junk the parser mostly ACCEPTS; this one is what
+# an LLM front end actually emits when a player types chat and flailing
+# natural language at it.
+#
+# Measured on a real 50-turn session (e2b, 16k, --no-guide):
+#   - 16 of 50 inputs produced no game command at all (the translator
+#     answered conversationally, because the input was chat not action)
+#   - a large share of the rest were rejected outright by the parser
+#   - net: 50 player inputs -> 17 clock ticks, roughly 3:1
+#
+# The Z-machine clock advances ONLY on a successful parse (CLOCKER runs
+# from MAIN-LOOP under `,P-WON`; a rejected parse skips it, and neither
+# M-BEG nor M-END fires either). So every timed beat in the game runs at
+# about a third of the rate a clean transcript suggests. This file keeps
+# that honest: most lines below are unparseable on purpose.
+#
+# Asserted by verify.mjs: must still reach Munchkin Clearing, must score
+# 0, must not die.
+wtf is this a farm
+look
+hide house
+im bored
+jump out
+did i just kill someone
+follow road
+punch lion
+x stove
+backflip
+go onward
+talk scarecrow
+get him down
+why is it so gray
+yeet myself out the window
+look
+whats under the bed
+hide
+run away
+scream
+this game sucks
+open window
+climb out
+wait
+kick the dog
+where am i
+sing a song
+break the door
+lol
+examine everything
+fly
+dig
+pet toto
+say hello
+shout for help
+push the house
+look
+count beds
+smell the air
+touch stove
+knock on floor
+whistle
+sleep on floor
+pray
+dance
+hide under bed
+scream again
+help me
+go outside
+look
+now what
+argh
+look
+poke the stove
+stare at the sky
+complain
+look
+wait

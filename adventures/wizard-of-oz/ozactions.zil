@@ -713,12 +713,12 @@ Toto's opinion, then Toto's decision."
 		<TELL CR
 "Toto scratches at the door and looks back at you over his shoulder." CR>
 		<RTRUE>)
-	       (<==? ,LANDED-TURNS 4>
+	       (<==? ,LANDED-TURNS 3>
 		<TELL CR
 "Through the doorway the light is a green you have no word for, and Toto
 is barking at it steadily." CR>
 		<RTRUE>)
-	       (<G? ,LANDED-TURNS 5>
+	       (<G? ,LANDED-TURNS 3>
 		<TELL CR
 "Toto gets the door open with his nose and is gone into the green, and
 of course you go after him." CR CR>
@@ -731,7 +731,7 @@ of course you go after him." CR CR>
 
 <ROUTINE KANSAS-TICK ()
 	 <SETG KANSAS-TURNS <+ ,KANSAS-TURNS 1>>
-	 <COND (<==? ,KANSAS-TURNS 2>
+	 <COND (<AND <==? ,KANSAS-TURNS 2> <IN? ,TOTO ,FARMHOUSE>>
 		<TELL CR
 "Away to the north the wind gives a long low wail, and the grass bends
 flat in a wave that runs all the way to the edge of the sky." CR>
@@ -741,13 +741,11 @@ flat in a wave that runs all the way to the edge of the sky." CR>
 "\"Dorothy!\" comes Aunt Em's voice, small and far down under the floor.
 \"Run for the cellar!\" Toto has not come out from under the bed." CR>
 		<RTRUE>)
-	       (<==? ,KANSAS-TURNS 4>
+	       (<G? ,KANSAS-TURNS 3>
+		;"The storm does not wait to be invited."
 		<TELL CR
 "The whistling from the south is very loud now, and the house shakes so
 hard it is difficult to stand." CR>
-		<RTRUE>)
-	       (<G? ,KANSAS-TURNS 5>
-		;"The storm does not wait to be invited."
 		<COND (<IN? ,TOTO ,FARMHOUSE>
 		       <TELL CR
 "You make a grab for Toto and he bolts, and you go after him under the
@@ -761,7 +759,7 @@ bed, and that is where you both are when it happens." CR>
 	 <SETG FLIGHT-TURNS <+ ,FLIGHT-TURNS 1>>
 	 ;"Beat 1: Toto goes through the open trap door. Only possible if
 	  the player is holding him and has not shut it."
-	 <COND (<AND <==? ,FLIGHT-TURNS 2>
+	 <COND (<AND <==? ,FLIGHT-TURNS 1>
 		     <IN? ,TOTO ,WINNER>
 		     <FSET? ,TRAP-DOOR ,OPENBIT>>
 		<SETG TOTO-FELL T>
@@ -772,7 +770,7 @@ through the open trap door. Then, because the air pressure in a cyclone
 is a strange thing, he does not fall: he hangs there in the hole with his
 ears streaming, looking up at you, very surprised." CR>
 		<RTRUE>)
-	       (<AND <==? ,FLIGHT-TURNS 2> <IN? ,TOTO ,FARMHOUSE>>
+	       (<AND <==? ,FLIGHT-TURNS 1> <IN? ,TOTO ,FARMHOUSE>>
 		<TELL CR
 "Toto creeps out from under the bed, thinks the whole business over, and
 sits down beside you with his chin on your shoe." CR>
@@ -780,7 +778,7 @@ sits down beside you with his chin on your shoe." CR>
 		<RTRUE>)>
 	 ;"Toto hangs there until somebody gets him. After a few turns the
 	  game does it for you: he is never lost, only unscored."
-	 <COND (<AND ,TOTO-FELL <G? ,FLIGHT-TURNS 5>>
+	 <COND (<AND ,TOTO-FELL <G? ,FLIGHT-TURNS 3>>
 		<SETG TOTO-FELL <>>
 		<MOVE ,TOTO ,WINNER>
 		<TELL CR
@@ -789,21 +787,22 @@ by the ear and haul him back in, and you both sit down hard on the
 floor. Nothing about this seems to worry him." CR>
 		<RTRUE>)>
 	 ;"Nudges toward the trap door, then sleep, then sleep regardless."
-	 <COND (<AND <==? ,FLIGHT-TURNS 4> <FSET? ,TRAP-DOOR ,OPENBIT>>
+	 <COND (<AND <==? ,FLIGHT-TURNS 2> <FSET? ,TRAP-DOOR ,OPENBIT>
+		     <NOT ,TOTO-FELL>>
 		<TELL CR
 "The open trap door whistles horribly, and the wind comes up through it
 cold enough to hurt." CR>
 		<RTRUE>)
-	       (<==? ,FLIGHT-TURNS 6>
+	       (<AND <==? ,FLIGHT-TURNS 4> <FSET? ,TRAP-DOOR ,OPENBIT>>
 		<TELL CR
 "Hour after hour, and nothing to see but gray cloud. Toto is asleep. The
 bed is right there, and you are more tired than you have ever been." CR>
 		<RTRUE>)
-	       (<==? ,FLIGHT-TURNS 8>
+	       (<==? ,FLIGHT-TURNS 5>
 		<TELL CR
 "Your eyes keep closing by themselves." CR>
 		<RTRUE>)
-	       (<G? ,FLIGHT-TURNS 9>
+	       (<G? ,FLIGHT-TURNS 6>
 		;"Book-true: she lay down upon her bed and fell asleep."
 		<LAND-HOUSE>
 		<RTRUE>)>
