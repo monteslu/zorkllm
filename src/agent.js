@@ -417,6 +417,12 @@ export class ZorkAgent {
       // east and north" seventeen turns straight, live). A repeat teaches
       // nothing, so it is treated exactly like PASS - suppressed and
       // removed from history, where it would only breed more repeats.
+      // A note that restates the engine's own text is worse than silence:
+      // the player reads the same sentence twice and learns nothing. The
+      // guide's whole value is saying what the game did NOT. Weak models
+      // parrot constantly - observed live, a note reading "The door east
+      // opens on the quay." directly beneath that exact line.
+      if (note && this.#echoesGame(note)) note = null;
       if (note && this.#isRepeatNote(note)) note = null;
       if (note) {
         this.history.push({ role: 'assistant', content: reply });
@@ -430,6 +436,35 @@ export class ZorkAgent {
       this.history.pop();
       return null;
     }
+  }
+
+  /**
+   * Does this note just say back what the game printed? Compares against
+   * the engine text the player is looking at right now, sentence by
+   * sentence, so a note that copies one line out of a long room
+   * description is caught as surely as a whole-output echo.
+   * @param {string} note
+   */
+  #echoesGame(note) {
+    const output = this.lastGameOutput || '';
+    if (!output) return false;
+    const words = this.#normalizeNote(note);
+    if (!words.size) return true;
+    const sentences = output.split(/(?<=[.!?])\s+|\n+/).filter(Boolean);
+    for (const sentence of [output, ...sentences]) {
+      const prev = this.#normalizeNote(sentence);
+      if (!prev.size) continue;
+      const shared = [...words].filter((w) => prev.has(w)).length;
+      // Half the note's content words already on screen means a
+      // paraphrase, which teaches as little as a verbatim copy: "The door
+      // east opens on the quay" answered by "The door leads east onto the
+      // quay" scores 0.67 and is pure noise. Weak models paraphrase far
+      // more often than they copy, so a strict threshold catches almost
+      // nothing - measured on a live session, 0.8 let three of four
+      // echoes through.
+      if (shared / words.size >= 0.5) return true;
+    }
+    return false;
   }
 
   /** Word-set overlap against the last few notes given. */

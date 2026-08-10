@@ -722,3 +722,21 @@ console.log('continuation voice:');
   const checks = a.history.filter((m) => m.content.includes('[guide check]')).length;
   ok('suppressed repeat leaves no history trace', checks === 1, String(checks));
 }
+
+// --- a note that parrots the engine is suppressed ---
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  const a = new ZorkAgent(s, {
+    describe: () => 'parrot',
+    async complete({ messages }) {
+      if (messages.at(-1).content.includes('[guide check]')) {
+        // echo a sentence straight out of the room description
+        return 'You are standing in an open field west of a white house, with a boarded front door.';
+      }
+      return 'COMMANDS\nLOOK';
+    },
+  }, 'Zork I');
+  const r = await a.turn('have a look about');
+  ok('note echoing the engine text is dropped', r.note === null, JSON.stringify(r.note));
+}
