@@ -10,7 +10,7 @@ The dig, Faria, the education, the deduction, the sack swap, the sea."
 "Stone below, stone above, stone on every side, and the sea grinding at
 the roots of all of it. A bed, a chair, a table, a pail, and a jug.
 High in one wall, a loophole with three iron bars lets in a ration of
-sky." CR>
+sky, and the only door lies north and does not open." CR>
 		<COND (,TUNNEL-OPEN
 		       <TELL
 "Behind the bed the hewn stone stands aside, and the burrow goes down

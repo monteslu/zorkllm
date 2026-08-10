@@ -37,7 +37,7 @@ paid for with fourteen years, a sailor's jacket and hat.")
 "Incense, cushions, and a silence from farther east than Greece.
 Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom
 you bought out of slavery and who looks at you as if you were the sun.
-The salon is back through the curtain, south.")
+The salon lies south, back through the curtain.")
       (SOUTH TO SALON)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -68,7 +68,7 @@ you in to Auteuil.")
       (LDESC
 "Marble bought with margins. Clerks scratch in ledgers; above the
 double doors, a gilt baron's crest that smells of fresh paint. The
-Baron's office is west, the street east.")
+Baron's office lies west and the street east.")
       (EAST TO STREET)
       (WEST TO BANKOFF)
       (FLAGS RLANDBIT ONBIT)>
@@ -79,7 +79,7 @@ Baron's office is west, the street east.")
       (LDESC
 "Baron Danglars fills his chair like a sack of coin. On the wall, a
 portrait of his wife he did not choose; on his desk, the only faith he
-keeps: the daily quotations. The way out is east.")
+keeps: the daily quotations. The way out leads east.")
       (EAST TO BANKHALL)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -112,7 +112,7 @@ down.")
       (LDESC
 "Ink-fog, proof sheets, and the guillotine-thump of the press below.
 Beauchamp the journalist can smell a story through wax seals. The
-street is west.")
+street lies west.")
       (WEST TO STREET)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -144,8 +144,8 @@ smile, as if he alone knows the last line.")
       (DESC "The House at Auteuil - Salon")
       (LDESC
 "A pleasure-house with its shutters' eyes put out; you have had it lit
-and aired, and still the walls hold their breath. The garden lies east,
-and the coach out to Paris waits at the door. Bertuccio, your steward,
+and aired, and still the walls hold their breath. The garden lies east, and
+the coach back out to Paris waits at the door. Bertuccio, your steward,
 will not look at the garden door.")
       (OUT PER AUT-OUT)
       (EXIT PER AUT-OUT)
@@ -158,8 +158,8 @@ will not look at the garden door.")
       (IN ROOMS)
       (DESC "The Auteuil Garden")
       (LDESC
-"A walled garden gone half wild, with the salon back through the door
-west. One plantain tree stands over turned earth like a mourner who has
+"A walled garden gone half wild; the salon lies west, back through its
+door. One plantain tree stands over turned earth like a mourner who has
 forgotten whom he mourns.")
       (WEST TO AUTSALON)
       (FLAGS RLANDBIT ONBIT)>
@@ -170,7 +170,8 @@ forgotten whom he mourns.")
       (LDESC
 "The procureur's house in the Faubourg Saint-Honore: cold marble,
 hushed servants, and lately a smell of medicine on every landing.
-Noirtier's room is north, Valentine's east, and the street northeast.
+Noirtier's room lies north, Valentine's east, and the street
+northeast.
 Death has been a frequent caller this season.")
       (NE TO STREET)
       (NORTH TO NOIRTIER-ROOM)
@@ -184,7 +185,7 @@ Death has been a frequent caller this season.")
       (LDESC
 "The old conventionist sits paralyzed in his great chair, alive only
 in his eyes; and his eyes are two loaded pistols. A dictionary and a
-bell-cord serve him for a voice. The hall is south.")
+bell-cord serve him for a voice. The hall lies south.")
       (SOUTH TO VHALL)
       (ACTION NOIRTIER-ROOM-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -195,7 +196,7 @@ bell-cord serve him for a voice. The hall is south.")
       (LDESC
 "White curtains, a glass of lemonade on the night table, and a girl
 growing paler by the week while her family calls it nerves. The hall
-is west.")
+lies west.")
       (WEST TO VHALL)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -206,9 +207,9 @@ is west.")
       (DESC "Catacombs of Saint Sebastian")
       (LDESC
 "Under Rome, among the politely stacked dead, Luigi Vampa's men play
-mora by torchlight. Vampa rises and uncovers his head: to him you are
-something between a king and a saint, and he is not sure which
-frightens him more.")
+mora by torchlight. A barred recess lies east. Vampa rises and uncovers
+his head: to him you are something between a king and a saint, and he
+is not sure which frightens him more.")
       (EAST TO LARDER)
       (FLAGS RLANDBIT ONBIT)>
 

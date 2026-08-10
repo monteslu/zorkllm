@@ -80,7 +80,7 @@ men keep faith. The door east opens on the quay.")
 "Your father's narrow fifth-floor room: a bed, a crucifix, a few
 nasturtiums in a window box, and a bare cupboard he is too proud to
 mention. A faded red purse lies on the mantelpiece. Five flights of
-stairs go back down, and the quay is south.")
+stairs lead back down, and the quay lies south.")
       (SOUTH PER MEILHAN-SOUTH)
       (ACTION MEILHAN-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -304,7 +304,7 @@ look, and smiles thinly.")>
 "Faria's cell is the same stone as yours, and entirely different: a
 disused hearth, a bed, and everywhere the invisible library of a free
 mind. You could believe the walls here were thinner. They are not. The
-burrow goes back east, under the bed.")
+burrow leads back east, under the bed.")
       (EAST TO TUNNEL)
       (ACTION CELL27-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -314,7 +314,8 @@ burrow goes back east, under the bed.")
       (DESC "Beneath the Waves")
       (LDESC
 "Cold black water, roaring in your ears. Something enormous and heavy
-is falling, and it is tied to your feet, and it is you.")
+is falling, and it is tied to your feet, and it is you. Air lies up,
+if you can reach it.")
       (UP PER UNDERSEA-UP)
       (ACTION UNDERSEA-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -756,8 +757,9 @@ in scope and ASK X ABOUT DANGLARS never asks which Danglars."
       (DESC "Deck of the Jeune-Amelie")
       (LDESC
 "A smuggler tartan heeling under lateen sails, bound for the island of
-Monte Cristo with contraband and no questions. Jacopo splices a line
-and watches you the way honest men watch lucky ones.")
+Monte Cristo with contraband and no questions. The boat that takes you
+ashore lies west. Jacopo splices a line and watches you the way honest
+men watch lucky ones.")
       (LAND TO CREEK)
       (OUT TO CREEK)
       (EXIT TO CREEK)
@@ -841,7 +843,8 @@ man with a pickaxe.")
       (DESC "The Beaucaire Road")
       (LDESC
 "A white dusty road between Bellegarde and Beaucaire. A failing inn
-stands here, its signboard groaning in the wind: the Pont du Gard.")
+stands here, its signboard groaning in the wind: the Pont du Gard. The
+door leads east; the road to Marseilles runs south.")
       (IN PER ROAD-IN)
       (ENTRANCE PER ROAD-IN)
       (EAST PER ROAD-IN)
@@ -855,8 +858,8 @@ stands here, its signboard groaning in the wind: the Pont du Gard.")
       (IN ROOMS)
       (DESC "The Pont du Gard Inn")
       (LDESC
-"A failing inn on the Beaucaire road, and the road is the only way
-out. Caderousse, gone gray and sour, wipes a table that no traveler
+"A failing inn on the Beaucaire road; the way out leads west, to the
+road. Caderousse, gone gray and sour, wipes a table that no traveler
 will sit at. Poverty has been at work on him the way the sea works on
 a wreck.")
       (OUT TO BEAUCAIRE-ROAD)

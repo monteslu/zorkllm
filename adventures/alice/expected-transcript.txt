@@ -7,14 +7,14 @@ Burning with curiosity, you are Alice; the afternoon is golden; and somewhere un
 WONDERLAND -- an interactive nonsense, after Lewis Carroll.
 
 Riverbank
-You are sitting on the riverbank beside your sister, who is reading a book with no pictures or conversations in it. The afternoon is hot and impossibly drowsy, and the daisies are almost worth picking.
+You are sitting on the riverbank beside your sister, who is reading a book with no pictures or conversations in it. The afternoon is hot and impossibly drowsy, and the daisies are almost worth picking. A hedge runs along the field to the north.
 > wait
 Time passes...
 
 The White Rabbit runs close by your feet, crying "Oh dear! Oh dear! I shall be late!" -- takes the watch out of its waistcoat-pocket, looks at it, and hurries on toward the hedge to the north.
 > follow rabbit
 Under the Hedge
-You are at a great hedge at the edge of the field. Under it gapes a large rabbit-hole, and from somewhere down it comes a fading voice: "Oh my ears and whiskers, how late it's getting!"
+You are at a great hedge at the edge of the field. Under it gapes a large rabbit-hole going straight down, and from somewhere below comes a fading voice: "Oh my ears and whiskers, how late it's getting!" The field lies south.
 > down
 In another moment down you go after it, never once considering how in the world you are to get out again. The hole dips suddenly down, and you are falling -- slowly, comfortably, absurdly -- past shelves and cupboards set into the walls of the well. A jar drifts by at arm's length, labelled ORANGE MARMALADE.
 
@@ -136,7 +136,7 @@ Outside Rabbit's House
 A neat little house with a bright brass plate on the door, engraved W. RABBIT. The garden beds are all radishes. A sandy path runs west, and a wood thickens to the south.
 > in
 Tidy Little Room
-A tidy little room with a table in the window. On the table lie a fan and two or three pairs of tiny white kid gloves, and by the looking-glass stands a little bottle with no label at all.
+A tidy little room with a table in the window. On the table lie a fan and two or three pairs of tiny white kid gloves, and by the looking-glass stands a little bottle with no label at all. The way out is down the stairs and out the front door.
 > take gloves
 You take another pair; another pair can only improve matters. Gloves are like that.
 > drink bottle
@@ -186,7 +186,7 @@ You hold out the little bit of stick. The puppy jumps into the air off all its f
 At last it sits down a good way off, panting, with its tongue hanging out of its mouth and its great eyes half shut. The way west is clear, and the stick belongs to somebody now, which is the whole purpose of sticks.
 > west
 Mushroom Clearing
-A clearing ruled by one large mushroom exactly your own height. On top of it, arms folded, sits a large blue caterpillar, quietly smoking a long hookah and taking not the smallest notice of you or of anything else.
+A clearing ruled by one large mushroom exactly your own height. On top of it, arms folded, sits a large blue caterpillar, quietly smoking a long hookah and taking not the smallest notice of you or of anything else. The bramble tunnel runs back east.
 > talk to caterpillar
 "Who are YOU?" says the Caterpillar, at last, in a languid sleepy voice. It is not an encouraging opening. "I -- I hardly know, sir, just at present," you reply, rather shyly; "at least I know who I WAS when I got up this morning, but I think I must have been changed several times since then."
 
@@ -221,7 +221,7 @@ There is a little bit of dead stick here.
 > up
 "Serpent!" screams the Pigeon, flying into your face and beating you with its wings. "I have tried the roots of trees, and I have tried banks, and I have tried hedges, but those serpents! There's no pleasing them!"
 Above the Wood
-Your head and shoulders stand above the canopy, in bright air. The wood is a sea of green leaves below. Southeast, a chimney shaped like an ear smokes over a fur-thatched roof; southwest, peppery smoke rises from a little house; and far south, past everything, walls of white and red close round a garden so bright it hurts.
+Your head and shoulders stand above the canopy, in bright air. The wood is a sea of green leaves below. Southeast, a chimney shaped like an ear smokes over a fur-thatched roof; southwest, peppery smoke rises from a little house; and far south, past everything, walls of white and red close round a garden so bright it hurts. The only way from here is back down into the wood.
 > down
 Thick Wood
 There is a little bit of dead stick here.
@@ -235,7 +235,7 @@ Paths cross here under a broad-boughed tree. Something about the tree suggests i
 > west
 As you arrive, a Fish-Footman comes running out of the wood with a great letter under his arm, and delivers it to the Frog-Footman with the words: "For the Duchess. An invitation from the Queen to play croquet." The Frog-Footman repeats it back in the same solemn tone, only changing the order of the words a little, and they both bow so low that their curls get entangled together.
 Duchess's Doorstep
-A little house about four feet high, which is a comfortable height for a house if you are nine inches tall. On the doorstep sits a footman with the face of a frog, staring stupidly up into the sky. From inside comes a most extraordinary noise: howling, sneezing, and every now and then a great crash, as if a dish had been broken to pieces.
+A little house about four feet high, which is a comfortable height for a house if you are nine inches tall. On the doorstep sits a footman with the face of a frog, staring stupidly up into the sky. From inside comes a most extraordinary noise: howling, sneezing, and every now and then a great crash, as if a dish had been broken to pieces. The door leads in; the crossroads lie east.
 > knock on door
 "There's no sort of use in knocking," says the Footman, "and that for two reasons. First, because I'm on the same side of the door as you are; secondly, because they're making such a noise inside, no one could possibly hear you." And indeed there is a most extraordinary noise going on within: a constant howling and sneezing, and every now and then a great crash, as if a dish had been broken to pieces.
 > eat right piece
@@ -244,7 +244,7 @@ You nibble, and shrink smoothly down to about ten inches. Nothing slams; mushroo
 You open the door. "Anything you like," says the Footman, and begins whistling. The door was never locked; nobody had thought to try it, which is the commonest sort of lock there is.
 > in
 Duchess's Kitchen
-A large kitchen full of smoke from one end to the other. The Duchess sits on a three-legged stool nursing a howling baby; the cook stirs a cauldron of soup and, at intervals, throws everything within reach. On the hearth a large cat grins from ear to ear. There is far, far too much pepper.
+A large kitchen full of smoke from one end to the other. The Duchess sits on a three-legged stool nursing a howling baby; the cook stirs a cauldron of soup and, at intervals, throws everything within reach. On the hearth a large cat grins from ear to ear. There is far, far too much pepper. The door out leads east.
 There is a pepper-box here.
 
 You sneeze. So does the baby. The Duchess sneezes occasionally. The cook and the cat do not.
@@ -284,7 +284,7 @@ Wood Crossroads
 You nibble, and settle at exactly your own right size, which after today feels like a considerable achievement.
 > east
 Mad Tea Table
-A long table set out under a tree in front of a house with a fur-thatched roof and chimneys shaped like ears. The table is laid for a great many more than three, but the March Hare, the Hatter, and a sleeping Dormouse are all crowded together at one corner of it, crying "No room! No room!" -- which is nonsense, and you say so. Behind the house stands an old stone well.
+A long table set out under a tree in front of a house with a fur-thatched roof and chimneys shaped like ears. The table is laid for a great many more than three, but the March Hare, the Hatter, and a sleeping Dormouse are all crowded together at one corner of it, crying "No room! No room!" -- which is nonsense, and you say so. Behind the house an old stone well goes down, and a path leads west.
 > sit
 "No room! No room!" they cry when they see you coming. -- "There's PLENTY of room!" you say indignantly, and sit down in a large arm-chair at one end of the table.
 
@@ -317,7 +317,7 @@ You nibble, and shrink smoothly down to about ten inches. Nothing slams; mushroo
 "Take some more tea," the March Hare says earnestly. -- "I've had nothing yet, so I can't take more." -- "You mean you can't take LESS," says the Hatter: "it's very easy to take MORE than nothing."
 > down
 Treacle Well
-The bottom of the well, and it is a treacle-well: the walls glisten brown and the air is thick and sweet enough to slice. Three small sisters sit learning to draw, and what they draw is treacle, and also everything that begins with an M.
+The bottom of the well, and it is a treacle-well: the walls glisten brown and the air is thick and sweet enough to slice. Three small sisters sit learning to draw, and what they draw is treacle, and also everything that begins with an M. The bucket rope goes back up.
 > fill jar with treacle
 The marmalade jar has waited all day for a purpose. This is it: you fill it to the brim with treacle, and the label becomes a small untruth.
 > up
@@ -434,7 +434,7 @@ Seaside Ledge
 A ledge above a grey, sighing sea, which is odd, because you are fairly sure you are underground. On the warm rock lies a Gryphon, fast asleep in the sun. The croquet-ground is back to the west; the rocks continue east.
 > east
 Mock Turtle's Rock
-A little ledge of rock by the sea, where the Mock Turtle sits, sad and lonely, sighing as if his heart would break. It is all his fancy, that; he hasn't got no sorrow, you know.
+A little ledge of rock by the sea, where the Mock Turtle sits, sad and lonely, sighing as if his heart would break. It is all his fancy, that; he hasn't got no sorrow, you know. The ledge runs back west.
 > talk to turtle
 The Mock Turtle draws a long breath and says, "Once, I was a real Turtle." These words are followed by a very long silence, broken only by an occasional exclamation of "Hjckrrh!" from the Gryphon, and the constant heavy sobbing of the Mock Turtle.
 

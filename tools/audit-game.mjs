@@ -19,6 +19,15 @@
  *                counting-house" when COUNTING is not a dictionary word
  *                is instructing the player in words it refuses to hear.
  *
+ * Related failure this cannot see, worth checking by hand: a room whose
+ * M-LOOK handler prints a richer state-aware description often drops the
+ * exit sentence its LDESC had. The LDESC still looks correct in source,
+ * the room still works, and the walkthrough still passes - but the text a
+ * player actually reads names no way out. Five of six real defects in one
+ * game were this. When an M-LOOK override replaces an LDESC, diff the two
+ * for direction words. (Every game in adventures/ uses the pattern:
+ * Treasure Island 5 handlers, Alice 9, Monte Cristo 9, Oz 13, Dracula 27.)
+ *
  * Known limits, so nobody mistakes a clean run for a correct game:
  *
  * - The dead-end check reads only the room's own description. A game may

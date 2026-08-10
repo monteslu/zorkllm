@@ -10,7 +10,8 @@
       (LDESC
 "You are sitting on the riverbank beside your sister, who is reading a
 book with no pictures or conversations in it. The afternoon is hot and
-impossibly drowsy, and the daisies are almost worth picking.")
+impossibly drowsy, and the daisies are almost worth picking. A hedge
+runs along the field to the north.")
       (NORTH PER RIVERBANK-NORTH)
       (ACTION RIVERBANK-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
@@ -482,7 +483,8 @@ a wood thickens to the south.")
 is a sea of green leaves below. Southeast, a chimney shaped like an ear
 smokes over a fur-thatched roof; southwest, peppery smoke rises from a
 little house; and far south, past everything, walls of white and red
-close round a garden so bright it hurts.")
+close round a garden so bright it hurts. The only way from here is back
+down into the wood.")
       (DOWN TO THICK-WOOD)
       (ACTION TREETOPS-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
