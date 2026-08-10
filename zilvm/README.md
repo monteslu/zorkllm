@@ -40,3 +40,31 @@ From source it is one line of output:
 ```
 room DECK    exits: DOWN WEST LAND OUT EXIT
 ```
+
+## Stage 2: the queryable world
+
+`src/world.c` lifts czil's compiler-shaped model into a runtime one -
+rooms, exits, flags and vocabulary with every name intact - and exports it
+as JSON so a JS host holds the same structure the C runtime does.
+
+```sh
+./zilvm/zilvm --summary zil/zork1/zork1.zil
+./zilvm/zilvm --room LIVING-ROOM zil/zork1/zork1.zil
+./zilvm/zilvm --json zil/zork1/zork1.zil > zork.json
+```
+
+Exits keep their meaning rather than becoming a property whose byte length
+you must interpret:
+
+```
+LIVING-ROOM (Living Room)
+  action  LIVING-ROOM-FCN
+  exit    EAST   -> KITCHEN
+  exit    WEST   -> STRANGE-PASSAGE if MAGIC-FLAG
+  exit    DOWN   -> computed by TRAP-DOOR-EXIT
+```
+
+The last two lines are the point. `WEST` is gated on a named global, and
+`DOWN` is the hidden trap door - computed by a routine, so its destination
+genuinely cannot be read statically. From bytes those are indistinguishable
+from each other and from a refusal string; here they say what they are.
