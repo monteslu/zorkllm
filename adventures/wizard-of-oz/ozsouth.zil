@@ -1101,3 +1101,20 @@ worth throwing it at." CR>
 	       (T
 		<TELL "You cannot carry that there." CR>
 		<RTRUE>)>>
+
+"Aunt Em is only reachable in the final tableau, but a proper name with
+no ACTION routine gets the engine's \"The Aunt Em pauses...\" — so she
+answers for herself."
+<ROUTINE AUNT-EM-FCN ()
+	 <COND (<TALKING?>
+		<TELL "\"From the Land of Oz,\" you say again, and she says
+\"Well, I never,\" again, and neither of you minds." CR>
+		<RTRUE>)
+	       (<VERB? EXAMINE>
+		<TELL "Aunt Em, who never smiled, smiling, with a watering can
+at her feet and both arms out." CR>
+		<RTRUE>)
+	       (<VERB? KISS HUG>
+		<TELL "You are already being hugged. It is going to go on for
+some time." CR>
+		<RTRUE>)>>

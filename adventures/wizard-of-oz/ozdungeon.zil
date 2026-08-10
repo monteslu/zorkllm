@@ -108,7 +108,10 @@
 <OBJECT FRIEND-W
 	(IN GLOBAL-OBJECTS)
 	(SYNONYM FRIEND SCARECROW)
-	(DESC "the Scarecrow")
+	;"No article in DESC: stock engine messages prepend their own, so
+	 \"the Scarecrow\" here yields \"You can't talk to the the
+	 Scarecrow!\" See LESSONS.md 1.7."
+	(DESC "Scarecrow")
 	(FLAGS NDESCBIT)
 	(ACTION FRIEND-W-FCN)>
 
@@ -1452,7 +1455,8 @@ little farmhouse.")
 	(IN KANSAS-PRAIRIE)
 	(SYNONYM EM AUNT CABBAGES)
 	(DESC "Aunt Em")
-	(FLAGS ACTORBIT NDESCBIT)>
+	(FLAGS ACTORBIT NDESCBIT)
+	(ACTION AUNT-EM-FCN)>
 
 "=== GO and engine stubs ==="
 

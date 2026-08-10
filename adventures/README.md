@@ -31,21 +31,26 @@ All in-game text follows the TTS rule: turn responses of at most two short
 paragraphs (usually less), longer prose only in intros and outros, nothing
 written for the eye that can't be read aloud.
 
-## Build status
+All five are **complete, playable, and verified**: each rebuilds
+byte-identically from its committed source, and each ships a `verify.mjs`
+that replays its walkthrough and asserts the victory text, the final
+score, and that no parser-failure string appears anywhere in the
+transcript.
 
-Construction is partway through: every game has its world (rooms, objects,
-exits) written, and the risky parser syntax has been proven in spike
-builds for Alice, Oz, and Dracula. What remains for each is the actions
-file - the puzzle logic, which DESIGN.md already specifies solution by
-solution - plus the walkthrough, frozen transcript, and verify script.
-
-| Game | World | Syntax spike | Actions | Verified |
+| Game | Rooms | Objects | Walkthrough | Score |
 | --- | --- | --- | --- | --- |
-| dracula | done | done (compiles) | stubs | no |
-| alice | done | done (compiles) | not started | no |
-| wizard-of-oz | done | done (compiles) | not started | no |
-| monte-cristo | done | not started | not started | no |
-| treasure-island | done | not started | not started | no |
+| treasure-island | 32 | 103 | 119 commands | 350/350 |
+| dracula | 45 | 146 | 218 commands | 204/210 |
+| monte-cristo | 43 | 145 | 195 commands | 400/400 |
+| alice | 29 | 121 | 135 commands | 100/100 |
+| wizard-of-oz | 46 | 117 | 187 commands | 250/250 |
 
-Compiled story files and spike builds are not committed; rebuild them
-with the czil command in each design's build notes.
+```sh
+node adventures/alice/verify.mjs          # replay + assert
+node src/cli.js adventures/alice/alice.z8 # play it with an LLM
+```
+
+Each game also carries `LESSONS.md` (what the build taught, for the next
+adaptation) and `BUILD-ISSUES.md` (engine defects and design adaptations).
+The cross-cutting distillation of all five lives in
+[docs/ENGINE-NOTES.md](../docs/ENGINE-NOTES.md).

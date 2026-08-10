@@ -258,6 +258,70 @@ objects `WATER` / `GLOBAL-WATER` / `WALL` / `FLAG-CARRIER` and rooms
 `ON-LAKE` / `IN-LAKE`. **`WATER` is worth reusing meaningfully** rather
 than stubbing — here it is the murder weapon.
 
+### 1.7 Never bake an article into DESC — the engine supplies its own
+
+`DESC` is a bare noun phrase. Stock engine messages prepend their own
+article, so `(DESC "the Scarecrow")` produces:
+
+> You can't talk to the **the** Scarecrow!
+
+Found by the coordinator in exactly the situation that exposes it: a
+refusal message, in a legitimate story state (the Scarecrow unstuffed and
+separated from Dorothy at the Witch's castle). The refusal was correct;
+only the article was wrong. Audit with:
+
+```bash
+grep -n '(DESC "\(the\|a\|an\|The\|A\|An\) ' *.zil
+```
+
+One offender in 117 objects — the always-in-scope word-object that lets
+`TELL STORK ABOUT SCARECROW` parse while the real Scarecrow is out of
+scope. Worth running the grep anyway; it is free and the bug is invisible
+until a stock message happens to fire.
+
+**Before stripping an article, check whether your own text relied on it.**
+Search for places you print a DESC with `D` and no article of your own
+(`<TELL "..." D ,PRSO "...">`); those need `"the "` added by hand. None of
+mine did — I write character names as literals — but a game that leans on
+`D` for its prose will.
+
+**The related trap: proper names hit a hardcoded article you cannot
+edit.** `V-TELL` (gverbs.zil:1395) does:
+
+```zil
+<TELL "The " D ,PRSO " pauses for a moment, perhaps thinking that you
+should reread the manual." CR>
+```
+
+for a bare `TALK TO <actor>` with no continuation. With an article-free
+proper name that reads **"The Toto pauses for a moment"**. The `"the "` is
+inside an engine string, so the only fix is to intercept before it — and
+you can, because the actor's own ACTION routine runs as PRSO's action
+first:
+
+```zil
+<ROUTINE TOTO-FCN ()
+	 <COND (<==? ,WINNER ,TOTO> ...)          ;"TOTO, HELLO"
+	       (<TALKING?>                        ;"bare TALK TO TOTO"
+		<TELL "Toto only wags his tail; for, strange to say, he
+cannot speak." CR>
+		<RTRUE>)
+	       ...>>
+```
+
+So the rule has two halves: **strip articles from DESC, then give every
+proper-named actor a `<TALKING?>` clause** so it never reaches the
+engine's generic line. Sweep for the ones you missed by listing every
+`ACTORBIT` object whose DESC starts with a capital and whose ACTION
+routine has no TELL clause — that found three more here (Kalidahs,
+Wildcat, and Aunt Em, who had no ACTION routine at all).
+
+Legitimate exceptions, documented rather than fought: common-noun DESCs
+(`"wooden bucket"`, `"three girl soldiers"`) *should* stay article-free
+and read correctly with the engine's "the" — that is the design working.
+The distinction is common noun vs. proper name, not whether it looks odd
+in isolation.
+
 ---
 
 ## 2. THE COMPANION SYSTEM
@@ -893,3 +957,7 @@ their own §8 list *before* the design, not after.
    game cannot afford to lose. §1.4
 10. Freeze the transcript last; a single inserted `wait` reshuffles every
     probabilistic bark after it.
+11. Never bake an article into `DESC` — the engine prepends its own, so
+    `"the Scarecrow"` yields "the the Scarecrow". And give proper-named
+    actors a `<TALKING?>` clause, or bare `TALK TO TOTO` reaches the
+    engine's hardcoded "The Toto pauses for a moment". §1.7

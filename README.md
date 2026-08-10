@@ -82,7 +82,7 @@ node src/cli.js tinyquest.z3
 See [AUTHORING.md](docs/AUTHORING.md) for the full guide to writing games,
 [ADAPTING.md](docs/ADAPTING.md) for how to turn a public-domain novel into a
 buildable game design (the process behind `adventures/`, written for
-LLM agents as much as people), and `czil/README.md` for the compiler
+LLM agents as much as people), [ENGINE-NOTES.md](docs/ENGINE-NOTES.md) for engine traps and idioms learned building them, and `czil/README.md` for the compiler
 itself (its test gate: the trilogy compiled from this repo's sources
 plays transcript-identical to the shipped 1980s binaries).
 

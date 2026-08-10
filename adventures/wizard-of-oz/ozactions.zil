@@ -366,6 +366,13 @@ brave. I don't see it.\"" CR>
 		<TELL "Toto only wags his tail; for, strange to say, he cannot
 speak." CR>
 		<RTRUE>)
+	       ;"Bare TALK TO TOTO would otherwise reach the engine's
+		hardcoded \"The \" D ,PRSO \" pauses for a moment...\", which
+		reads \"The Toto\". Proper names must intercept it."
+	       (<TALKING?>
+		<TELL "Toto only wags his tail; for, strange to say, he cannot
+speak." CR>
+		<RTRUE>)
 	       (<VERB? EXAMINE>
 		<TELL "A little black dog with long silky hair and small black
 eyes that twinkle merrily on either side of his funny wee nose. He is
@@ -1370,7 +1377,10 @@ The Lion whispers one word: \"Kalidahs.\"" CR>
 	 <RFALSE>>
 
 <ROUTINE KALIDAHS-FCN ()
-	 <COND (<VERB? EXAMINE>
+	 <COND (<TALKING?>
+		<TELL "They are not the conversational sort." CR>
+		<RTRUE>)
+	       (<VERB? EXAMINE>
 		<TELL "Monstrous beasts with bodies like bears and heads like
 tigers, and claws so long and sharp they could tear a tin man in two." CR>
 		<RTRUE>)
@@ -1871,7 +1881,10 @@ gone into the grass like water into sand." CR>
 	 <RTRUE>>
 
 <ROUTINE WILDCAT-FCN ()
-	 <COND (<VERB? EXAMINE>
+	 <COND (<TALKING?>
+		<TELL "It is going much too fast to be reasoned with." CR>
+		<RTRUE>)
+	       (<VERB? EXAMINE>
 		<TELL "A great yellow cat running full out, all teeth and
 purpose." CR>
 		<RTRUE>)
