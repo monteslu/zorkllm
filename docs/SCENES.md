@@ -9,6 +9,22 @@ The tool is `tools/scene-manifest.mjs`. The idea is one sentence long:
 **ask the engine what the player sees, never ask the object tree what is
 there.** Everything else follows from why those two answers differ.
 
+**What is and is not mechanical.** Extraction is mechanical: the manifest
+is the game's own output, and nothing is inferred. Everything downstream
+is not. A finished scene description is typically four clauses - the
+extracted room text, an authored style, an authored mood, and an optional
+model-cleaned rewrite - and only the first comes from the game. Composing
+them into one sentence makes them indistinguishable, which is how an
+authored "bright clear daylight" comes to look like a fact about a room
+whose text never mentions the sky.
+
+`tools/scene-compose.mjs` exists to keep that visible. It performs no
+inference of its own, tags every clause with its provenance
+(`extracted`, `authored`, `model`), and **refuses to run** when a clause
+a human is supposed to supply is missing, rather than filling the gap.
+There is no default style and no default mood; an incomplete style file
+is an error, not an invitation to guess.
+
 ## Why the object tree is the wrong source
 
 Every object in a Z-machine game has a parent, so it is tempting to list
