@@ -225,6 +225,13 @@ redefined; czil applies the last definition, so the originals are never
 touched). The suite gates this with: Tiny Quest compiled as v8 must play
 the byte-identical gameplay transcript to its v3 build.
 
+**Version resolution**: a `<VERSION ...>` declaration in the source wins
+(the whole Zork trilogy declares ZIP/v3 and builds byte-faithful to the
+shipped binaries); `-v N` overrides and locks it; a source that declares
+nothing gets **v8**. This last rule deviates from ZILF, which defaults
+undeclared sources to v3 - pass `-v 3` for ZILF-parity on legacy sources
+that rely on the old implicit default.
+
 `make wasm` builds `dist/czil.wasm` (~140 KB): a bare WebAssembly module
 with no emscripten runtime. Its whole ABI is one host import
 (`host.read_file`) plus stdio writes; `dist/czil-compile.mjs` is a

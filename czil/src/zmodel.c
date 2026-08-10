@@ -47,7 +47,11 @@ static char *slurp(const char *path, size_t *len);
 zm_game *zm_new(void) {
     zm_game *g = calloc(1, sizeof(*g));
     if (!g) abort();
-    g->zversion = 3;
+    /* Sources that declare <VERSION ...> get what they ask for (the whole
+     * trilogy declares ZIP). A source that declares nothing gets v8: for
+     * new games the 512KB/63-prop/48-flag/9-char-dict target is strictly
+     * roomier, and v3 remains one declaration away. */
+    g->zversion = 8;
     return g;
 }
 

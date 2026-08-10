@@ -44,28 +44,36 @@ text compression; shrinks a Zork-sized game about 11% with zero behavior
 change). `--no-abbrevs` skips the selection pass for the fastest
 edit-test loop.
 
-**Bigger games: target v8.** A v3 story file tops out at 128KB, 32
-flags, and 31 properties; the engine already uses most of the flags. For
-more of everything (512KB, 48 flags, 63 properties), compile the same
-source as a version 8 story file:
+**v8 is the default target for new games.** A v3 story file tops out at
+128KB, 32 flags, 31 properties, and 6-character dictionary words; the
+engine already uses most of the flags. A version 8 story file gets more
+of everything (512KB, 48 flags, 63 properties, 9-character dictionary
+words), and czil compiles v8 whenever a source doesn't declare
+otherwise (declare `<VERSION ZIP>` if you specifically want v3 - the
+Zork sources do, which is how the trilogy still builds byte-faithful to
+the shipped binaries):
 
 ```sh
-node czil/dist/czil-compile.mjs game.zil -I zil/zork1 -I zil/engine-v8 -v 8 -o game.z8
+node czil/dist/czil-compile.mjs game.zil -I zil/zork1 -I zil/engine-v8 -o game.z8
 ```
 
-Two things change: add `-I zil/engine-v8` (a small overlay that adapts
-the engine's parser internals to the v8 dictionary format - the zork1
-files themselves are never modified), and add one line to your main file
-after the GVERBS insert so the overlay loads only for v8 builds:
+Two things make a v8 build work: add `-I zil/engine-v8` (a small
+overlay that adapts the engine's parser internals to the v8 dictionary
+format - the zork1 files themselves are never modified), and one line in
+your main file after the GVERBS insert so the overlay loads only for
+non-v3 builds:
 
 ```zil
 <VERSION? (ZIP) (T <INSERT-FILE "V8PATCH" T>)>
 ```
 
 Tiny Quest carries that line already, and the test suite proves its v8
-build plays the identical transcript to its v3 build. One difference:
-v5+ interpreters do not draw the v3 status line, so v8 games have no
-status bar (the zorkllm CLI prompt does not show one for v8 games).
+build plays the identical transcript to its v3 build (it declares
+`<VERSION ZIP>` and gets rebuilt as v8 with `-v 8`; a new game can
+simply declare nothing and default to v8, or pin `<VERSION 8>`). One
+difference: v5+ interpreters do not draw the v3 status line, so v8
+games have no status bar (the zorkllm CLI prompt does not show one for
+v8 games).
 
 ## The shape of a game
 
