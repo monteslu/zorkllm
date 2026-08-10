@@ -204,6 +204,30 @@ evaluator now implements).
     tests/objdump.mjs   object table / property dumper for story files
     tests/dbg.mjs       raw-io interpreter harness for debugging hangs
 
+## Linking the front end
+
+The reader, evaluator and object model are independent of code generation
+and are meant to be **linked, not copied**. A ZIL interpreter, a linter or
+a scene extractor needs exactly those and none of `zcode.c`:
+
+```sh
+make libczilfront.a
+cc -std=c11 -Iczil/include yourtool.c czil/libczilfront.a -o yourtool
+```
+
+```c
+#include "czil.h"
+
+cz_ctx *c = cz_ctx_new();
+cz_parse_result r = cz_parse(c, source, length);   /* stage 1: read */
+cz_eval_init(c);                                    /* stage 3: evaluate */
+```
+
+`FRONTEND` in the Makefile is the file list (`arena`, `value`, `reader`,
+`eval`, `zmodel`); `BACKEND` is the compiler half. Keeping one copy means
+the reader proven against the whole trilogy is the reader every consumer
+uses - a fork would drift, and the drift would be silent.
+
 ## Build & test
 
     make          # builds czil-read, czil-eval, czil-build, czil-compile, z3dict

@@ -62,6 +62,24 @@ about 3,100 are replaced by an execution engine. The reader and evaluator
 are proven against three complete games, which is the part that would
 otherwise be riskiest.
 
+**Link it, do not copy it.** `make libczilfront.a` in `czil/` builds the
+front end as a static library (`FRONTEND` in the Makefile: arena, value,
+reader, eval, zmodel - explicitly separated from `BACKEND`). A consumer
+includes `czil/include/czil.h` and links the archive:
+
+```c
+cz_ctx *c = cz_ctx_new();
+cz_parse_result r = cz_parse(c, source, length);
+cz_eval_init(c);
+```
+
+Verified end to end: a standalone program linking only the archive parses
+`gverbs.zil` (238 forms), `gparser.zil` (154) and an adaptation's world
+file (207) without a line of czil source copied. A fork would drift from
+the reader that is proven against the trilogy, and the drift would be
+silent - which is the same class of failure as every metadata bug this
+document exists to avoid.
+
 **The oracle** is the existing Z-machine (`vendor/zmachine.mjs`), which
 plays the shipped 1980s binaries correctly. Any divergence is the new
 interpreter's fault by definition - no judgement calls.
