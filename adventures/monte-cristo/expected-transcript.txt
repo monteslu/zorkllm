@@ -1,0 +1,818 @@
+On the twenty-fourth of February, eighteen hundred and fifteen, the lookout at Notre-Dame de la Garde signals the three-master Pharaon, from Smyrna, Trieste, and Naples. All Marseilles turns out to watch her come in, for she comes in strangely: slow, and sedate, and trimmed in mourning.
+
+Her captain is dead. Off Civita Vecchia the fever took brave Captain Leclere, and he went to his rest sewn in his hammock with a thirty-six-pound shot at his head and his heels. The man at the helm, who brought her home through the February gales, is nineteen years old.
+
+He is you. Edmond Dantes: first mate, about to be captain; son of a good father; betrothed of the most beautiful girl in the Catalan village. You are, this morning, the happiest man in Marseilles. And three men on this quay are already sick with wanting what you have.
+
+Bring your ship to her rest. Then go collect your happiness, all of it, piece by piece. You will want to remember where each piece came from.
+
+THE COUNT OF MONTE CRISTO
+An interactive tragedy of patience.
+
+Deck of the Pharaon
+You stand at the helm of the three-master Pharaon, gliding into Marseilles harbor under a February sun. The crew waits on your word, for Captain Leclere lies sewn in his hammock at the bottom of the sea, and at nineteen you have brought his ship home. On the quay, all Marseilles has turned out to watch.
+> furl sails
+"Furl the topsails!" The canvas comes in along the yards like a bird folding. Danglars watches from the mast and says nothing, which is his way of saying a great deal.
+> drop anchor
+The anchor goes down in a roar of chain and the Pharaon comes to rest in the roads of Marseilles. Morrel's skiff is already alongside.
+
+"Come aboard, M. Morrel! She is home."
+> down
+Captain's Cabin
+Captain Leclere's little cabin still smells of pipe smoke and sea-damp charts. His sword and cross of honor lie boxed for his widow. It was here, dying, he made you swear to touch at Elba.
+> open chest
+You lift the lid. Leclere's sword and his cross of honor lie inside, wrapped for a widow in Marseilles who does not yet know she is one.
+> up
+Deck of the Pharaon
+> west
+Marseilles Quay
+Fishwives, porters, and half the town crowd the sun-white stones of the quay. North lie the Allees de Meilhan where your father lives; south, the Catalan village; west, Morrel's counting-house. Eastward, under its arbor by the water, the tables of La Reserve are being laid for a feast. Yours.
+> west
+Morrel's Counting-House
+Ledgers, sealing wax, and the smell of ink and tar. Portraits of Morrel ships line the wall. M. Morrel does business here the way other men keep faith.
+> talk to morrel
+"You brought her home through the gales and you touched at Elba on a dying man's word. Both are what I want in a captain." He puts out his hand. "At twenty, captain of the Pharaon!"
+
+Somewhere behind the ledgers, a pen stops scratching.
+> east
+Marseilles Quay
+> north
+A Room in the Allees de Meilhan
+Your father's narrow fifth-floor room: a bed, a crucifix, a few nasturtiums in a window box, and a bare cupboard he is too proud to mention. A faded red purse lies on the mantelpiece.
+> give purse to father
+"Keep it, Edmond, I want for nothing." You put it in his hands and close his fingers over it, and he stops arguing, which tells you what the cupboard has been telling you.
+
+In the doorway, Caderousse watches the silver go by with the eyes of a man doing arithmetic.
+> talk to caderousse
+"Well, well. Captain, is it, and married too? Some men are born under a lucky star." He laughs, and the laugh runs out before the sentence does.
+> south
+Marseilles Quay
+> south
+The Catalan Village
+White cottages above a bright cove; nets drying in the wind. At her doorway stands Mercedes, and the sea behind her is nothing to her eyes. In the shadow of the wall, her cousin Fernand watches you with a Catalan's stillness.
+> kiss mercedes
+She comes off the doorstep into your arms and all Marseilles may look if it likes. "You are late, Edmond, and you are alive. I forgive the first."
+
+In the shadow of the wall, Fernand turns his face away.
+> tell mercedes about feast
+"Today, then. At La Reserve, under the arbor." She sends a boy running with the word, and the boy runs as though good news might spoil.
+> north
+Marseilles Quay
+> east
+The Arbor at La Reserve
+Under the leafless arbor of La Reserve the wedding table is laid: Arles sausages, boiled crawfish, wine of La Malgue. Everyone you love is here. The morning sun touches the foamy waves into a network of ruby-tinted light.
+Morrel is on his feet with a glass. "To the Pharaon, and to her captain!" The table roars.
+> wait
+Time passes...
+Your father is crying and pretending it is the wine. Mercedes's hand is on your sleeve and has not moved in an hour.
+> wait
+Time passes...
+Fernand has gone white and left his plate. Danglars leans to Caderousse and says something behind his hand.
+> wait
+Time passes...
+Someone is knocking at the door of the arbor, and the knock is not a guest's.
+> wait
+Time passes...
+Four soldiers and a corporal, and a commissary of police with his hat in his hand.
+
+"Edmond Dantes, I arrest you in the name of the law!" Mercedes does not scream. She looks at you as though memorizing you, which is the worst thing she could do.
+
+They take you by the harbor road to the Palais de Justice, and a young magistrate rises from his own betrothal dinner to hear the case.
+
+Villefort's Study
+A magistrate's room in the Palais de Justice: files, a fire in the grate, the king's portrait. M. de Villefort studies you like a man reading two letters at once. Yours, and his own future.
+> talk to villefort
+"You are accused of being a Bonapartist agent. Your accuser is anonymous; his handwriting is disguised; his information is exact." He studies you. "You touched at Elba. You carry a letter. Give it to me."
+> give letter to villefort
+He breaks the seal, and reads the address, and the marble cracks all at once. Noirtier. Rue Coq-Heron. His own father's name, on a letter from the Emperor's island.
+
+He turns and puts it into the grate and holds it down with the poker until there is nothing. "You see, I destroy it? Now: you never carried a letter. Deny it boldly, and you are saved."
+
+He calls the gendarmes himself. There is a boat that night, and a black rock standing out of a black sea.
+
+"The Chateau d'If?" you cry. The gendarme smiles and does not answer.
+
+    ***  ACT TWO: THE CHATEAU D'IF, 1815  ***
+
+Cell Number 34
+Stone below, stone above, stone on every side, and the sea grinding at the roots of all of it. A bed, a chair, a table, a pail, and a jug. High in one wall, a loophole with three iron bars lets in a ration of sky.
+> pray
+If you pray enough, your prayers may be answered.
+> wait
+Time passes...
+> wait
+Time passes...
+
+The seasons grind past the loophole. You count them for a while and then you stop counting.
+
+You beg for a trial and are not answered. You refuse food for three days and eat on the fourth, ashamed. You pray, and the praying wears smooth like a step.
+
+It is the sixth year, and one night, low in the wall, you hear something that is not the sea.
+> listen to wall
+A faint, continuous scratching, low in the wall: stone on stone, patient as the sea.
+
+A workman would work by day and stop at noon. This one works at all hours. It is a prisoner.
+> knock on wall
+You take up the loose corner stone and strike the wall three times, deliberately.
+
+The scratching stops, as if by magic. Somewhere behind three feet of rock, a man is holding his breath and thinking exactly what you are thinking.
+
+Three days of silence, and you learn what hope costs when it is taken back.
+
+Then, at evening: the scratching again, deeper now, and unmistakably coming your way.
+> break jug
+The jug bursts on the stones. You palm the three sharpest shards into the straw; the rest you leave lying, an accident.
+> take shard
+Taken.
+The grate opens. The jailer looks in at the gravel of your jug, grunts, and comes back with another. He does not ask.
+> move bed
+You draw the bed away from the wall. Behind it, damp stone, and a mortar line a fingernail could argue with.
+> dig wall with shard
+The damp has made the mortar friable: a handful in half an hour, and the plaster hidden in the straw and shaken out at the loophole a little each morning.
+
+Behind it, a single hewn block, dressed and set by masons who were paid. Your shard snaps against it. You want iron.
+> put plate by door
+You set the earthen plate down just inside the door, where a man carrying soup in the dark would put his foot.
+Evening, and the jailer comes in with the soup and puts his foot squarely on your plate.
+
+He grinds it to powder, curses you at length, looks around for anything at all to pour the soup into, and finding nothing, leaves you the saucepan.
+
+"You destroy everything," he says in the morning. "Very well. I shall leave you the saucepan."
+> wait
+Time passes...
+> take handle
+You work the handle off and straighten it against the floor: a lever the length of your forearm. You would not trade it for ten years of life.
+> pry block with handle
+You set the iron in the mortar line and lean, and the wall gives a slow oscillation, and then the hewn stone comes away like a tooth.
+
+A cavity, a foot and a half across, breathing cold air at you out of the thickness of the fortress.
+> dig tunnel with handle
+Six inches a day, and the spoil scattered at the loophole. The seasons grind past. It is 1826.
+> dig tunnel with handle
+Ten feet, then twenty. You have learned to work in the dark by feel, and to sleep with your ear against the stone, listening for a man you have never seen.
+> dig tunnel with handle
+The iron rings on something that is not stone. A beam, square across your burrow, set there by builders who thought of everything.
+
+Something in you gives way at last. "Oh, my God, my God! Do not let me die in despair!"
+
+And the wall answers, in a voice like a file on iron:
+"Who talks of God and despair at the same time?"
+> talk to voice
+"A Frenchman," you say. "Edmond Dantes, a sailor. Arrested in eighteen fifteen, for a crime I did not commit."
+
+"Eighteen fifteen. I have been here four years longer than you, and I have dug four years in the wrong direction." A pause you could build a house in. "I took the wrong angle: I am fifteen feet from where I intended, and I have come out under your bed. It is well. Tomorrow."
+In the night the floor of your cavity gives way in a slither of earth, and out of the hole comes first the head, then the shoulders, and lastly the body of a man.
+
+He is small and white-haired, with a black beard and eyes set deep enough to hold a library. "I am the Abbe Faria, prisoner since eighteen eleven. And you, my friend, have saved me the trouble of dying alone."
+> wait
+Time passes...
+Boots on the stair. The grate opens, and shuts, and the day is over.
+> tell faria about letter
+He listens to the whole of it without once interrupting, and at the end he says: "Seek first to discover the person to whom the bad action could be in any way advantageous."
+
+"So. Who gained by your fall? Name them to me, one at a time."
+> tell faria about danglars
+"The supercargo, who wanted your ship. Tell me again about the cabin." And you remember it: Danglars at the door while Leclere gave you the packet.
+
+"He wrote it. With his left hand, so that the writing would betray nobody. Writing done with the left hand is invariably uniform."
+> tell faria about fernand
+"The cousin who wanted your girl. An assassination such a man will commit unhesitatingly; an act of cowardice, never." He turns it over.
+
+"Yet somebody carried that letter to the post. He did not write it. He posted it. That is the worse of the two."
+> tell faria about villefort
+"Now think. He told you the letter was your ruin, and then he burned it. A magistrate does not burn evidence against a prisoner. He burns evidence against himself."
+
+"Whose name was on it? Noirtier. He burned it because the name was his father's. He buried you to bury it."
+
+The abbe is quiet a long time. "I repent me of my work," he says at last. "I have put hatred into a heart that had none."
+
+"Not hatred, father. Justice."
+> down
+The Tunnel
+A burrow a man may pass on his elbows, fifty feet of clawed-out dark between your cell and the abbe's. The air tastes of earth and patience.
+> west
+Cell Number 27 - the Abbe's Cell
+Faria's cell is the same stone as yours, and entirely different: a disused hearth, a bed, and everywhere the invisible library of a free mind. You could believe the walls here were thinner. They are not.
+> study with faria
+Italian first, because it is the language of the treasure; then Spanish, English, German, Greek. He has no books, so he is the book.
+
+Six months. You dream in Italian now.
+> study with faria
+Mathematics next, scratched on the floor with a fish-bone: the angle of his own mistaken tunnel, worked out to the inch, offered as a lesson in humility.
+
+"Two years. You reckon faster than I do, which is how a teacher learns he is finished."
+> study with faria
+History, which he says is only accounting kept by the winners. Cardinal this, Emperor that, and always the same question underneath: who gained?
+
+Three years. Your voice has changed, and your handwriting is his.
+> study with faria
+Chemistry last, and he is oddly grave about it: brucine, which kills by grains and cures by grains; the opiates, which counterfeit death for a night and a day.
+
+"Learn the poisons, Edmond. Not to use. To recognize. It is 1829, and you know as much as I do myself."
+
+He stops in the middle of a word. His face goes the color of the floor, his eyes roll back, and he goes down among the straw with his teeth locked and his hands like claws.
+
+The cataleptic fit. He told you about it once, and told you where the phial was kept.
+His breathing is a saw in a wet board. The phial is under the hearth-stone.
+> lift hearth
+The hearth-stone lifts on a hidden bevel, and the hollow beneath it holds the whole estate of a free mind: a chisel, a knife, a fish-bone needle, a little lamp, a small phial of red liquor, and a manuscript written on two shirts.
+His lips are going blue.
+> take phial
+Taken.
+> pour phial in mouth
+You force the clenched teeth and count ten drops of the red liquor onto his tongue.
+
+He shudders, and his eyes come back from wherever they had gone. "My arm is dead," he says at last, quite calmly. "My leg is dead. The next one will take the rest. Sit down, Edmond. The treasure must not die with me."
+> ask faria about treasure
+"In fourteen ninety-eight Cardinal Spada was invited to dine by his Holiness Alexander the Sixth, and the Spada fortune was never seen again. His nephew inherited a breviary and a bad dinner."
+
+"Three hundred years later the last Spada left the breviary to me, and I burned a paper in it by accident, and the fire wrote on it." He draws a scorched half-sheet out of his rags and puts it in your hand.
+> read parchment
+Fire has eaten the left half of every line. What is left reads: "ing invited to dine by his Holi ... the caves of the small ... ck from the small cr ... angle in the second op ..."
+
+It is a will with half its words burnt off, and it is worth asking the abbe about.
+> ask faria about parchment
+He recites the missing half without hesitating once, and as he says it the burnt lines close up in your head like a wound healing.
+
+"The twentieth rock from the small creek to the east in a right line; the second opening; and in the farthest angle. If we escape together, half is yours. If I die here, it is yours alone."
+It comes at night, and this time the drops do nothing. "It is useless," he whispers. "Only now the fit is stronger."
+
+"The treasure is yours, Edmond. Do not forget you have your executioners to punish, and perhaps, too, who knows, some friends to reward." His hand tightens once. "Monte Cristo!"
+> wait
+Time passes...
+The night goes by with him in it. Toward morning you hear boots on the stair, more than one pair.
+> wait
+Time passes...
+Morning brings the governor's doctor, and you listen to it all from the mouth of the burrow.
+
+The jokes; the hot iron laid on the heel, which is decisive, and which you smell through three feet of rock; the needle going in and out of the canvas. "This evening. About ten or eleven o'clock. Shut the dungeon as if he were alive; that is all."
+
+They go. On the bed lies a sewn sack, and in the sack lies the only thing in this fortress that will pass the walls tonight.
+> take knife
+Taken.
+> take needle
+Taken.
+> cut sack with knife
+The seam parts under the iron blade. The abbe's face is calm, and a little amused, the way it was in life.
+
+"Forgive me, father."
+> drag body
+You gather him up. He is lighter than the idea of him. Your hands are full now, and will stay full until he is where he is going.
+> east
+The Tunnel
+Somewhere over the water a bell counts seven.
+> east
+Cell Number 34
+> put body in bed
+You lay the abbe in your own bed, on your own straw, in the place where number thirty-four sleeps.
+> cover body
+You draw the blanket to his chin, tie your own night-rag about his head, and turn his face to the wall.
+
+By lamplight, from a grate, he is a prisoner sleeping. Any prisoner.
+None but the dead pass freely from this dungeon.
+> west
+The Tunnel
+> west
+Cell Number 27 - the Abbe's Cell
+The hollow beneath the hearth contains:
+  A linen manuscript
+  A little lamp
+  A chisel
+> enter sack
+You settle into the dead man's place, and draw the canvas over your face, and hold the knife against your chest with both hands.
+> sew sack
+From the inside, stitch by stitch, you close your own shroud. Your heart is so loud they will surely hear it.
+> wait
+Time passes...
+Boots on the stair, and a lantern, and two men who have done this before.
+
+"Heavy, though, for an old man." "They say the bones get heavier every year." A pause; and a heavy metallic substance is laid down beside you, and something is knotted hard about your ankles.
+
+"What's the knot for?" you have one second to wonder.
+
+Fifty paces. The sea-noise coming up. A swing, and a swing, and: One! Two! Three!
+
+Beneath the Waves
+Cold black water, roaring in your ears. Something enormous and heavy is falling, and it is tied to your feet, and it is you.
+> cut sack with knife
+You rip the canvas from top to bottom and shed it like a skin. But the shot still has your feet.
+> cut cord with knife
+Bent double in the black, you saw the cord through at the moment the strangling starts. The shot goes on down without you.
+Your chest begins to burn.
+> up
+Three strokes, four, and your head comes out into air and rain and the whole black roaring sky.
+
+You are free. You have been free for nine seconds and you are already counting.
+
+The Open Sea
+Black waves under a black sky; the mistral is rising. Behind you the Chateau d'If stands on its rock like a scaffold. Far off, one steady spark low in the south: the light of Planier. Faria's geography, in your ear: leave Planier on your left hand, and Tiboulen lies west.
+> swim
+You are swimming, and have been for an hour. One steady spark low in the south: the light of Planier. Leave it on your left hand and Tiboulen lies west.
+> west
+You strike out west with the mistral behind you and the light of Planier over your left shoulder, as the abbe said.
+> west
+An hour, perhaps two. Your arms have stopped belonging to you and go on anyway.
+> west
+Something tears your knee. Rock. Blessed, merciful rock.
+
+The Island of Tiboulen
+A grotesque mass of bare rocks, like a vast fire petrified at the moment of its most fervent combustion. No tree, no soul, no shelter but an overhanging stone.
+It is the most beautiful place you have ever seen.
+> enter overhang
+You wedge yourself under the overhang with your knees at your chin. The rain goes past a foot from your face and does not touch you.
+The mistral turns to a gale and the rain comes in sideways.
+> drink water
+A basin of last night's rain in the rock. You drink it a palmful at a time and it is better than the wine of La Malgue.
+> wait
+Time passes...
+Out in the dark a fishing boat is shouting. Then splintering. Then nothing you can do anything about.
+> wait
+Time passes...
+> wait
+Time passes...
+Dawn, gray and washed. Far off across the water, the gun of the Chateau d'If thuds twice: they have found the grave empty.
+
+Along the waterline lies what the sea did not want of a fishing boat: splinters, a spar, and a red woolen cap. And rounding Pomegue with the morning wind, a Genoese tartan.
+> wait
+Time passes...
+> take cap
+You are now wearing the red woolen cap.
+> wear cap
+You pull the dead man's cap over your wet hair. From a hundred yards you are a Maltese sailor who has had a bad night.
+> take spar
+Taken.
+> hail ship
+You climb the highest rock with the spar under your arm and shout until your voice tears.
+
+A boat comes. You are a Maltese sailor, sole survivor of the tartan Young Amelia, wrecked on Tiboulen in the night; and the lie holds, because sailors want it to.
+
+Three months among the smugglers of the Jeune-Amelie, running contraband from Leghorn to the Corsican coast, growing a beard and a character. And then, in the ordinary way of business, a cargo to be transferred off an uninhabited rock in the Tyrrhenian Sea.
+
+    ***  ACT THREE: MONTE CRISTO, 1829  ***
+
+Deck of the Jeune-Amelie
+A smuggler tartan heeling under lateen sails, bound for the island of Monte Cristo with contraband and no questions. Jacopo splices a line and watches you the way honest men watch lucky ones.
+> land
+The Hidden Creek
+A small creek hidden like the bath of some ancient nymph, deep enough at the center for a little vessel. From the waterline, a line of old notches cut in the rocks marches away to the east.
+> examine rocks
+Old notches cut in the rock at the waterline and marching away east in a right line, weathered but unmistakable, and older than anyone on this island has been alive.
+> east
+Goat Path
+A scramble of myrtle and hot granite. Lizards flash like emeralds; somewhere above, wild goats clatter. The notch marks continue east in a right line.
+> east
+You went over the side among the rocks this morning and lay very still until they were sure you had cracked your skull. Jacopo wanted to carry you back aboard on his own shoulders; you had to be sharp with him to be left.
+
+The Jeune-Amelie is a sail on the horizon now. On the moss beside you, Jacopo has left a pickaxe, a powder horn, a gun, biscuits and rum, out of his own share.
+
+The Circular Rock
+The notches end at a huge circular boulder squatting on a bed of smaller stones. Moss and myrtle have sworn it has sat here since the Flood. Cardinal Spada's men swore the same thing, in 1498.
+There is a powder horn here.
+There is a pickaxe here.
+> count rocks
+From the creek, east in a right line: eighteen, nineteen, twenty.
+
+The twentieth rock is no rock. It is a door with moss for manners.
+> examine boulder
+It rests on a made bed: a wedge stone, packed flints, old masonry playing at geology. Nature does not lay courses.
+> take pickaxe
+Taken.
+> take horn
+Taken.
+> dig wedge with pickaxe
+Ten minutes' work with the pickaxe opens a hole under the wedge big enough for your arm.
+> cut tree
+You cut and strip the strongest olive bough on the island: eight feet of stubborn wood.
+> pry boulder with branch
+You set the olive bough under the lip and throw your whole weight on it. The boulder stirs, and settles.
+
+Too heavy for any one man, were he Hercules himself. It will want something quicker than muscle.
+> put horn in hole
+You pack the horn's powder deep under the wedge and roll your handkerchief into a slow-match.
+> burn fuse
+You touch fire to the match with the horn's flint and walk, not run, behind the tallest rock.
+
+The island answers. The wedge is gravel; the boulder tips, rolls, bounds twice, and buries itself in the sea below with a noise like a door closing on three hundred years.
+
+Where it sat, a square flagstone with an iron ring in it.
+> pull ring
+The flagstone rises on the ring, easily, on a bevel cut by a mason who was paid to be forgotten.
+
+Steps, going down into a blue-lit dark.
+> down
+The First Grotto
+A dim and bluish light seeps through crevices; the granite walls sparkle as if sown with diamond dust. The air is warm and dry. Somewhere in this glitter, a second door is pretending to be a wall.
+> knock on wall
+You go along the wall with your knuckles: solid, solid, solid.
+
+And then, in the far angle, one part of the wall gives forth a hollow and deeper echo.
+> hit wall with pickaxe
+Stucco flakes fall away in sheets, painted to imitate granite. Beneath it: dressed white stones, laid without mortar.
+
+Three blows and the first stone comes out, and then the rest are only work. Beyond is a second grotto, lower and older.
+> east
+The Second Grotto
+Lower, darker, closer. The air is old. In the farthest angle to the left, the ground has been waiting three hundred and forty years for a man with a pickaxe.
+> dig angle with pickaxe
+Two feet down, at the fifth blow, the pickaxe rings on iron.
+
+Never did funeral knell produce a greater effect. You clear it with your hands: an oaken coffer bound in steel, and on the lid, in silver, a sword on an oval shield surmounted by a cardinal's hat.
+> open coffer with pickaxe
+You set the pickaxe point under the hasp and the fastenings burst.
+
+Gold coin in blazing piles; bars of unpolished gold; and diamonds, pearls and rubies that fall through your fingers and sound like hail against glass.
+> take treasure
+You are alone; alone with countless, unheard-of treasure.
+
+You kneel down on the floor of the second grotto and say something that is intelligible to God alone. When you rise your voice is quite steady. "Now for Marseilles."
+
+Leghorn, and a barber, and a tailor; papers bought from a man who does not ask; a yacht; a name off a chart in the Tyrrhenian Sea.
+
+Fourteen years dead, you come back to Marseilles a priest, an Englishman, anything at all but a ghost. In your baggage: a black cassock, an Englishman's drab coat, and the habit of patience.
+
+The Beaucaire Road
+A white dusty road between Bellegarde and Beaucaire. A failing inn stands here, its signboard groaning in the wind: the Pont du Gard.
+> wear cassock
+The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
+> entrance
+The Pont du Gard Inn
+A failing inn on the Beaucaire road. Caderousse, gone gray and sour, wipes a table that no traveler will sit at. Poverty has been at work on him the way the sea works on a wreck.
+> talk to caderousse
+"I am the Abbe Busoni," you say, "and I attended a prisoner who died in the Chateau d'If. Edmond Dantes. He left a diamond, to be divided among the few who loved him."
+
+He bolts the door, and his wife listens through the floorboards, and the whole of it comes out of him like water out of a split cask.
+> ask caderousse about letter
+"Danglars wrote it, at La Reserve, with his left hand, on a leaf out of the arbor. Fernand carried it to the post."
+
+"And I was there, monsieur l'abbe, and I said nothing. God forgive me, I was drunk. Wine was invented because of men like me."
+> ask caderousse about father
+"He starved, monsieur. Not all at once; men do not, here. He sold the coat off his back and then he stopped coming down the stairs."
+
+"He died with his hand in Mercedes's, and the red purse M. Morrel left on his mantel paid for the burying."
+> ask caderousse about morrel
+"Ah. There is your good man, and see what it buys." He wipes the table. "Ruined. One ship left of ten, and September coming, and everybody in this town knows the date."
+> ask caderousse about purse
+"That, monsieur? A red silk purse. M. Morrel left it on old Dantes's chimney-piece with two hundred francs in it, and the old man was too proud to spend it and too hungry to throw it away."
+
+He fetches it out of the cupboard and sets it on the table, and does not quite let go of it.
+> give diamond to caderousse
+"For the whole of it? Ah, monsieur l'abbe, do not jest with the happiness or despair of a man!"
+
+He trades the purse for the stone without being asked twice, and holds it up to the one candle, and under the floor his wife says again, quite clearly: "Suppose it's false?"
+> exit
+The Beaucaire Road
+> wear coat
+The drab coat, the flat vowels, the small unfriendly smile of a Northern man with a ledger. You are Lord Wilmore, agent of the house of Thomson and French.
+> south
+A day and a night on the Beaucaire road behind post horses, and Marseilles at the end of it: the same quay, the same white stones, and not one of Morrel's ships in the harbor.
+
+Morrel's Counting-House
+The counting-house of Morrel and Son, 1829: one clerk, one empty cash-box, and a wall of portraits of ships that are all at the bottom of the sea. Cocles keeps the ledgers as though the numbers might yet repent.
+> talk to morrel
+"Thomson and French have bought my paper? Then I will tell you plainly what you have bought."
+
+"On the fifth of September, at eleven o'clock, I must pay two hundred and eighty-seven thousand francs. Or." He does not finish it, and you both hear the pistol he does not name.
+> pay debt
+In one morning the house of Thomson and French buys every bill of Morrel and Son that is out in France, and marks the whole of it paid.
+
+You fold the receipted bill into your pocket. It is worth two hundred and eighty-seven thousand francs and it weighs nothing at all.
+> put bill in purse
+You fold the receipted bill into the faded red silk, where a proud old man once kept two hundred francs he would not spend.
+> put gem in purse
+You drop the second great stone in after the bill, and on a slip of parchment you write two words: Julie's Dowry.
+> north
+A Room in the Allees de Meilhan
+The room in the Allees de Meilhan, let to strangers these many years: a bed not his, a window box gone to sticks, and the same bare mantel over the same cold grate. Some rooms outlive everyone in them.
+> put purse on mantel
+You set the red purse on the mantelpiece where M. Morrel set it fourteen years ago, and go out, and send a boy with a word to Julie Morrel about a house in the Allees de Meilhan.
+
+THE FIFTH OF SEPTEMBER. Eleven o'clock. In a room over the counting-house a good man puts the muzzle of a pistol between his teeth, and hears his daughter's voice on the stair: "Father! Saved! You are saved!"
+
+The purse in her hand. The bill receipted. The stone for her dowry. And then, from the port, the cry that no accounting can explain: the Pharaon! The Pharaon is entering harbor! A new ship, built in secret to the old lines, coming in under all sail with her name in fresh gold.
+
+The good are repaid. Now Paris. Now the others.
+
+Nine years pass like nine waves. It is eighteen thirty-eight, and Paris believes in you.
+
+    ***  ACT FOUR: PARIS, 1838  ***
+
+Salon of the Count of Monte Cristo
+No. 30, Champs-Elysees. Silk, bronze, and rumor. Paris has decided you are a Balkan prince, a vampire, or the devil; you have not corrected Paris. Ali stands at the door; your study lies east; the city waits south.
+> north
+Haydee's Apartments
+Incense, cushions, and a silence from farther east than Greece. Haydee rises as you enter: the daughter of Ali Pasha of Janina, whom you bought out of slavery and who looks at you as if you were the sun.
+> ask haydee about janina
+"I was four years old. The French officer my father trusted with the castle of Yanina took the Sultan's money and opened the gate."
+
+"My father's head went to Constantinople in a bag. My mother died on the road. I was sold in the market at eleven, and the officer who sold me signed the receipt."
+> ask haydee about proof
+She brings out a satin satchel: her birth record, her baptism record, and the bill of her own sale, signed by a French colonel. Fernand Mondego.
+
+"If they ask me to say it in front of France," she says, "I am ready."
+> south
+Salon of the Count of Monte Cristo
+> south
+The Champs-Elysees
+Carriages, gossip, and gaslight. From here the city is yours: the bank west, the press east, the Chamber of Peers southeast, the law courts south, the telegraph northwest, the Villefort house southwest. And, by coach, the quiet house at Auteuil.
+> west
+Danglars's Bank - Antechamber
+Marble bought with margins. Clerks scratch in ledgers; above the double doors, a gilt baron's crest that smells of fresh paint.
+> west
+Danglars's Office
+Baron Danglars fills his chair like a sack of coin. On the wall, a portrait of his wife he did not choose; on his desk, the only faith he keeps: the daily quotations.
+> show letter to danglars
+"On the house of Thomson and French, of Rome. Unlimited." He reads the word three times and looks up at you with the expression of a man who has heard a noise in the cellar.
+
+"Unlimited," he agrees. You draw your first million with the smile of a man taking back his own.
+> east
+Danglars's Bank - Antechamber
+> east
+The Champs-Elysees
+A note is brought up on a tray, in a hand disguising itself out of habit: a friend warns the Count that a man will enter his house by the study window tonight.
+> northwest
+Garden Below the Telegraph
+A kitchen garden at the foot of an old tower crowned with black jointed arms. The keeper is on his knees among the peas, at war with the dormice, a man of a thousand francs a year.
+> give notes to operator
+Fifteen notes of a thousand francs, laid on the wall between the pea sticks.
+
+"Sir," he says, without touching them, "you are tempting me?"
+"Just so." He puts them in his shirt and stands up, and he is a different man, and he knows it.
+> up
+The Telegraph Platform
+Up here the signal arms creak overhead like a gallows-tree of news. Through the glass you can see the next tower's semaphore twitching out the fortunes of France, one angle at a time.
+> send signal
+He works the arms to your dictation without once asking what they mean, and down the line, tower after tower, a lie goes to Paris at the speed of light: Don Carlos has crossed the Bidassoa. Spain is in revolt.
+
+By evening the funds are falling. By morning the Baron has sold every Spanish bond he owns into the panic, and by noon the government prints the denial.
+
+The Baron is lighter by a million, and heavier by a suspicion.
+> down
+Garden Below the Telegraph
+> southeast
+The Champs-Elysees
+> north
+Salon of the Count of Monte Cristo
+> east
+The Count's Study
+Maps, dossiers, and a wardrobe deeper than it looks: a priest's cassock, an Englishman's drab coat, and, folded at the very bottom, paid for with fourteen years, a sailor's jacket and hat.
+There is a spade here.
+There is a gray pill here.
+There is a Englishman's drab coat here.
+There is a priest's cassock here.
+Downstairs a pane of glass comes out of the study window with a glazier's diamond, very quietly, and somebody who is not a servant walks about among your things.
+
+You could go down as the Count of Monte Cristo and have him taken by the gendarmes; or you could go down as somebody he is afraid of.
+> wear cassock
+The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
+The pane comes out of the window with a glazier's diamond, and a leg comes over the sill, and a man drops into your dark study and finds a priest sitting in the chair.
+
+"You! The abbe! Always the abbe, like a bad conscience."
+> wait
+Time passes...
+> tell caderousse about benedetto
+"The friend who told you the house was empty is the same young prince who is marrying Mademoiselle Danglars. His name is Benedetto and he was in the galleys at Toulon with you."
+
+He writes it and signs it at your desk, in a hand like a schoolboy's, and then you let him go out the window, because the knife waiting for him at the gate is not yours.
+
+Two minutes later there is a cry at the gate, and your servants carry him back in and lay him on the study floor with Benedetto's knife in him. He is asking for the abbe.
+> wait
+Time passes...
+> remove wig
+They carry him back in off your own steps with Benedetto's knife in him, and he asks for the abbe, and gets him.
+
+"Look well at me." "The abbe. Busoni." "Look again."
+The gray wig comes off.
+
+"I am neither the Abbe Busoni nor Lord Wilmore. I am he you sold at La Reserve. I am Edmond Dantes."
+
+"Oh, my God, my God," says Caderousse, "forgive me for having denied you," and dies believing, which is more than he managed in fifty years of living.
+> west
+Salon of the Count of Monte Cristo
+> south
+The Champs-Elysees
+> east
+Offices of l'Impartial
+Ink-fog, proof sheets, and the guillotine-thump of the press below. Beauchamp the journalist can smell a story through wax seals.
+> tell beauchamp about janina
+He listens with his pen down, which from Beauchamp is reverence.
+
+Next morning, four lines at the foot of a column: We hear from Yanina that the castle was delivered to the Turks by a French officer in whom Ali Pasha had reposed entire confidence, and who was then called Fernand.
+
+Within the week the Chamber of Peers appoints a committee of inquiry, and the Count de Morcerf demands to be heard.
+> west
+The Champs-Elysees
+> southeast
+Gallery of the Chamber of Peers
+Velvet benches above a floor of old men and older honors. Today the Count de Morcerf answers a question of history: what happened at Janina?
+Morcerf is magnificent. Thirty years of service, a wound at Ligny, the honor of a soldier; and the committee is halfway to apologizing when the usher announces a witness.
+> wait
+Time passes...
+A veiled woman comes down to the floor of the Chamber and puts back her veil.
+
+"I am Haydee, the daughter of Ali Tepelini, pasha of Yanina, and of Vasiliki, his beloved wife." The documents go along the bench from hand to hand; the seal of the Sublime Porte is verified; the bill of sale is read out with the signature on it.
+
+The vote is taken by standing. Nobody stays seated. Morcerf goes out of the Chamber through a corridor of turned backs.
+
+A woman is waiting in your salon at midnight, veiled, and she does not unveil, and she does not need to.
+
+"Edmond," she says. Nobody unmasks you; she simply knows. "Do what you must to my husband. Leave me my son." You give her your word, and she goes out into the Champs-Elysees on foot, like a servant.
+Salon of the Count of Monte Cristo
+
+That evening he is in your salon with his hat on, not sitting down.
+
+"I know you only as an adventurer sewn up in gold and jewellery. It is your real name I want, monsieur. Say it."
+
+There is a wardrobe in your study, one room east, with something folded at the very bottom of it. The scene will wait. Scenes like this always wait.
+> east
+The Count's Study
+There is a spade here.
+There is a gray pill here.
+There is a Englishman's drab coat here.
+> inventory
+You are carrying:
+  A priest's cassock (being worn)
+  A anonymous note
+  A letter of credit
+> take spade
+Taken.
+> take pill
+Taken.
+> wear jacket
+You go east to the study, and the scene waits for you the way a duelist waits, and you come back in a sailor's jacket and hat with your hair fallen loose out of it.
+
+"Look at me. A face you must often have seen in your dreams since your marriage with Mercedes, my betrothed."
+
+He goes out backwards, feeling for the doorframe. From the courtyard, one cry: Edmond Dantes! And then, when his wife's and his son's coach has cleared the gate, one shot.
+> south
+The Champs-Elysees
+> entrance
+The coach goes out through the barrier and down to Auteuil, and Bertuccio, on the box, does not say one word the whole way.
+
+The House at Auteuil - Salon
+A pleasure-house with its shutters' eyes put out; you have had it lit and aired, and still the walls hold their breath. Bertuccio, your steward, will not look at the garden door.
+> talk to bertuccio
+"I declared the vendetta against him because he would not avenge my brother. I followed him to this house. One night in September I saw him come down into that garden with a spade and a box, and I put my knife in his back under the plantain tree."
+
+"And then I dug up what he had buried, excellency, because I thought it was money." He has to stop. "It was a child, monsieur. A living child."
+> east
+The Auteuil Garden
+A walled garden gone half wild. One plantain tree stands over turned earth like a mourner who has forgotten whom he mourns.
+> dig earth with spade
+Two feet down, the spade turns up the ironwork of a small box, rusted to lace, with nothing at all inside it.
+
+Nothing at all is exactly what you need. What your guests will see in it is their own business.
+> west
+The House at Auteuil - Salon
+> host dinner
+Your guests arrive at eight: Danglars and his wife, the Villeforts, the Cavalcantis. After dinner you take them into the garden with candles, to see the improvements.
+
+"A crime has been committed in this house. Digging, my man found a box, and in it the skeleton of a newly born infant." Madame Danglars's arm turns to stone on yours. Villefort's trembles like a wire, and does not stop.
+> exit
+Back through the barrier, into the gaslight.
+
+The Champs-Elysees
+> southwest
+Villefort's House - Hall
+The procureur's house in the Faubourg Saint-Honore: cold marble, hushed servants, and lately a smell of medicine on every landing. Death has been a frequent caller this season.
+> north
+Noirtier's Room
+The old conventionist sits paralyzed in his great chair, alive only in his eyes; and his eyes are two loaded pistols. A dictionary and a bell-cord serve him for a voice.
+> talk to noirtier
+You read to him from the dictionary and he blinks once for the letter he wants, and it takes an hour, and at the end of the hour he has spelt out two things.
+
+The first is that Barrois drank from Valentine's glass and died in twenty minutes. The second is that he has been feeding his granddaughter brucine, a grain at a time, for a year, so that when the poison came it would find her ready.
+> ask noirtier about poisoner
+The eyes leave yours and go to the door that Madame de Villefort uses, and stay there, and come back.
+
+He has named her without a word, and there is not a court in France that could use it.
+> south
+Villefort's House - Hall
+> east
+Valentine's Room
+White curtains, a glass of lemonade on the night table, and a girl growing paler by the week while her family calls it nerves.
+> give pill to valentine
+"Trust me as you would trust Providence. Sleep, and whatever you hear, do not wake."
+
+She dies that night, to the satisfaction of everyone who wanted her to, and the house fills with the particular horror of a family counting its own. Two nights later you take her out of the vault yourself, warm, and asleep, and nineteen.
+> west
+Villefort's House - Hall
+> northeast
+The Champs-Elysees
+> south
+The Court of Assizes
+The great criminal court, packed to the cornices. Villefort prosecutes the prisoner Benedetto with his usual marble calm; the prisoner wears a curious smile, as if he alone knows the last line.
+Villefort opens for the crown with his usual marble calm. The prisoner Benedetto, who was arrested at his own betrothal to Mademoiselle Danglars, listens as though the whole thing were a play he has already read.
+> wait
+Time passes...
+"Your name?" "Benedetto." "Your profession?" "First an assassin, then a thief." The court laughs, because it does not yet know.
+
+"Your father's name?"
+
+"My father is procureur du roi. His name is Villefort."
+
+The signed letter Caderousse wrote in your study goes up to the bench and is read aloud, and there is nothing left to argue about.
+
+Uproar. Villefort, gray as his own gown, does not deny it. His carriage goes home at a gallop.
+> north
+The Champs-Elysees
+> southwest
+Villefort's House - Hall
+> wear cassock
+The cassock, the gray tonsure, the stoop, and the Italian of a Roman seminary. You are the Abbe Busoni, and men tell priests what they tell no one living.
+> north
+The door goes back against the wall and Villefort is in the room, still in his gown, and stops dead at the sight of a priest.
+
+"Busoni. Always Busoni. Do you never appear but to escort death?"
+Noirtier's Room
+> remove wig
+You take off the gray wig.
+
+"It is the face of the Count of Monte Cristo!"
+"You must go farther back."
+He looks, and the years come off, and his mouth opens.
+
+"I am Edmond Dantes!"
+
+And then he takes your wrist, which nobody has done in twenty years, and says "Then come here!" and pulls you up the stairs to a room where his wife has taken her own poison, and the boy Edouard is lying across her knees.
+
+Something goes out of you like a fever breaking: the certainty that God was with you.
+
+"Are you well avenged?" He asks it quite reasonably. Then his mind goes out like a lamp, and he begins, on his hands and knees, to look for his papers.
+
+That same week the Baron Danglars draws his last five millions on a Roman house and leaves Paris by the Italian road, and his wife is not told.
+
+Peppino reads over his shoulder at the banker's. Vampa reads Peppino. You read everyone.
+
+    ***  ACT FIVE: EXPIATION  ***
+
+Rome, and under Rome the catacombs of Saint Sebastian, where Luigi Vampa keeps what he is holding for you.
+
+Catacombs of Saint Sebastian
+Under Rome, among the politely stacked dead, Luigi Vampa's men play mora by torchlight. Vampa rises and uncovers his head: to him you are something between a king and a saint, and he is not sure which frightens him more.
+> east
+The Larder Cell
+A barred recess in the tufa where a fat man in a torn coat sits among the finest dinners in Italy, priced at one hundred thousand francs the fowl. Danglars has eaten down five millions, and is hungry.
+> talk to danglars
+"Take my last gold," he says through the bars, without pride, without anything. "Take it and let me live. I only ask to live."
+
+"Do you repent?"
+
+"Of the evil I have done? Yes! Yes!"
+> forgive danglars
+You put back the hood.
+
+"I am he whom you sold and dishonored; I am he whose betrothed you prostituted; I am he you trampled upon that you might raise yourself to fortune. I am Edmond Dantes."
+
+"And I forgive you, because I hope to be forgiven."
+
+He keeps the fifty thousand francs. The hospitals of Rome are repaid out of the rest. By morning his hair is white, and he walks out of the catacombs into the sun a free man, which is the worst thing you could have done to him.
+
+    ***  MARSEILLES  ***
+
+The Chateau d'If is a monument now, and they charge to go in.
+
+Cell Number 34
+Cell number thirty-four, by the guide's reckoning: a bed, a chair, a table, and the same ration of sky. The guide is explaining that one of the famous prisoners went mad here. He is nearly right.
+> down
+The guide is telling a party of English about the mad abbe. You step over the rope and go down into your own tunnel.
+
+The Tunnel
+The burrow between the cells, propped and dusty, shown to tourists now. Fifty feet of two men's patience.
+Something pale is wedged in the roof timbers, where nobody thought to look.
+There is a linen manuscript here.
+> take manuscript
+Two shirts' worth of linen, a life's worth of mind, wedged in the roof timbers where the masons never looked.
+
+The guide asks whether monsieur is unwell. Monsieur is only breathing the air of his own grave.
+
+The yacht is at Marseilles and Maximilian Morrel is aboard her, because you asked him to wait until the fifth of October and he is a man who keeps his word.
+
+    ***  MONTE CRISTO  ***
+
+The First Grotto
+The first grotto, lit properly for the first time in three hundred and forty years. Maximilian Morrel stands where the treasure stood, and he has not spoken since Marseilles, because the girl he loved was buried in October.
+> wait
+Time passes...
+> give letter to maximilian
+The letter passes from your hand to Maximilian Morrel's, on the floor of your own grotto isle.
+
+And out of the second grotto, into the blue light, walks Valentine de Villefort, alive, alive, and takes his arm the way the drowning take a spar.
+
+"There is neither happiness nor misery in the world; there is only the comparison of one state with another. He who has felt the deepest grief is best able to experience supreme happiness. We must have felt what it is to die, that we may appreciate the enjoyments of living.
+
+"Live, then, and be happy, beloved children of my heart, and never forget, until the day God deigns to reveal the future to man, that all human wisdom is summed up in these two words: Wait and hope."
+
+Signed: Edmond Dantes, Count of Monte Cristo.
+
+A sailor gone fourteen years came back to Marseilles wearing four faces, and the men who buried him met every one before the end: the priest, the Englishman, the Count, and last, always last, the young man in the sailor's jacket whose name they cried out like the damned.
+
+Danglars begged, and was forgiven. Fernand heard it, and fired. Villefort touched it, and went mad. Caderousse saw it, and believed in God.
+
+And on the blue line where the sky meets the sea, a white sail grows small: the Count, and Haydee, and the horizon.
+
+Wait, and hope.
+
+    ****  You have won  ****
+
+Your score is 400 of a possible 400, in 206 turns.
+Your rank: Wait and Hope.

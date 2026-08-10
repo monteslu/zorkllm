@@ -42,4 +42,6 @@ against for movement."
 dictionary. Loads only for non-v3 builds."
 <VERSION? (ZIP) (T <INSERT-FILE "V8PATCH" T>)>
 <INSERT-FILE "CACTIONS" T>
-<INSERT-FILE "CACTION2" T>
+<INSERT-FILE "CACT2" T>
+<INSERT-FILE "CACT3" T>
+<INSERT-FILE "CACT4" T>

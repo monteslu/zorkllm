@@ -1,0 +1,85 @@
+# Dumas's own foreshadowing, made playable: the knife opens the shroud,
+# and then you set it down before climbing in. The game warns you as you
+# settle; the sea does not warn you twice.
+furl sails
+drop anchor
+down
+open chest
+up
+west
+west
+talk to morrel
+east
+north
+give purse to father
+talk to caderousse
+south
+south
+kiss mercedes
+tell mercedes about feast
+north
+east
+wait
+wait
+wait
+wait
+talk to villefort
+give letter to villefort
+pray
+wait
+wait
+listen to wall
+knock on wall
+break jug
+take shard
+move bed
+dig wall with shard
+put plate by door
+wait
+take handle
+pry block with handle
+dig tunnel with handle
+dig tunnel with handle
+dig tunnel with handle
+talk to voice
+wait
+tell faria about letter
+tell faria about danglars
+tell faria about fernand
+tell faria about villefort
+down
+west
+study with faria
+study with faria
+study with faria
+study with faria
+lift hearth
+take phial
+pour phial in mouth
+ask faria about treasure
+read parchment
+ask faria about parchment
+wait
+wait
+take knife
+take needle
+cut sack with knife
+drag body
+east
+east
+put body in bed
+cover body
+west
+west
+drop knife
+enter sack
+sew sack
+wait
+cut sack with knife
+cut cord
+up
+wait
+wait
+wait
+wait
+wait

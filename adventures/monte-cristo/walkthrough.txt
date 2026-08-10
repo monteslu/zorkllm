@@ -1,0 +1,210 @@
+# THE COUNT OF MONTE CRISTO - full playthrough, 400 of 400.
+# Raw parser commands only. See DESIGN.md section 9 for the annotated
+# version; where this file differs from the design, BUILD-ISSUES.md says
+# why (PRY BLOCK not PRY STONE, plain compass words for the swim,
+# ENTRANCE/EXIT for the coach).
+
+# --- ACT I: Marseilles, 1815 ---
+furl sails
+drop anchor
+down
+open chest
+up
+west
+west
+talk to morrel
+east
+north
+give purse to father
+talk to caderousse
+south
+south
+kiss mercedes
+tell mercedes about feast
+north
+east
+wait
+wait
+wait
+wait
+talk to villefort
+give letter to villefort
+
+# --- ACT II: the Chateau d'If, 1815-1829 ---
+pray
+wait
+wait
+listen to wall
+knock on wall
+break jug
+take shard
+move bed
+dig wall with shard
+put plate by door
+wait
+take handle
+pry block with handle
+dig tunnel with handle
+dig tunnel with handle
+dig tunnel with handle
+talk to voice
+wait
+tell faria about letter
+tell faria about danglars
+tell faria about fernand
+tell faria about villefort
+down
+west
+study with faria
+study with faria
+study with faria
+study with faria
+lift hearth
+take phial
+pour phial in mouth
+ask faria about treasure
+read parchment
+ask faria about parchment
+wait
+wait
+take knife
+take needle
+cut sack with knife
+drag body
+east
+east
+put body in bed
+cover body
+west
+west
+enter sack
+sew sack
+wait
+cut sack with knife
+cut cord with knife
+up
+swim
+west
+west
+west
+enter overhang
+drink water
+wait
+wait
+wait
+wait
+take cap
+wear cap
+take spar
+hail ship
+
+# --- ACT III: Monte Cristo and the mainland, 1829 ---
+land
+examine rocks
+east
+east
+count rocks
+examine boulder
+take pickaxe
+take horn
+dig wedge with pickaxe
+cut tree
+pry boulder with branch
+put horn in hole
+burn fuse
+pull ring
+down
+knock on wall
+hit wall with pickaxe
+east
+dig angle with pickaxe
+open coffer with pickaxe
+take treasure
+wear cassock
+entrance
+talk to caderousse
+ask caderousse about letter
+ask caderousse about father
+ask caderousse about morrel
+ask caderousse about purse
+give diamond to caderousse
+exit
+wear coat
+south
+talk to morrel
+pay debt
+put bill in purse
+put gem in purse
+north
+put purse on mantel
+
+# --- ACT IV: Paris, 1838 ---
+north
+ask haydee about janina
+ask haydee about proof
+south
+south
+west
+west
+show letter to danglars
+east
+east
+northwest
+give notes to operator
+up
+send signal
+down
+southeast
+north
+east
+wear cassock
+wait
+tell caderousse about benedetto
+wait
+remove wig
+west
+south
+east
+tell beauchamp about janina
+west
+southeast
+wait
+east
+inventory
+take spade
+take pill
+wear jacket
+south
+entrance
+talk to bertuccio
+east
+dig earth with spade
+west
+host dinner
+exit
+southwest
+north
+talk to noirtier
+ask noirtier about poisoner
+south
+east
+give pill to valentine
+west
+northeast
+south
+wait
+north
+southwest
+wear cassock
+north
+remove wig
+
+# --- ACT V: expiation, 1838-39 ---
+east
+talk to danglars
+forgive danglars
+down
+take manuscript
+wait
+give letter to maximilian
+score

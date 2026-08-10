@@ -2,7 +2,16 @@
 Marseilles 1815, the Chateau d'If, the island. Rooms, objects, GO,
 and the engine-required stubs."
 
-<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND>
+;"IN and OUT are also prepositions, and a v8 dictionary entry that is
+both a direction and a preposition cannot have its direction value read
+back (see BUILD-ISSUES). ENTRANCE and EXIT are direction words that are
+nothing else, and every IN/OUT exit below carries one as its working
+alias; IN and OUT stay declared so the LLM layer's phrasings still hit
+something in v3 builds."
+<DIRECTIONS NORTH EAST WEST SOUTH NE NW SE SW UP DOWN IN OUT LAND
+	    ENTRANCE EXIT>
+<SYNONYM ENTRANCE INWARD>
+<SYNONYM EXIT OUTWARD>
 
 "=== ACT I - MARSEILLES, 1815 ==="
 
@@ -19,6 +28,7 @@ Marseilles has turned out to watch.")
       (WEST PER DECK-ASHORE)
       (LAND PER DECK-ASHORE)
       (OUT PER DECK-ASHORE)
+      (EXIT PER DECK-ASHORE)
       (ACTION DECK-FCN)
       (FLAGS RLANDBIT ONBIT SACREDBIT)>
 
@@ -46,6 +56,7 @@ for a feast. Yours.")
       (WEST TO OFFICE)
       (EAST TO RESERVE)
       (IN TO DECK)
+      (ENTRANCE TO DECK)
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM OFFICE
@@ -116,7 +127,7 @@ reading two letters at once. Yours, and his own future.")
 
 <OBJECT DANGLARS
 	(IN DECK)
-	(SYNONYM DANGLARS SUPERCARGO BARON)
+	(SYNONYM DANGLARS SUPERCARGO)
 	(DESC "Danglars")
 	(FLAGS ACTORBIT NDESCBIT)
 	(ACTION DANGLARS-FCN)>
@@ -137,7 +148,7 @@ reading two letters at once. Yours, and his own future.")
 
 <OBJECT CREW
 	(IN DECK)
-	(SYNONYM CREW SAILORS MEN)
+	(SYNONYM CREW HANDS MEN)
 	(DESC "crew")
 	(FLAGS ACTORBIT NDESCBIT)
 	(ACTION CREW-FCN)>
@@ -145,7 +156,7 @@ reading two letters at once. Yours, and his own future.")
 <OBJECT SEA-CHEST
 	(IN CABIN)
 	(SYNONYM CHEST BOX)
-	(ADJECTIVE SEA CAPTAINS)
+	(ADJECTIVE CAPTAINS SEAGOING)
 	(DESC "sea-chest")
 	(FLAGS CONTBIT NDESCBIT)
 	(CAPACITY 30)
@@ -178,7 +189,7 @@ man. The sea unpinned everything else.")>
 
 <OBJECT COIN-PURSE
 	(SYNONYM PURSE PAY WAGES)
-	(ADJECTIVE COIN LEATHER)
+	(ADJECTIVE LEATHER SILVER)
 	(DESC "purse of your pay")
 	(FLAGS TAKEBIT)
 	(SIZE 2)
@@ -226,7 +237,7 @@ empty cupboard, it is a fortune.")>
 
 <OBJECT FEAST-TOPIC
 	(IN CATALANS)
-	(SYNONYM FEAST WEDDING BETROTHAL MARRIAGE)
+	(SYNONYM FEAST BETROTHAL MARRIAGE)
 	(DESC "betrothal feast")
 	(FLAGS NDESCBIT)
 	(ACTION FEAST-TOPIC-FCN)>
@@ -241,7 +252,7 @@ empty cupboard, it is a fortune.")>
 
 <OBJECT ARBOR-CORNER
 	(IN RESERVE)
-	(SYNONYM CORNER ARBOR SHADOW)
+	(SYNONYM ARBOR SHADOW)
 	(DESC "corner of the arbor")
 	(FLAGS NDESCBIT)
 	(TEXT
@@ -272,8 +283,6 @@ look, and smiles thinly.")>
       (DOWN PER CELL34-DIG-EXIT)
       (WEST PER CELL34-DIG-EXIT)
       (ACTION CELL34-FCN)
-      (GLOBAL LETTER-T ARREST-T DANGLARS-T FERNAND-T VILLEFORT-T
-	      MERCEDES-T TREASURE-T ESCAPE-T GOD-T NOIRTIER-T SPADA-T)
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM TUNNEL
@@ -283,8 +292,6 @@ look, and smiles thinly.")>
       (UP TO CELL34)
       (WEST PER TUNNEL-WEST)
       (ACTION TUNNEL-FCN)
-      (GLOBAL LETTER-T ARREST-T DANGLARS-T FERNAND-T VILLEFORT-T
-	      MERCEDES-T TREASURE-T ESCAPE-T GOD-T NOIRTIER-T SPADA-T)
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM CELL27
@@ -296,8 +303,6 @@ disused hearth, a bed, and everywhere the invisible library of a free
 mind. You could believe the walls here were thinner. They are not.")
       (EAST TO TUNNEL)
       (ACTION CELL27-FCN)
-      (GLOBAL LETTER-T ARREST-T DANGLARS-T FERNAND-T VILLEFORT-T
-	      MERCEDES-T TREASURE-T ESCAPE-T GOD-T NOIRTIER-T SPADA-T)
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM UNDERSEA
@@ -336,8 +341,8 @@ to Africa.")
 
 <OBJECT CELL-DOOR
 	(IN CELL34)
-	(SYNONYM DOOR GRATING OAK)
-	(ADJECTIVE OAK IRON)
+	(SYNONYM DOOR GRATING)
+	(ADJECTIVE OAKEN IRON)
 	(DESC "oak door")
 	(FLAGS NDESCBIT DOORBIT)
 	(ACTION CELL-DOOR-FCN)>
@@ -346,7 +351,8 @@ to Africa.")
 	(IN CELL34)
 	(SYNONYM BED BEDSTEAD)
 	(DESC "bed")
-	(FLAGS NDESCBIT)
+	(FLAGS NDESCBIT SURFACEBIT CONTBIT OPENBIT)
+	(CAPACITY 60)
 	(ACTION PRISON-BED-FCN)>
 
 <OBJECT PRISON-TABLE
@@ -376,8 +382,8 @@ order of the crown.")>
 <OBJECT JUG
 	(IN CELL34)
 	(SYNONYM JUG PITCHER)
-	(ADJECTIVE STONE WATER)
-	(DESC "stone jug")
+	(ADJECTIVE EARTHEN)
+	(DESC "water jug")
 	(FLAGS NDESCBIT)
 	(ACTION JUG-FCN)>
 
@@ -407,8 +413,8 @@ order of the crown.")>
 
 <OBJECT LOOSE-STONE
 	(IN CELL34)
-	(SYNONYM STONE)
-	(ADJECTIVE LOOSE CORNER)
+	(SYNONYM PEBBLE COBBLE)
+	(ADJECTIVE LOOSE)
 	(DESC "loose stone")
 	(FLAGS NDESCBIT TAKEBIT)
 	(SIZE 3)
@@ -416,7 +422,7 @@ order of the crown.")>
 
 <OBJECT HEWN-STONE
 	(SYNONYM STONE BLOCK)
-	(ADJECTIVE HEWN)
+	(ADJECTIVE HEWN DRESSED)
 	(DESC "hewn stone")
 	(FLAGS NDESCBIT)
 	(ACTION HEWN-STONE-FCN)>
@@ -538,7 +544,7 @@ the abbe back from the edge.")>
 
 <OBJECT PARCHMENT
 	(SYNONYM PARCHMENT WILL PAPER)
-	(ADJECTIVE SPADA BURNED)
+	(ADJECTIVE BURNED SCORCHED)
 	(DESC "Spada parchment")
 	(FLAGS TAKEBIT READBIT)
 	(SIZE 1)
@@ -547,7 +553,7 @@ the abbe back from the edge.")>
 <OBJECT FARIA-BED
 	(IN CELL27)
 	(SYNONYM BED BEDSTEAD LADDER)
-	(ADJECTIVE ABBES ROPE)
+	(ADJECTIVE ABBES)
 	(DESC "abbe's bed")
 	(FLAGS NDESCBIT)
 	(ACTION FARIA-BED-FCN)>
@@ -623,70 +629,121 @@ gives back only what it does not want.")>
 "Act II conversation topics (local-globals for the cells)"
 
 <OBJECT LETTER-T
-	(IN LOCAL-GLOBALS)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM LETTER)
 	(DESC "letter")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT ARREST-T
-	(IN LOCAL-GLOBALS)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM ARREST ACCUSATION DENUNCIATION)
 	(DESC "arrest")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+;"Conversation topics. Every one of these words also names a person who
+appears somewhere in the game; the person objects are retired from play
+the moment their act ends (RETIRE-CAST), so only one of the two is ever
+in scope and ASK X ABOUT DANGLARS never asks which Danglars."
 
 <OBJECT DANGLARS-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM DANGLARS)
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM DANGLARS BANKER)
 	(DESC "Danglars")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT FERNAND-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM FERNAND)
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM FERNAND MORCERF)
 	(DESC "Fernand")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT VILLEFORT-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM VILLEFORT MAGISTRATE)
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM VILLEFORT PROCUREUR)
 	(DESC "Villefort")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT MERCEDES-T
-	(IN LOCAL-GLOBALS)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM MERCEDES)
 	(DESC "Mercedes")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
-<OBJECT TREASURE-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM TREASURE FORTUNE GOLD)
-	(DESC "treasure")
-	(FLAGS NDESCBIT)>
+<OBJECT CMORR-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM MORREL)
+	(DESC "M. Morrel")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
-<OBJECT ESCAPE-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM ESCAPE FREEDOM)
-	(DESC "escape")
-	(FLAGS NDESCBIT)>
-
-<OBJECT GOD-T
-	(IN LOCAL-GLOBALS)
-	(SYNONYM GOD PROVIDENCE DESPAIR)
-	(DESC "God")
-	(FLAGS NDESCBIT)>
+<OBJECT FATHER-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM FATHER)
+	(DESC "old Dantes")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT NOIRTIER-T
-	(IN LOCAL-GLOBALS)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM NOIRTIER)
 	(DESC "Noirtier")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT DANTES-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM DANTES EDMOND)
+	(DESC "Edmond Dantes")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT BENEDETTO-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM BENEDETTO CAVALCANTI)
+	(DESC "Benedetto")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT VALENTINE-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM VALENTINE)
+	(DESC "Valentine")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT TREASURE-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM TREASURE FORTUNE GOLD)
+	(DESC "treasure")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT ESCAPE-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM ESCAPE FREEDOM)
+	(DESC "escape")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
+
+<OBJECT GOD-T
+	(IN GLOBAL-OBJECTS)
+	(SYNONYM GOD PROVIDENCE DESPAIR)
+	(DESC "God")
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT SPADA-T
-	(IN LOCAL-GLOBALS)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM SPADA CARDINAL)
 	(DESC "Spada")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 "=== ACT III - MONTE CRISTO AND THE MAINLAND, 1829 ==="
 
@@ -699,6 +756,7 @@ Monte Cristo with contraband and no questions. Jacopo splices a line
 and watches you the way honest men watch lucky ones.")
       (LAND TO CREEK)
       (OUT TO CREEK)
+      (EXIT TO CREEK)
       (WEST TO CREEK)
       (FLAGS RLANDBIT ONBIT)>
 
@@ -779,7 +837,12 @@ man with a pickaxe.")
 "A white dusty road between Bellegarde and Beaucaire. A failing inn
 stands here, its signboard groaning in the wind: the Pont du Gard.")
       (IN PER ROAD-IN)
+      (ENTRANCE PER ROAD-IN)
       (EAST PER ROAD-IN)
+      (SOUTH PER ROAD-SOUTH)
+      (WEST PER ROAD-SOUTH)
+      (OUT PER ROAD-SOUTH)
+      (EXIT PER ROAD-SOUTH)
       (FLAGS RLANDBIT ONBIT)>
 
 <ROOM INN
@@ -790,6 +853,7 @@ stands here, its signboard groaning in the wind: the Pont du Gard.")
 wipes a table that no traveler will sit at. Poverty has been at work
 on him the way the sea works on a wreck.")
       (OUT TO BEAUCAIRE-ROAD)
+      (EXIT TO BEAUCAIRE-ROAD)
       (WEST TO BEAUCAIRE-ROAD)
       (ACTION INN-FCN)
       (FLAGS RLANDBIT ONBIT)>
@@ -814,14 +878,14 @@ on him the way the sea works on a wreck.")
 <OBJECT WEDGE
 	(IN CLEARING)
 	(SYNONYM WEDGE BASE FLINTS)
-	(ADJECTIVE WEDGE)
+	(ADJECTIVE PACKED)
 	(DESC "wedge stone")
 	(FLAGS NDESCBIT)
 	(ACTION WEDGE-FCN)>
 
 <OBJECT OLIVE-TREE
 	(IN CLEARING)
-	(SYNONYM TREE OLIVE BOUGH)
+	(SYNONYM TREE BOUGH)
 	(ADJECTIVE OLIVE)
 	(DESC "olive tree")
 	(FLAGS NDESCBIT)
@@ -851,7 +915,7 @@ on him the way the sea works on a wreck.")
 	(TEXT "Jacopo's pickaxe, left with the supplies. It opens everything.")>
 
 <OBJECT POWDER-HORN
-	(SYNONYM POWDER HORN)
+	(SYNONYM HORN)
 	(ADJECTIVE POWDER)
 	(DESC "powder horn")
 	(FLAGS TAKEBIT)
@@ -867,7 +931,7 @@ on him the way the sea works on a wreck.")
 "A gun, biscuits, and rum: a week's worry from Jacopo's own share.")>
 
 <OBJECT FUSE
-	(SYNONYM POWDER MATCH FUSE HANDKERCHIEF)
+	(SYNONYM MATCH FUSE HANDKE)
 	(ADJECTIVE SLOW)
 	(DESC "slow-match")
 	(FLAGS NDESCBIT)
@@ -897,7 +961,7 @@ on him the way the sea works on a wreck.")
 
 <OBJECT DIG-CORNER
 	(IN GROTTO2)
-	(SYNONYM CORNER ANGLE GROUND EARTH)
+	(SYNONYM ANGLE GROUND EARTH)
 	(ADJECTIVE FARTHEST DARK)
 	(DESC "farthest angle")
 	(FLAGS NDESCBIT)
@@ -919,7 +983,7 @@ on him the way the sea works on a wreck.")
 	(ACTION TREASURE-FCN)>
 
 <OBJECT DIAMOND
-	(SYNONYM DIAMOND STONE)
+	(SYNONYM DIAMOND)
 	(ADJECTIVE GREAT)
 	(DESC "great diamond")
 	(FLAGS TAKEBIT)
@@ -998,79 +1062,42 @@ and French. Two hundred and eighty-seven thousand francs of mercy.")>
 
 "Act III inn topics"
 
-<OBJECT CLETTER-T
-	(IN INN)
-	(SYNONYM LETTER)
-	(DESC "letter")
-	(FLAGS NDESCBIT)>
-
-<OBJECT FATHER-T
-	(IN INN)
-	(SYNONYM FATHER DANTES EDMOND)
-	(DESC "old Dantes")
-	(FLAGS NDESCBIT)>
-
-<OBJECT CMERC-T
-	(IN INN)
-	(SYNONYM MERCEDES)
-	(DESC "Mercedes")
-	(FLAGS NDESCBIT)>
-
-<OBJECT CDANG-T
-	(IN INN)
-	(SYNONYM DANGLARS)
-	(DESC "Danglars")
-	(FLAGS NDESCBIT)>
-
-<OBJECT CFERN-T
-	(IN INN)
-	(SYNONYM FERNAND MORCERF)
-	(DESC "Fernand")
-	(FLAGS NDESCBIT)>
-
-<OBJECT CVILL-T
-	(IN INN)
-	(SYNONYM VILLEFORT)
-	(DESC "Villefort")
-	(FLAGS NDESCBIT)>
-
-<OBJECT CMORR-T
-	(IN INN)
-	(SYNONYM MORREL)
-	(DESC "Morrel")
-	(FLAGS NDESCBIT)>
-
 <OBJECT PURSE-T
-	(IN INN)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM PURSE)
 	(DESC "red purse")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT DIAMOND-T
-	(IN INN)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM DIAMOND LEGACY)
 	(DESC "diamond")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 "Act III Marseilles topics (counting-house)"
 
 <OBJECT DEBT-T
-	(IN OFFICE)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM DEBT BILLS CREDITORS)
 	(DESC "debt")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT SEPTEMBER-T
-	(IN OFFICE)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM SEPTEMBER FIFTH)
 	(DESC "fifth of September")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT SHIP-T
-	(IN OFFICE)
+	(IN GLOBAL-OBJECTS)
 	(SYNONYM SHIP PHARAON)
 	(DESC "Pharaon")
-	(FLAGS NDESCBIT)>
+	(FLAGS NDESCBIT)
+	(ACTION TOPIC-FCN)>
 
 <OBJECT COCLES
 	(IN OFFICE)
