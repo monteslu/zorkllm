@@ -740,3 +740,22 @@ console.log('continuation voice:');
   const r = await a.turn('have a look about');
   ok('note echoing the engine text is dropped', r.note === null, JSON.stringify(r.note));
 }
+
+// --- a question answered with nothing gets one corrective retry ---
+{
+  const s = await loadGame(join(GAMES, 'zork1.z3'));
+  await s.start();
+  let calls = 0;
+  const a = new ZorkAgent(s, {
+    describe: () => 'vacant',
+    async complete() {
+      calls++;
+      return calls === 1
+        ? 'SAY\nYou are here. What do you wish to do now?'   // names nothing
+        : 'SAY\nThe mailbox is worth opening, and the house lies east.';
+    },
+  }, 'Zork I', { guide: false });
+  const r = await a.turn('what should i do?');
+  ok('content-free answer is retried', calls === 2, `calls=${calls}`);
+  ok('retry answer names something actionable', /mailbox|east/.test(r.message ?? ''), r.message);
+}

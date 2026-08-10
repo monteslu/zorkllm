@@ -279,6 +279,16 @@ export class ZorkAgent {
       }
     }
     if (decision.type === 'say') {
+      // A question deserves an answer, not a restatement. Weak models
+      // reply to "what should I do?" with "You are on the Marseilles
+      // Quay." - true, already on screen, and useless to the player who
+      // asked precisely because they are stuck. One corrective retry that
+      // names the concrete options costs a turn nothing: no game move has
+      // happened.
+      if (this.#echoesGame(decision.message) || this.#isVacantAnswer(playerText, decision.message)) {
+        const retried = await this.#retrySay(playerText);
+        if (retried) return { type: 'say', message: retried };
+      }
       return { type: 'say', message: decision.message };
     }
     const turns = [];
@@ -439,6 +449,68 @@ export class ZorkAgent {
   }
 
   /**
+   * A question answered with nothing. Distinct from an echo: "You are on
+   * the quay. What do you wish to do now?" overlaps the room text by only
+   * 20%, so an echo check passes it, yet it tells a stuck player nothing.
+   * The test is whether the reply names anything the player could act on -
+   * an object in scope, something carried, or a direction. If it names
+   * none of those, it is padding.
+   * @param {string} question @param {string} answer
+   */
+  #isVacantAnswer(question, answer) {
+    if (!/^(what|where|how|which|who|why)\b|\?\s*$|stuck|help|next|should i|do now/i.test(question)) {
+      return false;   // only judge replies to a request for direction
+    }
+    const scope = this.session.scope?.() ?? { carrying: [], present: [] };
+    const ways = this.session.exits?.() ?? [];
+    // Object names contain filler ("purse of your pay"); matching on
+    // those makes "What is your next move?" look like it names a thing.
+    const FILLER = new Set(['your', 'yours', 'their', 'this', 'that', 'with', 'from',
+      'some', 'here', 'there', 'thing', 'things', 'pair', 'piece', 'little', 'small', 'great']);
+    const nouns = [...scope.present, ...scope.carrying]
+      .flatMap((n) => n.toLowerCase().split(/\s+/))
+      .filter((w) => w.length > 3 && !FILLER.has(w));
+    const lower = answer.toLowerCase();
+    const namesThing = nouns.some((n) => lower.includes(n));
+    const namesWay = ways.some((d) => new RegExp(`\\b${d}\\b`).test(lower));
+    return !namesThing && !namesWay;
+  }
+
+  /**
+   * The guide answered a question by restating the room. Ask again, with
+   * the mechanical scope the engine is certain of, and require concrete
+   * nouns rather than a location.
+   * @param {string} question
+   * @returns {Promise<string|null>}
+   */
+  async #retrySay(question) {
+    const scope = this.session.scope?.() ?? { carrying: [], present: [] };
+    const ways = this.session.exits?.() ?? [];
+    const facts = [
+      scope.present.length ? `Here: ${scope.present.join(', ')}.` : '',
+      scope.carrying.length ? `Carrying: ${scope.carrying.join(', ')}.` : 'Carrying nothing.',
+      ways.length ? `Ways out: ${ways.join(', ')}.` : '',
+    ].filter(Boolean).join(' ');
+    this.history.push({
+      role: 'user',
+      content: `[retry] Your answer only repeated where the player is standing, which they can `
+        + `already see. They asked: "${question}". ${facts} Answer with something they could DO `
+        + `next - name a thing to examine, a person to talk to, or a direction to try. One or two `
+        + `sentences, in your own voice, no command words.`,
+    });
+    try {
+      const reply = await this.llm.complete({ system: this.system, messages: this.#window() });
+      this.history.push({ role: 'assistant', content: reply });
+      const decision = parseReply(reply);
+      const message = decision.type === 'say' ? decision.message : null;
+      return message && !this.#echoesGame(message) ? message : null;
+    } catch {
+      this.history.pop();
+      return null;
+    }
+  }
+
+  /**
    * Does this note just say back what the game printed? Compares against
    * the engine text the player is looking at right now, sentence by
    * sentence, so a note that copies one line out of a long room
@@ -532,7 +604,12 @@ export class ZorkAgent {
       ? ` Carrying: ${scope.carrying.join(', ')}.` : ' Carrying nothing.';
     const present = scope.present.length
       ? ` Here: ${scope.present.join(', ')}.` : '';
-    return `[state: in "${s.location}"${tally}.${carrying}${present}${rooms}]`;
+    // Exits the room actually declares. A room may describe its geography
+    // in prose the player cannot parse into a direction ("north lie the
+    // Allees de Meilhan"); this is the compass answer, and it is free.
+    const ways = this.session.exits?.() ?? [];
+    const out = ways.length ? ` Ways out: ${ways.join(', ')}.` : '';
+    return `[state: in "${s.location}"${tally}.${carrying}${present}${out}${rooms}]`;
   }
 
   /** History entries before this index are evicted from the LLM window. */

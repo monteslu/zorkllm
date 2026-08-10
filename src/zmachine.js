@@ -200,6 +200,57 @@ export class GameSession {
     }
   }
 
+  /**
+   * Directions that lead somewhere from the current room, read from the
+   * room's exit properties. Read-only: probing by walking would mutate
+   * the game, and a hint must never cost a move.
+   *
+   * Direction properties occupy the highest property numbers, and the
+   * engine dispatches on property SIZE (gverbs.zil): 1 UEXIT, 2 NEXIT
+   * (a refusal string, no destination), 3 FEXIT (a routine - destination
+   * computed at run time, invisible here), 4 CEXIT, 5 DEXIT. Only sizes
+   * 1, 4 and 5 name a room, and even those may be shut, so this answers
+   * "which ways are worth trying", not "which ways are open".
+   * @returns {string[]}
+   */
+  exits() {
+    try {
+      const ot = this.zm.objectTable;
+      const player = this.#findPlayer(ot);
+      const room = player && ot.getParent(player);
+      if (!room) return [];
+      const mem = ot.memory ?? this.zm.memory;
+      let p = ot.getPropertyTableAddress(room);
+      p += 1 + mem.readByte(p) * 2;
+      const found = [];
+      for (;;) {
+        const size = mem.readByte(p);
+        if (size === 0) break;
+        let num; let len; let at;
+        if (this.version >= 4) {
+          num = size & 0x3f;
+          if (size & 0x80) { len = (mem.readByte(p + 1) & 0x3f) || 64; at = p + 2; }
+          else { len = (size & 0x40) ? 2 : 1; at = p + 1; }
+        } else {
+          num = size & 0x1f; len = (size >> 5) + 1; at = p + 1;
+        }
+        if (len === 1 || len === 4 || len === 5) found.push(num);
+        p = at + len;
+      }
+      // Property numbers descend from the last declared direction, and the
+      // engine's own order is N S E W NE NW SE SW U D IN OUT.
+      const order = ['north', 'south', 'east', 'west', 'northeast', 'northwest',
+        'southeast', 'southwest', 'up', 'down', 'in', 'out'];
+      const high = Math.max(...found, 0);
+      if (!high) return [];
+      return found.sort((a, b) => b - a)
+        .map((n) => order[high - n])
+        .filter(Boolean);
+    } catch {
+      return [];
+    }
+  }
+
   /** @param {any} ot */
   #findPlayer(ot) {
     if (this.#playerObj !== undefined && this.#playerObj !== null) return this.#playerObj;
